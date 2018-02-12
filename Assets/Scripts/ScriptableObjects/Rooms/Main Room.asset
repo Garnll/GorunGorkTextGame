@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Name: Main Room
   m_EditorClassIdentifier: 
   roomPosition: {x: 0, y: 0, z: 0}
-  roomDescription: 
+  roomDescription: "Una habitaci\xF3n repleta de luces y sombras. Una parte de la
+    nada y el todo. Te da la sensaci\xF3n de que est\xE1s dentro de un juego."
   roomName: Test Room
+  exits:
+  - myKeyword: norte
+    exitDescription: "Un portal se abre al norte, iluminando el vac\xEDo en frente
+      de t\xED"
+    conectedRoom: {fileID: 11400000, guid: d1c8c06a70f847648a03131f48502f66, type: 2}
