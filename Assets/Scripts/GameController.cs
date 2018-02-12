@@ -24,8 +24,6 @@ public class GameController : MonoBehaviour {
         string logAsText = string.Join("\n", actionLog.ToArray());
 
         displayText.text = logAsText;
-
-        Debug.Log("Im here");
     }
 
     public void DisplayRoomText()
