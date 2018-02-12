@@ -5,14 +5,28 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/Room")]
 public class Room : ScriptableObject {
 
-    public Vector3 roomPosition;
-    public string roomDescription;
+    [HideInInspector] public Vector3 roomPosition;
+
+    [TextArea] public string roomDescription;
     public string roomName;
+
+    
+
+    public delegate void RoomChanges(Room thisRoom);
+    public static event RoomChanges OnChangePosition;
 
     public void ChangePosition(Vector3 newRoomPosition)
     {
         roomPosition = newRoomPosition;
-        Debug.Log("Done");
+
+        if (OnChangePosition != null)
+        {
+            OnChangePosition(this);
+        }
+        else
+        {
+            Debug.LogWarning("Evento OnChangePosition no está funcionando");
+        }
     }
 
     

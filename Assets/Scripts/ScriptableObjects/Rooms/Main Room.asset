@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
   m_Name: Main Room
   m_EditorClassIdentifier: 
-  roomPosition: {x: 1, y: 3, z: 2}
+  roomPosition: {x: 0, y: 0, z: 0}
   roomDescription: 
-  roomName: 
+  roomName: Test Room
