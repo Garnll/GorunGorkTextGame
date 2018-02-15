@@ -8,11 +8,16 @@ using UnityEngine;
 public class RoomCustonEditor : Editor {
 
     public Vector3Int newPosition = new Vector3Int();
+    Room targetRoom;
+
+    private void OnEnable()
+    {
+        targetRoom = (Room)target;
+        newPosition = Vector3Int.CeilToInt(targetRoom.roomPosition);
+    }
 
     public override void OnInspectorGUI()
     {
-        Room targetRoom = (Room)target;
-
         EditorGUILayout.Vector3Field("Room Position", targetRoom.roomPosition);
 
         base.OnInspectorGUI();

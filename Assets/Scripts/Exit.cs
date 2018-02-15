@@ -6,6 +6,6 @@ using UnityEngine;
 public class Exit {
 
     public string myKeyword;
-    public string exitDescription;
     public Room conectedRoom;
+    [TextArea] public string exitDescription;
 }

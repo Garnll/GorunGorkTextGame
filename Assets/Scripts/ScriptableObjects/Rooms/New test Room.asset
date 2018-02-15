@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: New test Room
+  m_EditorClassIdentifier: 
+  roomPosition: {x: 0, y: -1, z: 0}
+  roomDescription: "Entras a una habitaci\xF3n repleta de az\xFAcar, flores y muchos
+    colores. Esto es solo un test, pero entienden c\xF3mo funciona esto, \xBFno?"
+  roomName: Test Room
+  exits:
+  - myKeyword: norte
+    conectedRoom: {fileID: 11400000, guid: 487ef34cd9a878d4d98ff33a0a4a7102, type: 2}
+    exitDescription: Hay una salida al norte
