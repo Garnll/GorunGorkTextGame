@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TextInput : MonoBehaviour {
 
-    public InputField inputField;
+    //public InputField inputField;
+    public TMP_InputField inputField;
 
     GameController controller;
 

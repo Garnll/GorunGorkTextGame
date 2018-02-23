@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour {
 
-    public Text displayText;
+    public TextMeshProUGUI displayText;
+    //public Text displayText;
     public InputActions[] inputActions;
     public PlayerRoomNavigation playerRoomNavigation;
 
