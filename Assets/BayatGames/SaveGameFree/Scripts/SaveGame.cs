@@ -25,16 +25,21 @@ namespace BayatGames.SaveGameFree
 		/// <summary>
 		/// The data path. Application.dataPath
 		/// </summary>
-		DataPath
+		DataPath,
 
-	}
+        /// <summary>
+        /// The RoomData path. Application.dataPath + "/RoomData"
+        /// </summary>
+        RoomDataPath
 
-	/// <summary>
-	/// Save Game.
-	/// Use these APIs to Save & Load game data.
-	/// If you are looking for Web saving and loading use SaveGameWeb.
-	/// </summary>
-	public static class SaveGame
+    }
+
+    /// <summary>
+    /// Save Game.
+    /// Use these APIs to Save & Load game data.
+    /// If you are looking for Web saving and loading use SaveGameWeb.
+    /// </summary>
+    public static class SaveGame
 	{
 
 		/// <summary>
@@ -320,7 +325,10 @@ namespace BayatGames.SaveGameFree
 					case SaveGamePath.DataPath:
 						filePath = string.Format ( "{0}/{1}", Application.dataPath, identifier );
 						break;
-				}
+                    case SaveGamePath.RoomDataPath:
+                        filePath = string.Format("{0}/{1}", Application.dataPath + "/RoomData", identifier);
+                        break;
+                }
 			}
 			else
 			{
@@ -609,7 +617,10 @@ namespace BayatGames.SaveGameFree
 					case SaveGamePath.DataPath:
 						filePath = string.Format ( "{0}/{1}", Application.dataPath, identifier );
 						break;
-				}
+                    case SaveGamePath.RoomDataPath:
+                        filePath = string.Format("{0}/{1}", Application.dataPath + "/RoomData", identifier);
+                        break;
+                }
 			}
 			else
 			{
@@ -741,7 +752,10 @@ namespace BayatGames.SaveGameFree
 					case SaveGamePath.DataPath:
 						filePath = string.Format ( "{0}/{1}", Application.dataPath, identifier );
 						break;
-				}
+                    case SaveGamePath.RoomDataPath:
+                        filePath = string.Format("{0}/{1}", Application.dataPath + "/RoomData", identifier);
+                        break;
+                }
 			}
 			else
 			{
@@ -807,7 +821,10 @@ namespace BayatGames.SaveGameFree
 					case SaveGamePath.DataPath:
 						filePath = string.Format ( "{0}/{1}", Application.dataPath, identifier );
 						break;
-				}
+                    case SaveGamePath.RoomDataPath:
+                        filePath = string.Format("{0}/{1}", Application.dataPath + "/RoomData", identifier);
+                        break;
+                }
 			}
 			else
 			{
@@ -877,7 +894,10 @@ namespace BayatGames.SaveGameFree
 				case SaveGamePath.DataPath:
 					dirPath = Application.dataPath;
 					break;
-			}
+                case SaveGamePath.RoomDataPath:
+                    dirPath = Application.dataPath + "/RoomData";
+                    break;
+            }
 			#if !UNITY_SAMSUNGTV && !UNITY_TVOS && !UNITY_WEBGL
 			if ( IOSupported () )
 			{

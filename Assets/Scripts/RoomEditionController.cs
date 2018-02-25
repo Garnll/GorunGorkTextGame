@@ -10,6 +10,7 @@ public class RoomEditionController : MonoBehaviour {
     private bool isEventSuscribed = false;
 
     Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
+    List<Room> roomsToLoad = new List<Room>();
 
     private void OnEnable()
     {
@@ -31,6 +32,7 @@ public class RoomEditionController : MonoBehaviour {
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(findRooms[i]);
             Room newRoom = AssetDatabase.LoadAssetAtPath<Room>(assetPath);
+            roomsToLoad.Add(newRoom);
 
             if (!existingRooms.ContainsKey(newRoom.roomPosition))
             {
@@ -39,6 +41,17 @@ public class RoomEditionController : MonoBehaviour {
             else
             {
                 Debug.LogError("The room '" + newRoom.roomName + "' couldn't be added to Dictionary. Please change it's position");
+            }
+        }
+
+        for (int i = 0; i < roomsToLoad.Count; i++)
+        {
+            Room loadRoom = RoomDataSave.LoadData(roomsToLoad[i]);
+            Debug.Log(loadRoom);
+            if (loadRoom != null)
+            {
+                roomsToLoad[i] = loadRoom;
+                Debug.Log("Loaded Room " + loadRoom.name);
             }
         }
     }
@@ -69,7 +82,7 @@ public class RoomEditionController : MonoBehaviour {
 
         existingRooms.Add(currentAnalizedRoom.roomPosition, currentAnalizedRoom);
 
-
+        RoomDataSave.SaveData(currentAnalizedRoom);
     }
 
     private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
