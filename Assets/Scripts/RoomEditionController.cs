@@ -52,7 +52,7 @@ public class RoomEditionController : MonoBehaviour {
             if (loadRoom != null)
             {
                 LoadRoomParameters(roomsToLoad[i], loadRoom);
-                Debug.Log("Loaded Room " + roomsToLoad[i].name.ToString());
+                Debug.Log("Loaded Room: " + roomsToLoad[i].name.ToString());
             }
         }
     }
@@ -70,7 +70,7 @@ public class RoomEditionController : MonoBehaviour {
                 Exit loadExit = new Exit();
 
                 loadExit.myKeyword = roomDataLoad.exitsData[i].myKeywordData;
-                loadExit.conectedRoom = RoomEditionController.existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
+                loadExit.conectedRoom = existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
                 loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
 
                 roomToChange.exits.Add(loadExit);
@@ -103,14 +103,13 @@ public class RoomEditionController : MonoBehaviour {
 
         existingRooms.Add(currentAnalizedRoom.roomPosition, currentAnalizedRoom);
 
-        RoomDataSave.SaveData(currentAnalizedRoom);
-        Debug.Log("Saved Room " + currentAnalizedRoom.name.ToString());
+        SaveChanges(currentAnalizedRoom);
     }
 
     private void SaveChanges(Room currentAnalizedRoom)
     {
         RoomDataSave.SaveData(currentAnalizedRoom);
-        Debug.Log("Saved Room " + currentAnalizedRoom.name.ToString());
+        Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
     }
 
     private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
@@ -211,7 +210,7 @@ public class RoomEditionController : MonoBehaviour {
         {
             Exit newExitToCreate = new Exit()
             {
-                exitDescription = "Hay una salida al " + exitDirections[i],
+                exitDescription = "Hay una salida al " + exitDirections[i] + ".",
                 myKeyword = exitDirections[i],
                 conectedRoom = existingRooms[otherRoomsPositions[i]]
             };
