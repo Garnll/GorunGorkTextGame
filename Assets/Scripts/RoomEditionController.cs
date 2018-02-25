@@ -9,20 +9,22 @@ public class RoomEditionController : MonoBehaviour {
 
     private bool isEventSuscribed = false;
 
-    Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
+    public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
     List<Room> roomsToLoad = new List<Room>();
 
     private void OnEnable()
     {
-        if (Application.isPlaying)
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
 
         if (!isEventSuscribed)
         {
             Room.OnChangePosition += RoomPositionChanged;
+            Room.OnChangeStuff += SaveChanges;
             isEventSuscribed = true;
         }
         existingRooms.Clear();
+        roomsToLoad.Clear();
 
         string[] path = new string[1];
         path[0] = "Assets/Scripts/ScriptableObjects/Rooms";
@@ -46,20 +48,39 @@ public class RoomEditionController : MonoBehaviour {
 
         for (int i = 0; i < roomsToLoad.Count; i++)
         {
-            Room loadRoom = RoomDataSave.LoadData(roomsToLoad[i]);
-            Debug.Log(loadRoom);
+            RoomDataSave.Room_Data loadRoom = RoomDataSave.LoadData(roomsToLoad[i]);
             if (loadRoom != null)
             {
-                roomsToLoad[i] = loadRoom;
-                Debug.Log("Loaded Room " + loadRoom.name);
+                LoadRoomParameters(roomsToLoad[i], loadRoom);
+                Debug.Log("Loaded Room " + roomsToLoad[i].name.ToString());
             }
         }
     }
 
+    private void LoadRoomParameters(Room roomToChange, RoomDataSave.Room_Data roomDataLoad)
+    {
+        if (roomDataLoad != null)
+        {
+            roomToChange.roomPosition = roomDataLoad.roomPositionData;
+            roomToChange.roomDescription = roomDataLoad.roomDescriptionData;
+            roomToChange.roomName = roomDataLoad.roomNameData;
+            roomToChange.exits.Clear();
+            for (int i = 0; i < roomDataLoad.exitsData.Length; i++)
+            {
+                Exit loadExit = new Exit();
+
+                loadExit.myKeyword = roomDataLoad.exitsData[i].myKeywordData;
+                loadExit.conectedRoom = RoomEditionController.existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
+                loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
+
+                roomToChange.exits.Add(loadExit);
+            }
+        }
+    }
 
     private void RoomPositionChanged(Room currentAnalizedRoom, Vector3 newRoomPosition)
     {
-        if (Application.isPlaying)
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
 
         Vector3 oldRoomPosition = currentAnalizedRoom.roomPosition;
@@ -83,6 +104,13 @@ public class RoomEditionController : MonoBehaviour {
         existingRooms.Add(currentAnalizedRoom.roomPosition, currentAnalizedRoom);
 
         RoomDataSave.SaveData(currentAnalizedRoom);
+        Debug.Log("Saved Room " + currentAnalizedRoom.name.ToString());
+    }
+
+    private void SaveChanges(Room currentAnalizedRoom)
+    {
+        RoomDataSave.SaveData(currentAnalizedRoom);
+        Debug.Log("Saved Room " + currentAnalizedRoom.name.ToString());
     }
 
     private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
@@ -195,8 +223,10 @@ public class RoomEditionController : MonoBehaviour {
     private void OnDisable()
     {
         Room.OnChangePosition -= RoomPositionChanged;
+        Room.OnChangeStuff -= SaveChanges;
         isEventSuscribed = false;
         existingRooms.Clear();
+        roomsToLoad.Clear();
     }
 #endif
 }

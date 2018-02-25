@@ -17,6 +17,5 @@ MonoBehaviour:
   roomName: Other Room
   exits:
   - myKeyword: sur
-    exitDescription: "Un portal parece estar abierto al sur de tu posici\xF3n, emitiendo
-      una tenue luz ultravioleta."
     conectedRoom: {fileID: 11400000, guid: 487ef34cd9a878d4d98ff33a0a4a7102, type: 2}
+    exitDescription: Hay un poco de algo al sur.

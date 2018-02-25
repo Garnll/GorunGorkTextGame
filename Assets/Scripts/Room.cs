@@ -15,6 +15,9 @@ public class Room : ScriptableObject {
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
     public static event RoomChanges OnChangePosition;
 
+    public delegate void DescriptionChanges(Room thisRoom);
+    public static event DescriptionChanges OnChangeStuff;
+
     public void ChangePosition(Vector3 newRoomPosition)
     {
         if (OnChangePosition != null)
@@ -24,6 +27,18 @@ public class Room : ScriptableObject {
         else
         {
             Debug.LogWarning("Evento OnChangePosition no está funcionando");
+        }
+    }
+
+    public void ChangeStuff()
+    {
+        if (OnChangeStuff != null)
+        {
+            OnChangeStuff(this);
+        }
+        else
+        {
+            Debug.LogWarning("Evento OnChangeStuff no está funcionando");
         }
     }
 
