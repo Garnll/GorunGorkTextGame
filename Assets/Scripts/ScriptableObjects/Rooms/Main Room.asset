@@ -16,7 +16,9 @@ MonoBehaviour:
     nada y el todo. Te da la sensaci\xF3n de que est\xE1s dentro de un juego."
   roomName: Test Room
   exits:
+  - myKeyword: sur
+    conectedRoom: {fileID: 11400000, guid: d528adfac6fe75a478f2261a9619fca0, type: 2}
+    exitDescription: Hay una salida al <color=blue>sur</color>.
   - myKeyword: norte
-    exitDescription: "Un portal se abre al norte, iluminando el vac\xEDo en frente
-      de t\xED"
     conectedRoom: {fileID: 11400000, guid: d1c8c06a70f847648a03131f48502f66, type: 2}
+    exitDescription: En el northe she hayha lha shalhidha.

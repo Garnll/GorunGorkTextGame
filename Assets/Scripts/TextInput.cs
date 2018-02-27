@@ -19,6 +19,8 @@ public class TextInput : MonoBehaviour {
 
     void AcceptStringInput(string userInput)
     {
+        //Esto es para cambiar por dictionary
+
         userInput = userInput.ToLower();
         controller.LogStringWithReturn(userInput);
 
