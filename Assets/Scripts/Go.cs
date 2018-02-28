@@ -10,15 +10,13 @@ public class Go : InputActions {
         if (converter == null)
             converter = KeywordToStringConverter.Instance;
 
-
-
         if (separatedInputWords[0] == keyWord)
         {
             DirectionKeyword direction = converter.ConvertFromString(separatedInputWords[1]);
 
             if (direction != DirectionKeyword.unrecognized)
             {
-                controller.playerRoomNavigation.AttemptToChangeRooms(keyWord);
+                controller.playerRoomNavigation.AttemptToChangeRooms(direction);
             }
             else
             {
