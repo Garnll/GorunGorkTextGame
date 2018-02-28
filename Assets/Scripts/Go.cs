@@ -7,6 +7,28 @@ public class Go : InputActions {
 
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        controller.playerRoomNavigation.AttemptToChangeRooms(separatedInputWords[1]);
+        if (converter == null)
+            converter = KeywordToStringConverter.Instance;
+
+
+
+        if (separatedInputWords[0] == keyWord)
+        {
+            DirectionKeyword direction = converter.ConvertFromString(separatedInputWords[1]);
+
+            if (direction != DirectionKeyword.unrecognized)
+            {
+                controller.playerRoomNavigation.AttemptToChangeRooms(keyWord);
+            }
+            else
+            {
+                controller.playerRoomNavigation.AttemptToChangeRooms(separatedInputWords[1]);
+            }
+        }
+        else
+        {
+            controller.playerRoomNavigation.AttemptToChangeRooms(
+                converter.ConvertFromString(separatedInputWords[0]));
+        }
     }
 }

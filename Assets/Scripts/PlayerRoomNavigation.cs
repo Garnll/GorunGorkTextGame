@@ -7,9 +7,11 @@ public class PlayerRoomNavigation : MonoBehaviour {
     public GameController controller;
     public Room currentRoom;
 
+    KeywordToStringConverter converter;
+
     Vector3 currentPosition;
 
-    Dictionary<string, Room> exitDictionary = new Dictionary<string, Room>();
+    Dictionary<DirectionKeyword, Room> exitDictionary = new Dictionary<DirectionKeyword, Room>();
 
     public void UnpackedExitsInRoom()
     {
@@ -21,18 +23,30 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
     }
 
-    public void AttemptToChangeRooms(string directionNoun)
+    public void AttemptToChangeRooms(DirectionKeyword directionNoun)
     {
+        if (converter == null)
+            converter = KeywordToStringConverter.Instance;
+
         if (exitDictionary.ContainsKey(directionNoun))
         {
             currentRoom = exitDictionary[directionNoun];
-            controller.LogStringWithReturn("Te dirijes hacia el " + directionNoun);
+            controller.LogStringWithReturn("Te dirijes hacia el " + converter.ConvertFromKeyword(directionNoun));
             controller.DisplayRoomText();
+        }
+        else if (directionNoun != DirectionKeyword.unrecognized)
+        {
+            controller.LogStringWithReturn("No hay caminos hacia el " + converter.ConvertFromKeyword(directionNoun));
         }
         else
         {
-            controller.LogStringWithReturn("No hay camino hacia el " + directionNoun);
+            controller.LogStringWithReturn("Pensaste en una dirección dificil de alcanzar fisicamente...");
         }
+    }
+
+    public void AttemptToChangeRooms(string directionNoun)
+    {
+        controller.LogStringWithReturn("Pensaste en una dirección imposible...");
     }
 
     public void ClearExits()

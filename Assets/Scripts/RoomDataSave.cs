@@ -4,7 +4,9 @@ using UnityEngine;
 using BayatGames.SaveGameFree;
 
 public class RoomDataSave {
-    
+
+    static KeywordToStringConverter converter;
+
     public class Exit_Data
     {
         public string myKeywordData;
@@ -23,6 +25,10 @@ public class RoomDataSave {
 
 	public static void SaveData(Room roomToSave)
     {
+        if (converter == null)
+            converter = KeywordToStringConverter.Instance;
+
+
         Room_Data roomData = new Room_Data();
         roomData.roomPositionData = roomToSave.roomPosition;
         roomData.roomDescriptionData = roomToSave.roomDescription;
@@ -31,7 +37,7 @@ public class RoomDataSave {
         for (int i = 0; i < roomData.exitsData.Length; i++)
         {
             roomData.exitsData[i] = new Exit_Data();
-            roomData.exitsData[i].myKeywordData = roomToSave.exits[i].myKeyword;
+            roomData.exitsData[i].myKeywordData = converter.ConvertFromKeyword(roomToSave.exits[i].myKeyword);
             roomData.exitsData[i].connectedRoomPosition = roomToSave.exits[i].conectedRoom.roomPosition;
             roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
         }

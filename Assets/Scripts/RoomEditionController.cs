@@ -7,10 +7,12 @@ using UnityEngine;
 public class RoomEditionController : MonoBehaviour {
 #if (UNITY_EDITOR)
 
+    public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
+
+    List<Room> roomsToLoad = new List<Room>();
     private bool isEventSuscribed = false;
 
-    public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
-    List<Room> roomsToLoad = new List<Room>();
+    KeywordToStringConverter converter;
 
     private void OnEnable()
     {
@@ -59,6 +61,9 @@ public class RoomEditionController : MonoBehaviour {
 
     private void LoadRoomParameters(Room roomToChange, RoomDataSave.Room_Data roomDataLoad)
     {
+        if (converter == null)
+            converter = KeywordToStringConverter.Instance;
+
         if (roomDataLoad != null)
         {
             roomToChange.roomPosition = roomDataLoad.roomPositionData;
@@ -69,7 +74,7 @@ public class RoomEditionController : MonoBehaviour {
             {
                 Exit loadExit = new Exit();
 
-                loadExit.myKeyword = roomDataLoad.exitsData[i].myKeywordData;
+                loadExit.myKeyword = converter.ConvertFromString(roomDataLoad.exitsData[i].myKeywordData);
                 loadExit.conectedRoom = existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
                 loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
 
@@ -115,7 +120,7 @@ public class RoomEditionController : MonoBehaviour {
     private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
     {
         Vector3 centerRoom = roomBeingAnalized.roomPosition;
-        List<string> directions = new List<string>();
+        List<DirectionKeyword> directions = new List<DirectionKeyword>();
         List<Vector3> positions = new List<Vector3>();
 
         int posX;
@@ -153,56 +158,56 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
-    private string CheckOtherRoomDirection(Vector3 roomPosition, Vector3 exitPosition)
+    private DirectionKeyword CheckOtherRoomDirection(Vector3 roomPosition, Vector3 exitPosition)
     {
-        string direction;
+        DirectionKeyword direction;
 
         if (exitPosition.x > roomPosition.x)
         {
-            direction = "este";
+            direction = DirectionKeyword.east;
 
             if (exitPosition.y > roomPosition.y)
             {
-                direction = "noreste";
+                direction = DirectionKeyword.northEast;
             }
             else if (exitPosition.y < roomPosition.y)
             {
-                direction = "sureste";
+                direction = DirectionKeyword.southEast;
             }
         }
         else if (exitPosition.x < roomPosition.x)
         {
-            direction = "oeste";
+            direction = DirectionKeyword.west;
 
             if (exitPosition.y > roomPosition.y)
             {
-                direction = "noroeste";
+                direction = DirectionKeyword.northWest;
             }
             else if (exitPosition.y < roomPosition.y)
             {
-                direction = "suroeste";
+                direction = DirectionKeyword.southWest;
             }
         }
         else
         {
             if (exitPosition.y > roomPosition.y)
             {
-                direction = "norte";
+                direction = DirectionKeyword.north;
             }
             else if (exitPosition.y < roomPosition.y)
             {
-                direction = "sur";
+                direction = DirectionKeyword.south;
             }
             else
             {
-                direction = "en todo el centro, esto no debería pasar";
+                direction = DirectionKeyword.unrecognized;
             }
         }
 
         return direction;
     }
 
-    private void CreateExits(Room currentlyExaminedRoom, string[] exitDirections, Vector3[] otherRoomsPositions)
+    private void CreateExits(Room currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
     {
         currentlyExaminedRoom.exits.Clear();
 

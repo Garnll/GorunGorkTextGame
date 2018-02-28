@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using Sirenix.OdinInspector;
 
-public class TextInput : MonoBehaviour {
+public class TextInput : SerializedMonoBehaviour {
 
     //public InputField inputField;
     public TMP_InputField inputField;
+    [SerializeField] Dictionary<string, InputActions> inputDictionary = new Dictionary<string, InputActions>();
 
     GameController controller;
 
@@ -15,11 +16,20 @@ public class TextInput : MonoBehaviour {
     {
         controller = GetComponent<GameController>();
         inputField.onEndEdit.AddListener(AcceptStringInput);
+
+        for (int i = 0; i < controller.inputActions.Length; i++)
+        {
+            InputActions inputAction = controller.inputActions[i];
+            if (!inputDictionary.ContainsKey(inputAction.keyWord))
+            {
+                inputDictionary.Add(inputAction.keyWord, inputAction);
+            }
+        }
+
     }
 
     void AcceptStringInput(string userInput)
     {
-        //Esto es para cambiar por dictionary
 
         userInput = userInput.ToLower();
         controller.LogStringWithReturn(userInput);
@@ -27,13 +37,9 @@ public class TextInput : MonoBehaviour {
         char[] delimeterCharacters = { ' ' };
         string[] separatedInputWords = userInput.Split(delimeterCharacters);
 
-        for (int i = 0; i < controller.inputActions.Length; i++)
+        if (inputDictionary.ContainsKey(separatedInputWords[0]))
         {
-            InputActions inputAction = controller.inputActions[i];
-            if (inputAction.keyWord == separatedInputWords[0])
-            {
-                inputAction.RespondToInput(controller, separatedInputWords);
-            }
+            inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
         }
 
         InputComplete();

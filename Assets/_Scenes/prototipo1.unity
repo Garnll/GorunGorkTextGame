@@ -446,22 +446,22 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 390.745
+      value: 329.745
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -298.36
+      value: -344.37
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 781.49
+      value: 659.49
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 298.36
+      value: 344.37
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -793,6 +793,185 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de28cac3c8cb6d4b96c7853d38f3de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 05a429f1bfae31d4ea4cb8630783e937, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: inputDictionary
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[InputActions,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 13
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: norte
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: sur
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: este
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: oeste
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: noroeste
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: noreste
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: suroeste
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: sureste
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: n
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: o
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: e
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: s
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ir
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   inputField: {fileID: 372890542}
 --- !u!1 &724346942
 GameObject:
@@ -1230,9 +1409,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 1, y: 33.700012}
+  m_AnchoredPosition: {x: 1, y: -7.369995}
   m_SizeDelta: {x: -6.51, y: 0}
-  m_Pivot: {x: 0, y: 0.1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1428911965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,7 +1563,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 95719319}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9785986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

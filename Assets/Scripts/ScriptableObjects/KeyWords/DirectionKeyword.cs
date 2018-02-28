@@ -5,7 +5,8 @@
     east,
     west,
     northEast,
-    northWeast,
+    northWest,
     southEast,
-    southWest
+    southWest,
+    unrecognized
 }
