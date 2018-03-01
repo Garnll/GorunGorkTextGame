@@ -15,10 +15,12 @@ MonoBehaviour:
   roomDescription: "Una habitaci\xF3n repleta de luces y sombras. Una parte de la
     nada y el todo. Te da la sensaci\xF3n de que est\xE1s dentro de un juego."
   roomName: Test Room
+  interactableObjectsInRoom:
+  - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
   exits:
-  - myKeyword: sur
+  - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d528adfac6fe75a478f2261a9619fca0, type: 2}
     exitDescription: Hay una salida al <color=blue>sur</color>.
-  - myKeyword: norte
+  - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: d1c8c06a70f847648a03131f48502f66, type: 2}
     exitDescription: En el northe she hayha lha shalhidha.
