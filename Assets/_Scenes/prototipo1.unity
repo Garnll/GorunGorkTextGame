@@ -446,22 +446,22 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 330.245
+      value: 406.245
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -298.36
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 660.49
+      value: 812.49
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 344.37
+      value: 298.36
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -471,7 +471,7 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -481,7 +481,7 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -1048,7 +1048,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1190,8 +1190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 38.98}
-  m_SizeDelta: {x: -14, y: -39}
+  m_AnchoredPosition: {x: 7, y: 42.66}
+  m_SizeDelta: {x: -14, y: -42.68}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &991762057
 MonoBehaviour:
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
   m_HorizontalScrollbarSpacing: -3
-  m_VerticalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1428,7 +1428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 1, y: 0.000013309197}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1428911965
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 95719319}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9785986
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
