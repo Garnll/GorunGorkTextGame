@@ -767,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: {fileID: 323866475}
   inputActions:
+  - {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
   - {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
   - {fileID: 11400000, guid: 7a5de0dfac0692642b8f2d7a2ae1b1b1, type: 2}
   - {fileID: 11400000, guid: 1b373320c7d7b3a42b4027655ecc3d6e, type: 2}
@@ -804,6 +805,10 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 05a429f1bfae31d4ea4cb8630783e937, type: 2}
+    - {fileID: 11400000, guid: 7a5de0dfac0692642b8f2d7a2ae1b1b1, type: 2}
+    - {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
+    - {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
+    - {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -815,7 +820,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 13
+      Data: 17
     - Name: 
       Entry: 7
       Data: 
@@ -965,10 +970,58 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: ir
+      Data: mirar
     - Name: 
       Entry: 10
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ver
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: tomar
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: utilizar
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: lanzar
+    - Name: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -1428,7 +1481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 1, y: 0.000013309197}
+  m_AnchoredPosition: {x: 1, y: -0.000001914484}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1428911965

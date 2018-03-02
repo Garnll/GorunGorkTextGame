@@ -63,13 +63,23 @@ public class GameController : MonoBehaviour {
             for (int j = 0; j < interactableInRoom.interactions.Length; j++)
             {
                 Interaction interaction = interactableInRoom.interactions[j];
-                if (interaction.inputAction.keyWord == "examinar")//Cambiar
+
+                if (interaction.isInverseInteraction)
+                {
+                    interactableItems.inverseNouns.Add(interactableInRoom.noun, interaction);
+                }
+
+                if (interaction.inputAction.GetType() == typeof(Examine))
                 {
                     interactableItems.examineDictionary.Add(interactableInRoom.noun, interaction.textResponse);
                 }
-                if (interaction.inputAction.keyWord == "coger")//Cambiar
+                else if (interaction.inputAction.GetType() == typeof(Take))
                 {
                     interactableItems.takeDictionary.Add(interactableInRoom.noun, interaction.textResponse);
+                }
+                else if (interaction.inputAction.GetType() == typeof(Throw))
+                {
+                    interactableItems.throwDictionary.Add(interactableInRoom.noun, interaction.textResponse);
                 }
             }
         }
@@ -81,7 +91,17 @@ public class GameController : MonoBehaviour {
             return verbDictionary[noun];
         }
 
-        return "No se puede " + verb + " " + noun;
+        string objectToDisplay = noun;
+
+        if (interactableItems.objectsInRoomDictionary.ContainsKey(objectToDisplay))
+        {
+            if (interactableItems.objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "el " + noun;
+            else
+                objectToDisplay = "la " + noun;
+        }
+
+        return "No se puede " + verb + " " + objectToDisplay;
     }
 
     void ClearCollectionsForNewRoom()

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Take")]
@@ -14,8 +13,6 @@ public class Take : InputActions {
             controller.LogStringWithReturn(controller.TestVerbDictionaryWithNoun(takeDictionary,
                 separatedInputWords[0],
                 separatedInputWords[1]));
-
-
         }
     }
 }

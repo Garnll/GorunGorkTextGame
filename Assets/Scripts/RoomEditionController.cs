@@ -54,7 +54,6 @@ public class RoomEditionController : MonoBehaviour {
             if (loadRoom != null)
             {
                 LoadRoomParameters(roomsToLoad[i], loadRoom);
-                Debug.Log("Loaded Room: " + roomsToLoad[i].name.ToString());
             }
         }
     }

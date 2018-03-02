@@ -8,8 +8,11 @@ public class InteractableItems : MonoBehaviour {
 
     public Dictionary<string, string> examineDictionary = new Dictionary<string, string>();
     public Dictionary<string, string> takeDictionary = new Dictionary<string, string>();
+    public Dictionary<string, string> throwDictionary = new Dictionary<string, string>();
 
     [HideInInspector] public List<string> nounsInRoom = new List<string>();
+    [HideInInspector] public Dictionary<string, InteractableObject> objectsInRoomDictionary = new Dictionary<string, InteractableObject>();
+    [HideInInspector] public Dictionary<string, Interaction> inverseNouns = new Dictionary<string, Interaction>();
 
     Dictionary<string, ActionResponse> useDictionary = new Dictionary<string, ActionResponse>();
     List<string> nounsInInventory = new List<string>();
@@ -27,13 +30,15 @@ public class InteractableItems : MonoBehaviour {
         if (!nounsInInventory.Contains (interactableInRoom.noun))
         {
             nounsInRoom.Add(interactableInRoom.noun);
+            objectsInRoomDictionary.Add(interactableInRoom.noun, interactableInRoom);
+
             return interactableInRoom.description;
         }
 
         return null;
     }
 
-    public void AddActionResponsesToUseDictioary()
+    public void AddActionResponsesToUseDictionary()
     {
         for (int i = 0; i < nounsInInventory.Count; i++)
         {
@@ -72,10 +77,21 @@ public class InteractableItems : MonoBehaviour {
 
     public void DisplayInventory()
     {
-        controller.LogStringWithReturn("You look in your pocket, inside you have: ");
+        controller.LogStringWithReturn("Miras en tu bolsillo e, increiblemente, ves: ");
+        string objectToDisplay = "";
         for (int i = 0; i < nounsInInventory.Count; i++)
         {
-            controller.LogStringWithReturn(nounsInInventory[i]);
+            objectToDisplay = nounsInInventory[i];
+
+            if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+            {
+                if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                    objectToDisplay = "-Un " + nounsInInventory[i];
+                else
+                    objectToDisplay = "-Una " + nounsInInventory[i];
+            }
+
+            controller.LogStringWithReturn(objectToDisplay);
         }
     }
 
@@ -83,6 +99,9 @@ public class InteractableItems : MonoBehaviour {
     {
         examineDictionary.Clear();
         takeDictionary.Clear();
+        throwDictionary.Clear();
+        objectsInRoomDictionary.Clear();
+        inverseNouns.Clear();
         nounsInRoom.Clear();
     }
 
@@ -90,41 +109,119 @@ public class InteractableItems : MonoBehaviour {
     {
         string noun = separatedInputWords[1];
 
-        if (nounsInRoom.Contains (noun))
+        if (!inverseNouns.ContainsKey(noun))
         {
-            nounsInInventory.Add(noun);
-            AddActionResponsesToUseDictioary();
-            nounsInRoom.Remove(noun);
-            return takeDictionary;
+            if (nounsInRoom.Contains(noun))
+            {
+                nounsInInventory.Add(noun);
+                AddActionResponsesToUseDictionary();
+
+                nounsInRoom.Remove(noun);
+
+                return takeDictionary;
+            }
+            else
+            {
+                string objectToDisplay = noun;
+                if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+                {
+                    if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                        objectToDisplay = "un " + noun;
+                    else
+                        objectToDisplay = "una " + noun;
+                }
+
+
+                controller.LogStringWithReturn("No hay " + objectToDisplay + " por acá");
+                return null;
+            }
         }
         else
         {
-            controller.LogStringWithReturn("There is no " + noun + " here to take");
+            controller.LogStringWithReturn(inverseNouns[noun].textResponse);
             return null;
         }
 
     }
 
+    public bool Throw (string[] separatedInputWords)
+    {
+        string noun = separatedInputWords[1];
+
+        if (!inverseNouns.ContainsKey(noun))
+        {
+            if (nounsInInventory.Contains(noun))
+            {
+                nounsInRoom.Add(noun);
+                if (useDictionary.ContainsKey(noun))
+                {
+                    useDictionary.Remove(noun);
+                }
+
+                nounsInInventory.Remove(noun);
+                return true;
+            }
+            else
+            { 
+                controller.LogStringWithReturn("No puedes lanzar algo que no tienes.");
+                return false;
+            }
+        }
+        else
+        {
+            controller.LogStringWithReturn(inverseNouns[noun].textResponse);
+            return false;
+        }
+    }
+
     public void UseItem(string[] separatedInputWords)
     {
         string nounToUse = separatedInputWords[1];
+        string objectToDisplay = nounToUse;
+
 
         if (nounsInInventory.Contains(nounToUse))
         {
-            if (useDictionary.ContainsKey (nounToUse))
+            if (!inverseNouns.ContainsKey(nounToUse))
             {
-                bool actionResult = useDictionary[nounToUse].DoActionResponse(controller);
-                if (!actionResult)
+                if (useDictionary.ContainsKey(nounToUse))
                 {
-                    controller.LogStringWithReturn("Hmm. Nothing happens");
+                    bool actionResult = useDictionary[nounToUse].DoActionResponse(controller);
+                    if (!actionResult)
+                    {
+                        controller.LogStringWithReturn("Hmm. No parece ocurrir nada");
+                    }
                 }
-            } else
+                else
+                {
+                    if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+                    {
+                        if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                            objectToDisplay = "el " + nounToUse;
+                        else
+                            objectToDisplay = "la " + nounToUse;
+                    }
+
+                    controller.LogStringWithReturn("No se puede usar " + objectToDisplay);
+                }
+            }
+            else
             {
-                controller.LogStringWithReturn("You can't use the " + nounToUse);
+                controller.LogStringWithReturn(inverseNouns[nounToUse].textResponse);
             }
         } else
         {
-            controller.LogStringWithReturn("There is no " + nounToUse + " in your inventory to use");
+            if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+            {
+                if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                    objectToDisplay = "un " + nounToUse;
+                else
+                    objectToDisplay = "una " + nounToUse;
+            }
+
+            controller.LogStringWithReturn("No hay " + objectToDisplay + " en tu inventario!");
         }
     }
+
+
 }
