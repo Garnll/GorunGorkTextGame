@@ -446,22 +446,22 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 406.245
+      value: 325.245
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -298.36
+      value: -344.37
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 812.49
+      value: 650.49
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 298.36
+      value: 344.37
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -1635,7 +1635,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 95719319}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.96791244
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

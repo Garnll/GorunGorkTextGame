@@ -20,10 +20,14 @@ MonoBehaviour:
     textResponse: "El globo est\xE1 flotando."
     actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
-    isInverseInteraction: 0
-    textResponse: Coges el globo de su cuerda.
+    isInverseInteraction: 1
+    textResponse: Intentas coger el globo pero te das cuenta de que es un holograma.
     actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
-    isInverseInteraction: 0
+    isInverseInteraction: 1
     textResponse: Lanzas el globo el cual flota lentamente lejos de ti.
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
+    isInverseInteraction: 0
+    textResponse: El globo se agita.
     actionResponse: {fileID: 0}

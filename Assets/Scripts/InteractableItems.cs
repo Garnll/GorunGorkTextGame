@@ -13,6 +13,7 @@ public class InteractableItems : MonoBehaviour {
     [HideInInspector] public List<string> nounsInRoom = new List<string>();
     [HideInInspector] public Dictionary<string, InteractableObject> objectsInRoomDictionary = new Dictionary<string, InteractableObject>();
     [HideInInspector] public Dictionary<string, Interaction> inverseNouns = new Dictionary<string, Interaction>();
+    //Agregarle al noun el keyword de la interacción permanente
 
     Dictionary<string, ActionResponse> useDictionary = new Dictionary<string, ActionResponse>();
     List<string> nounsInInventory = new List<string>();
@@ -83,6 +84,8 @@ public class InteractableItems : MonoBehaviour {
         {
             objectToDisplay = nounsInInventory[i];
 
+            //Hacer de una vez clase Inventario que controle el *gasp* inventario
+            //objectsInRoomDictionary tambien debe coger objetos en el inventario, cambiarle el nombre a objectsWithinReachDictionary
             if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
             {
                 if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
@@ -132,7 +135,7 @@ public class InteractableItems : MonoBehaviour {
                 }
 
 
-                controller.LogStringWithReturn("No hay " + objectToDisplay + " por acá");
+                controller.LogStringWithReturn("No hay " + objectToDisplay + " por acá.");
                 return null;
             }
         }
