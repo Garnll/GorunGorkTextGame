@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableItems : MonoBehaviour {
 
+    public InventoryManager inventoryManager;
     public List<InteractableObject> usableItemList;
 
     public Dictionary<string, string> examineDictionary = new Dictionary<string, string>();
@@ -13,22 +14,21 @@ public class InteractableItems : MonoBehaviour {
     [HideInInspector] public List<string> nounsInRoom = new List<string>();
     [HideInInspector] public Dictionary<string, InteractableObject> objectsWithinReachDictionary = new Dictionary<string, InteractableObject>();
     [HideInInspector] public Dictionary<string, Interaction> inverseNouns = new Dictionary<string, Interaction>();
-    //Agregarle al noun el keyword de la interacción permanente
 
     Dictionary<string, ActionResponse> useDictionary = new Dictionary<string, ActionResponse>();
-    List<string> nounsInInventory = new List<string>();
     GameController controller;
 
     private void Awake()
     {
         controller = GetComponent<GameController>();
+        inventoryManager.interactableItems = this;
     }
 
     public string GetObjectNotInInventory (Room currentRoom, int i)
     {
-        InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i];
+        InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i].interactableObject;
 
-        if (!nounsInInventory.Contains (interactableInRoom.noun))
+        if (!inventoryManager.nounsInInventory.Contains (interactableInRoom) || !currentRoom.interactableObjectsInRoom[i].isTaken)
         {
             nounsInRoom.Add(interactableInRoom.noun);
             objectsWithinReachDictionary.Add(interactableInRoom.noun, interactableInRoom);
@@ -39,11 +39,20 @@ public class InteractableItems : MonoBehaviour {
         return null;
     }
 
+    public void GetObjectsInInventory ()
+    {
+        for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
+        {
+            objectsWithinReachDictionary.Add(inventoryManager.nounsInInventory[i].noun, inventoryManager.nounsInInventory[i]);
+        }
+
+    }
+
     public void AddActionResponsesToUseDictionary()
     {
-        for (int i = 0; i < nounsInInventory.Count; i++)
+        for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
         {
-            string noun = nounsInInventory[i];
+            string noun = inventoryManager.nounsInInventory[i].noun;
 
             InteractableObject interactableObjectInInventory = GetInteractableObjectFromUsableList(noun);
             if (interactableObjectInInventory == null)
@@ -76,22 +85,20 @@ public class InteractableItems : MonoBehaviour {
         return null;
     }
 
-    public void DisplayInventory()
+    public void DisplayInventoryByCommand()
     {
         controller.LogStringWithReturn("Miras en tu bolsillo e, increiblemente, ves: ");
         string objectToDisplay = "";
-        for (int i = 0; i < nounsInInventory.Count; i++)
+        for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
         {
-            objectToDisplay = nounsInInventory[i];
+            objectToDisplay = inventoryManager.nounsInInventory[i].noun;
 
-            //Hacer de una vez clase Inventario que controle el *gasp* inventario
-            //objectsInRoomDictionary tambien debe coger objetos en el inventario, cambiarle el nombre a objectsWithinReachDictionary
             if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
             {
                 if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
-                    objectToDisplay = "-Un " + nounsInInventory[i];
+                    objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i];
                 else
-                    objectToDisplay = "-Una " + nounsInInventory[i];
+                    objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i];
             }
 
             controller.LogStringWithReturn(objectToDisplay);
@@ -116,10 +123,12 @@ public class InteractableItems : MonoBehaviour {
         {
             if (nounsInRoom.Contains(noun))
             {
-                nounsInInventory.Add(noun);
+                inventoryManager.nounsInInventory.Add(objectsWithinReachDictionary[noun]);
                 AddActionResponsesToUseDictionary();
 
                 nounsInRoom.Remove(noun);
+
+                inventoryManager.DisplayInventory();
 
                 return takeDictionary;
             }
@@ -141,7 +150,6 @@ public class InteractableItems : MonoBehaviour {
         }
         else
         {
-            Debug.Log("llega acá");
             controller.LogStringWithReturn(inverseNouns[noun + takeDictionary[noun]].textResponse);
             return null;
         }
@@ -154,7 +162,7 @@ public class InteractableItems : MonoBehaviour {
 
         if (!inverseNouns.ContainsKey(noun + throwDictionary[noun]))
         {
-            if (nounsInInventory.Contains(noun))
+            if (inventoryManager.nounsInInventory.Contains(objectsWithinReachDictionary[noun]))
             {
                 nounsInRoom.Add(noun);
                 if (useDictionary.ContainsKey(noun))
@@ -162,7 +170,10 @@ public class InteractableItems : MonoBehaviour {
                     useDictionary.Remove(noun);
                 }
 
-                nounsInInventory.Remove(noun);
+                inventoryManager.nounsInInventory.Remove(objectsWithinReachDictionary[noun]);
+
+                inventoryManager.DisplayInventory();
+
                 return true;
             }
             else
@@ -184,7 +195,7 @@ public class InteractableItems : MonoBehaviour {
         string objectToDisplay = nounToUse;
 
 
-        if (nounsInInventory.Contains(nounToUse))
+        if (inventoryManager.nounsInInventory.Contains(objectsWithinReachDictionary[nounToUse]))
         {
             if (!inverseNouns.ContainsKey(nounToUse + useDictionary[nounToUse]))
             {

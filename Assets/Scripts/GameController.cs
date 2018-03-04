@@ -45,12 +45,12 @@ public class GameController : MonoBehaviour {
     private void UnpackRoom()
     {
         playerRoomNavigation.UnpackedExitsInRoom();
-        PrepareObjectsToTakeOrExamine(playerRoomNavigation.currentRoom);
+        PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
     }
 
-    private void PrepareObjectsToTakeOrExamine(Room currentRoom)
+    private void PrepareObjectsToBeInteracted(Room currentRoom)
     {
-        for (int i = 0; i < currentRoom.interactableObjectsInRoom.Length; i++)
+        for (int i = 0; i < currentRoom.interactableObjectsInRoom.Count; i++)
         {
             string descriptionNotInInventory = interactableItems.GetObjectNotInInventory(currentRoom, i);
             if (descriptionNotInInventory != null)
@@ -58,32 +58,49 @@ public class GameController : MonoBehaviour {
                 interactionDescriptionsInRoom.Add(descriptionNotInInventory);
             }
 
-            InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i];
-
-            for (int j = 0; j < interactableInRoom.interactions.Length; j++)
+            if (!currentRoom.interactableObjectsInRoom[i].isTaken)
             {
-                Interaction interaction = interactableInRoom.interactions[j];
+                InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i].interactableObject;
 
-                if (interaction.isInverseInteraction)
-                {
-                    interactableItems.inverseNouns.Add(interactableInRoom.noun + interaction.textResponse, interaction);
-                }
+                SetInteractions(interactableInRoom);
+            }
+        }
 
-                if (interaction.inputAction.GetType() == typeof(Examine))
-                {
-                    interactableItems.examineDictionary.Add(interactableInRoom.noun, interaction.textResponse);
-                }
-                else if (interaction.inputAction.GetType() == typeof(Take))
-                {
-                    interactableItems.takeDictionary.Add(interactableInRoom.noun, interaction.textResponse);
-                }
-                else if (interaction.inputAction.GetType() == typeof(Throw))
-                {
-                    interactableItems.throwDictionary.Add(interactableInRoom.noun, interaction.textResponse);
-                }
+        for (int i = 0; i < interactableItems.inventoryManager.nounsInInventory.Count; i++)
+        {
+            InteractableObject interactableInRoom = interactableItems.inventoryManager.nounsInInventory[i];
+            SetInteractions(interactableInRoom);
+        }
+
+        interactableItems.GetObjectsInInventory();
+    }
+
+    private void SetInteractions(InteractableObject interactable)
+    {
+        for (int j = 0; j < interactable.interactions.Length; j++)
+        {
+            Interaction interaction = interactable.interactions[j];
+
+            if (interaction.isInverseInteraction)
+            {
+                interactableItems.inverseNouns.Add(interactable.noun + interaction.textResponse, interaction);
+            }
+
+            if (interaction.inputAction.GetType() == typeof(Examine))
+            {
+                interactableItems.examineDictionary.Add(interactable.noun, interaction.textResponse);
+            }
+            else if (interaction.inputAction.GetType() == typeof(Take))
+            {
+                interactableItems.takeDictionary.Add(interactable.noun, interaction.textResponse);
+            }
+            else if (interaction.inputAction.GetType() == typeof(Throw))
+            {
+                interactableItems.throwDictionary.Add(interactable.noun, interaction.textResponse);
             }
         }
     }
+
     public string TestVerbDictionaryWithNoun(Dictionary<string, string> verbDictionary, string verb, string noun)
     {
         if (verbDictionary.ContainsKey(noun))

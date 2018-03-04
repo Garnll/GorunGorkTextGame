@@ -9,8 +9,17 @@ public class Room : ScriptableObject {
 
     [TextArea] public string roomDescription;
     public string roomName;
-    public InteractableObject[] interactableObjectsInRoom;
+    //public List<InteractableObject> interactableObjectsInRoom = new List<InteractableObject>();
+    public List<InteractableObjectsForRoom> interactableObjectsInRoom = new List<InteractableObjectsForRoom>();
     public List<Exit> exits = new List<Exit>();
+
+    //test
+    [System.Serializable]
+    public class InteractableObjectsForRoom
+    {
+        public InteractableObject interactableObject;
+        public bool isTaken = false;
+    }
 
 
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
