@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour {
 
                 if (interaction.isInverseInteraction)
                 {
-                    interactableItems.inverseNouns.Add(interactableInRoom.noun, interaction);
+                    interactableItems.inverseNouns.Add(interactableInRoom.noun + interaction.textResponse, interaction);
                 }
 
                 if (interaction.inputAction.GetType() == typeof(Examine))
@@ -93,9 +93,9 @@ public class GameController : MonoBehaviour {
 
         string objectToDisplay = noun;
 
-        if (interactableItems.objectsInRoomDictionary.ContainsKey(objectToDisplay))
+        if (interactableItems.objectsWithinReachDictionary.ContainsKey(objectToDisplay))
         {
-            if (interactableItems.objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+            if (interactableItems.objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
                 objectToDisplay = "el " + noun;
             else
                 objectToDisplay = "la " + noun;

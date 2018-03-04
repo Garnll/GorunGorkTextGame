@@ -32,7 +32,8 @@ public class TextInput : SerializedMonoBehaviour {
     {
 
         userInput = userInput.ToLower();
-        controller.LogStringWithReturn(userInput);
+        string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+        controller.LogStringWithReturn(userInputChanged);
 
         char[] delimeterCharacters = { ' ' };
         string[] separatedInputWords = userInput.Split(delimeterCharacters);

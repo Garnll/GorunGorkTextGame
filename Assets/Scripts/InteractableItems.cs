@@ -11,7 +11,7 @@ public class InteractableItems : MonoBehaviour {
     public Dictionary<string, string> throwDictionary = new Dictionary<string, string>();
 
     [HideInInspector] public List<string> nounsInRoom = new List<string>();
-    [HideInInspector] public Dictionary<string, InteractableObject> objectsInRoomDictionary = new Dictionary<string, InteractableObject>();
+    [HideInInspector] public Dictionary<string, InteractableObject> objectsWithinReachDictionary = new Dictionary<string, InteractableObject>();
     [HideInInspector] public Dictionary<string, Interaction> inverseNouns = new Dictionary<string, Interaction>();
     //Agregarle al noun el keyword de la interacción permanente
 
@@ -31,7 +31,7 @@ public class InteractableItems : MonoBehaviour {
         if (!nounsInInventory.Contains (interactableInRoom.noun))
         {
             nounsInRoom.Add(interactableInRoom.noun);
-            objectsInRoomDictionary.Add(interactableInRoom.noun, interactableInRoom);
+            objectsWithinReachDictionary.Add(interactableInRoom.noun, interactableInRoom);
 
             return interactableInRoom.description;
         }
@@ -86,9 +86,9 @@ public class InteractableItems : MonoBehaviour {
 
             //Hacer de una vez clase Inventario que controle el *gasp* inventario
             //objectsInRoomDictionary tambien debe coger objetos en el inventario, cambiarle el nombre a objectsWithinReachDictionary
-            if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+            if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
             {
-                if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
                     objectToDisplay = "-Un " + nounsInInventory[i];
                 else
                     objectToDisplay = "-Una " + nounsInInventory[i];
@@ -103,7 +103,7 @@ public class InteractableItems : MonoBehaviour {
         examineDictionary.Clear();
         takeDictionary.Clear();
         throwDictionary.Clear();
-        objectsInRoomDictionary.Clear();
+        objectsWithinReachDictionary.Clear();
         inverseNouns.Clear();
         nounsInRoom.Clear();
     }
@@ -112,7 +112,7 @@ public class InteractableItems : MonoBehaviour {
     {
         string noun = separatedInputWords[1];
 
-        if (!inverseNouns.ContainsKey(noun))
+        if (!inverseNouns.ContainsKey(noun + takeDictionary[noun]))
         {
             if (nounsInRoom.Contains(noun))
             {
@@ -126,9 +126,9 @@ public class InteractableItems : MonoBehaviour {
             else
             {
                 string objectToDisplay = noun;
-                if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+                if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
                 {
-                    if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                    if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
                         objectToDisplay = "un " + noun;
                     else
                         objectToDisplay = "una " + noun;
@@ -141,7 +141,8 @@ public class InteractableItems : MonoBehaviour {
         }
         else
         {
-            controller.LogStringWithReturn(inverseNouns[noun].textResponse);
+            Debug.Log("llega acá");
+            controller.LogStringWithReturn(inverseNouns[noun + takeDictionary[noun]].textResponse);
             return null;
         }
 
@@ -151,7 +152,7 @@ public class InteractableItems : MonoBehaviour {
     {
         string noun = separatedInputWords[1];
 
-        if (!inverseNouns.ContainsKey(noun))
+        if (!inverseNouns.ContainsKey(noun + throwDictionary[noun]))
         {
             if (nounsInInventory.Contains(noun))
             {
@@ -172,7 +173,7 @@ public class InteractableItems : MonoBehaviour {
         }
         else
         {
-            controller.LogStringWithReturn(inverseNouns[noun].textResponse);
+            controller.LogStringWithReturn(inverseNouns[noun + throwDictionary[noun]].textResponse);
             return false;
         }
     }
@@ -185,7 +186,7 @@ public class InteractableItems : MonoBehaviour {
 
         if (nounsInInventory.Contains(nounToUse))
         {
-            if (!inverseNouns.ContainsKey(nounToUse))
+            if (!inverseNouns.ContainsKey(nounToUse + useDictionary[nounToUse]))
             {
                 if (useDictionary.ContainsKey(nounToUse))
                 {
@@ -197,9 +198,9 @@ public class InteractableItems : MonoBehaviour {
                 }
                 else
                 {
-                    if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+                    if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
                     {
-                        if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                        if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
                             objectToDisplay = "el " + nounToUse;
                         else
                             objectToDisplay = "la " + nounToUse;
@@ -210,13 +211,14 @@ public class InteractableItems : MonoBehaviour {
             }
             else
             {
-                controller.LogStringWithReturn(inverseNouns[nounToUse].textResponse);
+                controller.LogStringWithReturn(inverseNouns[nounToUse + useDictionary[nounToUse]].textResponse);
             }
+
         } else
         {
-            if (objectsInRoomDictionary.ContainsKey(objectToDisplay))
+            if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
             {
-                if (objectsInRoomDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
+                if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
                     objectToDisplay = "un " + nounToUse;
                 else
                     objectToDisplay = "una " + nounToUse;
