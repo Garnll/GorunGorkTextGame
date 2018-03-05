@@ -14,9 +14,11 @@ MonoBehaviour:
   roomPosition: {x: 0, y: 0, z: 0}
   roomDescription: "Una habitaci\xF3n repleta de luces y sombras. Una parte de la
     nada y el todo. Te da la sensaci\xF3n de que est\xE1s dentro de un juego."
-  roomName: Test Room
+  roomName: Main Room
   interactableObjectsInRoom:
-  - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
+  - interactableObject: {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87,
+      type: 2}
+    isTaken: 0
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d528adfac6fe75a478f2261a9619fca0, type: 2}

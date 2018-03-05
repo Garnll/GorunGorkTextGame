@@ -30,26 +30,63 @@ public class TextInput : SerializedMonoBehaviour {
 
     void AcceptStringInput(string userInput)
     {
+        string originalInput = userInput;
 
         userInput = userInput.ToLower();
-        string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-        controller.LogStringWithReturn(userInputChanged);
 
         char[] delimeterCharacters = { ' ' };
         string[] separatedInputWords = userInput.Split(delimeterCharacters);
 
         if (inputDictionary.ContainsKey(separatedInputWords[0]))
         {
-            inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+            if (inputDictionary[separatedInputWords[0]].GetType() != typeof(Say))
+            {
+                string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                controller.LogStringWithReturn(userInputChanged);
+
+                inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+            }
+            else
+            {
+                string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
+
+                inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+            }
+        }
+        else
+        {
+            string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+            string answer = "<color=#9C9C9CC0>" + WrongInputAnswer() + "</color>";
+            controller.LogStringWithReturn(userInputChanged + "\n" + answer);
         }
 
         InputComplete();
     }
+
 
     void InputComplete()
     {
         controller.DisplayLoggedText();
         inputField.ActivateInputField();
         inputField.text = null;
+    }
+
+    string WrongInputAnswer()
+    {
+        string[] randomAnswer = new string[10];
+        randomAnswer[0] = "¿Eh?";
+        randomAnswer[1] = "Piensas algo incoherente.";
+        randomAnswer[2] = "Quieres hacer algo imposible.";
+        randomAnswer[3] = "No entiendes tus propios pensamientos.";
+        randomAnswer[4] = "¿¿¿¿????";
+        randomAnswer[5] = "Me temo que no puedo hacer eso, Dave.";
+        randomAnswer[6] = "Tu cuerpo no tienes esas habilidades.";
+        randomAnswer[7] = "¿Disculpa?";
+        randomAnswer[8] = "¿Qué dijiste?";
+        randomAnswer[9] = "Nada, no entiendo.";
+
+        string answer = randomAnswer[Random.Range(0, randomAnswer.Length)];
+
+        return answer;
     }
 }

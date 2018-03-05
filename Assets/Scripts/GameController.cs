@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
     [HideInInspector] public InteractableItems interactableItems;
 
     List<string> actionLog = new List<string>();
+    string currentRoomDescription = "";
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour {
 
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
 
+        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
         string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
 
         LogStringWithReturn(combinedText);
@@ -103,6 +105,11 @@ public class GameController : MonoBehaviour {
 
     public string TestVerbDictionaryWithNoun(Dictionary<string, string> verbDictionary, string verb, string noun)
     {
+        if (noun == "habitacion" || noun == "" || noun == "lugar")
+        {
+            return currentRoomDescription;
+        }
+
         if (verbDictionary.ContainsKey(noun))
         {
             return verbDictionary[noun];
@@ -132,5 +139,7 @@ public class GameController : MonoBehaviour {
     {
         actionLog.Add(stringToAdd + "\n");
     }
+
+
 
 }
