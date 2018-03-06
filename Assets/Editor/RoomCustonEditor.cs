@@ -10,9 +10,6 @@ public class RoomCustonEditor : Editor {
     public Vector3Int newPosition = new Vector3Int();
     Room targetRoom;
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnEnable()
     {
         targetRoom = (Room)target;

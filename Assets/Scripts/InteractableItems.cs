@@ -96,9 +96,9 @@ public class InteractableItems : MonoBehaviour {
             if (objectsWithinReachDictionary.ContainsKey(objectToDisplay))
             {
                 if (objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
-                    objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i];
+                    objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].noun;
                 else
-                    objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i];
+                    objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].noun;
             }
 
             controller.LogStringWithReturn(objectToDisplay);
