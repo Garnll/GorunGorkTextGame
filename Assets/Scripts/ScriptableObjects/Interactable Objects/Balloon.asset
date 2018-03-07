@@ -28,6 +28,6 @@ MonoBehaviour:
     textResponse: Lanzas el globo el cual flota lentamente lejos de ti.
     actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
-    isInverseInteraction: 0
+    isInverseInteraction: 1
     textResponse: El globo se agita.
     actionResponse: {fileID: 0}
