@@ -104,6 +104,17 @@ public class GameController : MonoBehaviour {
             //    }
         }
 
+    public string RefreshedCurrentRoomDescription()
+    {
+        ClearCollectionsForNewRoom();
+        UnpackRoom();
+        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
+        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
+        string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
+
+        return combinedText;
+    }
+
     public string TestVerbDictionaryWithNoun(Dictionary<string, string> verbDictionary, string verb, string noun)
     {
         if (noun == "habitacion" || noun == "" || noun == "lugar")

@@ -16,5 +16,11 @@ public class Throw : InputActions
         //        separatedInputWords[0],
         //        separatedInputWords[1]));
         //}
+
+        InteractableObject objectToThrow = controller.itemHandler.SearchObjectInInventory(separatedInputWords);
+        if (objectToThrow != null)
+        {
+            controller.itemHandler.ThrowObject(objectToThrow);
+        }
     }
 }

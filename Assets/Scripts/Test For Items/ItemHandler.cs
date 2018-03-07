@@ -14,6 +14,11 @@ public class ItemHandler : MonoBehaviour {
         controller = GetComponent<GameController>();
     }
 
+    /// <summary>
+    /// Busca la existencia de un objeto con el keyword dado en la habitación.
+    /// </summary>
+    /// <param name="objectName"></param>
+    /// <returns></returns>
     public InteractableObject SearchObjectInRoom(string[] objectName)
     {
         string noun = string.Join(" ", SeparateWords(objectName));
@@ -61,6 +66,11 @@ public class ItemHandler : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Busca la existencia de un objeto con el keyword dado en el inventario.
+    /// </summary>
+    /// <param name="objectName"></param>
+    /// <returns></returns>
     public InteractableObject SearchObjectInInventory(string[] objectName)
     {
         string noun = string.Join(" ", SeparateWords(objectName));
@@ -69,7 +79,7 @@ public class ItemHandler : MonoBehaviour {
 
         if (objectsFound == null)
         {
-            controller.LogStringWithReturn("No ves cómo " + objectName[0] + " un \"" + noun + "\".");
+            controller.LogStringWithReturn("No ves cómo podrías " + objectName[0] + " un \"" + noun + "\".");
             return null;
         }
 
@@ -108,13 +118,44 @@ public class ItemHandler : MonoBehaviour {
 
     }
 
+    //A partir de aqui, se ponen las funciones que realizan acciones.
+
+    public void ExamineObject(InteractableObject objectToExamine)
+    {
+
+        Interaction examineInteraction = null;
+
+        for (int i = 0; i < objectToExamine.interactions.Length; i++)
+        {
+            if (objectToExamine.interactions[i].inputAction.GetType() == typeof(Examine))
+            {
+                examineInteraction = objectToExamine.interactions[i];
+                break;
+            }
+        }
+
+        if (examineInteraction == null)
+        {
+            string objectToDisplay = objectToExamine.noun;
+
+            if (objectToExamine.nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "el " + objectToExamine.noun;
+            else
+                objectToDisplay = "la " + objectToExamine.noun;
+
+            controller.LogStringWithReturn("No logras examinar " + objectToDisplay + ".");
+            return;
+        }
+
+        controller.LogStringWithReturn(examineInteraction.textResponse);
+    }
+
     public void TakeObject(InteractableObject objectToTake)
     {
         Interaction takeInteraction = null;
 
         for (int i = 0; i < objectToTake.interactions.Length; i++)
         {
-            Debug.Log(objectToTake.interactions[i].inputAction.GetType());
             if (objectToTake.interactions[i].inputAction.GetType() == typeof(Take))
             {
                 takeInteraction = objectToTake.interactions[i];
@@ -149,7 +190,51 @@ public class ItemHandler : MonoBehaviour {
         controller.LogStringWithReturn(takeInteraction.textResponse);
     }
 
+    public void ThrowObject(InteractableObject objectToThrow)
+    {
+        Interaction throwInteraction = null;
 
+        for (int i = 0; i < objectToThrow.interactions.Length; i++)
+        {
+            if (objectToThrow.interactions[i].inputAction.GetType() == typeof(Throw))
+            {
+                throwInteraction = objectToThrow.interactions[i];
+                break;
+            }
+        }
+
+        if (throwInteraction == null)
+        {
+            string objectToDisplay = objectToThrow.noun;
+
+            if (objectToThrow.nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "el " + objectToThrow.noun;
+            else
+                objectToDisplay = "la " + objectToThrow.noun;
+
+            controller.LogStringWithReturn("No se puede tirar " + objectToDisplay + ".");
+            return;
+        }
+
+        if (throwInteraction.isInverseInteraction)
+        {
+            controller.LogStringWithReturn(throwInteraction.textResponse);
+            return;
+        }
+
+        controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Add(objectToThrow);
+        inventoryManager.nounsInInventory.Remove(objectToThrow);
+
+        inventoryManager.DisplayInventory();
+
+        controller.LogStringWithReturn(throwInteraction.textResponse);
+    }
+
+    /// <summary>
+    /// Separa las palabras enviadas desde el input, dejando el input a un lado, y el nombre del objeto se devuelve para ser usado.
+    /// </summary>
+    /// <param name="completeInput"></param>
+    /// <returns></returns>
     private string[] SeparateWords(string[] completeInput)
     {
         string[] newString = new string[completeInput.Length - 1];
