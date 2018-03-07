@@ -89,6 +89,8 @@ public class InteractableItems : MonoBehaviour {
     {
         controller.LogStringWithReturn("Miras en tu bolsillo e, increiblemente, ves: ");
         string objectToDisplay = "";
+
+
         for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
         {
             objectToDisplay = inventoryManager.nounsInInventory[i].noun;
@@ -101,8 +103,11 @@ public class InteractableItems : MonoBehaviour {
                     objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].noun;
             }
 
-            controller.LogStringWithReturn(objectToDisplay);
+
+
         }
+
+
     }
 
     public void ClearCollections()

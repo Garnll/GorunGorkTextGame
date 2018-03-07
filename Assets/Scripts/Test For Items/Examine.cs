@@ -27,9 +27,7 @@ public class Examine : InputActions {
             return;
         }
 
-        InteractableObject objectToExamine = controller.itemHandler.SearchObjectInRoom(separatedInputWords);
-        if (objectToExamine == null)
-            objectToExamine = controller.itemHandler.SearchObjectInInventory(separatedInputWords);
+        InteractableObject objectToExamine = controller.itemHandler.SearchObjectInRoomAndInventory(separatedInputWords);
 
         if (objectToExamine != null)
         {

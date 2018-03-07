@@ -14,6 +14,67 @@ public class ItemHandler : MonoBehaviour {
         controller = GetComponent<GameController>();
     }
 
+    public InteractableObject SearchObjectInRoomAndInventory(string[] objectName)
+    {
+        string noun = string.Join(" ", SeparateWords(objectName));
+
+        InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
+
+        if (objectsFound == null)
+        {
+            controller.LogStringWithReturn("No entiendes cómo " + objectName[0] + " un \"" + noun + "\".");
+            return null;
+        }
+
+
+        InteractableObject objectToInteract = null;
+        for (int i = 0; i < objectsFound.Length; i++)
+        {
+            for (int f = 0; f < controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Count; f++)
+            {
+                if (objectsFound[i].noun == controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f].noun)
+                {
+                    objectToInteract = controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f];
+                    break;
+                }
+            }
+
+            if (objectToInteract == null)
+            {
+                for (int f = 0; f < inventoryManager.nounsInInventory.Count; f++)
+                {
+                    if (objectsFound[i].noun == inventoryManager.nounsInInventory[f].noun)
+                    {
+                        objectToInteract = inventoryManager.nounsInInventory[f];
+                        break;
+                    }
+                }
+            }
+
+            if (objectToInteract != null)
+            {
+                break;
+            }
+        }
+
+        if (objectToInteract == null)
+        {
+            string objectToDisplay = noun;
+
+            if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "un " + noun;
+            else
+                objectToDisplay = "una " + noun;
+
+            controller.LogStringWithReturn("No hay " + objectToDisplay + " por acá.");
+        }
+
+
+        return objectToInteract;
+
+    }
+
+
     /// <summary>
     /// Busca la existencia de un objeto con el keyword dado en la habitación.
     /// </summary>
@@ -119,6 +180,33 @@ public class ItemHandler : MonoBehaviour {
     }
 
     //A partir de aqui, se ponen las funciones que realizan acciones.
+
+    public void DisplayInventoryByCommand()
+    {
+        List<string> combinedText = new List<string>();
+
+        combinedText.Add("Miras en tu bolsillo e, increiblemente, ves: ");
+        string objectToDisplay = "";
+
+        if (inventoryManager.nounsInInventory.Count == 0)
+        {
+            combinedText.Add("-Nada");
+        }
+
+        for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
+        {
+            objectToDisplay = inventoryManager.nounsInInventory[i].noun;
+
+            if (inventoryManager.nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].noun;
+            else
+                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].noun;
+
+            combinedText.Add(objectToDisplay);
+        }
+
+        controller.LogStringWithReturn(string.Join("\n", combinedText.ToArray()));
+    }
 
     public void ExamineObject(InteractableObject objectToExamine)
     {
@@ -228,6 +316,49 @@ public class ItemHandler : MonoBehaviour {
         inventoryManager.DisplayInventory();
 
         controller.LogStringWithReturn(throwInteraction.textResponse);
+    }
+
+    public void UseObject(InteractableObject objectToUse)
+    {
+        Interaction useInteraction = null;
+
+        for (int i = 0; i < objectToUse.interactions.Length; i++)
+        {
+            if (objectToUse.interactions[i].inputAction.GetType() == typeof(Use))
+            {
+                useInteraction = objectToUse.interactions[i];
+                break;
+            }
+        }
+
+        if (useInteraction == null)
+        {
+            string objectToDisplay = objectToUse.noun;
+
+            if (objectToUse.nounGender == InteractableObject.WordGender.male)
+                objectToDisplay = "el " + objectToUse.noun;
+            else
+                objectToDisplay = "la " + objectToUse.noun;
+
+            controller.LogStringWithReturn("No se puede usar " + objectToDisplay + ".");
+            return;
+        }
+
+        if (useInteraction.isInverseInteraction)
+        {
+            controller.LogStringWithReturn(useInteraction.textResponse);
+            return;
+        }
+
+
+        bool actionResult = useInteraction.actionResponse.DoActionResponse(controller);
+        if (!actionResult)
+        {
+            controller.LogStringWithReturn("Jum. No parece que ocurra nada por acá.");
+        }
+
+
+
     }
 
     /// <summary>
