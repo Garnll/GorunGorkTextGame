@@ -7,6 +7,6 @@ public class Use : InputActions {
 
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        controller.interactableItems.UseItem(separatedInputWords);
+        //controller.interactableItems.UseItem(separatedInputWords);
     }
 }

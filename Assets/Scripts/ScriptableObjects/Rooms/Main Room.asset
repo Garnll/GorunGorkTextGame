@@ -16,9 +16,8 @@ MonoBehaviour:
     nada y el todo. Te da la sensaci\xF3n de que est\xE1s dentro de un juego."
   roomName: Main Room
   interactableObjectsInRoom:
-  - interactableObject: {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87,
-      type: 2}
-    isTaken: 0
+  - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
+  - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d528adfac6fe75a478f2261a9619fca0, type: 2}

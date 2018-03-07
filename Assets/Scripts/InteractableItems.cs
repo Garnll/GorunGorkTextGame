@@ -26,9 +26,9 @@ public class InteractableItems : MonoBehaviour {
 
     public string GetObjectNotInInventory (Room currentRoom, int i)
     {
-        InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i].interactableObject;
+        InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i];
 
-        if (!inventoryManager.nounsInInventory.Contains (interactableInRoom) || !currentRoom.interactableObjectsInRoom[i].isTaken)
+        if (!inventoryManager.nounsInInventory.Contains (interactableInRoom))
         {
             nounsInRoom.Add(interactableInRoom.noun);
             objectsWithinReachDictionary.Add(interactableInRoom.noun, interactableInRoom);

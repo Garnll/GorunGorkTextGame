@@ -16,4 +16,6 @@ public class InteractableObject : ScriptableObject {
     [TextArea]public string description = "Descripción en la habitación";
     public Interaction[] interactions;
 
+    //[HideInInspector] public string ID = "nombre + habitación + número de posición en habitación";
+
 }

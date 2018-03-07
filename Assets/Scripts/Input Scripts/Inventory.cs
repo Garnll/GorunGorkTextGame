@@ -7,7 +7,7 @@ public class Inventory : InputActions {
 
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        controller.interactableItems.DisplayInventoryByCommand();
+        //controller.interactableItems.DisplayInventoryByCommand();
     }
 
 }
