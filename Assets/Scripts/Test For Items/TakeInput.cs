@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Take")]
-public class Take : InputActions {
+public class TakeInput : InputActions {
 
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {

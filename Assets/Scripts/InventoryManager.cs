@@ -7,8 +7,6 @@ public class InventoryManager : MonoBehaviour {
 
     [SerializeField] public List<InteractableObject> nounsInInventory = new List<InteractableObject>();
 
-    [HideInInspector] public InteractableItems interactableItems;
-
     public TextMeshProUGUI text;
 
     private void Start()

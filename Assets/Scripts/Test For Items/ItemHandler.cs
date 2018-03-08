@@ -215,7 +215,7 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < objectToExamine.interactions.Length; i++)
         {
-            if (objectToExamine.interactions[i].inputAction.GetType() == typeof(Examine))
+            if (objectToExamine.interactions[i].inputAction.GetType() == typeof(ExamineInput))
             {
                 examineInteraction = objectToExamine.interactions[i];
                 break;
@@ -244,7 +244,7 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < objectToTake.interactions.Length; i++)
         {
-            if (objectToTake.interactions[i].inputAction.GetType() == typeof(Take))
+            if (objectToTake.interactions[i].inputAction.GetType() == typeof(TakeInput))
             {
                 takeInteraction = objectToTake.interactions[i];
                 break;
@@ -284,7 +284,7 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < objectToThrow.interactions.Length; i++)
         {
-            if (objectToThrow.interactions[i].inputAction.GetType() == typeof(Throw))
+            if (objectToThrow.interactions[i].inputAction.GetType() == typeof(ThrowInput))
             {
                 throwInteraction = objectToThrow.interactions[i];
                 break;
@@ -324,7 +324,7 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < objectToUse.interactions.Length; i++)
         {
-            if (objectToUse.interactions[i].inputAction.GetType() == typeof(Use))
+            if (objectToUse.interactions[i].inputAction.GetType() == typeof(UseInput))
             {
                 useInteraction = objectToUse.interactions[i];
                 break;

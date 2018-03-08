@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 
-public class TextInput : SerializedMonoBehaviour {
+public class TextUserInput : SerializedMonoBehaviour {
 
     //public InputField inputField;
     public TMP_InputField inputField;
@@ -39,7 +39,7 @@ public class TextInput : SerializedMonoBehaviour {
 
         if (inputDictionary.ContainsKey(separatedInputWords[0]))
         {
-            if (inputDictionary[separatedInputWords[0]].GetType() != typeof(Say))
+            if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
             {
                 string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
                 controller.LogStringWithReturn(userInputChanged);
