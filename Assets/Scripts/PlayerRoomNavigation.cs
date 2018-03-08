@@ -13,7 +13,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     Dictionary<DirectionKeyword, Room> exitDictionary = new Dictionary<DirectionKeyword, Room>();
 
-    public void UnpackedExitsInRoom()
+    public void AddExitsToController()
     {
         for (int i = 0; i < currentRoom.exits.Count; i++)
         {

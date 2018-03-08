@@ -50,7 +50,7 @@ public class RoomEditionController : MonoBehaviour {
 
         for (int i = 0; i < roomsToLoad.Count; i++)
         {
-            RoomDataSave.Room_Data loadRoom = RoomDataSave.LoadData(roomsToLoad[i]);
+            RoomDataSaver.Room_Data loadRoom = RoomDataSaver.LoadData(roomsToLoad[i]);
             if (loadRoom != null)
             {
                 LoadRoomParameters(roomsToLoad[i], loadRoom);
@@ -58,7 +58,7 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
-    private void LoadRoomParameters(Room roomToChange, RoomDataSave.Room_Data roomDataLoad)
+    private void LoadRoomParameters(Room roomToChange, RoomDataSaver.Room_Data roomDataLoad)
     {
         if (converter == null)
             converter = KeywordToStringConverter.Instance;
@@ -112,7 +112,7 @@ public class RoomEditionController : MonoBehaviour {
 
     private void SaveChanges(Room currentAnalizedRoom)
     {
-        RoomDataSave.SaveData(currentAnalizedRoom);
+        RoomDataSaver.SaveData(currentAnalizedRoom);
         Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
     }
 

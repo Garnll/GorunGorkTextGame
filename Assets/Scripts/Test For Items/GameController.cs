@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
 
     private void UnpackRoom()
     {
-        playerRoomNavigation.UnpackedExitsInRoom();
+        playerRoomNavigation.AddExitsToController();
         PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
     }
 
@@ -62,46 +62,6 @@ public class GameController : MonoBehaviour {
                 interactionDescriptionsInRoom.Add(descriptionNotInInventory);
             }
         }
-
-            //        InteractableObject interactableInRoom = currentRoom.interactableObjectsInRoom[i];
-
-            //        SetInteractions(interactableInRoom);
-
-            //    }
-
-            //    for (int i = 0; i < interactableItems.inventoryManager.nounsInInventory.Count; i++)
-            //    {
-            //        InteractableObject interactableInRoom = interactableItems.inventoryManager.nounsInInventory[i];
-            //        SetInteractions(interactableInRoom);
-            //    }
-
-            //    interactableItems.GetObjectsInInventory();
-            //}
-
-            //private void SetInteractions(InteractableObject interactable)
-            //{
-            //    for (int j = 0; j < interactable.interactions.Length; j++)
-            //    {
-            //        Interaction interaction = interactable.interactions[j];
-
-            //        if (interaction.isInverseInteraction)
-            //        {
-            //            interactableItems.inverseNouns.Add(interactable.noun + interaction.textResponse, interaction);
-            //        }
-
-            //        if (interaction.inputAction.GetType() == typeof(Examine))
-            //        {
-            //            interactableItems.examineDictionary.Add(interactable.noun, interaction.textResponse);
-            //        }
-            //        else if (interaction.inputAction.GetType() == typeof(Take))
-            //        {
-            //            interactableItems.takeDictionary.Add(interactable.noun, interaction.textResponse);
-            //        }
-            //        else if (interaction.inputAction.GetType() == typeof(Throw))
-            //        {
-            //            interactableItems.throwDictionary.Add(interactable.noun, interaction.textResponse);
-            //        }
-            //    }
         }
 
     public string RefreshedCurrentRoomDescription()

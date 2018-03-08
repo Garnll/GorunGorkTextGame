@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BayatGames.SaveGameFree;
 
-public class RoomDataSave {
+public class RoomDataSaver {
 
     static KeywordToStringConverter converter;
 

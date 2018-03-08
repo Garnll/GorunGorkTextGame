@@ -56,22 +56,22 @@ public class TextUserInput : SerializedMonoBehaviour {
         else
         {
             string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-            string answer = "<color=#9C9C9CC0>" + WrongInputAnswer() + "</color>";
+            string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
             controller.LogStringWithReturn(userInputChanged + "\n" + answer);
         }
 
-        InputComplete();
+        DisplayInput();
     }
 
 
-    void InputComplete()
+    void DisplayInput()
     {
         controller.DisplayLoggedText();
         inputField.ActivateInputField();
         inputField.text = null;
     }
 
-    string WrongInputAnswer()
+    string AnswerToWrongInput()
     {
         string[] randomAnswer = new string[10];
         randomAnswer[0] = "¿Eh?";
