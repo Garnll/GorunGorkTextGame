@@ -16,7 +16,7 @@ public class ItemHandler : MonoBehaviour {
 
     public InteractableObject SearchObjectInRoomAndInventory(string[] objectName)
     {
-        string noun = string.Join(" ", SeparateWords(objectName));
+        string noun = string.Join(" ", SeparateKeyWords(objectName));
 
         InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
 
@@ -82,7 +82,7 @@ public class ItemHandler : MonoBehaviour {
     /// <returns></returns>
     public InteractableObject SearchObjectInRoom(string[] objectName)
     {
-        string noun = string.Join(" ", SeparateWords(objectName));
+        string noun = string.Join(" ", SeparateKeyWords(objectName));
 
         InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
 
@@ -134,7 +134,7 @@ public class ItemHandler : MonoBehaviour {
     /// <returns></returns>
     public InteractableObject SearchObjectInInventory(string[] objectName)
     {
-        string noun = string.Join(" ", SeparateWords(objectName));
+        string noun = string.Join(" ", SeparateKeyWords(objectName));
 
         InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
 
@@ -366,7 +366,7 @@ public class ItemHandler : MonoBehaviour {
     /// </summary>
     /// <param name="completeInput"></param>
     /// <returns></returns>
-    private string[] SeparateWords(string[] completeInput)
+    private string[] SeparateKeyWords(string[] completeInput)
     {
         string[] newString = new string[completeInput.Length - 1];
 
