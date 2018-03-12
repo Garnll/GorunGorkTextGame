@@ -10,9 +10,11 @@ public class Room : ScriptableObject {
     [TextArea] public string roomDescription;
     public string roomName;
     public List<InteractableObject> interactableObjectsInRoom = new List<InteractableObject>();
+
     public List<Exit> exits = new List<Exit>();
 
     private List<InteractableObject> savedInteractableObjects = new List<InteractableObject>();
+
 
 
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
