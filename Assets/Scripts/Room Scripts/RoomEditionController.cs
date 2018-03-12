@@ -10,7 +10,6 @@ public class RoomEditionController : MonoBehaviour {
     public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
 
     List<Room> roomsToLoad = new List<Room>();
-    Vector3 oldRoomPosition;
     private bool isEventSuscribed = false;
 
     KeywordToStringConverter converter;
@@ -88,7 +87,7 @@ public class RoomEditionController : MonoBehaviour {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
 
-        oldRoomPosition = currentAnalizedRoom.roomPosition;
+        Vector3 oldRoomPosition = currentAnalizedRoom.roomPosition;
 
         if (existingRooms.ContainsKey(oldRoomPosition))
         {
@@ -225,7 +224,9 @@ public class RoomEditionController : MonoBehaviour {
     {
         Exit newExitToCreate = new Exit()
         {
-            exitDescription = "Hay una salida al " + direction + ".",
+            exitDescription = "Hay una salida al "  
+            + KeywordToStringConverter.Instance.ConvertFromKeyword(direction) 
+            + ".",
             myKeyword = direction,
             conectedRoom = myConnectedRoom
         };
@@ -243,6 +244,14 @@ public class RoomEditionController : MonoBehaviour {
                 {
                     otherRooms[i].exits[f].myKeyword = CheckOtherRoomDirection(otherRooms[i].roomPosition,
                         centerRoom);
+                    break;
+                }
+                else if (f >= otherRooms[i].exits.Count - 1)
+                {
+                    otherRooms[i].exits.Add(CreateExit(
+                        CheckOtherRoomDirection(centerRoom, otherRooms[i].roomPosition),
+                        currentAnalizedRoom)
+                        );
                     break;
                 }
             }

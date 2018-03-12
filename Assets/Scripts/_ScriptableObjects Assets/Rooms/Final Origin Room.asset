@@ -17,6 +17,6 @@ MonoBehaviour:
   roomName: Final Origin Room
   interactableObjectsInRoom: []
   exits:
-  - myKeyword: 1
-    conectedRoom: {fileID: 11400000, guid: 8874c6803b270fc43a9b1757137d2ed4, type: 2}
-    exitDescription: Hay una salida al south.
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: '}'

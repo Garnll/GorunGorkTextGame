@@ -11,8 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
   m_Name: Creation Room
   m_EditorClassIdentifier: 
-  roomPosition: {x: 0, y: 0, z: 358}
+  roomPosition: {x: 1, y: 3, z: 10}
   roomDescription: 
   roomName: 
   interactableObjectsInRoom: []
-  exits: []
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
+    exitDescription: Hay una salida al sur.
