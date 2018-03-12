@@ -10,6 +10,7 @@ public class RoomEditionController : MonoBehaviour {
     public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
 
     List<Room> roomsToLoad = new List<Room>();
+    Vector3 oldRoomPosition;
     private bool isEventSuscribed = false;
 
     KeywordToStringConverter converter;
@@ -87,7 +88,7 @@ public class RoomEditionController : MonoBehaviour {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
 
-        Vector3 oldRoomPosition = currentAnalizedRoom.roomPosition;
+        oldRoomPosition = currentAnalizedRoom.roomPosition;
 
         if (existingRooms.ContainsKey(oldRoomPosition))
         {
@@ -122,6 +123,8 @@ public class RoomEditionController : MonoBehaviour {
         List<DirectionKeyword> directions = new List<DirectionKeyword>();
         List<Vector3> positions = new List<Vector3>();
 
+        List<Room> roomsToChangeExit = new List<Room>();
+
         int posX;
         int posY;
         int posZ = (int)centerRoom.z;
@@ -139,6 +142,7 @@ public class RoomEditionController : MonoBehaviour {
                 {
                     if (existingRooms.ContainsKey(positionToCheck))
                     {
+                        roomsToChangeExit.Add(existingRooms[positionToCheck]);
                         directions.Add(CheckOtherRoomDirection(centerRoom, positionToCheck));
                         positions.Add(positionToCheck);
                     }
@@ -148,7 +152,8 @@ public class RoomEditionController : MonoBehaviour {
 
         if (directions.Count > 0)
         {
-            CreateExits(roomBeingAnalized, directions.ToArray(), positions.ToArray());
+            CreateCurrentRoomExits(roomBeingAnalized, directions.ToArray(), positions.ToArray());
+            ChangeOtherRoomExits(roomsToChangeExit.ToArray(), roomBeingAnalized, centerRoom);
             directions.Clear();
         }
         else
@@ -206,20 +211,41 @@ public class RoomEditionController : MonoBehaviour {
         return direction;
     }
 
-    private void CreateExits(Room currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
+    private void CreateCurrentRoomExits(Room currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
     {
         currentlyExaminedRoom.exits.Clear();
 
         for (int i = 0; i < exitDirections.Length; i++)
         {
-            Exit newExitToCreate = new Exit()
-            {
-                exitDescription = "Hay una salida al " + exitDirections[i] + ".",
-                myKeyword = exitDirections[i],
-                conectedRoom = existingRooms[otherRoomsPositions[i]]
-            };
+            currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], existingRooms[otherRoomsPositions[i]]));
+        }
+    }
 
-            currentlyExaminedRoom.exits.Add(newExitToCreate);
+    private Exit CreateExit(DirectionKeyword direction, Room myConnectedRoom)
+    {
+        Exit newExitToCreate = new Exit()
+        {
+            exitDescription = "Hay una salida al " + direction + ".",
+            myKeyword = direction,
+            conectedRoom = myConnectedRoom
+        };
+
+        return newExitToCreate;
+    }
+
+    private void ChangeOtherRoomExits(Room[] otherRooms, Room currentAnalizedRoom, Vector3 centerRoom)
+    {
+        for (int i = 0; i < otherRooms.Length; i++)
+        {
+            for (int f = 0; f < otherRooms[i].exits.Count; f++)
+            {
+                if (otherRooms[i].exits[f].conectedRoom == currentAnalizedRoom)
+                {
+                    otherRooms[i].exits[f].myKeyword = CheckOtherRoomDirection(otherRooms[i].roomPosition,
+                        centerRoom);
+                    break;
+                }
+            }
         }
     }
 

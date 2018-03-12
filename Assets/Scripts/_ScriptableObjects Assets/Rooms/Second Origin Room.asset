@@ -20,8 +20,8 @@ MonoBehaviour:
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
-    exitDescription: 'Notas la presencia de otras consciencias alrededor tuyo. Pero
-      no puedes verlos. Sin embargo, ves una tenue luz a la distancia. '
+    exitDescription: "Notas que hay otras consciencias a tu alrededor, pero no puedes
+      verlas. Lo que si puedes ver es una tenue luz en la lejan\xEDa."
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 

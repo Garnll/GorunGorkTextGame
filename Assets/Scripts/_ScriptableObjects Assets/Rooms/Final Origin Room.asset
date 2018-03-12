@@ -11,8 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
   m_Name: Final Origin Room
   m_EditorClassIdentifier: 
-  roomPosition: {x: 0, y: 0, z: 358}
-  roomDescription: 
-  roomName: 
+  roomPosition: {x: 1, y: 2, z: 10}
+  roomDescription: "Instintivamente te acercas hacia la luz, y por m\xE1s que intentas
+    dejar de mirarla, parece estar siempre en tu camino. Algo te atrae hacia ella."
+  roomName: Final Origin Room
   interactableObjectsInRoom: []
-  exits: []
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 8874c6803b270fc43a9b1757137d2ed4, type: 2}
+    exitDescription: Hay una salida al south.
