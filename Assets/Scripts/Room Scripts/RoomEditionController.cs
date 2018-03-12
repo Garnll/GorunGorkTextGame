@@ -29,7 +29,7 @@ public class RoomEditionController : MonoBehaviour {
         roomsToLoad.Clear();
 
         string[] path = new string[1];
-        path[0] = "Assets/Scripts/ScriptableObjects/Rooms";
+        path[0] = "Assets/Scripts/_ScriptableObjects Assets/Rooms";
 
         var findRooms = AssetDatabase.FindAssets("t:Room", path);
         for (int i = 0; i < findRooms.Length; i++)

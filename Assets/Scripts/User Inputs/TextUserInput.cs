@@ -32,37 +32,48 @@ public class TextUserInput : SerializedMonoBehaviour {
     {
         string originalInput = userInput;
 
-        userInput = userInput.ToLower();
-
-        char[] delimeterCharacters = { ' ' };
-        string[] separatedInputWords = userInput.Split(delimeterCharacters);
-
-        if (inputDictionary.ContainsKey(separatedInputWords[0]))
+        if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
         {
-            if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
-            {
-                string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-                controller.LogStringWithReturn(userInputChanged);
+            userInput = userInput.ToLower();
 
-                inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+            char[] delimeterCharacters = { ' ' };
+            string[] separatedInputWords = userInput.Split(delimeterCharacters);
+
+            if (inputDictionary.ContainsKey(separatedInputWords[0]))
+            {
+                if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
+                {
+                    string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                    controller.LogStringWithReturn(userInputChanged);
+
+                    inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+                }
+                else
+                {
+                    string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
+
+                    inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+                }
             }
             else
             {
-                string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
-
-                inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+                string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
+                controller.LogStringWithReturn(userInputChanged + "\n" + answer);
             }
-        }
-        else
-        {
-            string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-            string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
-            controller.LogStringWithReturn(userInputChanged + "\n" + answer);
-        }
 
-        DisplayInput();
+            DisplayInput();
+        }
     }
 
+    public void EnableInput(bool isEnabled)
+    {
+        inputField.interactable = isEnabled;
+        if (isEnabled == false)
+        {
+            inputField.text = "Presiona Enter para continuar...";
+        }
+    }
 
     void DisplayInput()
     {

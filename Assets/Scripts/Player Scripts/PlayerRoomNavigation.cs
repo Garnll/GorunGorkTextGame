@@ -19,7 +19,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
         {
             exitDictionary.Add(currentRoom.exits[i].myKeyword, currentRoom.exits[i].conectedRoom);
 
-            controller.interactionDescriptionsInRoom.Add(currentRoom.exits[i].exitDescription);
+            if (currentRoom.exits[i].exitDescription != "")
+            {
+                controller.interactionDescriptionsInRoom.Add(currentRoom.exits[i].exitDescription);
+            }
         }
     }
 
