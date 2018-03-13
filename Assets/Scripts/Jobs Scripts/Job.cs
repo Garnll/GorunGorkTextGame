@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Job : ScriptableObject {
 
-    public int identifier;
-    public string jobName;
+    public int identifier = 0;
+    public string jobName = "job name";
     [TextArea]public string jobDescription;
 
     public List<Hability> habilities = new List<Hability>();

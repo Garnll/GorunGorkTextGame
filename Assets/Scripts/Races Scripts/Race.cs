@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class Race : ScriptableObject {
 
-    public string keyword;
+    public string keyword = "raza";
     public string raceDescription;
 
     public abstract void ChangePlayerStats(PlayerCharacteristics playerStats);
+
     public abstract void ActivatePassiveHability(PlayerManager player);
 }

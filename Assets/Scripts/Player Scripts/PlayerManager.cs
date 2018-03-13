@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    private string name = "player";
+    private string playerName = "player";
+    public int playerLevel = 0;
 
     [SerializeField] private float maxHealth = 100;
     private float currentHealth = 100;

@@ -14,9 +14,32 @@ MonoBehaviour:
   roomPosition: {x: 1, y: 2, z: 10}
   roomDescription: "Instintivamente te acercas hacia la luz, y por m\xE1s que intentas
     dejar de mirarla, parece estar siempre en tu camino. Algo te atrae hacia ella."
-  roomName: Final Origin Room
+  roomName: final origin room
+  roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
   exits:
   - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 8874c6803b270fc43a9b1757137d2ed4, type: 2}
+    exitDescription: "Mentras ves la luz, sientes la necesidad visceral de ir hac\xEDa
+      ella. Como si gracias a ella, pudieras volver a respirar."
+  - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
-    exitDescription: '}'
+    exitDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 
+  - myKeyword: 4
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 
+  - myKeyword: 5
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 
+  - myKeyword: 6
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 
+  - myKeyword: 7
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
+    exitDescription: 

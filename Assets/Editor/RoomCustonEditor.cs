@@ -18,7 +18,10 @@ public class RoomCustonEditor : Editor {
 
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.Vector3Field("Room Position", targetRoom.roomPosition);
+        EditorGUILayout.LabelField("Room Position:");
+        EditorGUILayout.LabelField("X: " + targetRoom.roomPosition.x 
+            + "\tY: " + targetRoom.roomPosition.y
+            + "\tZ: " + targetRoom.roomPosition.z);
 
         base.OnInspectorGUI();
 

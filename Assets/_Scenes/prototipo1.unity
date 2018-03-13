@@ -2631,7 +2631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9726b6fdf8e0de342a5a93a335f42ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 405610295}
   controller: {fileID: 405610293}
   originRoom: {fileID: 11400000, guid: 2b8d926c2a0851e40a04d65c4d55b5c8, type: 2}
 --- !u!4 &1565567487
