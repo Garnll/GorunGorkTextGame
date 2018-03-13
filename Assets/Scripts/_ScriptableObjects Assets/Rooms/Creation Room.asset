@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Creation Room
   m_EditorClassIdentifier: 
   roomPosition: {x: 2, y: 3, z: 10}
-  roomDescription: 
+  roomDescription: hols
   roomName: creation room
+  roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
   interactableObjectsInRoom: []
   exits:
   - myKeyword: 7

@@ -19,7 +19,7 @@ MonoBehaviour:
   interactableObjectsInRoom: []
   exits:
   - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 8874c6803b270fc43a9b1757137d2ed4, type: 2}
+    conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: "Mentras ves la luz, sientes la necesidad visceral de ir hac\xEDa
       ella. Como si gracias a ella, pudieras volver a respirar."
   - myKeyword: 1

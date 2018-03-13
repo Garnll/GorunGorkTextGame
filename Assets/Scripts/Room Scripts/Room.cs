@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Room")]
+[System.Serializable]
 public class Room : ScriptableObject {
 
     [HideInInspector] public Vector3 roomPosition = new Vector3(0,0,358);
