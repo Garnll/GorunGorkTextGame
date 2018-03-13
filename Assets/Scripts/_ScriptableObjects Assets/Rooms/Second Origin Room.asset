@@ -15,7 +15,7 @@ MonoBehaviour:
   roomDescription: "Al moverte, te inquietas al darte cuenta de que no pudes sentir
     tus piernas. Y al mirar, te das cuenta de que en realidad no tienes cuerpo alguno.
     Tu consciencia est\xE1 flotando sin rumbo en este mundo grisaseo."
-  roomName: 
+  roomName: second origin room
   interactableObjectsInRoom: []
   exits:
   - myKeyword: 0

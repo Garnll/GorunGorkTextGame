@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class RoomResponse : ScriptableObject {
 
     public GameState.GameStates stateToChangeTo = GameState.GameStates.exploration;

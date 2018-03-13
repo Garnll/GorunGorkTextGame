@@ -1,1 +1,1 @@
-﻿{"roomPositionData":{"x":2.0,"y":3.0,"z":10.0},"roomDescriptionData":null,"roomNameData":null,"exitsData":[{"myKeywordData":"suroeste","connectedRoomPosition":{"x":1.0,"y":2.0,"z":10.0},"exitDescriptionData":"Hay una salida al suroeste."}]}
+﻿{"roomPositionData":{"x":2.0,"y":3.0,"z":10.0},"roomDescriptionData":"","roomNameData":"creation room","exitsData":[{"myKeywordData":"suroeste","connectedRoomPosition":{"x":1.0,"y":2.0,"z":10.0},"exitDescriptionData":"Hay una salida al suroeste."}]}

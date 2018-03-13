@@ -89,20 +89,11 @@ public class GameController : MonoBehaviour {
 
         string objectToDisplay = noun;
 
-        //if (interactableItems.objectsWithinReachDictionary.ContainsKey(objectToDisplay))
-        //{
-        //    if (interactableItems.objectsWithinReachDictionary[objectToDisplay].nounGender == InteractableObject.WordGender.male)
-        //        objectToDisplay = "el " + noun;
-        //    else
-        //        objectToDisplay = "la " + noun;
-        //}
-
         return "No se puede " + verb + " " + objectToDisplay;
     }
 
     void ClearCollectionsForNewRoom()
     {
-        //interactableItems.ClearCollections();
         interactionDescriptionsInRoom.Clear();
         playerRoomNavigation.ClearExits();
     }

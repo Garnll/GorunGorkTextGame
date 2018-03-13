@@ -6,7 +6,6 @@ using Sirenix.OdinInspector;
 
 public class TextUserInput : SerializedMonoBehaviour {
 
-    //public InputField inputField;
     public TMP_InputField inputField;
     [SerializeField] Dictionary<string, InputActions> inputDictionary = new Dictionary<string, InputActions>();
 
@@ -32,37 +31,40 @@ public class TextUserInput : SerializedMonoBehaviour {
     {
         string originalInput = userInput;
 
-        if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        switch (GameState.Instance.CurrentState)
         {
-            userInput = userInput.ToLower();
+            default:
+            case GameState.GameStates.exploration:
+                userInput = userInput.ToLower();
 
-            char[] delimeterCharacters = { ' ' };
-            string[] separatedInputWords = userInput.Split(delimeterCharacters);
+                char[] delimeterCharacters = { ' ' };
+                string[] separatedInputWords = userInput.Split(delimeterCharacters);
 
-            if (inputDictionary.ContainsKey(separatedInputWords[0]))
-            {
-                if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
+                if (inputDictionary.ContainsKey(separatedInputWords[0]))
                 {
-                    string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-                    controller.LogStringWithReturn(userInputChanged);
+                    if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
+                    {
+                        string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                        controller.LogStringWithReturn(userInputChanged);
 
-                    inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+                    }
+                    else
+                    {
+                        string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
+
+                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+                    }
                 }
                 else
                 {
-                    string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
-
-                    inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+                    string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                    string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
+                    controller.LogStringWithReturn(userInputChanged + "\n" + answer);
                 }
-            }
-            else
-            {
-                string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
-                string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
-                controller.LogStringWithReturn(userInputChanged + "\n" + answer);
-            }
 
-            DisplayInput();
+                DisplayInput();
+                break;
         }
     }
 

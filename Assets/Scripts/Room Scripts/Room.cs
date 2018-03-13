@@ -8,9 +8,9 @@ public class Room : ScriptableObject {
     [HideInInspector] public Vector3 roomPosition = new Vector3(0,0,358);
 
     [TextArea] public string roomDescription;
-    public string roomName;
+    public string roomName = "template name";
+    public RoomResponse roomResponse;
     public List<InteractableObject> interactableObjectsInRoom = new List<InteractableObject>();
-
     public List<Exit> exits = new List<Exit>();
 
     private List<InteractableObject> savedInteractableObjects = new List<InteractableObject>();
