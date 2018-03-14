@@ -24,9 +24,14 @@ public class CharacterCreationResponse : RoomResponse {
 
     public override void TriggerResponse(GameController controller)
     {
+        raceSelected = false;
+        genderSelected = false;
+        nameGiven = false;
+        isAskingForConfirmation = false;
+
         base.TriggerResponse(controller);
         gameController = controller;
-        gameController.LogStringWithoutSpaces(selectRaceText);
+        gameController.LogStringAfterRoom(selectRaceText);
     }
 
     public void AcceptInput(string[] input)
@@ -39,9 +44,12 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     gameController.LogStringWithReturn(AskForRaceDescription(input[1]));
                 }
-                else if (input[1] == "preguntar")
+                if (input.Length > 1)
                 {
-                    gameController.LogStringWithReturn(AskForRaceDescription(input[0]));
+                    if (input[1] == "preguntar" && input[0] != "preguntar")
+                    {
+                        gameController.LogStringWithReturn(AskForRaceDescription(input[0]));
+                    }
                 }
                 else
                 {
@@ -128,9 +136,10 @@ public class CharacterCreationResponse : RoomResponse {
             if (raceName == possibleRaces[i].keyword)
             {
                 tempInput = raceName;
-                gameController.LogStringWithoutSpaces("¿Estás seguro de querer ser un " + raceName + "?");
+                tempRaceCode = i;
+                gameController.LogStringWithReturn("¿Estás seguro de querer ser un " + raceName + "?");
                 isAskingForConfirmation = true;
-                break;
+                return;
             }
         }
 
@@ -160,14 +169,14 @@ public class CharacterCreationResponse : RoomResponse {
         {
             isAskingForConfirmation = true;
             tempInput = "macho";
-            gameController.LogStringWithoutSpaces("Has elegido renacer como macho. ¿Estás seguro?");
+            gameController.LogStringWithReturn("Has elegido renacer como macho. ¿Estás seguro?");
             return;
         }
         if (playerGender == "hembra" || playerGender == "h")
         {
             isAskingForConfirmation = true;
             tempInput = "hembra";
-            gameController.LogStringWithoutSpaces("Has elegido renacer como hembra. ¿Estás seguro?");
+            gameController.LogStringWithReturn("Has elegido renacer como hembra. ¿Estás seguro?");
             return;
         }
 
@@ -211,6 +220,7 @@ public class CharacterCreationResponse : RoomResponse {
     private void EndResponse()
     {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        
+        gameController.playerRoomNavigation.AttemptToChangeRooms(
+            gameController.playerRoomNavigation.currentRoom.exits[0].myKeyword);
     }
 }

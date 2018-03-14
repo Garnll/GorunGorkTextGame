@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e304e004c8f5d0b499a058e56d91541e, type: 3}
+  m_Name: Owl
+  m_EditorClassIdentifier: 
+  keyword: buho
+  raceDescription: "Los buhos son una raza de buhos humanoides. Conocidos por ser
+    de los m\xE1s grandes intelectuales de la historia, prefiriendo usar su mente
+    a su fuerza f\xEDsica."

@@ -11,6 +11,7 @@ public class GameStart : MonoBehaviour {
     void Awake () {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         controller.playerRoomNavigation.currentRoom = originRoom;
+        controller.playerManager.Initialize();
 	}
 
 

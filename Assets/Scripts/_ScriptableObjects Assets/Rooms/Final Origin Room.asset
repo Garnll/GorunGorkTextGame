@@ -11,6 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
   m_Name: Final Origin Room
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   roomPosition: {x: 1, y: 2, z: 10}
   roomDescription: "Instintivamente te acercas hacia la luz, y por m\xE1s que intentas
     dejar de mirarla, parece estar siempre en tu camino. Algo te atrae hacia ella."
@@ -20,8 +29,8 @@ MonoBehaviour:
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
-    exitDescription: "Mentras ves la luz, sientes la necesidad visceral de ir hac\xEDa
-      ella. Como si gracias a ella, pudieras volver a respirar."
+    exitDescription: Mentras ves la luz, sientes la necesidad visceral de ir hacia
+      ella. Como si gracias a ella, pudieras volver a respirar.
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 

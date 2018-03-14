@@ -5,21 +5,56 @@ using UnityEngine;
 public class PlayerOther : MonoBehaviour {
 
     [SerializeField] private float defaultCriticalHitProbability = 0;
-    public float currentCriticalHitProbability;
+    [HideInInspector] public float currentCriticalHitProbability;
 
     [SerializeField] private float defaultCooldownReduction = 0;
-    public float currentCooldownReduction;
+    [HideInInspector] public float currentCooldownReduction;
 
     [SerializeField] private float defaultHealthRegenPerSecond = 2;
-    public float currentHealthRegenPerSecond;
+    [HideInInspector] public float currentHealthRegenPerSecond;
 
     [SerializeField] private float defaultTurnRegenPerSecond = 5;
-    public float currentTurnRegenPerSecond;
+    [HideInInspector] public float currentTurnRegenPerSecond;
 
     [SerializeField] private float defaultEvasion = 0;
-    public float currentEvasion;
+    [HideInInspector] public float currentEvasion;
 
     private float escapeProbability = 0;
+
+
+    public float DefaultCriticalHitProbability
+    {
+        get
+        {
+            return defaultCriticalHitProbability;
+        }
+    }
+
+    public float DefaultCooldownReduction
+    {
+        get
+        {
+            return defaultCooldownReduction;
+        }
+    }
+
+    public float DefaultHealthRegenPerSecond
+    {
+        get
+        {
+            return defaultHealthRegenPerSecond;
+        }
+    }
+
+    public float DefaultEvasion
+    {
+        get
+        {
+            return defaultEvasion;
+        }
+    }
+
+
 
     public void InitializeOthers()
     {

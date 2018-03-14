@@ -341,7 +341,7 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 276.745
+      value: 277.245
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -351,7 +351,7 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 553.49
+      value: 554.49
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -614,6 +614,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
   - {fileID: 11400000, guid: 73542bdd843c29c4f9d371b38c2db4ff, type: 2}
   - {fileID: 11400000, guid: 05a429f1bfae31d4ea4cb8630783e937, type: 2}
+  playerManager: {fileID: 1178118717}
   playerRoomNavigation: {fileID: 1178118714}
   interactionDescriptionsInRoom: []
   itemHandler: {fileID: 0}
@@ -647,6 +648,11 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 05a429f1bfae31d4ea4cb8630783e937, type: 2}
+    - {fileID: 11400000, guid: 7a5de0dfac0692642b8f2d7a2ae1b1b1, type: 2}
+    - {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
+    - {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
+    - {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
+    - {fileID: 11400000, guid: 1b373320c7d7b3a42b4027655ecc3d6e, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -810,8 +816,8 @@ MonoBehaviour:
       Entry: 1
       Data: mirar
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -822,8 +828,8 @@ MonoBehaviour:
       Entry: 1
       Data: ver
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -834,8 +840,8 @@ MonoBehaviour:
       Entry: 1
       Data: tomar
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -846,8 +852,8 @@ MonoBehaviour:
       Entry: 1
       Data: utilizar
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -858,8 +864,8 @@ MonoBehaviour:
       Entry: 1
       Data: lanzar
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -870,8 +876,8 @@ MonoBehaviour:
       Entry: 1
       Data: i
     - Name: 
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -1086,8 +1092,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 0.99999946
-  m_Size: 0.6951649
+  m_Value: 1
+  m_Size: 0.695165
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1209,6 +1215,77 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1037226427}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &769677633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 769677636}
+  - component: {fileID: 769677634}
+  - component: {fileID: 769677635}
+  m_Layer: 0
+  m_Name: 'Player Stats '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &769677634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769677633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8f3c40678a2c04a94653fd34a71c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 1
+  intelligence: 1
+  resistance: 1
+  dexterity: 1
+  vision: {x: 0, y: 0}
+  defaultVision: {x: -4, y: 4}
+  playerRace: {fileID: 0}
+  playerJob: {fileID: 0}
+  other: {fileID: 769677635}
+--- !u!114 &769677635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769677633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad48aae7aa9cc524f95472091a823517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCriticalHitProbability: 0
+  currentCriticalHitProbability: 0
+  defaultCooldownReduction: 0
+  currentCooldownReduction: 0
+  defaultHealthRegenPerSecond: 2
+  currentHealthRegenPerSecond: 0
+  defaultTurnRegenPerSecond: 5
+  currentTurnRegenPerSecond: 0
+  defaultEvasion: 0
+  currentEvasion: 0
+--- !u!4 &769677636
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769677633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1178118715}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770022762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,6 +2008,7 @@ GameObject:
   - component: {fileID: 1178118715}
   - component: {fileID: 1178118714}
   - component: {fileID: 1178118716}
+  - component: {fileID: 1178118717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1960,7 +2038,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 398.1988, y: 180.15677, z: -10.398299}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 769677636}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1977,6 +2056,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nounsInInventory: []
   text: {fileID: 639435401}
+--- !u!114 &1178118717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1178118713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b69bf4ec7fcdf14c9bdc5c8f1d0c827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: jugador
+  gender: macho
+  playerLevel: 0
+  maxHealth: 100
+  currentHealth: 0
+  maxTurn: 100
+  currentTurn: 0
+  maxWill: 10
+  currentWill: 0
+  characteristics: {fileID: 769677634}
+  controller: {fileID: 405610293}
 --- !u!1 &1280517652
 GameObject:
   m_ObjectHideFlags: 0

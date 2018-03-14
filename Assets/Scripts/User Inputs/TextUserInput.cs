@@ -61,8 +61,6 @@ public class TextUserInput : SerializedMonoBehaviour {
                     string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
                     controller.LogStringWithReturn(userInputChanged + "\n" + answer);
                 }
-
-                DisplayInput();
                 break;
 
             case GameState.GameStates.creation:
@@ -72,6 +70,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                 characterCreation.AcceptInput(separatedInputWords);
                 break;
         }
+        DisplayInput();
     }
 
     void DisplayInput()

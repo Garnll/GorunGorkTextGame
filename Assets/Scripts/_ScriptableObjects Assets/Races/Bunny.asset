@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e72351e87738ac4eb53dff184eb8a98, type: 3}
+  m_Name: Bunny
+  m_EditorClassIdentifier: 
+  keyword: conejo
+  raceDescription: "Los conejos son la raza de conejos humanoides. La velocidad de
+    un conejo es incomparable, aunque son realmente fr\xE1giles."

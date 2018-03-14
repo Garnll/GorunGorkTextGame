@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     [HideInInspector] public ItemHandler itemHandler;
 
     List<string> actionLog = new List<string>();
+    List<string> roomExtraLog = new List<string>();
     string currentRoomDescription = "";
 
     private void Start()
@@ -44,6 +45,13 @@ public class GameController : MonoBehaviour {
         currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
         string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
 
+
+        if (playerRoomNavigation.currentRoom.roomResponse != null)
+        {
+            combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
+        }
+        combinedText += string.Join("\n", roomExtraLog.ToArray());
+
         LogStringWithReturn(combinedText);
     }
 
@@ -72,8 +80,15 @@ public class GameController : MonoBehaviour {
         ClearCollectionsForNewRoom();
         UnpackRoom();
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
+
         currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
+
         string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
+        if (playerRoomNavigation.currentRoom.roomResponse != null)
+        {
+            combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
+        }
+
 
         return combinedText;
     }
@@ -97,6 +112,7 @@ public class GameController : MonoBehaviour {
 
     void ClearCollectionsForNewRoom()
     {
+        roomExtraLog.Clear();
         interactionDescriptionsInRoom.Clear();
         playerRoomNavigation.ClearExits();
     }
@@ -106,11 +122,8 @@ public class GameController : MonoBehaviour {
         actionLog.Add(stringToAdd + "\n");
     }
 
-    public void LogStringWithoutSpaces(string stringToAdd)
+    public void LogStringAfterRoom(string stringToAdd)
     {
-        actionLog.Add(stringToAdd);
+        roomExtraLog.Add(stringToAdd + "\n");
     }
-
-
-
 }

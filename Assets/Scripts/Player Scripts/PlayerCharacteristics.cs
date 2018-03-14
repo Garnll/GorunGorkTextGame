@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class PlayerCharacteristics : MonoBehaviour {
 
-    public int strength = 0;
-    public int intelligence = 0;
-    public int resistance = 0;
-    public int dexterity = 0;
+    public int strength = 1;
+    public int intelligence = 1;
+    public int resistance = 1;
+    public int dexterity = 1;
 
-    public Vector2 vision = new Vector2(-4, 4);
+    /// <summary>
+    /// x es infravisión.
+    /// y es supravisión.
+    /// </summary>
+    [HideInInspector]public Vector2 vision;
+    public Vector2 defaultVision = new Vector2(-4, 4);
 
     public Race playerRace;
     public Job playerJob;
     public PlayerOther other;
 
+
+    public void InitializeCharacteristics()
+    {
+        vision = defaultVision;
+    }
+
+    public void ChangeVision(int InfraFactor, int SupraFactor)
+    {
+        vision.x = defaultVision.x - InfraFactor;
+        vision.y = defaultVision.y + SupraFactor;
+    }
 
 }
