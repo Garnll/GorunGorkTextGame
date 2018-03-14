@@ -26,6 +26,14 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
     }
 
+    public void TriggerRoomResponse()
+    {
+        if (currentRoom.roomResponse == null)
+            return;
+
+        currentRoom.roomResponse.TriggerResponse(controller);
+    }
+
     public void AttemptToChangeRooms(DirectionKeyword directionNoun)
     {
         if (converter == null)

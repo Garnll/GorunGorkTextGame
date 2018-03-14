@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+using Sirenix.OdinInspector.Editor;
 
 [CustomEditor(typeof(Room))]
-public class RoomCustonEditor : Editor {
+public class RoomCustonEditor : OdinEditor {
 
     public Vector3Int newPosition = new Vector3Int();
     Room targetRoom;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         targetRoom = (Room)target;
         newPosition = Vector3Int.CeilToInt(targetRoom.roomPosition);

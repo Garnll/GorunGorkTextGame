@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
     public TextMeshProUGUI displayText;
     public InputActions[] inputActions;
+    public PlayerManager playerManager;
     public PlayerRoomNavigation playerRoomNavigation;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
@@ -50,6 +51,8 @@ public class GameController : MonoBehaviour {
     {
         playerRoomNavigation.AddExitsToController();
         PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
+
+        playerRoomNavigation.TriggerRoomResponse();
     }
 
     private void PrepareObjectsToBeInteracted(Room currentRoom)
@@ -101,6 +104,11 @@ public class GameController : MonoBehaviour {
     public void LogStringWithReturn(string stringToAdd)
     {
         actionLog.Add(stringToAdd + "\n");
+    }
+
+    public void LogStringWithoutSpaces(string stringToAdd)
+    {
+        actionLog.Add(stringToAdd);
     }
 
 

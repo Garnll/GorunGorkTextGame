@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Room")]
-[System.Serializable]
-public class Room : ScriptableObject {
+public class Room : SerializedScriptableObject {
 
     [HideInInspector] public Vector3 roomPosition = new Vector3(0,0,358);
 

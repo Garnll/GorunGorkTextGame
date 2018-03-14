@@ -30,16 +30,15 @@ public class TextUserInput : SerializedMonoBehaviour {
     void AcceptStringInput(string userInput)
     {
         string originalInput = userInput;
+        userInput = userInput.ToLower();
+
+        char[] delimeterCharacters = { ' ' };
+        string[] separatedInputWords = userInput.Split(delimeterCharacters);
 
         switch (GameState.Instance.CurrentState)
         {
             default:
             case GameState.GameStates.exploration:
-                userInput = userInput.ToLower();
-
-                char[] delimeterCharacters = { ' ' };
-                string[] separatedInputWords = userInput.Split(delimeterCharacters);
-
                 if (inputDictionary.ContainsKey(separatedInputWords[0]))
                 {
                     if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
@@ -65,15 +64,13 @@ public class TextUserInput : SerializedMonoBehaviour {
 
                 DisplayInput();
                 break;
-        }
-    }
 
-    public void EnableInput(bool isEnabled)
-    {
-        inputField.interactable = isEnabled;
-        if (isEnabled == false)
-        {
-            inputField.text = "Presiona Enter para continuar...";
+            case GameState.GameStates.creation:
+                CharacterCreationResponse characterCreation = controller.playerRoomNavigation.currentRoom.roomResponse as CharacterCreationResponse;
+
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                characterCreation.AcceptInput(separatedInputWords);
+                break;
         }
     }
 
