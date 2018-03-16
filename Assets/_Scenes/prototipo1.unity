@@ -341,22 +341,22 @@ Prefab:
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 277.245
+      value: 212.245
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -390.37
+      value: -482.37
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 554.49
+      value: 424.49
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 390.37
+      value: 505.38
       objectReference: {fileID: 0}
     - target: {fileID: 224236461420206622, guid: 497ff3be884d88940b99006cdfb0df57,
         type: 2}
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 873116473}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.85549873
+  m_Size: 0.6608117
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1421,7 +1421,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Enter text...
+  m_text: Escribe aqui....
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 0
   m_textAlignment: 257
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 820313361}
-    characterCount: 13
+    characterCount: 16
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

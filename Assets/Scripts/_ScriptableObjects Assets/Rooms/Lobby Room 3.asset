@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: Lobby Room 1
+  m_Name: Lobby Room 3
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,15 +20,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  roomPosition: {x: 0, y: 0, z: 0}
-  roomDescription: "Una vez m\xE1s recuperas tu consciencia, pero esta vez puedes
-    notar que hay un cambio. Al abrir tus ojos ves que est\xE1s en una especie de
-    contenedor, con un cristal justo en frente tuyo."
-  roomName: lobby room 1
+  roomPosition: {x: 1, y: 1, z: 0}
+  roomDescription: "Avanzas por el pasillo, donde a cada lado puedes observar m\xE1s
+    celdas, hasta llegar al frente de una puerta, que lleva a una habitaci\xF3n que
+    apenas puedes ver."
+  roomName: lobby room 3
   roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
   exits:
-  - myKeyword: 0
+  - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 1032bfbb65b5c8842be2deda7aad39dc, type: 2}
-    exitDescription: Notas que el crital funciona como una especie de compuerta, y
-      que si la empujas puedes <color = green> ir al norte. </color>
+    exitDescription: "La celda de donde saliste est\xE1 al oeste."
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: e840bb1dcd88a3042b6e97c2e566cbd1, type: 2}
+    exitDescription: "A trav\xE9s de la puertas, notas que hay pasillos al este."

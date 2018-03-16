@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: Lobby Room 1
+  m_Name: Lobby Room 4
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,15 +20,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  roomPosition: {x: 0, y: 0, z: 0}
-  roomDescription: "Una vez m\xE1s recuperas tu consciencia, pero esta vez puedes
-    notar que hay un cambio. Al abrir tus ojos ves que est\xE1s en una especie de
-    contenedor, con un cristal justo en frente tuyo."
-  roomName: lobby room 1
+  roomPosition: {x: 2, y: 1, z: 0}
+  roomDescription: "Pasas por la puerta, la cual se cierra una vez est\xE1s al otro
+    lado. En esta nueva habitaci\xF3n solo eres capaz de ver unos pasillos alejandose
+    los unos de los otros. Cada pasillo tiene un letrero, indicando al parecer a d\xF3nde
+    dirigen."
+  roomName: lobby room 4
   roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
-  exits:
-  - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 1032bfbb65b5c8842be2deda7aad39dc, type: 2}
-    exitDescription: Notas que el crital funciona como una especie de compuerta, y
-      que si la empujas puedes <color = green> ir al norte. </color>
+  exits: []

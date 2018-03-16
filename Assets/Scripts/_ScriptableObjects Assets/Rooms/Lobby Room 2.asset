@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: Lobby Room 1
+  m_Name: Lobby Room 2
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,15 +20,15 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  roomPosition: {x: 0, y: 0, z: 0}
-  roomDescription: "Una vez m\xE1s recuperas tu consciencia, pero esta vez puedes
-    notar que hay un cambio. Al abrir tus ojos ves que est\xE1s en una especie de
-    contenedor, con un cristal justo en frente tuyo."
-  roomName: lobby room 1
+  roomPosition: {x: 0, y: 1, z: 0}
+  roomDescription: "Lentamente empujas la compuerta de lo que llamar\xEDas una \"celda\"
+    y sales a un cuarto donde puedes reconocer decenas de celdas cilindricas similares
+    al que est\xE1 detr\xE1s tuya."
+  roomName: lobby room 2
   roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
   exits:
-  - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 1032bfbb65b5c8842be2deda7aad39dc, type: 2}
-    exitDescription: Notas que el crital funciona como una especie de compuerta, y
-      que si la empujas puedes <color = green> ir al norte. </color>
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}
+    exitDescription: "Notas que la celda est\xE1 ahora cerrada, y que un l\xEDquido
+      azul la est\xE1 llenando. Adem\xE1s, ves que una puerta se abri\xF3 al <color=green>este.<green>"
