@@ -11,11 +11,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
   m_Name: Second Origin Room
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   roomPosition: {x: 1, y: 1, z: 10}
   roomDescription: "Al moverte, te inquietas al darte cuenta de que no pudes sentir
     tus piernas. Y al mirar, te das cuenta de que en realidad no tienes cuerpo alguno.
     Tu consciencia est\xE1 flotando sin rumbo en este mundo grisaseo."
   roomName: second origin room
+  roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
   exits:
   - myKeyword: 0

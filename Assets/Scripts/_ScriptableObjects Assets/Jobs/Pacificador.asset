@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a8551666df9bd458d59fb4f7e8a2b0, type: 3}
   m_Name: Pacificador
   m_EditorClassIdentifier: 
-  identifier: 0
-  jobName: job name
+  identifier: 2
+  jobName: pacificador
   jobDescription: 
   habilities: []

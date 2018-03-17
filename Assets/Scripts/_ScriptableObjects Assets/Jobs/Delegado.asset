@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Delegado
   m_EditorClassIdentifier: 
   identifier: 0
-  jobName: job name
+  jobName: delegado
   jobDescription: 
   habilities: []

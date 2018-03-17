@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcc4e2a6bee0274990e81c553b46cc9, type: 3}
   m_Name: Operario
   m_EditorClassIdentifier: 
-  identifier: 0
-  jobName: job name
+  identifier: 1
+  jobName: operario
   jobDescription: 
   habilities: []

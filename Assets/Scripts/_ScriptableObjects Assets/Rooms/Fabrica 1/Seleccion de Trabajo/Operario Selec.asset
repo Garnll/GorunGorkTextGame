@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: Lobby Room 4
+  m_Name: Operario Selec
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,12 +20,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  roomPosition: {x: 2, y: 1, z: 0}
-  roomDescription: "Pasas por la puerta, la cual se cierra una vez est\xE1s al otro
-    lado. En esta nueva habitaci\xF3n solo eres capaz de ver unos pasillos alejandose
-    los unos de los otros. Cada pasillo tiene un letrero, indicando al parecer a d\xF3nde
-    dirigen."
-  roomName: lobby room 4
-  roomResponse: {fileID: 0}
+  roomPosition: {x: 4, y: 1, z: 0}
+  roomDescription: Entras a la sala de operarios, y la puerta se cierra.
+  roomName: operario selec
+  roomResponse: {fileID: 11400000, guid: c7f21526cca969e4aa9ae6937823fb71, type: 2}
   interactableObjectsInRoom: []
   exits: []
