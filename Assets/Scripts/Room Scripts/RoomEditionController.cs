@@ -112,6 +112,7 @@ public class RoomEditionController : MonoBehaviour {
 
     private void SaveChanges(Room currentAnalizedRoom)
     {
+        //Poner aqui función
         RoomDataSaver.SaveData(currentAnalizedRoom);
         Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
     }
