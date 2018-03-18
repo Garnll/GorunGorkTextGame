@@ -1,7 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
+[ExecuteInEditMode]
 public class RoomSprite : MonoBehaviour {
 
-    public Room myRoom;
+    [HideInInspector] public Room myRoom;
+
+    [HideInInspector] public List<GameObject> myExits = new List<GameObject>();
+
+    public delegate void DestroyEvent(Room thisRoom);
+    public static event DestroyEvent OnDestroyed;
+
+    private void OnDestroy()
+    {
+        OnDestroyed(myRoom);
+    }
 
 }

@@ -7,6 +7,8 @@ using UnityEngine;
 public class RoomEditionController : MonoBehaviour {
 #if (UNITY_EDITOR)
 
+    public RoomVisualMapper mapper;
+
     public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
 
     List<Room> roomsToLoad = new List<Room>();
@@ -112,9 +114,14 @@ public class RoomEditionController : MonoBehaviour {
 
     private void SaveChanges(Room currentAnalizedRoom)
     {
-        //Poner aqui función
         RoomDataSaver.SaveData(currentAnalizedRoom);
         Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
+        PutVisualRepresaentation(currentAnalizedRoom);
+    }
+
+    private void PutVisualRepresaentation(Room currentAnalizedRoom)
+    {
+        mapper.PutRoomInPlace(currentAnalizedRoom);
     }
 
     private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
@@ -250,7 +257,7 @@ public class RoomEditionController : MonoBehaviour {
                 else if (f >= otherRooms[i].exits.Count - 1)
                 {
                     otherRooms[i].exits.Add(CreateExit(
-                        CheckOtherRoomDirection(centerRoom, otherRooms[i].roomPosition),
+                        CheckOtherRoomDirection(otherRooms[i].roomPosition, centerRoom),
                         currentAnalizedRoom)
                         );
                     break;
