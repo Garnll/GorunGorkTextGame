@@ -31,4 +31,4 @@ MonoBehaviour:
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}
     exitDescription: "Notas que la celda est\xE1 ahora cerrada, y que un l\xEDquido
-      azul la est\xE1 llenando. Adem\xE1s, ves que una puerta se abri\xF3 al <color=green>este.<green>"
+      azul la est\xE1 llenando. Adem\xE1s, ves que una puerta se abri\xF3 al <color=green>este</color>."

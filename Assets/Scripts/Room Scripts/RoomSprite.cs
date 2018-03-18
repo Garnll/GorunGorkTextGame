@@ -13,7 +13,10 @@ public class RoomSprite : MonoBehaviour {
 
     private void OnDestroy()
     {
-        OnDestroyed(myRoom);
+        if (OnDestroyed != null)
+        {
+            OnDestroyed(myRoom);
+        }
     }
 
 }

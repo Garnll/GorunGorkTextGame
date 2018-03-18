@@ -11,8 +11,7 @@ public class JobSelectionResponse : RoomResponse {
     {
         base.TriggerResponse(controller);
 
-        Job playerJob = controller.playerManager.characteristics.playerJob;
-        playerJob = jobToGive;
+        controller.playerManager.characteristics.playerJob = jobToGive;
     }
 
 }
