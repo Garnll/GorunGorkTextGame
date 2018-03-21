@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Maneja los objetos que están en el inventario y los muestra en una pantalla secundaria.
+/// </summary>
 public class InventoryManager : MonoBehaviour {
 
     [SerializeField] public List<InteractableObject> nounsInInventory = new List<InteractableObject>();
@@ -14,7 +16,9 @@ public class InventoryManager : MonoBehaviour {
         DisplayInventory();
     }
 
-
+    /// <summary>
+    /// Actualiza el inventario en el display secundario.
+    /// </summary>
     public void DisplayInventory()
     {
         string textToDisplay = "Backpack: ";

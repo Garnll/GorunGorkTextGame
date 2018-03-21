@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Clase base de las razas. Esqueleto para crear una nueva raza.
+/// </summary>
 public abstract class Race : ScriptableObject {
 
     public string keyword = "raza";

@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Las caracteristicas principales del jugador.
+/// </summary>
 public class PlayerCharacteristics : MonoBehaviour {
 
     public int strength = 1;
@@ -26,6 +27,12 @@ public class PlayerCharacteristics : MonoBehaviour {
         vision = defaultVision;
     }
 
+    /// <summary>
+    /// Cambia los parametros de la visión. El primer factor aumenta o disminuye la infravisión,
+    /// el segundo aumenta o disminuye la supravisión.
+    /// </summary>
+    /// <param name="InfraFactor"></param>
+    /// <param name="SupraFactor"></param>
     public void ChangeVision(int InfraFactor, int SupraFactor)
     {
         vision.x = defaultVision.x - InfraFactor;

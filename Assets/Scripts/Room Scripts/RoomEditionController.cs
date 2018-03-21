@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Usado durante edicion. Recibe los eventos de las habitaciones para cambiarlas de lugar, detectar posiciones,
+/// detectar salidas, etc. para hacer más facil la creación y mantenimiento de habitaciones.
+/// </summary>
 [ExecuteInEditMode]
 public class RoomEditionController : MonoBehaviour {
 #if (UNITY_EDITOR)
@@ -116,10 +119,10 @@ public class RoomEditionController : MonoBehaviour {
     {
         RoomDataSaver.SaveData(currentAnalizedRoom);
         Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
-        PutVisualRepresaentation(currentAnalizedRoom);
+        PutVisualRepresentation(currentAnalizedRoom);
     }
 
-    private void PutVisualRepresaentation(Room currentAnalizedRoom)
+    private void PutVisualRepresentation(Room currentAnalizedRoom)
     {
         mapper.PutRoomInPlace(currentAnalizedRoom);
     }
@@ -169,6 +172,12 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Recibe una posición de inicio y una posición de salida, y devuelve la dirección pertinente.
+    /// </summary>
+    /// <param name="roomPosition"></param>
+    /// <param name="exitPosition"></param>
+    /// <returns></returns>
     private DirectionKeyword CheckOtherRoomDirection(Vector3 roomPosition, Vector3 exitPosition)
     {
         DirectionKeyword direction;

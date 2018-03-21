@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Clase base de todos los objetos con los que se pueden interactuar.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Interactable Object")]
 public class InteractableObject : ScriptableObject {
 

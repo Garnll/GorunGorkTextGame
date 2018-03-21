@@ -2,6 +2,11 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+/// <summary>
+/// Habitación, o lugar donde puede estar un jugador. Contiene su posición, descripción, objetos, etc.
+/// Esta es de las clases más importantes del juego, pues es aqui donde se desarrollan casi todos los 
+/// posibles eventos.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Room")]
 public class Room : SerializedScriptableObject {
 
@@ -16,7 +21,7 @@ public class Room : SerializedScriptableObject {
     private List<InteractableObject> savedInteractableObjects = new List<InteractableObject>();
 
 
-
+    //Eventos enviados a RoomEditionController, para poder salvar, cambiar posiciones, etc.
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
     public static event RoomChanges OnChangePosition;
 
@@ -36,6 +41,9 @@ public class Room : SerializedScriptableObject {
         RoomObjectSaver.OnLoadObjects -= LoadMyObjects;
     }
 
+    /// <summary>
+    /// Salva los objetos al inicio del juego.
+    /// </summary>
     public void SaveMyObjects()
     {
         savedInteractableObjects.Clear();
@@ -46,6 +54,9 @@ public class Room : SerializedScriptableObject {
         }
     }
 
+    /// <summary>
+    /// Carga los objetos que se salvaron al inicio del juego para no perderlos.
+    /// </summary>
     public void LoadMyObjects()
     {
         interactableObjectsInRoom.Clear();
@@ -58,6 +69,8 @@ public class Room : SerializedScriptableObject {
 
 
     /// <summary>
+    /// Cambia la posición de la habitación.
+    /// Sobreescribe salidas existentes.
     /// Usado en edición. No se debería usar para cosas dentro del juego.
     /// </summary>
     /// <param name="newRoomPosition"></param>
@@ -74,6 +87,7 @@ public class Room : SerializedScriptableObject {
     }
 
     /// <summary>
+    /// Guarda todos los cambios hechos.
     /// Usado en edición, no debería tocarse dentro del juego.
     /// </summary>
     public void ChangeStuff()

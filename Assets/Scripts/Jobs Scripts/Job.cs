@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Clase base de todos los trabajos posibles. Contiene el esqueleto de qué es un trabajo.
+/// </summary>
 public abstract class Job : ScriptableObject {
 
     public int identifier = 0;

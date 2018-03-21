@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Controlador del juego. Maneja gran parte del texto y parte de las mecanicas.
+/// </summary>
 public class GameController : MonoBehaviour {
 
     public TextMeshProUGUI displayText;
@@ -11,7 +13,6 @@ public class GameController : MonoBehaviour {
     public PlayerRoomNavigation playerRoomNavigation;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
-    //[HideInInspector] public InteractableItems interactableItems;
     [HideInInspector] public ItemHandler itemHandler;
 
     List<string> actionLog = new List<string>();
@@ -20,13 +21,15 @@ public class GameController : MonoBehaviour {
 
     private void Start()
     {
-        //interactableItems = GetComponent<InteractableItems>();
         itemHandler = GetComponent<ItemHandler>();
 
         DisplayRoomText();
         DisplayLoggedText();
     }
 
+    /// <summary>
+    /// Muestra todo lo que haya en el string logAsText en el GUI.
+    /// </summary>
     public void DisplayLoggedText()
     {
         string logAsText = string.Join("\n", actionLog.ToArray());
@@ -34,6 +37,10 @@ public class GameController : MonoBehaviour {
         displayText.text = logAsText;
     }
 
+    /// <summary>
+    /// Muestra todo el texto que la habitación (y pertinentes) envíe, justo cuando el jugador
+    /// entra en una nueva habitación.
+    /// </summary>
     public void DisplayRoomText()
     {
         ClearCollectionsForNewRoom();
@@ -42,8 +49,11 @@ public class GameController : MonoBehaviour {
 
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
 
-        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
-        string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
+        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription 
+            + " " + joinedInteractionDescriptions;
+
+        string combinedText = playerRoomNavigation.currentRoom.roomDescription 
+            + "\n" + joinedInteractionDescriptions;
 
 
         if (playerRoomNavigation.currentRoom.roomResponse != null)
@@ -55,6 +65,10 @@ public class GameController : MonoBehaviour {
         LogStringWithReturn(combinedText);
     }
 
+    /// <summary>
+    /// De la habitación actual, se sacan las salidas, los objetos y las respuestas a ser mostradas
+    /// por DisplayRoomText.
+    /// </summary>
     private void UnpackRoom()
     {
         playerRoomNavigation.AddExitsToController();
@@ -75,7 +89,12 @@ public class GameController : MonoBehaviour {
         }
         }
 
-    public string RefreshedCurrentRoomDescription()
+    /// <summary>
+    /// Función que devuelve una string que contiene una versión actualizada de la información
+    /// de la habitación.
+    /// </summary>
+    /// <returns></returns>
+    public string RefreshCurrentRoomDescription()
     {
         ClearCollectionsForNewRoom();
         UnpackRoom();
@@ -93,6 +112,13 @@ public class GameController : MonoBehaviour {
         return combinedText;
     }
 
+    /// <summary>
+    /// Revisa que el input dado por el jugador si sea pertinente al keyword de alguno de los InputAction.
+    /// </summary>
+    /// <param name="verbDictionary"></param>
+    /// <param name="verb"></param>
+    /// <param name="noun"></param>
+    /// <returns></returns>
     public string TestVerbDictionaryWithNoun(Dictionary<string, string> verbDictionary, string verb, string noun)
     {
         if (noun == "habitacion" || noun == "" || noun == "lugar")
@@ -117,11 +143,20 @@ public class GameController : MonoBehaviour {
         playerRoomNavigation.ClearExits();
     }
 
+    /// <summary>
+    /// Añade una linea de texto entre dos espacios en blanco. Útil para mandar mensajes de acciones.
+    /// </summary>
+    /// <param name="stringToAdd"></param>
     public void LogStringWithReturn(string stringToAdd)
     {
         actionLog.Add(stringToAdd + "\n");
     }
 
+    /// <summary>
+    /// Añade una linea de texto después del texto pertinene a la habitación. Útil para mandar mensajes extra
+    /// al entrar en una habitacion.
+    /// </summary>
+    /// <param name="stringToAdd"></param>
     public void LogStringAfterRoom(string stringToAdd)
     {
         roomExtraLog.Add(stringToAdd + "\n");

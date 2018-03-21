@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Hijo de Raza. Controla como el toro cambia los stats, y cuál es su habilidad pasiva.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Races/Bull")]
 public class BullRace : Race {
 
@@ -11,6 +12,10 @@ public class BullRace : Race {
         playerStats.intelligence -= 1;
     }
 
+    /// <summary>
+    /// Da una posibilidad de entrar en estado berserk.
+    /// </summary>
+    /// <param name="player"></param>
     public override void ActivatePassiveHability(PlayerManager player)
     {
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)

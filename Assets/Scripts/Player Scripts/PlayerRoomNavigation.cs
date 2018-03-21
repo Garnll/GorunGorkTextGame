@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// El movimiento del jugador. Este se mueve unicamente entre habitaciones.
+/// </summary>
 public class PlayerRoomNavigation : MonoBehaviour {
 
     public GameController controller;
@@ -13,6 +15,9 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     Dictionary<DirectionKeyword, Room> exitDictionary = new Dictionary<DirectionKeyword, Room>();
 
+    /// <summary>
+    /// Le envía al GameController las salidas de la habitación actual.
+    /// </summary>
     public void AddExitsToController()
     {
         for (int i = 0; i < currentRoom.exits.Count; i++)
@@ -26,6 +31,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
     }
 
+
     public void TriggerRoomResponse()
     {
         if (currentRoom.roomResponse == null)
@@ -34,6 +40,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
         currentRoom.roomResponse.TriggerResponse(controller);
     }
 
+    /// <summary>
+    /// Intenta moverse en la dirección dada. Si esta dirección no pertenece a una salida, no se mueve.
+    /// </summary>
+    /// <param name="directionNoun"></param>
     public void AttemptToChangeRooms(DirectionKeyword directionNoun)
     {
         if (converter == null)
@@ -55,6 +65,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Da una respuesta erronea por no haber entrado correctamente a dirección
+    /// </summary>
+    /// <param name="directionNoun"></param>
     public void AttemptToChangeRooms(string directionNoun)
     {
         controller.LogStringWithReturn("Pensaste en una dirección imposible...");

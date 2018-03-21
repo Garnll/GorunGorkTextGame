@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Input que el usuario utiliza para soltar/tirar objetos en la habitación.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Throw")]
 public class ThrowInput : InputActions
 {
+    /// <summary>
+    /// Redirige el código para ver si el objeto si está en el inventario, y lo tira.
+    /// </summary>
+    /// <param name="controller"></param>
+    /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        //bool threwObject = controller.interactableItems.Throw(separatedInputWords);
-
-        //if (threwObject)
-        //{
-        //    controller.LogStringWithReturn(controller.TestVerbDictionaryWithNoun(
-        //        controller.interactableItems.throwDictionary,
-        //        separatedInputWords[0],
-        //        separatedInputWords[1]));
-        //}
-
-        InteractableObject objectToThrow = controller.itemHandler.SearchObjectInInventory(separatedInputWords);
+        InteractableObject objectToThrow = 
+            controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, false, true);
         if (objectToThrow != null)
         {
             controller.itemHandler.ThrowObject(objectToThrow);

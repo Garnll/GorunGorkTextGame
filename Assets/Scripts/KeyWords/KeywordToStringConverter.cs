@@ -1,4 +1,7 @@
-﻿public class KeywordToStringConverter {
+﻿/// <summary>
+/// Singleton. Hace las conversiones entre strings y DirectionKeyword.
+/// </summary>
+public class KeywordToStringConverter {
 
     private static KeywordToStringConverter instance;
 
@@ -17,6 +20,11 @@
     }
 
 
+    /// <summary>
+    /// Recibe un keyword de dirección y devuelve un string correspondiente.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     public string ConvertFromKeyword(DirectionKeyword key)
     {
         string direction = "";
@@ -56,6 +64,12 @@
         return direction;
     }
 
+
+    /// <summary>
+    /// Recibe una string, y devuelve el DirectionKeyword correspondiente.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     public DirectionKeyword ConvertFromString(string text)
     {
         DirectionKeyword keyword = DirectionKeyword.unrecognized;
@@ -63,6 +77,7 @@
         switch (text)
         {
             default:
+                keyword = DirectionKeyword.unrecognized;
                 break;
 
             case "norte":

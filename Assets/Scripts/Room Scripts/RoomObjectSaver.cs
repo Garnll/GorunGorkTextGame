@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Envia eventos a las habitaciones para que salven o carguen sus objetos.
+/// </summary>
 public class RoomObjectSaver : MonoBehaviour {
-
 
     /// <summary>
     /// Enviados específicamente a Room, para que puedan activar sus eventos de salvar y cargar los objetos.

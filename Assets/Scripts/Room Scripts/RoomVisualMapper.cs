@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Usado durante edición. Crea un mapa modular segun los cambios que se le hagan a las habitaciones
+/// tomando en cuenta sus posiciones y sus salidas
+/// </summary>
 #if (UNITY_EDITOR)
 [ExecuteInEditMode]
 public class RoomVisualMapper : MonoBehaviour {
@@ -36,6 +39,10 @@ public class RoomVisualMapper : MonoBehaviour {
         RoomSprite.OnDestroyed -= EliminateRoomFromDictionary;
     }
 
+    /// <summary>
+    /// Elimina la referencia a la habitación dada del diccionario.
+    /// </summary>
+    /// <param name="imageFromRoom"></param>
     private void EliminateRoomFromDictionary(Room imageFromRoom)
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
@@ -147,7 +154,14 @@ public class RoomVisualMapper : MonoBehaviour {
         }
     }
 
-    private Vector3 ChangeVector3(Vector3 original,float x, float y)
+    /// <summary>
+    /// Cambia el Vector3 dado según los factores "x" y "y".
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    private Vector3 ChangeVector3(Vector3 original, float x, float y)
     {
         return new Vector3(original.x + x, original.y + y, original.z);
     }

@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// El controlador del jugador. El principal componente de todo jugador, controla vida, nivel, nombre, y demás
+/// parametros relevantes. 
+/// </summary>
 public class PlayerManager : MonoBehaviour {
 
     public string playerName = "jugador";
@@ -44,7 +46,9 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// Inicializa las variables del jugador, entre otras características.
+    /// </summary>
     public void Initialize()
     {
         currentHealth = maxHealth;
@@ -68,7 +72,7 @@ public class PlayerManager : MonoBehaviour {
 
     public void SelectJob(Job jobToBe)
     {
-
+        characteristics.playerJob = jobToBe;
     }
 
 

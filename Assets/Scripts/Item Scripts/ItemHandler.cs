@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Clase que controla el comportamieto de los objetos interactuables.
+/// </summary>
 public class ItemHandler : MonoBehaviour {
 
     public InventoryManager inventoryManager;
@@ -14,7 +16,14 @@ public class ItemHandler : MonoBehaviour {
         controller = GetComponent<GameController>();
     }
 
-    public InteractableObject SearchObjectInRoomAndInventory(string[] objectName)
+    /// <summary>
+    /// Busca objetos, sea ya en la habitación, en el inventario, o en ambos (o en ninguno).
+    /// </summary>
+    /// <param name="objectName"></param>
+    /// <param name="searchInRoom"></param>
+    /// <param name="searchInInventory"></param>
+    /// <returns></returns>
+    public InteractableObject SearchObjectInRoomOrInventory(string[] objectName, bool searchInRoom, bool searchInInventory)
     {
         string noun = string.Join(" ", SeparateKeyWords(objectName));
 
@@ -28,33 +37,40 @@ public class ItemHandler : MonoBehaviour {
 
 
         InteractableObject objectToInteract = null;
-        for (int i = 0; i < objectsFound.Length; i++)
+        if (searchInRoom)
         {
-            for (int f = 0; f < controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Count; f++)
-            {
-                if (objectsFound[i].noun == controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f].noun)
-                {
-                    objectToInteract = controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f];
-                    break;
-                }
-            }
+            objectToInteract = SearchObjectInRoom(objectsFound);
 
-            if (objectToInteract == null)
+            if (objectToInteract == null && !searchInInventory)
             {
-                for (int f = 0; f < inventoryManager.nounsInInventory.Count; f++)
-                {
-                    if (objectsFound[i].noun == inventoryManager.nounsInInventory[f].noun)
-                    {
-                        objectToInteract = inventoryManager.nounsInInventory[f];
-                        break;
-                    }
-                }
-            }
+                string objectToDisplay = noun;
 
-            if (objectToInteract != null)
-            {
-                break;
+                if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
+                    objectToDisplay = "un " + noun;
+                else
+                    objectToDisplay = "una " + noun;
+
+                controller.LogStringWithReturn("No hay " + objectToDisplay + " en este lugar.");
             }
+            return objectToInteract;
+        }
+
+        if (searchInInventory && objectToInteract == null)
+        {
+            objectToInteract = SearchObjectInInventory(objectsFound);
+
+            if (objectToInteract == null && !searchInRoom)
+            {
+                string objectToDisplay = noun;
+
+                if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
+                    objectToDisplay = "un " + noun;
+                else
+                    objectToDisplay = "una " + noun;
+
+                controller.LogStringWithReturn("No hay " + objectToDisplay + " en tu inventario.");
+            }
+            return objectToInteract;
         }
 
         if (objectToInteract == null)
@@ -76,22 +92,12 @@ public class ItemHandler : MonoBehaviour {
 
 
     /// <summary>
-    /// Busca la existencia de un objeto con el keyword dado en la habitación.
+    /// Busca la existencia de un objeto dado en la habitación.
     /// </summary>
     /// <param name="objectName"></param>
     /// <returns></returns>
-    public InteractableObject SearchObjectInRoom(string[] objectName)
+    private InteractableObject SearchObjectInRoom(InteractableObject[] objectsFound)
     {
-        string noun = string.Join(" ", SeparateKeyWords(objectName));
-
-        InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
-
-        if (objectsFound == null)
-        {
-            controller.LogStringWithReturn("No sabes cómo " +objectName[0] + " un \"" + noun + "\".");
-            return null;
-        }
-
         InteractableObject objectToInteract = null;
         for (int i = 0; i < objectsFound.Length; i++)
         {
@@ -109,41 +115,18 @@ public class ItemHandler : MonoBehaviour {
                 break;
             }
         }
-
-        if (objectToInteract == null)
-        {
-            string objectToDisplay = noun;
-
-            if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "un " + noun;
-            else
-                objectToDisplay = "una " + noun;
-
-            controller.LogStringWithReturn("No hay " + objectToDisplay + " en este lugar.");
-        }
         
-
         return objectToInteract;
 
     }
 
     /// <summary>
-    /// Busca la existencia de un objeto con el keyword dado en el inventario.
+    /// Busca la existencia de un objeto dado en el inventario.
     /// </summary>
     /// <param name="objectName"></param>
     /// <returns></returns>
-    public InteractableObject SearchObjectInInventory(string[] objectName)
+    private InteractableObject SearchObjectInInventory(InteractableObject[] objectsFound)
     {
-        string noun = string.Join(" ", SeparateKeyWords(objectName));
-
-        InteractableObject[] objectsFound = itemKeywordHandler.GetObjectWithNoun(noun);
-
-        if (objectsFound == null)
-        {
-            controller.LogStringWithReturn("No ves cómo podrías " + objectName[0] + " un \"" + noun + "\".");
-            return null;
-        }
-
         InteractableObject objectToInteract = null;
 
         for (int i = 0; i < objectsFound.Length; i++)
@@ -163,24 +146,15 @@ public class ItemHandler : MonoBehaviour {
             }
         }
 
-        if (objectToInteract == null)
-        {
-            string objectToDisplay = noun;
-
-            if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "un " + noun;
-            else
-                objectToDisplay = "una " + noun;
-
-            controller.LogStringWithReturn("No hay " + objectToDisplay + " en tu inventario.");
-        }
-
         return objectToInteract;
 
     }
 
     //A partir de aqui, se ponen las funciones que realizan acciones.
 
+    /// <summary>
+    /// Muestra el inventario en el display principal.
+    /// </summary>
     public void DisplayInventoryByCommand()
     {
         List<string> combinedText = new List<string>();
@@ -362,7 +336,8 @@ public class ItemHandler : MonoBehaviour {
     }
 
     /// <summary>
-    /// Separa las palabras enviadas desde el input, dejando el input a un lado, y el nombre del objeto se devuelve para ser usado.
+    /// Separa las palabras enviadas desde el input, dejando el input a un lado,
+    /// y el nombre del objeto se devuelve para ser usado.
     /// </summary>
     /// <param name="completeInput"></param>
     /// <returns></returns>

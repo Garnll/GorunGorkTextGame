@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// "Otros" parametros del jugador. Cosas que se usan usualmente en combate.
+/// </summary>
 public class PlayerOther : MonoBehaviour {
 
     [SerializeField] private float defaultCriticalHitProbability = 0;
@@ -55,7 +56,9 @@ public class PlayerOther : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Inicia las variables extras del jugador según sus defaults.
+    /// </summary>
     public void InitializeOthers()
     {
         currentCooldownReduction = defaultCooldownReduction;
@@ -65,6 +68,10 @@ public class PlayerOther : MonoBehaviour {
         currentTurnRegenPerSecond = defaultTurnRegenPerSecond;
     }
 
+    /// <summary>
+    /// Aun no implementada.
+    /// </summary>
+    /// <returns></returns>
     public float EscapeProbability()
     {
 

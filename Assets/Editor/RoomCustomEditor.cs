@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using Sirenix.OdinInspector.Editor;
 
+/// <summary>
+/// Clase responsable del inspector customizado de as habitaciones.
+/// </summary>
 [CustomEditor(typeof(Room))]
-public class RoomCustonEditor : OdinEditor {
+public class RoomCustomEditor : OdinEditor {
 
     public Vector3Int newPosition = new Vector3Int();
     Room targetRoom;

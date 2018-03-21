@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Hijo de Raza. Controla como el oso cambia los stats, y cuál es su habilidad pasiva.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Races/Bear")]
 public class BearRace : Race {
 
@@ -11,6 +12,10 @@ public class BearRace : Race {
         playerStats.dexterity -= 1;
     }
 
+    /// <summary>
+    /// Multiplica la regeneración de salud.
+    /// </summary>
+    /// <param name="player"></param>
     public override void ActivatePassiveHability(PlayerManager player)
     {
         float multiplier = 1;

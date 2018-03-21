@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 
+/// <summary>
+/// Recibe y envía los inputs del jugador según el estado del juego.
+/// </summary>
 public class TextUserInput : SerializedMonoBehaviour {
 
     public TMP_InputField inputField;
@@ -27,6 +29,10 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Accepta el input del jugador una vez este presiona "Enter"
+    /// </summary>
+    /// <param name="userInput"></param>
     void AcceptStringInput(string userInput)
     {
         string originalInput = userInput;
@@ -55,7 +61,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                         inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
                     }
                 }
-                else
+                else if (separatedInputWords[0] != "")
                 {
                     string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
                     string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
@@ -73,6 +79,9 @@ public class TextUserInput : SerializedMonoBehaviour {
         DisplayInput();
     }
 
+    /// <summary>
+    /// Le muestra el input dado por el jugador y la respuesta obtenida al jugador en el display principal.
+    /// </summary>
     void DisplayInput()
     {
         controller.DisplayLoggedText();
@@ -80,6 +89,10 @@ public class TextUserInput : SerializedMonoBehaviour {
         inputField.text = null;
     }
 
+    /// <summary>
+    /// Elje una respuesta aleatoria que le devuelve al jugador en caso de input erroneo.
+    /// </summary>
+    /// <returns></returns>
     string AnswerToWrongInput()
     {
         string[] randomAnswer = new string[10];

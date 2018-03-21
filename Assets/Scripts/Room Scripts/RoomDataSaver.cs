@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using BayatGames.SaveGameFree;
 
+/// <summary>
+/// Usado para la persistencia de datos de la habitación mientras el juego esté en desarrollo.
+/// </summary>
 public class RoomDataSaver {
 
     static KeywordToStringConverter converter;
@@ -23,6 +24,10 @@ public class RoomDataSaver {
 
     }
 
+    /// <summary>
+    /// Salva todos los datos que se puedan cambiar de una habitación.
+    /// </summary>
+    /// <param name="roomToSave"></param>
 	public static void SaveData(Room roomToSave)
     {
         if (converter == null)
@@ -44,6 +49,7 @@ public class RoomDataSaver {
 
         SaveGame.Save<Room_Data>(roomToSave.name, roomData, SaveGamePath.RoomDataPath);
     }
+
 
     public static Room_Data LoadData(Room roomToLoad)
     {

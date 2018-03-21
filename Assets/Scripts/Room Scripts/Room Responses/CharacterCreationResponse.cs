@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Hijo de Respuesta de la Habitación. Hace que la habitación se convierta en un lugar para crear
+/// el personaje y controla casi todos los aspectos de esto.
+/// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Room Responses/Character Creation")]
 public class CharacterCreationResponse : RoomResponse {
 
@@ -34,6 +36,11 @@ public class CharacterCreationResponse : RoomResponse {
         gameController.LogStringAfterRoom(selectRaceText);
     }
 
+    /// <summary>
+    /// Acepta el input dado por el usuario y lo redirige ssegún si está eligiendo raza, género o nombre 
+    /// (o está dando su confirmación).
+    /// </summary>
+    /// <param name="input"></param>
     public void AcceptInput(string[] input)
     {
         if (!raceSelected)
@@ -217,6 +224,9 @@ public class CharacterCreationResponse : RoomResponse {
         }
     }
 
+    /// <summary>
+    /// Termina el momento de creación de personaje.
+    /// </summary>
     private void EndResponse()
     {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
