@@ -55,35 +55,7 @@ public class RoomEditionController : MonoBehaviour {
 
         for (int i = 0; i < roomsToLoad.Count; i++)
         {
-            RoomDataSaver.Room_Data loadRoom = RoomDataSaver.LoadData(roomsToLoad[i]);
-            if (loadRoom != null)
-            {
-                LoadRoomParameters(roomsToLoad[i], loadRoom);
-            }
-        }
-    }
-
-    private void LoadRoomParameters(Room roomToChange, RoomDataSaver.Room_Data roomDataLoad)
-    {
-        if (converter == null)
-            converter = KeywordToStringConverter.Instance;
-
-        if (roomDataLoad != null)
-        {
-            roomToChange.roomPosition = roomDataLoad.roomPositionData;
-            roomToChange.roomDescription = roomDataLoad.roomDescriptionData;
-            roomToChange.roomName = roomDataLoad.roomNameData;
-            roomToChange.exits.Clear();
-            for (int i = 0; i < roomDataLoad.exitsData.Length; i++)
-            {
-                Exit loadExit = new Exit();
-
-                loadExit.myKeyword = converter.ConvertFromString(roomDataLoad.exitsData[i].myKeywordData);
-                loadExit.conectedRoom = existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
-                loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
-
-                roomToChange.exits.Add(loadExit);
-            }
+            RoomDataSaver.LoadData(roomsToLoad[i]);
         }
     }
 

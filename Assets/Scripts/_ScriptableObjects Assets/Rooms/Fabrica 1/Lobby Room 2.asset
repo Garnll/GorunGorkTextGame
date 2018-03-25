@@ -21,9 +21,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   roomPosition: {x: 0, y: 1, z: 0}
-  roomDescription: "Lentamente empujas la compuerta de lo que llamar\xEDas una \"celda\"
-    y sales a un cuarto donde puedes reconocer decenas de celdas cilindricas similares
-    al que est\xE1 detr\xE1s tuya."
+  roomDescription: "Te encuentras en un cuarto donde puedes reconocer decenas de celdas
+    cilindricas similares al que est\xE1 detr\xE1s tuya."
   roomName: lobby room 2
   roomResponse: {fileID: 0}
   interactableObjectsInRoom: []
@@ -32,3 +31,4 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}
     exitDescription: "Notas que la celda est\xE1 ahora cerrada, y que un l\xEDquido
       azul la est\xE1 llenando. Adem\xE1s, ves que una puerta se abri\xF3 al <color=green>este</color>."
+    exitActionDescription: 

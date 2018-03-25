@@ -30,5 +30,7 @@ MonoBehaviour:
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 1032bfbb65b5c8842be2deda7aad39dc, type: 2}
-    exitDescription: Notas que el crital funciona como una especie de compuerta, y
-      que si la empujas puedes <color=green> ir al norte. </color>
+    exitDescription: Notas que el cristal funciona como una especie de compuerta,
+      y que si la empujas puedes <color=green> ir al norte. </color>
+    exitActionDescription: "Empujas el cristal, que se abre facilmente, y sales de
+      lo que llamar\xEDas tu \"celda\"."

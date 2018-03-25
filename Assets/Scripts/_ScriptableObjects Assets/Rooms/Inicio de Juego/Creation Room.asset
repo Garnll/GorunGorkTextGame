@@ -33,3 +33,4 @@ MonoBehaviour:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: c01e1e30975b6ec409a1fb7e6099f274, type: 2}
     exitDescription: 
+    exitActionDescription: ' '

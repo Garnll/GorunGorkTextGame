@@ -13,6 +13,7 @@ public class RoomDataSaver {
         public string myKeywordData;
         public Vector3 connectedRoomPosition;
         public string exitDescriptionData;
+        public string exitActionDescriptionData;
     }
 
     public class Room_Data
@@ -45,13 +46,14 @@ public class RoomDataSaver {
             roomData.exitsData[i].myKeywordData = converter.ConvertFromKeyword(roomToSave.exits[i].myKeyword);
             roomData.exitsData[i].connectedRoomPosition = roomToSave.exits[i].conectedRoom.roomPosition;
             roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
+            roomData.exitsData[i].exitActionDescriptionData = roomToSave.exits[i].exitActionDescription;
         }
 
         SaveGame.Save<Room_Data>(roomToSave.name, roomData, SaveGamePath.RoomDataPath);
     }
 
 
-    public static Room_Data LoadData(Room roomToLoad)
+    public static void LoadData(Room roomToLoad)
     {
         Room_Data roomDataLoad = null;
 
@@ -59,10 +61,27 @@ public class RoomDataSaver {
         {
             if (SaveGame.Exists(roomToLoad.name, SaveGamePath.RoomDataPath))
             {
+                if (converter == null)
+                    converter = KeywordToStringConverter.Instance;
+
                 roomDataLoad = SaveGame.Load<Room_Data>(roomToLoad.name, SaveGamePath.RoomDataPath);
+
+                roomToLoad.roomPosition = roomDataLoad.roomPositionData;
+                roomToLoad.roomDescription = roomDataLoad.roomDescriptionData;
+                roomToLoad.roomName = roomDataLoad.roomNameData;
+                roomToLoad.exits.Clear();
+                for (int i = 0; i < roomDataLoad.exitsData.Length; i++)
+                {
+                    Exit loadExit = new Exit();
+
+                    loadExit.myKeyword = converter.ConvertFromString(roomDataLoad.exitsData[i].myKeywordData);
+                    loadExit.conectedRoom = RoomEditionController.existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
+                    loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
+                    loadExit.exitActionDescription = roomDataLoad.exitsData[i].exitActionDescriptionData;
+
+                    roomToLoad.exits.Add(loadExit);
+                }
             }
         }
-
-        return roomDataLoad;
     }
 }

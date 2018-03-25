@@ -15,7 +15,9 @@ public class Room : SerializedScriptableObject {
     [TextArea] public string roomDescription;
     public string roomName = "template name";
     public RoomResponse roomResponse;
+    [Space(5)]
     public List<InteractableObject> interactableObjectsInRoom = new List<InteractableObject>();
+    [Space(5)]
     public List<Exit> exits = new List<Exit>();
 
     private List<InteractableObject> savedInteractableObjects = new List<InteractableObject>();

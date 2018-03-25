@@ -13,7 +13,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     Vector3 currentPosition;
 
-    Dictionary<DirectionKeyword, Room> exitDictionary = new Dictionary<DirectionKeyword, Room>();
+    Dictionary<DirectionKeyword, Exit> exitDictionary = new Dictionary<DirectionKeyword, Exit>();
 
     /// <summary>
     /// Le envía al GameController las salidas de la habitación actual.
@@ -22,7 +22,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
     {
         for (int i = 0; i < currentRoom.exits.Count; i++)
         {
-            exitDictionary.Add(currentRoom.exits[i].myKeyword, currentRoom.exits[i].conectedRoom);
+            exitDictionary.Add(currentRoom.exits[i].myKeyword, currentRoom.exits[i]);
 
             if (currentRoom.exits[i].exitDescription != "")
             {
@@ -51,8 +51,18 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
         if (exitDictionary.ContainsKey(directionNoun))
         {
-            currentRoom = exitDictionary[directionNoun];
-            controller.LogStringWithReturn("Te dirijes hacia el " + converter.ConvertFromKeyword(directionNoun));
+            Exit exitToGo = exitDictionary[directionNoun];
+
+            if (exitToGo.exitActionDescription == "")
+            {
+                controller.LogStringWithReturn("Te dirijes hacia el " + converter.ConvertFromKeyword(directionNoun));
+            }
+            else
+            {
+                controller.LogStringWithReturn(exitToGo.exitActionDescription);
+            }
+
+            currentRoom = exitDictionary[directionNoun].conectedRoom;
             controller.DisplayRoomText();
         }
         else if (directionNoun != DirectionKeyword.unrecognized)

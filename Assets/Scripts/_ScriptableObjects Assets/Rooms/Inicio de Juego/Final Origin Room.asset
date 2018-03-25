@@ -31,24 +31,32 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: Mentras ves la luz, sientes la necesidad visceral de ir hacia
       ella. Como si gracias a ella, pudieras volver a respirar.
+    exitActionDescription: ' '
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 4
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 5
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: 86159ca4ddfcc5d48b11e54af101551f, type: 2}
     exitDescription: 
+    exitActionDescription: 
