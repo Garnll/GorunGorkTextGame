@@ -71,20 +71,24 @@ public class GameController : MonoBehaviour {
     /// </summary>
     private void UnpackRoom()
     {
-        playerRoomNavigation.AddExitsToController();
         PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
+        playerRoomNavigation.AddExitsToController();
 
         playerRoomNavigation.TriggerRoomResponse();
     }
 
     private void PrepareObjectsToBeInteracted(Room currentRoom)
     {
-        for (int i = 0; i < currentRoom.interactableObjectsInRoom.Count; i++)
+        for (int i = 0; i < currentRoom.visibleObjectsInRoom.Count; i++)
         {
-            string descriptionNotInInventory = currentRoom.interactableObjectsInRoom[i].description;
-            if (descriptionNotInInventory != null)
+            if (currentRoom.visibleObjectsInRoom[i].visionRange >= playerManager.characteristics.vision.x &&
+                currentRoom.visibleObjectsInRoom[i].visionRange <= playerManager.characteristics.vision.y)
             {
-                interactionDescriptionsInRoom.Add(descriptionNotInInventory);
+                string descriptionNotInInventory = currentRoom.visibleObjectsInRoom[i].interactableObject.description;
+                if (descriptionNotInInventory != null)
+                {
+                    interactionDescriptionsInRoom.Add(descriptionNotInInventory);
+                }
             }
         }
         }

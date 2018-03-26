@@ -14,7 +14,7 @@ public class PlayerCharacteristics : MonoBehaviour {
     /// x es infravisión.
     /// y es supravisión.
     /// </summary>
-    [HideInInspector]public Vector2 vision;
+    [HideInInspector] public Vector2 vision;
     public Vector2 defaultVision = new Vector2(-4, 4);
 
     public Race playerRace;

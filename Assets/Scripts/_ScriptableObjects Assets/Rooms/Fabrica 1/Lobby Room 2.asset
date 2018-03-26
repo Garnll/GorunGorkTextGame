@@ -19,13 +19,25 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   roomPosition: {x: 0, y: 1, z: 0}
   roomDescription: "Te encuentras en un cuarto donde puedes reconocer decenas de celdas
     cilindricas similares al que est\xE1 detr\xE1s tuya."
   roomName: lobby room 2
   roomResponse: {fileID: 0}
-  interactableObjectsInRoom: []
   exits:
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}

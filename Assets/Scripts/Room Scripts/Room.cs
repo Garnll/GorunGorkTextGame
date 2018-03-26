@@ -16,12 +16,17 @@ public class Room : SerializedScriptableObject {
     public string roomName = "template name";
     public RoomResponse roomResponse;
     [Space(5)]
-    public List<InteractableObject> interactableObjectsInRoom = new List<InteractableObject>();
+    public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
     [Space(5)]
     public List<Exit> exits = new List<Exit>();
 
-    private List<InteractableObject> savedInteractableObjects = new List<InteractableObject>();
+    private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
 
+    public class RoomVisibleObjects
+    {
+        public InteractableObject interactableObject;
+        [PropertyRange(-10, 10)] public int visionRange = 0;
+    }
 
     //Eventos enviados a RoomEditionController, para poder salvar, cambiar posiciones, etc.
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
@@ -50,9 +55,9 @@ public class Room : SerializedScriptableObject {
     {
         savedInteractableObjects.Clear();
 
-        for (int i = 0; i < interactableObjectsInRoom.Count; i++)
+        for (int i = 0; i < visibleObjectsInRoom.Count; i++)
         {
-            savedInteractableObjects.Add(interactableObjectsInRoom[i]);
+            savedInteractableObjects.Add(visibleObjectsInRoom[i]);
         }
     }
 
@@ -61,11 +66,11 @@ public class Room : SerializedScriptableObject {
     /// </summary>
     public void LoadMyObjects()
     {
-        interactableObjectsInRoom.Clear();
+        visibleObjectsInRoom.Clear();
 
         for (int i = 0; i < savedInteractableObjects.Count; i++)
         {
-            interactableObjectsInRoom.Add(savedInteractableObjects[i]);
+            visibleObjectsInRoom.Add(savedInteractableObjects[i]);
         }
     }
 

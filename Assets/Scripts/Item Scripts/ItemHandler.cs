@@ -101,11 +101,12 @@ public class ItemHandler : MonoBehaviour {
         InteractableObject objectToInteract = null;
         for (int i = 0; i < objectsFound.Length; i++)
         {
-            for (int f = 0; f < controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Count; f++)
+            for (int f = 0; f < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; f++)
             {
-                if (objectsFound[i].noun == controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f].noun)
+                if (objectsFound[i].noun == 
+                    controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[f].interactableObject.noun)
                 {
-                    objectToInteract = controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom[f];
+                    objectToInteract = controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[f].interactableObject;
                     break;
                 }
             }
@@ -245,7 +246,16 @@ public class ItemHandler : MonoBehaviour {
         }
 
         inventoryManager.nounsInInventory.Add(objectToTake);
-        controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Remove(objectToTake);
+
+        for (int i = 0; i < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; i++)
+        {
+            if (controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[i].interactableObject ==
+                objectToTake)
+            {
+                controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.RemoveAt(i);
+                break;
+            }
+        }
 
         inventoryManager.DisplayInventory();
 
@@ -284,7 +294,11 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
-        controller.playerRoomNavigation.currentRoom.interactableObjectsInRoom.Add(objectToThrow);
+        Room.RoomVisibleObjects newObjectInRoom = new Room.RoomVisibleObjects();
+        newObjectInRoom.interactableObject = objectToThrow;
+        newObjectInRoom.visionRange = (int)Random.Range(-4,4);
+
+        controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Add(newObjectInRoom);
         inventoryManager.nounsInInventory.Remove(objectToThrow);
 
         inventoryManager.DisplayInventory();

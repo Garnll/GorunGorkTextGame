@@ -54,6 +54,7 @@ public class PlayerManager : MonoBehaviour {
         currentHealth = maxHealth;
         currentTurn = maxTurn;
         currentWill = maxWill;
+        characteristics.InitializeCharacteristics();
         characteristics.other.InitializeOthers();
 
         if (characteristics.playerRace != null)

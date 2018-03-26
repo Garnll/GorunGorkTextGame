@@ -19,37 +19,57 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   roomPosition: {x: 1, y: 1, z: 10}
   roomDescription: "Al moverte, te inquietas al darte cuenta de que no pudes sentir
     tus piernas. Y al mirar, te das cuenta de que en realidad no tienes cuerpo alguno.
     Tu consciencia est\xE1 flotando sin rumbo en este mundo grisaseo."
   roomName: second origin room
   roomResponse: {fileID: 0}
-  interactableObjectsInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: "Notas que hay otras consciencias a tu alrededor, pero no puedes
       verlas. Lo que si puedes ver es una tenue luz en la lejan\xEDa."
+    exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 4
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 5
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: f00e1395a959caa47a7dda4eb1d3b4f9, type: 2}
     exitDescription: 
+    exitActionDescription: 
