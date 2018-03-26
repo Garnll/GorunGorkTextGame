@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     public NPCController npcController;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
+    [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
     [HideInInspector] public ItemHandler itemHandler;
 
     TextMeshProUGUI displayText;
@@ -47,7 +48,8 @@ public class GameController : MonoBehaviour {
 
     public void PrepareForCombat()
     {
-
+        displayText = null;
+        actionLog.Clear();
     }
 
     /// <summary>
@@ -61,12 +63,12 @@ public class GameController : MonoBehaviour {
         UnpackRoom();
 
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
-
-        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription 
-            + " " + joinedInteractionDescriptions;
+        string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
 
         string combinedText = playerRoomNavigation.currentRoom.roomDescription 
-            + "\n" + joinedInteractionDescriptions;
+            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
+
+        currentRoomDescription = combinedText;
 
 
         if (playerRoomNavigation.currentRoom.roomResponse != null)
@@ -85,9 +87,18 @@ public class GameController : MonoBehaviour {
     private void UnpackRoom()
     {
         PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
+        PrepareNPCsToBeInteracted(playerRoomNavigation.currentRoom);
         playerRoomNavigation.AddExitsToController();
 
         playerRoomNavigation.TriggerRoomResponse();
+    }
+
+    private void PrepareNPCsToBeInteracted(Room currentRoom)
+    {
+        for (int i = 0; i < currentRoom.npcsInRoom.Count; i++)
+        {
+            npcDescriptionsInRoom.Add(currentRoom.npcsInRoom[i].npcInRoomDescription);
+        }
     }
 
     private void PrepareObjectsToBeInteracted(Room currentRoom)
@@ -104,7 +115,7 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
-        }
+    }
 
     /// <summary>
     /// Función que devuelve una string que contiene una versión actualizada de la información

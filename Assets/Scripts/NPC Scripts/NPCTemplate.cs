@@ -11,5 +11,6 @@ public abstract class NPCTemplate : ScriptableObject {
     public string npcGender = "macho";
     public Race npcRace;
     public Job npcJob;
-    [TextArea] public string npcDescription;
+    [TextArea] public string npcInRoomDescription;
+    [TextArea] public string npcDetailedDescription;
 }

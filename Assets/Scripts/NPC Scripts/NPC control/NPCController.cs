@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour {
 
-    public GameController controller;
     public GameObject combatLayout;
-    public GameObject textLayout;
+    public RectTransform contentContainer;
+
+    private NPCTemplate enemy;
+    private PlayerManager player;
 
     public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
     {
@@ -29,8 +31,22 @@ public class NPCController : MonoBehaviour {
         return null;
     }
 
-    public void StartFight(NPCTemplate enemyToFight)
+
+    public void PrepareFight(NPCTemplate npc, PlayerManager thisPlayer)
     {
+        enemy = npc;
+        player = thisPlayer;
+
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
+    }
+
+    public void StartFight()
+    {
+        ChangeLayout();
+    }
+
+    private void ChangeLayout()
+    {
+        Instantiate(combatLayout, contentContainer);
     }
 }

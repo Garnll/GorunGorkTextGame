@@ -13,6 +13,10 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     GameController controller;
 
+    //Enviado a NPCController cuando inicia una pelea.
+    public delegate void WaitUntilFinished(GameController controller);
+    public static event WaitUntilFinished OnFight;
+
     private void Awake()
     {
         controller = GetComponent<GameController>();
@@ -87,6 +91,14 @@ public class TextUserInput : SerializedMonoBehaviour {
         controller.DisplayLoggedText();
         inputField.ActivateInputField();
         inputField.text = null;
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            if (OnFight != null)
+            {
+                OnFight(controller);
+            }
+        }
     }
 
     /// <summary>

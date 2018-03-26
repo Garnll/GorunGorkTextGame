@@ -14,11 +14,13 @@ MonoBehaviour:
   npcName: Lukashenko
   keyword:
   - lukashenko
+  - error
   npcLevel: 0
   npcGender: macho
   npcRace: {fileID: 11400000, guid: 92cf5b76343aab441b0cc92a515b3cc2, type: 2}
   npcJob: {fileID: 11400000, guid: 036bdd242d48400488f8d06d0d416c30, type: 2}
-  npcDescription: Un gran y feo cosa.
+  npcInRoomDescription: Hay un simbolo de error rojo caminando por ahi. Dice "lukashenko".
+  npcDetailedDescription: Un simbolo de error grande y rojo.
   maxHealth: 100
   currentHealth: 0
   maxTurn: 100
