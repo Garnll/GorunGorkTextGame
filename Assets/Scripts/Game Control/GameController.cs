@@ -7,14 +7,17 @@ using TMPro;
 /// </summary>
 public class GameController : MonoBehaviour {
 
-    public TextMeshProUGUI displayText;
+    public TextMeshProUGUI displayTextTemplate;
+    public RectTransform contentContainer;
     public InputActions[] inputActions;
     public PlayerManager playerManager;
     public PlayerRoomNavigation playerRoomNavigation;
+    public NPCController npcController;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
     [HideInInspector] public ItemHandler itemHandler;
 
+    TextMeshProUGUI displayText;
     List<string> actionLog = new List<string>();
     List<string> roomExtraLog = new List<string>();
     string currentRoomDescription = "";
@@ -34,7 +37,17 @@ public class GameController : MonoBehaviour {
     {
         string logAsText = string.Join("\n", actionLog.ToArray());
 
+        if (displayText == null)
+        {
+            displayText = Instantiate(displayTextTemplate, contentContainer);
+        }
+
         displayText.text = logAsText;
+    }
+
+    public void PrepareForCombat()
+    {
+
     }
 
     /// <summary>

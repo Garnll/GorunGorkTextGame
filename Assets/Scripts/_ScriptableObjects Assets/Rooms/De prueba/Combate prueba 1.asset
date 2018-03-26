@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: Combate prueba 1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 5, y: 1, z: 0}
+  roomDescription: "Apareces en una habitaci\xF3n en blanco. Esta habitaci\xF3n es
+    solo una prueba."
+  roomName: combate room
+  roomResponse: {fileID: 0}
+  npcsInRoom:
+  - {fileID: 11400000, guid: 40596d02aa1fe974b8a52a3de639d1cc, type: 2}
+  exits:
+  - myKeyword: 7
+    conectedRoom: {fileID: 11400000, guid: 1080ac4703d1bd54abb61b1aed9faca2, type: 2}
+    exitDescription: Hay una salida al suroeste.
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 77aca6d64d9d5bb4088b9876bbc2c676, type: 2}
+    exitDescription: Hay una salida al oeste.
+    exitActionDescription: 
+  - myKeyword: 5
+    conectedRoom: {fileID: 11400000, guid: be7f6498eb4880d49a10349c604f8e18, type: 2}
+    exitDescription: Hay una salida al noroeste.
+    exitActionDescription: 

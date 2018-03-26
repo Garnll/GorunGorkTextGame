@@ -18,15 +18,24 @@ public class Room : SerializedScriptableObject {
     [Space(5)]
     public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
     [Space(5)]
+    public List<NPCTemplate> npcsInRoom = new List<NPCTemplate>();
+    [Space(5)]
     public List<Exit> exits = new List<Exit>();
+    
 
     private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
 
+
+
+    /// <summary>
+    /// Clase que tienen las habitaciones que contiene un objeto interactuable y su rango de visión respectivo
+    /// </summary>
     public class RoomVisibleObjects
     {
         public InteractableObject interactableObject;
         [PropertyRange(-10, 10)] public int visionRange = 0;
     }
+
 
     //Eventos enviados a RoomEditionController, para poder salvar, cambiar posiciones, etc.
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);

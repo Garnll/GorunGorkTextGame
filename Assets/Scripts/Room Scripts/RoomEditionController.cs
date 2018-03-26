@@ -227,6 +227,15 @@ public class RoomEditionController : MonoBehaviour {
     {
         for (int i = 0; i < otherRooms.Length; i++)
         {
+            if (otherRooms[i].exits.Count == 0)
+            {
+                otherRooms[i].exits.Add(CreateExit(
+                    CheckOtherRoomDirection(otherRooms[i].roomPosition, centerRoom),
+                    currentAnalizedRoom)
+                    );
+                continue;
+            }
+
             for (int f = 0; f < otherRooms[i].exits.Count; f++)
             {
                 if (otherRooms[i].exits[f].conectedRoom == currentAnalizedRoom)

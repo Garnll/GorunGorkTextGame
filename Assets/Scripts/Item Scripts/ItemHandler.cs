@@ -52,7 +52,6 @@ public class ItemHandler : MonoBehaviour {
 
                 controller.LogStringWithReturn("No hay " + objectToDisplay + " en este lugar.");
             }
-            return objectToInteract;
         }
 
         if (searchInInventory && objectToInteract == null)
@@ -70,7 +69,6 @@ public class ItemHandler : MonoBehaviour {
 
                 controller.LogStringWithReturn("No hay " + objectToDisplay + " en tu inventario.");
             }
-            return objectToInteract;
         }
 
         if (objectToInteract == null)
