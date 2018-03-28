@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Controlador de todo lo que haría el gamecontroller durante el combate.
+/// </summary>
 public class NPCController : MonoBehaviour {
 
     public GameObject combatLayout;
     public RectTransform contentContainer;
+    [Space(10)]
+    public PlayerUIDuringCombat playerUI;
+    public EnemyUIDuringCombat enemyUI;
 
     private NPCTemplate enemy;
     private PlayerManager player;
@@ -47,6 +51,9 @@ public class NPCController : MonoBehaviour {
 
     private void ChangeLayout()
     {
-        Instantiate(combatLayout, contentContainer);
+        GameObject newCombat = Instantiate(combatLayout, contentContainer);
+
+        playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
+        enemyUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
     }
 }
