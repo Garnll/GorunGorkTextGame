@@ -13,7 +13,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     GameController controller;
 
-    //Enviado a NPCController cuando inicia una pelea.
+    //Enviado a CombatController cuando inicia una pelea.
     public delegate void WaitUntilFinished(GameController controller);
     public static event WaitUntilFinished OnFight;
 

@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour {
     public InputActions[] inputActions;
     public PlayerManager playerManager;
     public PlayerRoomNavigation playerRoomNavigation;
-    public NPCController npcController;
+    public CombatController npcController;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
