@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b2e413cc15b6a164ebab47606b5fb9bd
+timeCreated: 1522420516
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Merchant Copy
+  fontNames:
+  - Merchant Copy
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

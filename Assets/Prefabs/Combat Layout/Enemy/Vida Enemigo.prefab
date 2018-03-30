@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224515659575914348}
   - component: {fileID: 222217392328303024}
+  - component: {fileID: 114558602353372458}
   - component: {fileID: 114660061989874534}
   - component: {fileID: 114251159326424696}
   m_Layer: 5
@@ -87,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224547499283318848}
   - component: {fileID: 222915390360102834}
+  - component: {fileID: 114469876790302242}
   - component: {fileID: 114916866569935270}
   - component: {fileID: 114728203300537592}
   m_Layer: 5
@@ -265,6 +267,28 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114469876790302242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511637913336174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56d5da579fe27243864589fd8c4f683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114558602353372458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064573095882846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56d5da579fe27243864589fd8c4f683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114660061989874534
 MonoBehaviour:
   m_ObjectHideFlags: 1

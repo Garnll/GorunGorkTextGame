@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224236461420206622}
   - component: {fileID: 222384622778650518}
+  - component: {fileID: 114982460860915338}
   - component: {fileID: 114272272438692326}
   - component: {fileID: 114770919921145990}
   - component: {fileID: 114164993375012656}
@@ -190,6 +191,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &114982460860915338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712604994510202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56d5da579fe27243864589fd8c4f683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222384622778650518
 CanvasRenderer:
   m_ObjectHideFlags: 1
