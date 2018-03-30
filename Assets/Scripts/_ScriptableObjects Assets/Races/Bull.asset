@@ -14,3 +14,4 @@ MonoBehaviour:
   keyword: toro
   raceDescription: "Los toros son una raza de toros humanoides. Son usualmente fuertes
     pero algo torpes. La mayor\xEDa de toros tienen cuernos sobresaliendo de su cabeza."
+  berserk: {fileID: 11400000, guid: d73591460accde34a891273d9f45aecc, type: 2}

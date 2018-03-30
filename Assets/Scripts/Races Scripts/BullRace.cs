@@ -6,10 +6,14 @@
 [CreateAssetMenu(menuName = "Gorun Gork/Races/Bull")]
 public class BullRace : Race {
 
+    public CharacterState berserk;
+
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {
         playerStats.defaultStrength += 2;
         playerStats.defaultIntelligence -= 1;
+
+        playerStats.ChangeStats();
     }
 
     /// <summary>
@@ -25,7 +29,7 @@ public class BullRace : Race {
                 float rand = Random.Range(0f, 1f);
                 if (rand < 0.5f)
                 {
-                    Debug.Log("Ahora estás en berserk. rawr");
+                    player.ChangeState(berserk);
                 }
             }
         }

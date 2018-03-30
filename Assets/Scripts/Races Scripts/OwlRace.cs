@@ -10,6 +10,8 @@ public class OwlRace : Race {
     {
         playerStats.defaultIntelligence += 2;
         playerStats.defaultStrength -= 1;
+
+        playerStats.ChangeStats();
     }
 
     /// <summary>

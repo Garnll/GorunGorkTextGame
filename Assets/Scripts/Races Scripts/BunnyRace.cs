@@ -10,6 +10,8 @@ public class BunnyRace : Race {
     {
         playerStats.defaultDexterity += 2;
         playerStats.defaultResistance -= 1;
+
+        playerStats.ChangeStats();
     }
 
     /// <summary>
