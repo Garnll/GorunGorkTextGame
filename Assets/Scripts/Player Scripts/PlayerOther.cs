@@ -47,6 +47,14 @@ public class PlayerOther : MonoBehaviour {
         }
     }
 
+    public float DefaultTurnRegenPerSecond
+    {
+        get
+        {
+            return defaultTurnRegenPerSecond;
+        }
+    }
+
     public float DefaultEvasion
     {
         get
@@ -77,6 +85,18 @@ public class PlayerOther : MonoBehaviour {
 
 
         return escapeProbability;
+    }
+
+    public void ReduceEvasionBySecond()
+    {
+        if (currentEvasion > defaultEvasion)
+        {
+            currentEvasion--;
+        }
+        else
+        {
+            CancelInvoke();
+        }
     }
 
 }

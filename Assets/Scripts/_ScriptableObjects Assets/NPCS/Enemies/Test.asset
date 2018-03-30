@@ -22,12 +22,23 @@ MonoBehaviour:
   npcInRoomDescription: Hay un simbolo de error rojo caminando por ahi. Dice "lukashenko".
   npcDetailedDescription: Un simbolo de error grande y rojo.
   maxHealth: 20
-  currentHealth: 1969
+  currentHealth: 20
   maxTurn: 100
-  currentTurn: 100
+  currentTurn: 60
   maxWill: 10
   currentWill: 0
   habilities: []
+  defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
+  currentState: {fileID: 0}
+  defaultStrength: 1
+  currentStrength: 0
+  defaultIntelligence: 1
+  currentIntelligence: 0
+  defaultResistance: 1
+  currentResistance: 0
+  defaultDexterity: 1
+  currentDexterity: 0
+  pacifier: 1
   defaultCriticalHitProbability: 0
   currentCriticalHitProbability: 0
   defaultCooldownReduction: 0

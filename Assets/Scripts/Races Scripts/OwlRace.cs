@@ -8,8 +8,8 @@ public class OwlRace : Race {
 
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {
-        playerStats.intelligence += 2;
-        playerStats.strength -= 1;
+        playerStats.defaultIntelligence += 2;
+        playerStats.defaultStrength -= 1;
     }
 
     /// <summary>

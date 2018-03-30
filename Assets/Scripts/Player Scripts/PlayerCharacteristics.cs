@@ -5,10 +5,14 @@
 /// </summary>
 public class PlayerCharacteristics : MonoBehaviour {
 
-    public int strength = 1;
-    public int intelligence = 1;
-    public int resistance = 1;
-    public int dexterity = 1;
+    public int defaultStrength = 1;
+    [HideInInspector] public int currentStrength;
+    public int defaultIntelligence = 1;
+    [HideInInspector] public int currentIntelligence;
+    public int defaultResistance = 1;
+    [HideInInspector] public int currentResistance;
+    public int defaultDexterity = 1;
+    [HideInInspector] public int currentDexterity;
 
     /// <summary>
     /// x es infravisión.
@@ -16,8 +20,6 @@ public class PlayerCharacteristics : MonoBehaviour {
     /// </summary>
     [HideInInspector] public Vector2 vision;
     public Vector2 defaultVision = new Vector2(-4, 4);
-
-    public CharacterState playerState;
     public Race playerRace;
     public Job playerJob;
     public PlayerOther other;
@@ -25,7 +27,16 @@ public class PlayerCharacteristics : MonoBehaviour {
 
     public void InitializeCharacteristics()
     {
+        ChangeStats();
         vision = defaultVision;
+    }
+
+    public void ChangeStats()
+    {
+        currentDexterity = defaultDexterity;
+        currentIntelligence = defaultIntelligence;
+        currentResistance = defaultResistance;
+        currentStrength = defaultStrength;
     }
 
     /// <summary>

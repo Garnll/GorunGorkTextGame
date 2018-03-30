@@ -130,9 +130,16 @@ public class CombatController : MonoBehaviour {
 
     public void ChangePlayerState ()
     {
+        string state = "";
+
+        if (player.currentState != player.defaultState)
+        {
+            state = " <" + TextConverter.MakeFirstLetterUpper(player.currentState.stateName) + ">";
+        }
+
         playerUI.title.text = TextConverter.MakeFirstLetterUpper(player.playerName) + "\n" +
             TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.jobName) +
-            " <Aun nada>";
+            state;
     }
 
     public void UpdatePlayerLife()
@@ -159,8 +166,12 @@ public class CombatController : MonoBehaviour {
         playerUI.habilitiesText.text = "[0] Atacar";
         for (int i = 0; i < player.characteristics.playerJob.habilities.Count; i++)
         {
-            playerUI.habilitiesText.text = "[" + (i + 1) + "] " + 
-                TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.habilities[i].habilityName);
+            Hability currentHability = player.characteristics.playerJob.habilities[i];
+
+            playerUI.habilitiesText.text = "[0." + 
+                currentHability.jobIdentifier + "." + 
+                currentHability.habilityID + "] " + 
+                TextConverter.MakeFirstLetterUpper(currentHability.habilityName);
         }
     }
 
@@ -218,9 +229,16 @@ public class CombatController : MonoBehaviour {
 
     public void ChangeEnemyState()
     {
+        string state = "";
+
+        if (enemy.currentState != enemy.defaultState)
+        {
+            state = " <" + TextConverter.MakeFirstLetterUpper(enemy.currentState.stateName) + ">";
+        }
+
         enemyUI.title.text = TextConverter.MakeFirstLetterUpper(enemy.npcName) + "\n" +
             TextConverter.MakeFirstLetterUpper(enemy.npcJob.jobName) +
-            " <Aun nada>";
+            state;
     }
 
     public void UpdateEnemyLife()

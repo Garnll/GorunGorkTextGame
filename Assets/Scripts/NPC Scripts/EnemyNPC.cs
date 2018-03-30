@@ -15,6 +15,20 @@ public class EnemyNPC : NPCTemplate {
     [HideInInspector] public float currentWill;
 
     public Hability[] habilities;
+    public CharacterState defaultState;
+    [HideInInspector] public CharacterState currentState;
+
+    public int defaultStrength = 1;
+    [HideInInspector] public int currentStrength;
+    public int defaultIntelligence = 1;
+    [HideInInspector] public int currentIntelligence;
+    public int defaultResistance = 1;
+    [HideInInspector] public int currentResistance;
+    public int defaultDexterity = 1;
+    [HideInInspector] public int currentDexterity;
+
+    private int timePassed = 0;
+    public int pacifier = 1;
 
     [SerializeField] private float defaultCriticalHitProbability = 0;
     [HideInInspector] public float currentCriticalHitProbability;
@@ -84,6 +98,14 @@ public class EnemyNPC : NPCTemplate {
         }
     }
 
+    public float DefaultTurnRegenPerSecond
+    {
+        get
+        {
+            return defaultTurnRegenPerSecond;
+        }
+    }
+
     public float DefaultEvasion
     {
         get
@@ -103,9 +125,20 @@ public class EnemyNPC : NPCTemplate {
         return escapeProbability;
     }
 
+    public void ReturnToNormalState()
+    {
+        currentState = defaultState;
+        timePassed = 0;
+    }
+
     public void StartCombat(CombatController controller)
     {
         combatController = controller;
+
+        currentDexterity = defaultDexterity;
+        currentIntelligence = defaultIntelligence;
+        currentResistance = defaultResistance;
+        currentStrength = defaultStrength;
 
         currentTurnRegenPerSecond = defaultTurnRegenPerSecond;
         currentHealthRegenPerSecond = defaultHealthRegenPerSecond;
@@ -115,6 +148,7 @@ public class EnemyNPC : NPCTemplate {
         currentHealth = maxHealth;
 
         currentTurn = 0;
+        currentState = defaultState;
     }
 
     public void AttackInCombat(PlayerManager player)
@@ -127,7 +161,9 @@ public class EnemyNPC : NPCTemplate {
         currentTurn -= maxTurn;
         combatController.UpdateEnemyTurn();
 
-        int damage = Random.Range(1, 6);
+        int damage = currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
+        damage *= pacifier;
+
         combatController.UpdateEnemyLog("El " + npcName + " ha atacado.");
         player.ReceiveDamage(damage);
     }
@@ -140,6 +176,11 @@ public class EnemyNPC : NPCTemplate {
         if (currentTurn >= maxTurn)
         {
             currentTurn = maxTurn;
+
+            if (currentState.GetType() == typeof(InertiaState))
+            {
+                currentState.DissableStateEffect(this);
+            }
         }
 
         if (currentHealth >= maxHealth)
@@ -148,6 +189,26 @@ public class EnemyNPC : NPCTemplate {
         }
         combatController.UpdateEnemyTurn();
         combatController.UpdateEnemyLife();
+
+        CheckForStateDuration();
+    }
+
+    private void CheckForStateDuration()
+    {
+        if (currentState.durationTime > 0)
+        {
+            timePassed++;
+            if (timePassed > currentState.durationTime)
+            {
+                currentState.DissableStateEffect(this);
+            }
+        }
+    }
+
+    public void ChangeState(CharacterState newState)
+    {
+        currentState = newState;
+        currentState.ApplyStateEffect(this);
     }
 
     public void ReceiveDamage(int damage)

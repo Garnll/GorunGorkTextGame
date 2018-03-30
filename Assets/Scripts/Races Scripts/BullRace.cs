@@ -8,8 +8,8 @@ public class BullRace : Race {
 
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {
-        playerStats.strength += 2;
-        playerStats.intelligence -= 1;
+        playerStats.defaultStrength += 2;
+        playerStats.defaultIntelligence -= 1;
     }
 
     /// <summary>

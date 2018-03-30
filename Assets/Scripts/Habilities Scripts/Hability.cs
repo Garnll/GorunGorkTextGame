@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class Hability : ScriptableObject {
 
     public int habilityID = 0;
+    public int jobIdentifier = 0;
     public string habilityName = "schupiteiru";
     [TextArea]public string habilityDescription;
 
@@ -15,19 +16,36 @@ public abstract class Hability : ScriptableObject {
 
     public int habiltyLevel = 1;
 
-    private bool isAvailable = true;
+    protected bool isAvailable = true;
 
     /// <summary>
     /// Activar la habilidad, que puede ser en combate o fuera de él. 
     /// Requiere que se le envíe el manager del jugador.
     /// </summary>
     /// <param name="player"></param>
-    public abstract void ImplementHability(PlayerManager player);
+    public virtual void ImplementHability(PlayerManager player, NPCTemplate npc)
+    {
+        //Do something
+    }
 
-    protected IEnumerator WaitForCooldown()
+    /// <summary>
+    /// Activar la habilidad, que puede ser en combate o fuera de él. 
+    /// Requiere que se le envíe un objeto
+    /// </summary>
+    /// <param name="interactable"></param>
+    public virtual void ImplementHability(InteractableObject interactable)
+    {
+        //Do something
+    }
+
+    protected virtual IEnumerator WaitForCooldown()
     {
         yield return new WaitForSeconds(cooldownTime);
         isAvailable = true;
     }
 
+    public void MakeAvailable(bool isTrue)
+    {
+        isAvailable = isTrue;
+    }
 }

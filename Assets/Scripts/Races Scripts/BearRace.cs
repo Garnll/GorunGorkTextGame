@@ -8,8 +8,10 @@ public class BearRace : Race {
 
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {
-        playerStats.resistance += 2;
-        playerStats.dexterity -= 1;
+        playerStats.defaultResistance += 2;
+        playerStats.defaultDexterity -= 1;
+
+        playerStats.ChangeStats();
     }
 
     /// <summary>

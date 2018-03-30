@@ -8,8 +8,8 @@ public class BunnyRace : Race {
 
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {
-        playerStats.dexterity += 2;
-        playerStats.resistance -= 1;
+        playerStats.defaultDexterity += 2;
+        playerStats.defaultResistance -= 1;
     }
 
     /// <summary>

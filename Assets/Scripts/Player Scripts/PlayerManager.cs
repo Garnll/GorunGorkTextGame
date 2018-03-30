@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour {
     public int playerLevel = 0;
 
     private bool isAlive = true;
+    public CharacterState defaultState;
+    [HideInInspector] public CharacterState currentState;
 
     [SerializeField] private float maxHealth = 100;
     [HideInInspector] public float currentHealth;
@@ -19,6 +21,9 @@ public class PlayerManager : MonoBehaviour {
     [HideInInspector] public float currentTurn;
     [SerializeField] private float maxWill = 10;
     [HideInInspector] public float currentWill;
+
+    private int timePassed = 0;
+    public int pacifier = 1;
 
     public PlayerCharacteristics characteristics;
 
@@ -64,6 +69,8 @@ public class PlayerManager : MonoBehaviour {
         currentHealth = maxHealth;
         currentTurn = maxTurn;
         currentWill = maxWill;
+        defaultState.ApplyStateEffect(this);
+
         characteristics.InitializeCharacteristics();
         characteristics.other.InitializeOthers();
 
@@ -75,6 +82,11 @@ public class PlayerManager : MonoBehaviour {
         StartCoroutine(ChargeLife());
     }
 
+    public void ReturnToNormalState()
+    {
+        currentState = defaultState;
+        timePassed = 0;
+    }
 
     public void SelectRace(Race raceToBe)
     {
@@ -92,6 +104,7 @@ public class PlayerManager : MonoBehaviour {
     public void StartCombat()
     {
         currentTurn = 0;
+        currentState = defaultState;
     }
 
 
@@ -105,7 +118,10 @@ public class PlayerManager : MonoBehaviour {
         currentTurn -= maxTurn;
         controller.combatController.UpdatePlayerLife();
 
-        int damage = Random.Range(40, 50);
+        int damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
+
+        damage *= pacifier;
+    
         controller.combatController.UpdatePlayerLog("Has atacado.");
         enemy.ReceiveDamage(damage);
     }
@@ -117,9 +133,28 @@ public class PlayerManager : MonoBehaviour {
         if (currentTurn >= maxTurn)
         {
             currentTurn = maxTurn;
+
+            if (currentState.GetType() == typeof(InertiaState))
+            {
+                currentState.DissableStateEffect(this);
+            }
         }
         controller.combatController.UpdatePlayerTurn();
 
+        CheckForStateDuration();
+
+    }
+
+    private void CheckForStateDuration()
+    {
+        if (currentState.durationTime > 0)
+        {
+            timePassed++;
+            if (timePassed > currentState.durationTime)
+            {
+                currentState.DissableStateEffect(this);
+            }
+        }
     }
 
     public IEnumerator ChargeLife()
@@ -140,6 +175,16 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public void ChangeState(CharacterState newState)
+    {
+        currentState = newState;
+        currentState.ApplyStateEffect(this);
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            controller.combatController.ChangePlayerState();
+        }
+    }
+
     public void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
@@ -150,6 +195,11 @@ public class PlayerManager : MonoBehaviour {
             currentHealth = 0;
             Die();
             return;
+        }
+
+        if (currentState.GetType() == typeof(SupersonicState))
+        {
+            currentState.DissableStateEffect(this);
         }
 
         controller.combatController.UpdatePlayerLog("Has recibido " + damage + " puntos de daño.");
