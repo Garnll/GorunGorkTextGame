@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Controlador de todo lo que haría el gamecontroller durante el combate.
@@ -12,7 +14,9 @@ public class CombatController : MonoBehaviour {
     public EnemyUIDuringCombat enemyUI;
 
     private EnemyNPC enemy;
+    private Queue<string> enemyLog = new Queue<string>();
     private PlayerManager player;
+    private Queue<string> playerLog = new Queue<string>();
 
     public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
     {
@@ -47,10 +51,22 @@ public class CombatController : MonoBehaviour {
     public void StartFight()
     {
         ChangeLayout();
+        CancelInvoke();
+        ClearCollections();
+        StopAllCoroutines();
+        InvokeRepeating("UpdateTurns", 1, 1);
+    }
+
+    private void ClearCollections()
+    {
+        enemyLog.Clear();
+        playerLog.Clear();
     }
 
     private void ChangeLayout()
     {
+        player.controller.PrepareForCombat();
+
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
@@ -59,46 +75,227 @@ public class CombatController : MonoBehaviour {
         InitializeEnemy();
     }
 
+    private void UpdateTurns()
+    {
+        player.ChargeTurn();
+        enemy.ChargeBySecond();
+    }
+
+    /// <summary>
+    /// Recibe y maneja el input del jugador
+    /// </summary>
+    /// <param name="input"></param>
+    public void ReceiveInput(string[] input)
+    {
+        if (input.Length >= 1)
+        {
+            if (input.Length == 1)
+            {
+                switch (input[0])
+                {
+                    case "0":
+                        player.AttackInCombat(enemy);
+                        break;
+
+                    default:
+                        UpdatePlayerLog("-");
+                        break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Inicializar GUI del jugador
+    /// </summary>
     private void InitializePlayer()
     {
-        playerUI.title.text = player.playerName + "\n" +
-            player.characteristics.playerJob.jobName +
-            " <Aun nada>";
+        player.StartCombat();
 
-        playerUI.lifeSlider.maxValue = player.MaxHealth;
-        playerUI.lifeSlider.value = player.currentHealth;
-        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString() + "%";
+        ChangePlayerState();
 
-        playerUI.turnSlider.maxValue = player.MaxTurn;
-        playerUI.turnSlider.value = player.currentTurn;
+        UpdatePlayerLife();
 
-        playerUI.willText.text = "V[" + player.currentWill + "/" + player.MaxWill + "]";
+        UpdatePlayerTurn();
 
-        playerUI.habilitiesText.text = "[0] Atacar";
+        UpdatePlayerWill();
 
-        playerUI.optionsText.text = "[1] Inventario \n" +
-            "[2] Reposicionamiento \n" +
-            "[3] Escapar (" + player.characteristics.other.EscapeProbability() + "%)";
+        SetPlayerHabilities();
 
-        playerUI.logText.text = "";
+        SetPlayerOptions();
+
+        playerUI.logText.text = ("");
 
     }
 
+    public void ChangePlayerState ()
+    {
+        playerUI.title.text = TextConverter.MakeFirstLetterUpper(player.playerName) + "\n" +
+            TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.jobName) +
+            " <Aun nada>";
+    }
+
+    public void UpdatePlayerLife()
+    {
+        playerUI.lifeSlider.maxValue = player.MaxHealth;
+        playerUI.lifeSlider.value = player.currentHealth;
+        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString() + "%";
+    }
+
+    public void UpdatePlayerTurn()
+    {
+        playerUI.turnSlider.maxValue = player.MaxTurn;
+        playerUI.turnSlider.value = player.currentTurn;
+    }
+
+    public void UpdatePlayerWill()
+    {
+        playerUI.willText.text = "V[" + player.currentWill + "/" + player.MaxWill + "]";
+    }
+
+
+    public void SetPlayerHabilities()
+    {
+        playerUI.habilitiesText.text = "[0] Atacar";
+        for (int i = 0; i < player.characteristics.playerJob.habilities.Count; i++)
+        {
+            playerUI.habilitiesText.text = "[" + (i + 1) + "] " + 
+                TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.habilities[i].habilityName);
+        }
+    }
+
+    public void SetPlayerOptions()
+    {
+        playerUI.optionsText.text = "[1] Inventario \n" +
+            "[2] Reposicionamiento \n" +
+            "[3] Escapar (" + player.characteristics.other.EscapeProbability() + "%)";
+    }
+
+
+    public void UpdatePlayerLog(string newLog)
+    {
+        playerLog.Enqueue(newLog);
+
+        if (playerLog.Count > 3)
+        {
+            playerLog.Dequeue();
+        }
+
+        playerUI.logText.text = string.Join("\n", playerLog.ToArray());
+        UpdateEnemyLogOnly("-");
+    }
+
+    public void UpdatePlayerLogOnly(string newLog)
+    {
+        playerLog.Enqueue(newLog);
+
+        if (playerLog.Count > 3)
+        {
+            playerLog.Dequeue();
+        }
+
+        playerUI.logText.text = string.Join("\n", playerLog.ToArray());
+    }
+
+    /// <summary>
+    /// Inicializar GUI del enemigo
+    /// </summary>
     private void InitializeEnemy()
     {
-        enemyUI.title.text = enemy.npcName + "\n" +
-            enemy.npcJob.jobName +
-            " <Aun nada>";
+        enemy.StartCombat(this);
 
+        ChangeEnemyState();
+
+        UpdateEnemyLife();
+
+        UpdateEnemyTurn();
+
+        SetEnemyDescription();
+
+        enemyUI.logText.text = ("");
+      
+    }
+
+    public void ChangeEnemyState()
+    {
+        enemyUI.title.text = TextConverter.MakeFirstLetterUpper(enemy.npcName) + "\n" +
+            TextConverter.MakeFirstLetterUpper(enemy.npcJob.jobName) +
+            " <Aun nada>";
+    }
+
+    public void UpdateEnemyLife()
+    {
         enemyUI.lifeSlider.maxValue = enemy.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
         enemyUI.lifeText.text = ((enemy.currentHealth / enemy.MaxHealth) * 100).ToString() + "%";
+    }
 
+    public void UpdateEnemyTurn()
+    {
         enemyUI.turnSlider.maxValue = enemy.MaxTurn;
         enemyUI.turnSlider.value = enemy.currentTurn;
+    }
 
+
+    public void SetEnemyDescription()
+    {
         enemyUI.descriptionText.text = enemy.npcDetailedDescription;
+    }
 
-        enemyUI.logText.text = "";
+
+    public void UpdateEnemyLog(string newLog)
+    {
+        enemyLog.Enqueue(newLog);
+
+        if (playerLog.Count > 3)
+        {
+            enemyLog.Dequeue();
+        }
+
+        enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
+
+        UpdatePlayerLogOnly("-");
+    }
+
+    public void UpdateEnemyLogOnly(string newLog)
+    {
+        enemyLog.Enqueue(newLog);
+
+        if (playerLog.Count > 3)
+        {
+            enemyLog.Dequeue();
+        }
+
+        enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
+    }
+
+
+    public IEnumerator EndCombat(EnemyNPC loser)
+    {
+        CancelInvoke();
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.controller.CreateNewDisplay();
+        yield return new WaitForSeconds(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡Ganaste!");
+    }
+
+
+    public IEnumerator EndCombat(PlayerManager loser)
+    {
+        CancelInvoke();
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.controller.CreateNewDisplay();
+        yield return new WaitForSeconds(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡Perdiste!");
+    }
+
+    private void ReturnToRoom(string endMessage)
+    {
+        player.controller.LogStringWithoutReturn(" ");
+        player.controller.LogStringWithoutReturn("Fin del combate.");
+        player.controller.LogStringWithoutReturn(player.controller.RefreshCurrentRoomDescription());
+        player.controller.LogStringWithoutReturn(endMessage);
     }
 }

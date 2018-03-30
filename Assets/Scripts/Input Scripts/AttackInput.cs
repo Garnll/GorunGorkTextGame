@@ -11,7 +11,7 @@ public class AttackInput : InputActions {
         if (separatedInputWords.Length > 1)
         {
             NPCTemplate npcToAttack = 
-                controller.npcController.TryToFight(separatedInputWords[1], controller.playerRoomNavigation.currentRoom);
+                controller.combatController.TryToFight(separatedInputWords[1], controller.playerRoomNavigation.currentRoom);
 
             if (npcToAttack == null)
             {
@@ -23,7 +23,7 @@ public class AttackInput : InputActions {
 
             TextUserInput.OnFight += StartFight;
 
-            controller.npcController.PrepareFight(npcToAttack, controller.playerManager);
+            controller.combatController.PrepareFight(npcToAttack, controller.playerManager);
             controller.LogStringWithReturn(" ");
         }
         else
@@ -34,7 +34,7 @@ public class AttackInput : InputActions {
 
     private void StartFight(GameController controller)
     {
-        controller.npcController.StartFight();
+        controller.combatController.StartFight();
         TextUserInput.OnFight -= StartFight;
     }
 }

@@ -22,7 +22,8 @@ public class GameState {
         creation,
         exploration,
         combat,
-        dead
+        dead,
+        none
     }
 
     private GameStates currentState = GameStates.creation;

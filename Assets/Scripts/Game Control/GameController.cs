@@ -7,12 +7,12 @@ using TMPro;
 /// </summary>
 public class GameController : MonoBehaviour {
 
-    public TextMeshProUGUI displayTextTemplate;
+    public GameObject displayTextTemplate;
     public RectTransform contentContainer;
     public InputActions[] inputActions;
     public PlayerManager playerManager;
     public PlayerRoomNavigation playerRoomNavigation;
-    public CombatController npcController;
+    public CombatController combatController;
 
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
@@ -40,10 +40,17 @@ public class GameController : MonoBehaviour {
 
         if (displayText == null)
         {
-            displayText = Instantiate(displayTextTemplate, contentContainer);
+            CreateNewDisplay();
         }
 
         displayText.text = logAsText;
+    }
+
+    public void CreateNewDisplay()
+    {
+        GameObject newDisplay = Instantiate(displayTextTemplate, contentContainer);
+        displayText = newDisplay.GetComponent<TextMeshProUGUI>();
+        displayText.text = " ";
     }
 
     public void PrepareForCombat()
@@ -127,10 +134,13 @@ public class GameController : MonoBehaviour {
         ClearCollectionsForNewRoom();
         UnpackRoom();
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
+        string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
 
-        currentRoomDescription = playerRoomNavigation.currentRoom.roomDescription + " " + joinedInteractionDescriptions;
+        string combinedText = playerRoomNavigation.currentRoom.roomDescription
+            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
 
-        string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedInteractionDescriptions;
+        currentRoomDescription = combinedText;
+
         if (playerRoomNavigation.currentRoom.roomResponse != null)
         {
             combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
@@ -169,6 +179,7 @@ public class GameController : MonoBehaviour {
         roomExtraLog.Clear();
         interactionDescriptionsInRoom.Clear();
         playerRoomNavigation.ClearExits();
+        npcDescriptionsInRoom.Clear();
     }
 
     /// <summary>
@@ -188,5 +199,11 @@ public class GameController : MonoBehaviour {
     public void LogStringAfterRoom(string stringToAdd)
     {
         roomExtraLog.Add(stringToAdd + "\n");
+    }
+
+    public void LogStringWithoutReturn(string stringToAdd)
+    {
+        actionLog.Add(stringToAdd + "\n");
+        DisplayLoggedText();
     }
 }

@@ -48,6 +48,10 @@ public class TextUserInput : SerializedMonoBehaviour {
         switch (GameState.Instance.CurrentState)
         {
             default:
+                inputField.ActivateInputField();
+                inputField.text = null;
+                break;
+
             case GameState.GameStates.exploration:
                 if (inputDictionary.ContainsKey(separatedInputWords[0]))
                 {
@@ -71,6 +75,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                     string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
                     controller.LogStringWithReturn(userInputChanged + "\n" + answer);
                 }
+                DisplayInput();
                 break;
 
             case GameState.GameStates.creation:
@@ -78,9 +83,19 @@ public class TextUserInput : SerializedMonoBehaviour {
 
                 controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
                 characterCreation.AcceptInput(separatedInputWords);
+                DisplayInput();
+                break;
+
+            case GameState.GameStates.combat:
+                char[] delimeterPoints = { '.' };
+                string[] separatedInputs = userInput.Split(delimeterPoints);
+
+                controller.combatController.ReceiveInput(separatedInputs);
+                inputField.ActivateInputField();
+                inputField.text = null;
                 break;
         }
-        DisplayInput();
+
     }
 
     /// <summary>

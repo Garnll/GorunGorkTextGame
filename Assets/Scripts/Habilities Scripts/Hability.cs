@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Hability : ScriptableObject {
 
     public int habilityID = 0;
-    public string habilityname = "schupiteiru";
+    public string habilityName = "schupiteiru";
     [TextArea]public string habilityDescription;
 
     public int turnConsuption = 50;

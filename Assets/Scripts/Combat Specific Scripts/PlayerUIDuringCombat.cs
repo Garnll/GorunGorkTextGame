@@ -49,6 +49,6 @@ public class PlayerUIDuringCombat : MonoBehaviour {
         Instantiate(separator, enemyContainer.transform);
 
         temp = Instantiate(playerLog, enemyContainer);
-        logText = temp.GetComponent<TextMeshProUGUI>();
+        logText = temp.GetComponentInChildren<TextMeshProUGUI>();
     }
 }

@@ -17,6 +17,7 @@ public class PlayerCharacteristics : MonoBehaviour {
     [HideInInspector] public Vector2 vision;
     public Vector2 defaultVision = new Vector2(-4, 4);
 
+    public CharacterState playerState;
     public Race playerRace;
     public Job playerJob;
     public PlayerOther other;

@@ -13,4 +13,14 @@ public abstract class NPCTemplate : ScriptableObject {
     public Job npcJob;
     [TextArea] public string npcInRoomDescription;
     [TextArea] public string npcDetailedDescription;
+
+    protected bool isAlive;
+
+    public bool IsAlive
+    {
+        get
+        {
+            return isAlive;
+        }
+    }
 }

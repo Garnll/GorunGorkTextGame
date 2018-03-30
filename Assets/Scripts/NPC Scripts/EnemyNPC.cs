@@ -33,6 +33,7 @@ public class EnemyNPC : NPCTemplate {
 
     private float escapeProbability = 0;
 
+    CombatController combatController;
 
     public float MaxHealth
     {
@@ -102,6 +103,72 @@ public class EnemyNPC : NPCTemplate {
         return escapeProbability;
     }
 
+    public void StartCombat(CombatController controller)
+    {
+        combatController = controller;
 
+        currentTurnRegenPerSecond = defaultTurnRegenPerSecond;
+        currentHealthRegenPerSecond = defaultHealthRegenPerSecond;
+        currentCriticalHitProbability = defaultCriticalHitProbability;
+        currentEvasion = defaultEvasion;
+        currentCooldownReduction = defaultCooldownReduction;
+        currentHealth = maxHealth;
 
+        currentTurn = 0;
+    }
+
+    public void AttackInCombat(PlayerManager player)
+    {
+        if (currentTurn < maxTurn)
+        {
+            combatController.UpdateEnemyLog("Cómo es que está atacando?");
+            return;
+        }
+        currentTurn -= maxTurn;
+        combatController.UpdateEnemyTurn();
+
+        int damage = Random.Range(1, 6);
+        combatController.UpdateEnemyLog("El " + npcName + " ha atacado.");
+        player.ReceiveDamage(damage);
+    }
+
+    public void ChargeBySecond()
+    {
+        currentTurn += currentTurnRegenPerSecond;
+        currentHealth += currentHealthRegenPerSecond;
+
+        if (currentTurn >= maxTurn)
+        {
+            currentTurn = maxTurn;
+        }
+
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        combatController.UpdateEnemyTurn();
+        combatController.UpdateEnemyLife();
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        currentHealth -= damage;
+        combatController.UpdateEnemyLife();
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+            return;
+        }
+        combatController.UpdateEnemyLog("El " + npcName + " ha recibido " + damage + " puntos de daño.");
+    }
+
+    public void Die()
+    {
+        isAlive = false;
+        combatController.UpdateEnemyLog("El " + npcName + " ha muerto.");
+
+        combatController.StartCoroutine(combatController.EndCombat(this));
+    }
 }
