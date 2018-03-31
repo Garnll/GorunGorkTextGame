@@ -21,7 +21,7 @@ public class SupersonicState : CharacterState
             EnemyNPC enemy = character as EnemyNPC;
 
             enemy.currentEvasion = 50;
-            //Falta qaui
+            enemy.InvokeRepeating("ReduceEvasionBySecond", 1, 1);
         }
     }
 
@@ -42,7 +42,7 @@ public class SupersonicState : CharacterState
 
 
             enemy.currentEvasion = enemy.myTemplate.DefaultEvasion;
-            //Falta qaui
+            enemy.CancelInvoke();
 
             enemy.ReturnToNormalState();
         }

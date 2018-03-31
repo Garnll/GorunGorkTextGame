@@ -13,6 +13,7 @@ public abstract class Hability : ScriptableObject {
 
     public int turnConsuption = 50;
     public int cooldownTime = 8;
+    public CharacterState stateToChange;
 
     public int habiltyLevel = 1;
 
@@ -34,6 +35,11 @@ public abstract class Hability : ScriptableObject {
     /// </summary>
     /// <param name="interactable"></param>
     public virtual void ImplementHability(InteractableObject interactable)
+    {
+        //Do something
+    }
+
+    public virtual void ImplementHability<T>(PlayerManager player, T thing, string[] separatedInputs)
     {
         //Do something
     }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Gorun Gork/Habilities/Restart")]
-public class RestartHabiity : Hability {
+[CreateAssetMenu(menuName = "Gorun Gork/Habilities/Dissapear")]
+public class DissapearHability : Hability {
 
     public override void ImplementHability(PlayerManager player, EnemyNPC enemy)
     {
@@ -11,15 +11,16 @@ public class RestartHabiity : Hability {
         {
             if (GameState.Instance.CurrentState == GameState.GameStates.combat)
             {
-                player.controller.combatController.UpdatePlayerLog("Reiniciar no disponible.");
+                player.controller.combatController.UpdatePlayerLog("Desaparecer no disponible.");
                 return;
             }
         }
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
-            player.controller.combatController.UpdatePlayerLog("¡Has usado Reiniciar!");
-            enemy.ChangeState(stateToChange);
+            player.controller.combatController.UpdatePlayerLog("¡Has usado Desaparecer!");
+
+            player.ChangeState(stateToChange);
         }
 
         WaitForCooldown();

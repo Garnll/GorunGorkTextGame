@@ -116,6 +116,14 @@ public class EnemyNPC : MonoBehaviour {
         }
     }
 
+    public void ReduceEvasionBySecond()
+    {
+        if (currentEvasion > myTemplate.DefaultEvasion)
+        {
+            currentEvasion--;
+        }
+    }
+
     public void ChangeState(CharacterState newState)
     {
         currentState = newState;

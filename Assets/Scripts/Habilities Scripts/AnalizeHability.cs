@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Habilidad de delegado. Analizar.
 /// </summary>
-[CreateAssetMenu(menuName = "Gorun Gork/Habilities/AnalizeHability")]
+[CreateAssetMenu(menuName = "Gorun Gork/Habilities/Analize")]
 public class AnalizeHability : Hability {
 
     public override void ImplementHability(PlayerManager player, EnemyNPC enemy)
@@ -15,7 +15,7 @@ public class AnalizeHability : Hability {
         {
             if (GameState.Instance.CurrentState == GameState.GameStates.combat)
             {
-                player.controller.combatController.UpdatePlayerLog("Analizar en cooldown.");
+                player.controller.combatController.UpdatePlayerLog("Analizar no disponible.");
                 return;
             }
         }
@@ -23,12 +23,15 @@ public class AnalizeHability : Hability {
         string characteristicsEnemy;
 
 
-        characteristicsEnemy = "Vida: " + enemy.currentHealth.ToString() + ".\n"
-            + "Falta implementar cosas que no sabía que existían.";
+        characteristicsEnemy = "Fuerza: " + enemy.currentStrength + "\n" +
+            "Destreza: " + enemy.currentDexterity + "\n" +
+            "Inteligencia: " + enemy.currentIntelligence + "\n" +
+            "Resistencia: " + enemy.currentResistance;
         //Supondré que debería ser fuerza, destreza, etc. Falta por implementar eso.
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
+            player.controller.combatController.UpdatePlayerLog("¡Has usado Analizar!");
             player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
             WaitForCooldown(player);
         }
