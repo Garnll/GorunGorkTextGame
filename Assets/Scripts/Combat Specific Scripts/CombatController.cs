@@ -13,6 +13,7 @@ public class CombatController : MonoBehaviour {
     public PlayerUIDuringCombat playerUI;
     public EnemyUIDuringCombat enemyUI;
 
+    List<string> habilitiesText = new List<string>();
     private EnemyNPC enemy;
     private Queue<string> enemyLog = new Queue<string>();
     private PlayerManager player;
@@ -85,8 +86,14 @@ public class CombatController : MonoBehaviour {
     /// Recibe y maneja el input del jugador
     /// </summary>
     /// <param name="input"></param>
-    public void ReceiveInput(string[] input)
+    public void ReceiveInput(string[] input, HabilitiesTextInput habilitiesInput)
     {
+        if (player.currentTurn < player.MaxTurn)
+        {
+            UpdatePlayerLog("Aún no es tu turno.");
+            return;
+        }
+
         if (input.Length >= 1)
         {
             if (input.Length == 1)
@@ -97,10 +104,27 @@ public class CombatController : MonoBehaviour {
                         player.AttackInCombat(enemy);
                         break;
 
+                    case "1":
+                        UpdatePlayerLog("Se debería abrir el inventario");
+                        break;
+
+                    case "2":
+                        UpdatePlayerLog("Aún no sé cómo funcionará reposicionar");
+                        break;
+
+                    case "3":
+                        UpdatePlayerLog("Falta implementar escapar");
+                        break;
+
                     default:
                         UpdatePlayerLog("-");
                         break;
                 }
+            }
+            else
+            {
+                habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemy);
+                UpdatePlayerTurn();
             }
         }
     }
@@ -135,6 +159,8 @@ public class CombatController : MonoBehaviour {
         if (player.currentState != player.defaultState)
         {
             state = " <" + TextConverter.MakeFirstLetterUpper(player.currentState.stateName) + ">";
+            UpdatePlayerLog("¡Has entrado en " + TextConverter.MakeFirstLetterUpper(player.currentState.stateName) 
+                + "!");
         }
 
         playerUI.title.text = TextConverter.MakeFirstLetterUpper(player.playerName) + "\n" +
@@ -163,16 +189,19 @@ public class CombatController : MonoBehaviour {
 
     public void SetPlayerHabilities()
     {
-        playerUI.habilitiesText.text = "[0] Atacar";
+        habilitiesText.Clear();
+        habilitiesText.Add("[0] Atacar");
         for (int i = 0; i < player.characteristics.playerJob.habilities.Count; i++)
         {
             Hability currentHability = player.characteristics.playerJob.habilities[i];
 
-            playerUI.habilitiesText.text = "[0." + 
+            habilitiesText.Add("[0." + 
                 currentHability.jobIdentifier + "." + 
                 currentHability.habilityID + "] " + 
-                TextConverter.MakeFirstLetterUpper(currentHability.habilityName);
+                TextConverter.MakeFirstLetterUpper(currentHability.habilityName));
         }
+
+        playerUI.habilitiesText.text = string.Join("\n", habilitiesText.ToArray());
     }
 
     public void SetPlayerOptions()
@@ -234,6 +263,9 @@ public class CombatController : MonoBehaviour {
         if (enemy.currentState != enemy.myTemplate.defaultState)
         {
             state = " <" + TextConverter.MakeFirstLetterUpper(enemy.currentState.stateName) + ">";
+            UpdatePlayerLog("El " + TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcName) +
+               " ha entrado en " + TextConverter.MakeFirstLetterUpper(enemy.currentState.stateName)
+                + "!");
         }
 
         enemyUI.title.text = TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcName) + "\n" +

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c611a57153dbb4a8c5a3497af6072f, type: 3}
+  m_Name: Restart
+  m_EditorClassIdentifier: 
+  habilityID: 2
+  jobIdentifier: 0
+  habilityName: reiniciar
+  habilityDescription: 
+  turnConsuption: 40
+  cooldownTime: 5
+  stateToChange: {fileID: 11400000, guid: b75695df6f6fbaf4abc48dfd2211eac2, type: 2}
+  habiltyLevel: 1

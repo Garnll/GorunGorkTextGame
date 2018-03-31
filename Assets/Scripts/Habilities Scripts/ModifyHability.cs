@@ -16,8 +16,11 @@ public class ModifyHability : Hability {
             }
         }
 
+        isAvailable = false;
+
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
+            player.currentTurn -= turnConsuption;
             player.controller.combatController.UpdatePlayerLog("¡Has usado Modificar!");
 
             int pickOne = Random.Range(1, 5);
@@ -153,8 +156,11 @@ public class ModifyHability : Hability {
             }
         }
 
+        isAvailable = false;
+
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
+            player.currentTurn -= turnConsuption;
             EnemyNPC enemy = thing as EnemyNPC;
 
             player.controller.combatController.UpdatePlayerLog("¡Has usado Modificar!");

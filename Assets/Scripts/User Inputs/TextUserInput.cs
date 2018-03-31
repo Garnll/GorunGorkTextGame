@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 public class TextUserInput : SerializedMonoBehaviour {
 
     public TMP_InputField inputField;
+    public HabilitiesTextInput habilitiesTextInput;
     [SerializeField] Dictionary<string, InputActions> inputDictionary = new Dictionary<string, InputActions>();
 
     GameController controller;
@@ -87,10 +88,10 @@ public class TextUserInput : SerializedMonoBehaviour {
                 break;
 
             case GameState.GameStates.combat:
-                char[] delimeterPoints = { '.' };
+                char[] delimeterPoints = { '.', ' ' };
                 string[] separatedInputs = userInput.Split(delimeterPoints);
 
-                controller.combatController.ReceiveInput(separatedInputs);
+                controller.combatController.ReceiveInput(separatedInputs, habilitiesTextInput);
                 inputField.ActivateInputField();
                 inputField.text = null;
                 break;

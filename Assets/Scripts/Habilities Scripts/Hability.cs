@@ -11,13 +11,21 @@ public abstract class Hability : ScriptableObject {
     public string habilityName = "schupiteiru";
     [TextArea]public string habilityDescription;
 
+    [HideInInspector] public Timer timeWaiter;
+
     public int turnConsuption = 50;
     public int cooldownTime = 8;
     public CharacterState stateToChange;
 
     public int habiltyLevel = 1;
 
-    protected bool isAvailable = true;
+    public bool isAvailable = true;
+
+    private void OnEnable()
+    {
+        habiltyLevel = 1;
+        isAvailable = true;
+    }
 
     /// <summary>
     /// Activar la habilidad, que puede ser en combate o fuera de él. 
@@ -44,10 +52,15 @@ public abstract class Hability : ScriptableObject {
         //Do something
     }
 
-    protected virtual IEnumerator WaitForCooldown()
+    protected virtual void WaitForCooldown()
     {
-        yield return new WaitForSeconds(cooldownTime);
-        isAvailable = true;
+        if (timeWaiter == null)
+        {
+            timeWaiter = GameObject.FindWithTag("Timer").GetComponent<Timer>();
+        }
+
+        timeWaiter.StopCoroutine(timeWaiter.WaitHabilityCooldown(cooldownTime, this));
+        timeWaiter.StartCoroutine(timeWaiter.WaitHabilityCooldown(cooldownTime, this));
     }
 
     public void MakeAvailable(bool isTrue)

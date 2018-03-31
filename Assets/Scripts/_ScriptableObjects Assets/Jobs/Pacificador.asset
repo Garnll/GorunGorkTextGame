@@ -14,4 +14,7 @@ MonoBehaviour:
   identifier: 2
   jobName: pacificador
   jobDescription: 
-  habilities: []
+  habilities:
+  - {fileID: 11400000, guid: 7d2bbade396af894aaff86b5b4e5f8f0, type: 2}
+  - {fileID: 11400000, guid: 0914c6448eb7fd8488c88022a27f9303, type: 2}
+  - {fileID: 11400000, guid: a2f83ba469a24ed468f2e88745a859ed, type: 2}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Gorun Gork/Character States/Leathargy")]
+[CreateAssetMenu(menuName = "Gorun Gork/Character States/Lethargy")]
 public class LethargyState : CharacterState {
 
     public override void ApplyStateEffect<T>(T character)

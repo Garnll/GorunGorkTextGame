@@ -16,8 +16,11 @@ public class PacifyHability : Hability {
             }
         }
 
+        isAvailable = false;
+
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
+            player.currentTurn -= turnConsuption;
             player.controller.combatController.UpdatePlayerLog("¡Has usado Pacificar!");
 
             enemy.ChangeState(stateToChange);

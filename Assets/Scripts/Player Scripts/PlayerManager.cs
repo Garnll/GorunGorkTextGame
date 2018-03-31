@@ -86,6 +86,10 @@ public class PlayerManager : MonoBehaviour {
     {
         currentState = defaultState;
         timePassed = 0;
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            controller.combatController.ChangePlayerState();
+        }
     }
 
     public void SelectRace(Race raceToBe)
@@ -115,8 +119,8 @@ public class PlayerManager : MonoBehaviour {
             controller.combatController.UpdatePlayerLog("Aún no es tu turno.");
             return;
         }
-        currentTurn -= maxTurn;
-        controller.combatController.UpdatePlayerLife();
+        currentTurn -= (maxTurn * 0.8f);
+        controller.combatController.UpdatePlayerTurn();
 
         int damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
 

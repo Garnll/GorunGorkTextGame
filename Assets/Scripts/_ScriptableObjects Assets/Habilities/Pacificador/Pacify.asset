@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96396c5f1d091545923958ef0e08fcf, type: 3}
+  m_Name: Pacify
+  m_EditorClassIdentifier: 
+  habilityID: 3
+  jobIdentifier: 2
+  habilityName: pacificar
+  habilityDescription: 
+  turnConsuption: 70
+  cooldownTime: 10
+  stateToChange: {fileID: 11400000, guid: b0fd83c0819f60849b823f8fe92086e2, type: 2}
+  habiltyLevel: 1

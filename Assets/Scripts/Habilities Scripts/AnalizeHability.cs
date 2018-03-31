@@ -20,6 +20,8 @@ public class AnalizeHability : Hability {
             }
         }
 
+        isAvailable = false;
+
         string characteristicsEnemy;
 
 
@@ -31,6 +33,7 @@ public class AnalizeHability : Hability {
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
+            player.currentTurn -= turnConsuption;
             player.controller.combatController.UpdatePlayerLog("¡Has usado Analizar!");
             player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
             WaitForCooldown(player);
@@ -39,10 +42,9 @@ public class AnalizeHability : Hability {
         WaitForCooldown();
     }
 
-    private IEnumerator WaitForCooldown(PlayerManager player)
+    private void WaitForCooldown(PlayerManager player)
     {
-        yield return new WaitForSeconds(cooldownTime);
-        player.controller.combatController.SetEnemyDescription();
+        timeWaiter.WaitHabilityCooldown(cooldownTime, this, player);
     }
 
 }

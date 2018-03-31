@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ea44e39c956974e9e69491ecb42a19, type: 3}
+  m_Name: Overload
+  m_EditorClassIdentifier: 
+  habilityID: 3
+  jobIdentifier: 1
+  habilityName: sobrecargar
+  habilityDescription: 
+  turnConsuption: 70
+  cooldownTime: 10
+  stateToChange: {fileID: 11400000, guid: 148c82a604fc1754d9fe089d48368f75, type: 2}
+  habiltyLevel: 1
