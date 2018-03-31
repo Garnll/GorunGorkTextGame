@@ -23,7 +23,7 @@ MonoBehaviour:
   npcDetailedDescription: Un graaaan letrero de error.
   enemyGameObject: {fileID: 1724846261189214, guid: b14c2d55b26fd9d4b8516daf406707b5,
     type: 2}
-  maxHealth: 5
+  maxHealth: 1
   maxTurn: 100
   maxWill: 10
   habilities: []
