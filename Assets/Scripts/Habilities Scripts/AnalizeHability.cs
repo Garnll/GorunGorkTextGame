@@ -9,7 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/Habilities/AnalizeHability")]
 public class AnalizeHability : Hability {
 
-    public override void ImplementHability(PlayerManager player, NPCTemplate npc)
+    public override void ImplementHability(PlayerManager player, EnemyNPC enemy)
     {
         if (!isAvailable)
         {
@@ -22,19 +22,15 @@ public class AnalizeHability : Hability {
 
         string characteristicsEnemy;
 
-        if (npc.GetType() == typeof(EnemyNPC))
+
+        characteristicsEnemy = "Vida: " + enemy.currentHealth.ToString() + ".\n"
+            + "Falta implementar cosas que no sabía que existían.";
+        //Supondré que debería ser fuerza, destreza, etc. Falta por implementar eso.
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
-            EnemyNPC enemy = npc as EnemyNPC;
-
-            characteristicsEnemy = "Vida: " + enemy.currentHealth.ToString() + ".\n"
-                + "Falta implementar cosas que no sabía que existían.";
-            //Supondré que debería ser fuerza, destreza, etc. Falta por implementar eso.
-
-            if (GameState.Instance.CurrentState == GameState.GameStates.combat)
-            {
-                player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
-                WaitForCooldown(player);
-            }
+            player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
+            WaitForCooldown(player);
         }
 
         WaitForCooldown();

@@ -19,7 +19,7 @@ public class InertiaState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentTurnRegenPerSecond = enemy.DefaultTurnRegenPerSecond * 2;
+            enemy.currentTurnRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond * 2;
         }
     }
 
@@ -37,7 +37,7 @@ public class InertiaState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentTurnRegenPerSecond = enemy.DefaultTurnRegenPerSecond;
+            enemy.currentTurnRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond;
             enemy.ReturnToNormalState();
         }
     }

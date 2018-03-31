@@ -19,7 +19,7 @@ public class HackState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentTurnRegenPerSecond = enemy.DefaultTurnRegenPerSecond * 0.5f;
+            enemy.currentTurnRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond * 0.5f;
             enemy.currentHealthRegenPerSecond = 0;
         }
     }
@@ -41,8 +41,8 @@ public class HackState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentTurnRegenPerSecond = enemy.DefaultTurnRegenPerSecond;
-            enemy.currentHealthRegenPerSecond = enemy.DefaultTurnRegenPerSecond;
+            enemy.currentTurnRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond;
+            enemy.currentHealthRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond;
 
             enemy.ReturnToNormalState();
         }

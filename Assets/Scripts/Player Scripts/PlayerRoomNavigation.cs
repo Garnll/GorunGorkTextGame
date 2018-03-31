@@ -31,6 +31,79 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
     }
 
+    public void CheckForNPCs()
+    {
+        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+        {
+            if (currentRoom.npcTemplatesInRoom[i].GetType() != typeof(EnemyNPCTemplate))
+            {
+                controller.npcDescriptionsInRoom.Add(currentRoom.npcTemplatesInRoom[i].npcInRoomDescription);
+            }
+        }
+        CheckEnemiesInRoom();
+    }
+
+    private void CheckEnemiesInRoom()
+    {
+        if (currentRoom.enemiesInRoom.Count == 0)
+        {
+            CreateEnemies();
+        }
+        for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
+        {
+            if (currentRoom.enemiesInRoom[i].isAlive)
+            {
+                currentRoom.enemiesInRoom[i].gameObject.SetActive(true);
+                controller.npcDescriptionsInRoom.Add(currentRoom.enemiesInRoom[i].myTemplate.npcInRoomDescription);
+            }
+            else
+            {
+                Destroy(currentRoom.enemiesInRoom[i].gameObject);
+                currentRoom.enemiesInRoom.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    private void CreateEnemies()
+    {
+        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+        {
+            if (currentRoom.npcTemplatesInRoom[i].GetType() == typeof(EnemyNPCTemplate))
+            {
+                EnemyNPCTemplate enemy = currentRoom.npcTemplatesInRoom[i] as EnemyNPCTemplate;
+                GameObject newEnemy = Instantiate(enemy.enemyGameObject, currentRoom.roomPosition, Quaternion.identity);
+
+                newEnemy.name = enemy.npcName;
+                newEnemy.GetComponent<EnemyNPC>().myTemplate = enemy;
+                currentRoom.enemiesInRoom.Add(newEnemy.GetComponent<EnemyNPC>());
+            }
+        }
+    }
+
+    public EnemyNPC PickAnEnemy(EnemyNPCTemplate template)
+    {
+        for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
+        {
+            if (currentRoom.enemiesInRoom[i].myTemplate.npcName == template.npcName)
+            {
+                return currentRoom.enemiesInRoom[i];
+            }
+        }
+        return null;
+    }
+
+    public void HideEnemies()
+    {
+        for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
+        {
+            if (currentRoom.enemiesInRoom[i].isAlive)
+            {
+                currentRoom.enemiesInRoom[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
 
     public void TriggerRoomResponse()
     {

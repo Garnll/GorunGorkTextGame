@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0838a2d1616864fac294635243900e, type: 3}
+  m_Name: Test2
+  m_EditorClassIdentifier: 
+  npcName: Lukashenko
+  keyword:
+  - lukashenko
+  - error
+  npcLevel: 0
+  npcGender: macho
+  npcRace: {fileID: 11400000, guid: 4b952421b052eff49a736eb70d52bba7, type: 2}
+  npcJob: {fileID: 11400000, guid: 1fbb07e952ffe9a4aaf96fe0caffae2d, type: 2}
+  npcInRoomDescription: Hay un error rojo muy grande caminando. Dice "Lukashenko".
+  npcDetailedDescription: Un graaaan letrero de error.
+  enemyGameObject: {fileID: 1724846261189214, guid: b14c2d55b26fd9d4b8516daf406707b5,
+    type: 2}
+  maxHealth: 5
+  maxTurn: 100
+  maxWill: 10
+  habilities: []
+  defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
+  defaultStrength: 1
+  defaultIntelligence: 1
+  defaultResistance: 1
+  defaultDexterity: 1
+  defaultCriticalHitProbability: 0
+  defaultCooldownReduction: 0
+  defaultHealthRegenPerSecond: 2
+  defaultTurnRegenPerSecond: 5
+  defaultEvasion: 0

@@ -18,8 +18,8 @@ public class BerserkState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentStrength += (int)(enemy.defaultStrength * 0.25f);
-            enemy.currentDexterity += (int)(enemy.defaultDexterity * 0.25f);
+            enemy.currentStrength += (int)(enemy.myTemplate.defaultStrength * 0.25f);
+            enemy.currentDexterity += (int)(enemy.myTemplate.defaultDexterity * 0.25f);
         }
     }
 
@@ -38,8 +38,8 @@ public class BerserkState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentStrength = (enemy.defaultStrength);
-            enemy.currentDexterity = (enemy.defaultDexterity);
+            enemy.currentStrength = (enemy.myTemplate.defaultStrength);
+            enemy.currentDexterity = (enemy.myTemplate.defaultDexterity);
 
             enemy.ReturnToNormalState();
         }

@@ -20,11 +20,11 @@ public class CombatController : MonoBehaviour {
 
     public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
     {
-        for (int i = 0; i < currentRoom.npcsInRoom.Count; i++)
+        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
         {
-            NPCTemplate npc = currentRoom.npcsInRoom[i];
+            NPCTemplate npc = currentRoom.npcTemplatesInRoom[i];
 
-            if (npc.GetType() == typeof(EnemyNPC))
+            if (npc.GetType() == typeof(EnemyNPCTemplate))
             {
                 foreach (string keyword in npc.keyword)
                 {
@@ -40,9 +40,9 @@ public class CombatController : MonoBehaviour {
     }
 
 
-    public void PrepareFight(NPCTemplate npc, PlayerManager thisPlayer)
+    public void PrepareFight(EnemyNPC npc, PlayerManager thisPlayer)
     {
-        enemy = npc as EnemyNPC;
+        enemy = npc;
         player = thisPlayer;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
@@ -231,33 +231,33 @@ public class CombatController : MonoBehaviour {
     {
         string state = "";
 
-        if (enemy.currentState != enemy.defaultState)
+        if (enemy.currentState != enemy.myTemplate.defaultState)
         {
             state = " <" + TextConverter.MakeFirstLetterUpper(enemy.currentState.stateName) + ">";
         }
 
-        enemyUI.title.text = TextConverter.MakeFirstLetterUpper(enemy.npcName) + "\n" +
-            TextConverter.MakeFirstLetterUpper(enemy.npcJob.jobName) +
+        enemyUI.title.text = TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcName) + "\n" +
+            TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcJob.jobName) +
             state;
     }
 
     public void UpdateEnemyLife()
     {
-        enemyUI.lifeSlider.maxValue = enemy.MaxHealth;
+        enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
-        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.MaxHealth) * 100).ToString() + "%";
+        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString() + "%";
     }
 
     public void UpdateEnemyTurn()
     {
-        enemyUI.turnSlider.maxValue = enemy.MaxTurn;
+        enemyUI.turnSlider.maxValue = enemy.myTemplate.MaxTurn;
         enemyUI.turnSlider.value = enemy.currentTurn;
     }
 
 
     public void SetEnemyDescription()
     {
-        enemyUI.descriptionText.text = enemy.npcDetailedDescription;
+        enemyUI.descriptionText.text = enemy.myTemplate.npcDetailedDescription;
     }
 
 

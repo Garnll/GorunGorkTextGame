@@ -23,7 +23,7 @@ public abstract class Hability : ScriptableObject {
     /// Requiere que se le envíe el manager del jugador.
     /// </summary>
     /// <param name="player"></param>
-    public virtual void ImplementHability(PlayerManager player, NPCTemplate npc)
+    public virtual void ImplementHability(PlayerManager player, EnemyNPC npc)
     {
         //Do something
     }

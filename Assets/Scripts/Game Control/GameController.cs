@@ -94,19 +94,12 @@ public class GameController : MonoBehaviour {
     private void UnpackRoom()
     {
         PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
-        PrepareNPCsToBeInteracted(playerRoomNavigation.currentRoom);
+        playerRoomNavigation.CheckForNPCs();
         playerRoomNavigation.AddExitsToController();
 
         playerRoomNavigation.TriggerRoomResponse();
     }
 
-    private void PrepareNPCsToBeInteracted(Room currentRoom)
-    {
-        for (int i = 0; i < currentRoom.npcsInRoom.Count; i++)
-        {
-            npcDescriptionsInRoom.Add(currentRoom.npcsInRoom[i].npcInRoomDescription);
-        }
-    }
 
     private void PrepareObjectsToBeInteracted(Room currentRoom)
     {
@@ -180,6 +173,7 @@ public class GameController : MonoBehaviour {
         interactionDescriptionsInRoom.Clear();
         playerRoomNavigation.ClearExits();
         npcDescriptionsInRoom.Clear();
+        playerRoomNavigation.HideEnemies();
     }
 
     /// <summary>

@@ -18,9 +18,12 @@ public class Room : SerializedScriptableObject {
     [Space(5)]
     public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
     [Space(5)]
-    public List<NPCTemplate> npcsInRoom = new List<NPCTemplate>();
+    public List<NPCTemplate> npcTemplatesInRoom = new List<NPCTemplate>();
     [Space(5)]
     public List<Exit> exits = new List<Exit>();
+
+
+     public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
     
 
     private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
@@ -47,12 +50,16 @@ public class Room : SerializedScriptableObject {
 
     private void OnEnable()
     {
+        enemiesInRoom.Clear();
+
         RoomObjectSaver.OnSaveObjects += SaveMyObjects;
         RoomObjectSaver.OnLoadObjects += LoadMyObjects;
     }
 
     private void OnDisable()
     {
+        enemiesInRoom.Clear();
+
         RoomObjectSaver.OnSaveObjects -= SaveMyObjects;
         RoomObjectSaver.OnLoadObjects -= LoadMyObjects;
     }

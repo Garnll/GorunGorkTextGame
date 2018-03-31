@@ -37,7 +37,7 @@ public class VertigoState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentTurnRegenPerSecond = enemy.DefaultTurnRegenPerSecond;
+            enemy.currentTurnRegenPerSecond = enemy.myTemplate.DefaultTurnRegenPerSecond;
 
             enemy.ReturnToNormalState();
         }

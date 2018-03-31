@@ -35,7 +35,7 @@ public class TrailState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            enemy.currentEvasion = enemy.DefaultEvasion;
+            enemy.currentEvasion = enemy.myTemplate.DefaultEvasion;
 
             enemy.ReturnToNormalState();
         }

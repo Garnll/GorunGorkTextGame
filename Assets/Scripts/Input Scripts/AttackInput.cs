@@ -19,11 +19,18 @@ public class AttackInput : InputActions {
                 return;
             }
 
+            EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
+            if (enemy == null)
+            {
+                controller.LogStringWithReturn("No hay un " + separatedInputWords[1] + " al que atacar.");
+                return;
+            }
+
             controller.LogStringWithReturn("¡Inicia el combate!");
 
             TextUserInput.OnFight += StartFight;
 
-            controller.combatController.PrepareFight(npcToAttack, controller.playerManager);
+            controller.combatController.PrepareFight(enemy, controller.playerManager);
             controller.LogStringWithReturn(" ");
         }
         else
