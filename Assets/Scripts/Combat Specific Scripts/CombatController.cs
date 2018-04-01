@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class CombatController : MonoBehaviour {
 
+    public InventoryManager inventoryManager;
+    [Space(10)]
     public GameObject combatLayout;
     public RectTransform contentContainer;
     [Space(10)]
@@ -18,6 +20,9 @@ public class CombatController : MonoBehaviour {
     private Queue<string> enemyLog = new Queue<string>();
     private PlayerManager player;
     private Queue<string> playerLog = new Queue<string>();
+
+    private bool inInventory = false;
+    private int inventoryPage = 1;
 
     public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
     {
@@ -89,13 +94,41 @@ public class CombatController : MonoBehaviour {
     /// <param name="input"></param>
     public void ReceiveInput(string[] input, HabilitiesTextInput habilitiesInput)
     {
-        if (player.currentTurn < player.MaxTurn)
+        if (inInventory)
+        {
+            switch (input[0])
+            {
+                case "<":
+                    if (inventoryManager.DisplayInventory(this, inventoryPage - 1))
+                    {
+                        inventoryPage -= 1;
+                    }
+                    break;
+
+                case ">":
+                    if (inventoryManager.DisplayInventory(this, inventoryPage + 1))
+                    {
+                        inventoryPage += 1;
+                    }
+                    break;
+
+                case "s":
+                    ExitInventory();
+                    break;
+
+                default:
+                    UpdatePlayerLog("-");
+                    break;
+            }
+        }
+
+        if (player.currentTurn < player.MaxTurn && !inInventory)
         {
             UpdatePlayerLog("Aún no es tu turno.");
             return;
         }
 
-        if (input.Length >= 1)
+        if (input.Length >= 1 && !inInventory)
         {
             if (input.Length == 1)
             {
@@ -106,7 +139,7 @@ public class CombatController : MonoBehaviour {
                         break;
 
                     case "1":
-                        UpdatePlayerLog("Se debería abrir el inventario");
+                        EnterInInventory();
                         break;
 
                     case "2":
@@ -126,6 +159,27 @@ public class CombatController : MonoBehaviour {
             {
                 habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemy);
                 UpdatePlayerTurn();
+            }
+        }
+        else if (inInventory)
+        {
+            switch (input[0])
+            {
+                case "0":
+                    
+                    break;
+
+                case "1":
+                    
+                    break;
+
+                case "2":
+                    
+                    break;
+
+                default:
+                    UpdatePlayerLog("-");
+                    break;
             }
         }
     }
@@ -164,7 +218,7 @@ public class CombatController : MonoBehaviour {
                 + "!");
         }
 
-        playerUI.title.text = TextConverter.MakeFirstLetterUpper(player.playerName) + "\n" +
+        playerUI.title.text = "<b>" + TextConverter.MakeFirstLetterUpper(player.playerName) + "</b>" + "\n" +
             TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.jobName) +
             state;
     }
@@ -190,6 +244,11 @@ public class CombatController : MonoBehaviour {
 
     public void SetPlayerHabilities()
     {
+        if (inInventory)
+        {
+            return;
+        }
+
         habilitiesText.Clear();
 
         habilitiesText.Add("[0] Atacar");
@@ -219,11 +278,44 @@ public class CombatController : MonoBehaviour {
         playerUI.habilitiesText.text = string.Join("\n", habilitiesText.ToArray());
     }
 
+    public void SetPlayerHabilities(string newText)
+    {
+        playerUI.habilitiesText.text = newText;
+    }
+
     public void SetPlayerOptions()
     {
+        if (inInventory)
+        {
+            return;
+        }
+
+        inventoryPage = 1;
+
         playerUI.optionsText.text = "[1] Inventario \n" +
             "[2] Reposicionamiento \n" +
             "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("#") + "%)";
+    }
+
+    public void EnterInInventory()
+    {
+        inInventory = true;
+        UpdatePlayerLog("Abres el inventario");
+        player.currentTurn -= player.MaxTurn * 0.5f;
+        inventoryManager.DisplayInventory(this, inventoryPage);
+    }
+
+    public void ExitInventory()
+    {
+        inInventory = false;
+        UpdatePlayerLog("Sales del inventario");
+        SetPlayerOptions();
+        SetPlayerHabilities();
+    }
+
+    public void SetPlayerInventoryOptions(string newText)
+    {
+        playerUI.optionsText.text = newText;
     }
 
 

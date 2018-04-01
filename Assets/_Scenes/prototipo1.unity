@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 873116474}
   m_HandleRect: {fileID: 873116473}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3427,7 +3427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &841433918
@@ -7869,6 +7869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147e30c5edbda7e46afd2e9f3331e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 1178118716}
   combatLayout: {fileID: 1228525000710756, guid: 80946d64efc8b644ca05c3c15b2f7729,
     type: 2}
   contentContainer: {fileID: 841433917}
