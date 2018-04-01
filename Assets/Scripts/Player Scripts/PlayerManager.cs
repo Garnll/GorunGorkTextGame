@@ -111,23 +111,64 @@ public class PlayerManager : MonoBehaviour {
         currentState = defaultState;
     }
 
+    public void WasteTurn(float percentage)
+    {
+        currentTurn -= (maxTurn * percentage);
+        controller.combatController.UpdatePlayerTurn();
+    }
+
 
     public void AttackInCombat(EnemyNPC enemy)
     {
-        currentTurn -= (maxTurn * 0.8f);
-        controller.combatController.UpdatePlayerTurn();
+        WasteTurn(0.8f);
+
+        controller.combatController.UpdatePlayerLog("Has atacado.");
 
         int damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
 
+        float r = Random.Range(0f, 1f);
+
+        if (r <= characteristics.other.CriticalHitProbability(this))
+        {
+            controller.combatController.UpdatePlayerLog("¡CRITICO!");
+            damage *= 2;
+        }
+
         damage *= pacifier;
     
-        controller.combatController.UpdatePlayerLog("Has atacado.");
+
         enemy.ReceiveDamage(damage);
+    }
+
+    public void RepositionInCombat()
+    {
+        WasteTurn(0.5f);
+
+        controller.combatController.UpdatePlayerLog("Te mueves hacia un lado");
+
+        if (currentState.GetType() == typeof(TrailState) || currentState.GetType() == typeof(SupersonicState))
+        {
+            return;
+        }
+
+        if (characteristics.other.currentEvasion < 50)
+        {
+            characteristics.other.currentEvasion = 50;
+        }
+        else
+        {
+            characteristics.other.currentEvasion = 100;
+        }
+
+        Timer timer = Timer.Instance;
+
+        timer.StopCoroutine(timer.RepositionTime((1 * (characteristics.currentIntelligence / 5)), this));
+        timer.StartCoroutine(timer.RepositionTime((1 * (characteristics.currentIntelligence / 5)), this));
     }
 
     public void ChargeTurn()
     {
-        currentTurn += characteristics.other.currentTurnRegenPerSecond;
+        currentTurn += (characteristics.other.currentTurnRegenPerSecond + (0.03f * characteristics.currentDexterity));
 
         if (currentTurn >= maxTurn)
         {
@@ -185,8 +226,27 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(float damage)
     {
+        float e = Random.Range(0, 100);
+
+        if (e <= characteristics.other.currentEvasion)
+        {
+            controller.combatController.UpdatePlayerLog("¡Has evadido el golpe!");
+            return;
+        }
+
+        float r = Random.Range(0f, 1f);
+
+        if (r < 0.5f)
+        {
+            damage = damage - ((0.05f * characteristics.currentResistance) * damage); 
+        }
+        else if (r < 0.75f)
+        {
+            damage = damage - ((0.05f * (characteristics.currentResistance-1)) * damage);
+        }
+
         currentHealth -= damage;
         controller.combatController.UpdatePlayerLife();
 
@@ -202,13 +262,12 @@ public class PlayerManager : MonoBehaviour {
             currentState.DissableStateEffect(this);
         }
 
-        controller.combatController.UpdatePlayerLog("Has recibido " + damage + " puntos de daño.");
+        controller.combatController.UpdatePlayerLog("Has recibido " + damage.ToString("0.#") + " puntos de daño.");
     }
 
     public void TryToEscape(EnemyNPC enemy)
     {
-        currentTurn -= MaxTurn;
-        controller.combatController.UpdatePlayerTurn();
+        WasteTurn(1);
 
         float r = Random.Range(0f, 1f);
 

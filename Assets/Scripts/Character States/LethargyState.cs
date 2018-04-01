@@ -21,9 +21,9 @@ public class LethargyState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            for (int i = 0; i < enemy.habilities.Length; i++)
+            for (int i = 0; i < enemy.myTemplate.habilities.Length; i++)
             {
-                enemy.habilities[i].MakeAvailable(false);
+                enemy.myTemplate.habilities[i].MakeAvailable(false);
             }
         }
     }
@@ -45,9 +45,9 @@ public class LethargyState : CharacterState {
         {
             EnemyNPC enemy = character as EnemyNPC;
 
-            for (int i = 0; i < enemy.habilities.Length; i++)
+            for (int i = 0; i < enemy.myTemplate.habilities.Length; i++)
             {
-                enemy.habilities[i].MakeAvailable(true);
+                enemy.myTemplate.habilities[i].MakeAvailable(true);
             }
 
             enemy.ReturnToNormalState();

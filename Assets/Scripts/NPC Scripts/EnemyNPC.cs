@@ -8,7 +8,6 @@ public class EnemyNPC : MonoBehaviour {
     [HideInInspector] public float currentTurn;
     [HideInInspector] public float currentWill;
 
-    public Hability[] habilities;
     [HideInInspector] public CharacterState currentState;
 
     [HideInInspector] public int currentStrength;
@@ -19,7 +18,7 @@ public class EnemyNPC : MonoBehaviour {
     private int timePassed = 0;
     public int pacifier = 1;
 
-    [HideInInspector] public float currentCriticalHitProbability;
+    [HideInInspector] private float currentCriticalHitProbability;
 
     [HideInInspector] public float currentCooldownReduction;
 
@@ -62,6 +61,20 @@ public class EnemyNPC : MonoBehaviour {
         currentState = myTemplate.defaultState;
     }
 
+    public float CriticalHitProbability()
+    {
+        currentCriticalHitProbability = (myTemplate.DefaultCriticalHitProbability +
+            (currentDexterity * 0.01f));
+
+        return currentCriticalHitProbability;
+    }
+
+    public void WasteTurn (float toWaste)
+    {
+        currentTurn -= (myTemplate.MaxTurn * toWaste);
+        combatController.UpdateEnemyTurn();
+    }
+
     public void AttackInCombat(PlayerManager player)
     {
         if (currentTurn < myTemplate.MaxTurn)
@@ -69,19 +82,54 @@ public class EnemyNPC : MonoBehaviour {
             combatController.UpdateEnemyLog("Cómo es que está atacando?");
             return;
         }
-        currentTurn -= myTemplate.MaxTurn * 0.8f;
-        combatController.UpdateEnemyTurn();
 
-        int damage = currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
-        damage *= pacifier;
+        WasteTurn(0.8f);
 
         combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha atacado.");
+
+        int damage = currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
+
+        float r = Random.Range(0f, 1f);
+
+        if (r <= CriticalHitProbability())
+        {
+            combatController.UpdateEnemyLog("¡CRITICO!");
+            damage *= 2;
+        }
+
+        damage *= pacifier;
+
+
         player.ReceiveDamage(damage);
+    }
+
+    public void RepositionInCombat()
+    {
+        WasteTurn(0.5f);
+
+        if (currentState.GetType() == typeof(TrailState) || currentState.GetType() == typeof(SupersonicState))
+        {
+            return;
+        }
+
+        if (currentEvasion < 50)
+        {
+            currentEvasion = 50;
+        }
+        else
+        {
+            currentEvasion = 100;
+        }
+
+        Timer timer = Timer.Instance;
+
+        timer.StopCoroutine(timer.RepositionTime((1 * (currentIntelligence / 5)), this));
+        timer.StartCoroutine(timer.RepositionTime((1 * (currentIntelligence / 5)), this));
     }
 
     public void ChargeBySecond()
     {
-        currentTurn += currentTurnRegenPerSecond;
+        currentTurn += (currentTurnRegenPerSecond + (0.03f * currentDexterity));
         currentHealth += currentHealthRegenPerSecond;
 
         if (currentTurn >= myTemplate.MaxTurn)
@@ -130,10 +178,34 @@ public class EnemyNPC : MonoBehaviour {
         currentState.ApplyStateEffect(this);
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(float damage)
     {
+        float e = Random.Range(0, 100);
+
+        if (e <= currentEvasion)
+        {
+            combatController.UpdateEnemyLog("¡El " + myTemplate.npcName + " ha evadido el golpe!");
+            return;
+        }
+
+        float r = Random.Range(0f, 1f);
+
+        if (r < 0.5f)
+        {
+            damage = damage - ((0.05f * currentResistance) * damage);
+        }
+        else if (r < 0.75f)
+        {
+            damage = damage - ((0.05f * (currentResistance - 1)) * damage);
+        }
+
         currentHealth -= damage;
         combatController.UpdateEnemyLife();
+
+        if (currentState.GetType() == typeof(SupersonicState))
+        {
+            currentState.DissableStateEffect(this);
+        }
 
         if (currentHealth <= 0)
         {
@@ -146,8 +218,7 @@ public class EnemyNPC : MonoBehaviour {
 
     public void TryToEscape(PlayerManager player)
     {
-        currentTurn -= myTemplate.MaxTurn;
-        combatController.UpdateEnemyTurn();
+        WasteTurn(1);
 
         float r = Random.Range(0f, 1f);
 

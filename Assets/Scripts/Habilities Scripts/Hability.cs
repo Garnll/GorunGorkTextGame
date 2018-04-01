@@ -56,7 +56,7 @@ public abstract class Hability : ScriptableObject {
     {
         if (timeWaiter == null)
         {
-            timeWaiter = GameObject.FindWithTag("Timer").GetComponent<Timer>();
+            timeWaiter = Timer.Instance;
         }
 
         timeWaiter.StopCoroutine(timeWaiter.WaitHabilityCooldown(cooldownTime, this));

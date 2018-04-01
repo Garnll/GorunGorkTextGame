@@ -6,7 +6,7 @@
 public class PlayerOther : MonoBehaviour {
 
     [SerializeField] private float defaultCriticalHitProbability = 0;
-    [HideInInspector] public float currentCriticalHitProbability;
+    [HideInInspector] private float currentCriticalHitProbability;
 
     [SerializeField] private float defaultCooldownReduction = 0;
     [HideInInspector] public float currentCooldownReduction;
@@ -70,7 +70,6 @@ public class PlayerOther : MonoBehaviour {
     public void InitializeOthers()
     {
         currentCooldownReduction = defaultCooldownReduction;
-        currentCriticalHitProbability = defaultCriticalHitProbability;
         currentEvasion = defaultEvasion;
         currentHealthRegenPerSecond = defaultHealthRegenPerSecond;
         currentTurnRegenPerSecond = defaultTurnRegenPerSecond;
@@ -89,6 +88,14 @@ public class PlayerOther : MonoBehaviour {
             (enemy.currentState.magnitude);
 
         return escapeProbability;
+    }
+
+    public float CriticalHitProbability(PlayerManager player)
+    {
+        currentCriticalHitProbability = (defaultCriticalHitProbability +
+            (player.characteristics.currentDexterity * 0.01f));
+
+        return currentCriticalHitProbability;
     }
 
     public void ReduceEvasionBySecond()

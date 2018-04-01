@@ -143,7 +143,7 @@ public class CombatController : MonoBehaviour {
                         break;
 
                     case "2":
-                        UpdatePlayerLog("Aún no sé cómo funcionará reposicionar");
+                        player.RepositionInCombat();
                         break;
 
                     case "3":
@@ -227,7 +227,7 @@ public class CombatController : MonoBehaviour {
     {
         playerUI.lifeSlider.maxValue = player.MaxHealth;
         playerUI.lifeSlider.value = player.currentHealth;
-        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("#") + "%";
+        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
     }
 
     public void UpdatePlayerTurn()
@@ -294,7 +294,7 @@ public class CombatController : MonoBehaviour {
 
         playerUI.optionsText.text = "[1] Inventario \n" +
             "[2] Reposicionamiento \n" +
-            "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("#") + "%)";
+            "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("0") + "%)";
     }
 
     public void EnterInInventory()
@@ -384,7 +384,7 @@ public class CombatController : MonoBehaviour {
     {
         enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
-        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("#") + "%";
+        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("0") + "%";
     }
 
     public void UpdateEnemyTurn()
