@@ -34,6 +34,6 @@ MonoBehaviour:
   defaultDexterity: 1
   defaultCriticalHitProbability: 0
   defaultCooldownReduction: 0
-  defaultHealthRegenPerSecond: 2
+  defaultHealthRegenPerSecond: 0.2
   defaultTurnRegenPerSecond: 5
   defaultEvasion: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class CharacterState : ScriptableObject {
 
     public string stateName = "estado";
+    public int magnitude = 0;
     [TextArea] public string stateDescription;
     public int durationTime = 0;
 

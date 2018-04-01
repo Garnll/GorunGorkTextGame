@@ -80,9 +80,13 @@ public class PlayerOther : MonoBehaviour {
     /// Aun no implementada.
     /// </summary>
     /// <returns></returns>
-    public float EscapeProbability()
+    public float EscapeProbability(PlayerManager player, EnemyNPC enemy)
     {
-
+        escapeProbability =
+            (((enemy.myTemplate.MaxHealth - enemy.currentHealth) / enemy.myTemplate.MaxHealth) * 100) +
+            (player.characteristics.currentDexterity / 10) +
+            (player.currentState.magnitude) -
+            (enemy.currentState.magnitude);
 
         return escapeProbability;
     }

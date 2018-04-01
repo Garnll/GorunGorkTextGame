@@ -114,11 +114,6 @@ public class PlayerManager : MonoBehaviour {
 
     public void AttackInCombat(EnemyNPC enemy)
     {
-        if (currentTurn < maxTurn)
-        {
-            controller.combatController.UpdatePlayerLog("Aún no es tu turno.");
-            return;
-        }
         currentTurn -= (maxTurn * 0.8f);
         controller.combatController.UpdatePlayerTurn();
 
@@ -146,7 +141,8 @@ public class PlayerManager : MonoBehaviour {
         controller.combatController.UpdatePlayerTurn();
 
         CheckForStateDuration();
-
+        controller.combatController.SetPlayerHabilities();
+        controller.combatController.SetPlayerOptions();
     }
 
     private void CheckForStateDuration()
@@ -209,10 +205,32 @@ public class PlayerManager : MonoBehaviour {
         controller.combatController.UpdatePlayerLog("Has recibido " + damage + " puntos de daño.");
     }
 
+    public void TryToEscape(EnemyNPC enemy)
+    {
+        currentTurn -= MaxTurn;
+        controller.combatController.UpdatePlayerTurn();
+
+        float r = Random.Range(0f, 1f);
+
+        r *= 100;
+
+        if (r < characteristics.other.EscapeProbability(this, enemy))
+        {
+            controller.combatController.UpdatePlayerLog("Has huido.");
+            controller.combatController.StopCoroutine(controller.combatController.EndCombatByEscaping(this));
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(this));
+        }
+        else
+        {
+            controller.combatController.UpdatePlayerLog("No has podido huir.");
+        }
+    }
+
     private void Die()
     {
         isAlive = false;
         controller.combatController.UpdatePlayerLog("Has muerto.");
+        controller.combatController.StopCoroutine(controller.combatController.EndCombat(this));
         controller.combatController.StartCoroutine(controller.combatController.EndCombat(this));
     }
 }

@@ -144,10 +144,33 @@ public class EnemyNPC : MonoBehaviour {
         combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha recibido " + damage + " puntos de daño.");
     }
 
+    public void TryToEscape(PlayerManager player)
+    {
+        currentTurn -= myTemplate.MaxTurn;
+        combatController.UpdateEnemyTurn();
+
+        float r = Random.Range(0f, 1f);
+
+        r *= 100;
+
+        if (r <= myTemplate.EscapeProbability(this, player))
+        {
+            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha huido.");
+
+            combatController.StopCoroutine(combatController.EndCombatByEscaping(this));
+            combatController.StartCoroutine(combatController.EndCombatByEscaping(this));
+        }
+        else
+        {
+            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha intentado huir.");
+        }
+    }
+
     public void Die()
     {
         combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha muerto.");
 
+        combatController.StopCoroutine(combatController.EndCombat(this));
         combatController.StartCoroutine(combatController.EndCombat(this));
         isAlive = false;
     }

@@ -27,7 +27,7 @@ public class EmitHability : Hability {
 
             enemy.ReceiveDamage(damage);
 
-            float r = Random.Range(0, 1);
+            float r = Random.Range(0f, 1f);
             if (r <= (0.1f * habiltyLevel))
             {
                 enemy.ChangeState(stateToChange);

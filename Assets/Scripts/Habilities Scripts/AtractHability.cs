@@ -26,7 +26,7 @@ public class AtractHability : Hability {
             enemy.ReceiveDamage(10);
             enemy.currentEvasion = 0;
 
-            float r = Random.Range(0, 1);
+            float r = Random.Range(0f, 1f);
             if (r <= 0.3f)
             {
                 player.ChangeState(stateToChange);

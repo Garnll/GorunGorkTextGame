@@ -71,9 +71,10 @@ public class CombatController : MonoBehaviour {
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
-        InitializePlayer();
         enemyUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
+
         InitializeEnemy();
+        InitializePlayer();
     }
 
     private void UpdateTurns()
@@ -113,7 +114,7 @@ public class CombatController : MonoBehaviour {
                         break;
 
                     case "3":
-                        UpdatePlayerLog("Falta implementar escapar");
+                        player.TryToEscape(enemy);
                         break;
 
                     default:
@@ -172,7 +173,7 @@ public class CombatController : MonoBehaviour {
     {
         playerUI.lifeSlider.maxValue = player.MaxHealth;
         playerUI.lifeSlider.value = player.currentHealth;
-        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString() + "%";
+        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("#") + "%";
     }
 
     public void UpdatePlayerTurn()
@@ -190,15 +191,29 @@ public class CombatController : MonoBehaviour {
     public void SetPlayerHabilities()
     {
         habilitiesText.Clear();
+
         habilitiesText.Add("[0] Atacar");
         for (int i = 0; i < player.characteristics.playerJob.habilities.Count; i++)
         {
             Hability currentHability = player.characteristics.playerJob.habilities[i];
 
-            habilitiesText.Add("[0." + 
-                currentHability.jobIdentifier + "." + 
-                currentHability.habilityID + "] " + 
-                TextConverter.MakeFirstLetterUpper(currentHability.habilityName));
+            if (currentHability.isAvailable)
+            {
+                habilitiesText.Add("[0." +
+                    currentHability.jobIdentifier + "." +
+                    currentHability.habilityID + "] " +
+                    TextConverter.MakeFirstLetterUpper(currentHability.habilityName));
+            }
+            else
+            {
+                habilitiesText.Add("<color=#696969>" + 
+                    "[0." +
+                    currentHability.jobIdentifier + "." +
+                    currentHability.habilityID + "] " +
+                    TextConverter.MakeFirstLetterUpper(currentHability.habilityName) +
+                    ". . . . . . "+
+                    "</color>");
+            }
         }
 
         playerUI.habilitiesText.text = string.Join("\n", habilitiesText.ToArray());
@@ -208,7 +223,7 @@ public class CombatController : MonoBehaviour {
     {
         playerUI.optionsText.text = "[1] Inventario \n" +
             "[2] Reposicionamiento \n" +
-            "[3] Escapar (" + player.characteristics.other.EscapeProbability() + "%)";
+            "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("#") + "%)";
     }
 
 
@@ -277,7 +292,7 @@ public class CombatController : MonoBehaviour {
     {
         enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
-        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString() + "%";
+        enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("#") + "%";
     }
 
     public void UpdateEnemyTurn()
@@ -330,6 +345,16 @@ public class CombatController : MonoBehaviour {
         ReturnToRoom("¡Ganaste!");
     }
 
+    public IEnumerator EndCombatByEscaping(EnemyNPC runner)
+    {
+        CancelInvoke();
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.controller.CreateNewDisplay();
+        yield return new WaitForSeconds(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡El enemigo huyó!");
+    }
+
 
     public IEnumerator EndCombat(PlayerManager loser)
     {
@@ -340,6 +365,17 @@ public class CombatController : MonoBehaviour {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡Perdiste!");
     }
+
+    public IEnumerator EndCombatByEscaping(PlayerManager loser)
+    {
+        CancelInvoke();
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.controller.CreateNewDisplay();
+        yield return new WaitForSeconds(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡Huiste!");
+    }
+
 
     private void ReturnToRoom(string endMessage)
     {

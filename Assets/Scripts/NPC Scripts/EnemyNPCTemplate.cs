@@ -108,9 +108,13 @@ public class EnemyNPCTemplate : NPCTemplate {
     /// Aun no implementada.
     /// </summary>
     /// <returns></returns>
-    public float EscapeProbability()
+    public float EscapeProbability(EnemyNPC enemy, PlayerManager player)
     {
-
+        escapeProbability =
+            (((player.MaxHealth - player.currentHealth) / player.MaxHealth) * 100) +
+            (enemy.currentDexterity / 10) +
+            (enemy.currentState.magnitude) -
+            (player.currentState.magnitude);
 
         return escapeProbability;
     }
