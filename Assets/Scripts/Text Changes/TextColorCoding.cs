@@ -29,6 +29,11 @@ public class TextColorCoding : ScriptableObject {
     [SerializeField] private Color green = new Color(1, 1, 1, 1);
     [SerializeField] private Color blue = new Color(1, 1, 1, 1);
 
+    public Color[] GetColors()
+    {
+        Color[] colors = {white, grey, green, blue };
+        return colors;
+    }
 
     public string ChangeTextColor(string textToChange, TextColors newColor)
     {
