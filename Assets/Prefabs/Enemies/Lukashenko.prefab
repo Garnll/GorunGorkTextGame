@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4920057500709550}
   - component: {fileID: 114412493424072790}
+  - component: {fileID: 114556175729762458}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Lukashenko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,15 +56,38 @@ MonoBehaviour:
   currentHealth: 0
   currentTurn: 0
   currentWill: 0
-  habilities: []
   currentState: {fileID: 0}
   currentStrength: 0
   currentIntelligence: 0
   currentResistance: 0
   currentDexterity: 0
   pacifier: 1
-  currentCriticalHitProbability: 0
   currentCooldownReduction: 0
   currentHealthRegenPerSecond: 0
   currentTurnRegenPerSecond: 0
   currentEvasion: 0
+  isAlive: 1
+  combatController: {fileID: 0}
+  myAI: {fileID: 0}
+--- !u!114 &114556175729762458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724846261189214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f999792497762548bd64911086e27f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myNPC: {fileID: 0}
+  player: {fileID: 0}
+  defaultMode: 1
+  lifeThreshold1: 88
+  lifeThreshold2: 52
+  lifeThreshold3: 10.4
+  timeBetweenIterations: 2.01
+  turnThreshold1: 54
+  turnThreshold2: 28
+  turnThreshold3: 0
+  chanceOfChangingMode: 0.66

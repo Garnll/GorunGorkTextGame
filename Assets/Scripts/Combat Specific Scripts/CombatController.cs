@@ -24,6 +24,7 @@ public class CombatController : MonoBehaviour {
     private bool inInventory = false;
     private int inventoryPage = 1;
 
+
     public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
     {
         for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
@@ -57,10 +58,22 @@ public class CombatController : MonoBehaviour {
     public void StartFight()
     {
         ChangeLayout();
+
+        InitializeEnemy();
+        InitializePlayer();
+
         CancelInvoke();
         ClearCollections();
         StopAllCoroutines();
-        InvokeRepeating("UpdateTurns", 1, 1);
+        StartCoroutine(UpdateTurns());
+
+        if (enemy.myAI == null)
+        {
+            enemy.myAI = enemy.GetComponent<EnemyNPCAI>();
+        }
+        enemy.myAI.player = player;
+        enemy.myAI.myNPC = enemy;
+        enemy.myAI.StartAI();
     }
 
     private void ClearCollections()
@@ -77,15 +90,16 @@ public class CombatController : MonoBehaviour {
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
         enemyUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
-
-        InitializeEnemy();
-        InitializePlayer();
     }
 
-    private void UpdateTurns()
+    private IEnumerator UpdateTurns()
     {
-        player.ChargeTurn();
-        enemy.ChargeBySecond();
+        while (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            player.ChargeTurn();
+            enemy.ChargeBySecond();
+        }
     }
 
     /// <summary>
@@ -427,22 +441,19 @@ public class CombatController : MonoBehaviour {
     }
 
 
+
     public IEnumerator EndCombat(EnemyNPC loser)
     {
-        CancelInvoke();
-        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-        player.controller.CreateNewDisplay();
-        yield return new WaitForSeconds(2);
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡Ganaste!");
     }
 
     public IEnumerator EndCombatByEscaping(EnemyNPC runner)
     {
-        CancelInvoke();
-        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-        player.controller.CreateNewDisplay();
-        yield return new WaitForSeconds(2);
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡El enemigo huyó!");
     }
@@ -450,24 +461,28 @@ public class CombatController : MonoBehaviour {
 
     public IEnumerator EndCombat(PlayerManager loser)
     {
-        CancelInvoke();
-        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-        player.controller.CreateNewDisplay();
-        yield return new WaitForSeconds(2);
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡Perdiste!");
     }
 
     public IEnumerator EndCombatByEscaping(PlayerManager loser)
     {
-        CancelInvoke();
-        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-        player.controller.CreateNewDisplay();
-        yield return new WaitForSeconds(2);
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡Huiste!");
     }
 
+
+    private void EndAllCombat()
+    {
+        enemy.myAI.StartAI();
+        CancelInvoke();
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.controller.CreateNewDisplay();
+    }
 
     private void ReturnToRoom(string endMessage)
     {

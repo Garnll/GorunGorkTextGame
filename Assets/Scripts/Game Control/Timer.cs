@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour {
             if (instance == null)
             {
                 GameObject newTimer = new GameObject();
+                newTimer.name = "Timer";
                 instance = newTimer.AddComponent<Timer>();
             }
             return instance;
@@ -21,25 +22,25 @@ public class Timer : MonoBehaviour {
 
     public IEnumerator WaitHabilityCooldown(int time, Hability wichOne)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         wichOne.isAvailable = true;
     }
 
     public IEnumerator WaitHabilityCooldown(int time, Hability wichOne, PlayerManager player)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         player.controller.combatController.SetEnemyDescription();
         wichOne.isAvailable = true;
     }
 
     public IEnumerator RepositionTime(int time, PlayerManager player)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         player.characteristics.other.currentEvasion = player.characteristics.other.DefaultEvasion;
     }
     public IEnumerator RepositionTime(int time, EnemyNPC enemy)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         enemy.currentEvasion = enemy.myTemplate.DefaultEvasion;
     }
 

@@ -10,6 +10,8 @@ public class GameStart : MonoBehaviour {
     public Room originRoom;
 
     void Awake () {
+        Application.runInBackground = true;
+
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         controller.playerRoomNavigation.currentRoom = originRoom;
         controller.playerManager.Initialize();

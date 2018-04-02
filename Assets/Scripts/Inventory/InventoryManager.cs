@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour {
             totalPages = 1;
         }
 
-        if (page > totalPages && page < totalPages)
+        if (page > totalPages || page < totalPages)
         {
             return false;
         }

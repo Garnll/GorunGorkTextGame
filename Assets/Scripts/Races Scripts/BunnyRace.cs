@@ -20,6 +20,6 @@ public class BunnyRace : Race {
     /// <param name="player"></param>
     public override void ActivatePassiveHability(PlayerManager player)
     {
-        player.characteristics.other.currentEvasion = 10;
+        player.characteristics.other.BunnyEvasion(10);
     }
 }

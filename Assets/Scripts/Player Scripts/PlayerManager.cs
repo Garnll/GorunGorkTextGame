@@ -122,7 +122,7 @@ public class PlayerManager : MonoBehaviour {
     {
         WasteTurn(0.8f);
 
-        controller.combatController.UpdatePlayerLog("Has atacado.");
+        controller.combatController.UpdatePlayerLog( "Has atacado.");
 
         int damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
 
@@ -202,7 +202,7 @@ public class PlayerManager : MonoBehaviour {
     {
         while (isAlive)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             currentHealth += characteristics.other.currentHealthRegenPerSecond;
 
             if (currentHealth >= maxHealth)

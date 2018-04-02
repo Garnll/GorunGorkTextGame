@@ -2,7 +2,7 @@
 
 public class EnemyNPC : MonoBehaviour {
 
-    public EnemyNPCTemplate myTemplate;
+    [HideInInspector] public EnemyNPCTemplate myTemplate;
 
     [HideInInspector] public float currentHealth;
     [HideInInspector] public float currentTurn;
@@ -16,7 +16,7 @@ public class EnemyNPC : MonoBehaviour {
     [HideInInspector] public int currentDexterity;
 
     private int timePassed = 0;
-    public int pacifier = 1;
+    [HideInInspector] public int pacifier = 1;
 
     [HideInInspector] private float currentCriticalHitProbability;
 
@@ -30,9 +30,11 @@ public class EnemyNPC : MonoBehaviour {
 
     private float escapeProbability = 0;
 
-    public bool isAlive = true;
+    [HideInInspector] public bool isAlive = true;
 
-    CombatController combatController;
+    [HideInInspector] public CombatController combatController;
+
+    [HideInInspector] public EnemyNPCAI myAI;
 
 
     public void ReturnToNormalState()
@@ -106,6 +108,8 @@ public class EnemyNPC : MonoBehaviour {
     public void RepositionInCombat()
     {
         WasteTurn(0.5f);
+
+        combatController.UpdateEnemyLog("El " + myTemplate.npcName + " se ha movido a un lado.");
 
         if (currentState.GetType() == typeof(TrailState) || currentState.GetType() == typeof(SupersonicState))
         {

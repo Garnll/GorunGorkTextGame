@@ -63,6 +63,12 @@ public class PlayerOther : MonoBehaviour {
         }
     }
 
+    public void BunnyEvasion(float newEvasion)
+    {
+        defaultEvasion = newEvasion;
+        currentEvasion = defaultEvasion;
+    }
+
 
     /// <summary>
     /// Inicia las variables extras del jugador según sus defaults.
