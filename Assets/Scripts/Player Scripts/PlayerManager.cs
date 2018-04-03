@@ -162,8 +162,8 @@ public class PlayerManager : MonoBehaviour {
 
         Timer timer = Timer.Instance;
 
-        timer.StopCoroutine(timer.RepositionTime((1 * (characteristics.currentIntelligence / 5)), this));
-        timer.StartCoroutine(timer.RepositionTime((1 * (characteristics.currentIntelligence / 5)), this));
+        timer.StopCoroutine(timer.RepositionTime((1 + (characteristics.currentIntelligence / 5)), this));
+        timer.StartCoroutine(timer.RepositionTime((1 + (characteristics.currentIntelligence / 5)), this));
     }
 
     public void ChargeTurn()

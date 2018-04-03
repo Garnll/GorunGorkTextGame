@@ -128,8 +128,8 @@ public class EnemyNPC : MonoBehaviour {
 
         Timer timer = Timer.Instance;
 
-        timer.StopCoroutine(timer.RepositionTime((1 * (currentIntelligence / 5)), this));
-        timer.StartCoroutine(timer.RepositionTime((1 * (currentIntelligence / 5)), this));
+        timer.StopCoroutine(timer.RepositionTime((1 + (currentIntelligence / 5)), this));
+        timer.StartCoroutine(timer.RepositionTime((1 + (currentIntelligence / 5)), this));
     }
 
     public void ChargeBySecond()
