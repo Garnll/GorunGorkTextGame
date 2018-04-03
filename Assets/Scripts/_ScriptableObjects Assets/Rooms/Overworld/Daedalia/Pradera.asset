@@ -34,25 +34,31 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 2, y: 0, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Pradera.</b>\nEn la pradera suelen haber Osos B\xFAho buscando
+    comida."
   roomName: Pradera
   roomResponse: {fileID: 0}
-  npcTemplatesInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: be087d6650be65349874445f49389251, type: 2}
   exits:
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: 9848766604034c442b616a565e5694e7, type: 2}
-    exitDescription: Hay una salida al suroeste.
-    exitActionDescription: 
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: 3e16417275b98054c99067369e8e037e, type: 2}
-    exitDescription: Hay una salida al noroeste.
+    exitDescription: "Al <b>suroeste</b> est\xE1 la Biblioteca."
     exitActionDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: edd0d6524fccec043837ae0d894974aa, type: 2}
-    exitDescription: Hay una salida al norte.
+    exitDescription: "Hacia el <b>norte</b>, la Planta de Energ\xEDa."
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 6af8ea7b375d2394baefef2cc45dc961, type: 2}
-    exitDescription: Hay una salida al este.
+    exitDescription: La pradera se convierte en una playa hacia el <b>este</b>.
     exitActionDescription: 
-  enemiesInRoom: []
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
+    exitDescription: "Un camino empieza hacia el <b>oeste</b> acompa\xF1ado de algunas
+      casas. "
+    exitActionDescription: 
+  enemiesInRoom:
+  - {fileID: 0}
+  - {fileID: 0}
+  changeExits: 0

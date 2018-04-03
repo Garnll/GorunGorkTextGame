@@ -34,21 +34,21 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 2, y: 1, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Planta de Energ\xEDa</b>\nLa planta de Energ\xEDa se alza al
+    frente. Los operarios entran y salen del lugar conforme sus distintas jornadas
+    laborales terminan. Una gruesa l\xEDnea de cables se desplaza por el suelo hacia
+    el parque."
   roomName: "Planta de Energ\xEDa"
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: 3e16417275b98054c99067369e8e037e, type: 2}
-    exitDescription: Hay una salida al oeste.
-    exitActionDescription: 
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: 6af8ea7b375d2394baefef2cc45dc961, type: 2}
-    exitDescription: Hay una salida al sureste.
+    exitDescription: Al <b>sureste</b> hay una playa abandonada.
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 34e4d1cd315290e459e5af9ced5b5a31, type: 2}
-    exitDescription: Hay una salida al sur.
+    exitDescription: Las praderas se encuentran hacia el <b>sur</b>.
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

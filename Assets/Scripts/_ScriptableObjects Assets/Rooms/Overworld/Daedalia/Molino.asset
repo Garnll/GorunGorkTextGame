@@ -34,21 +34,19 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -1, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Molino.</b>\nCerca al r\xEDo hay un molino en funcionamiento
+    frente a un cultivo dorado. "
   roomName: Molino
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 060c27f3e6f4dfe46a80339e9da9cafe, type: 2}
-    exitDescription: Hay una salida al norte.
-    exitActionDescription: 
-  - myKeyword: 6
-    conectedRoom: {fileID: 11400000, guid: cf132df2e6e5f7445af905e6bc103211, type: 2}
-    exitDescription: Hay una salida al sureste.
+    exitDescription: Justo hacia el <b>norte</b> se encuentra el mercado.
     exitActionDescription: 
   - myKeyword: 4
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: Hay una salida al noreste.
+    exitDescription: "Al <b>noreste</b> est\xE1 el Parque."
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

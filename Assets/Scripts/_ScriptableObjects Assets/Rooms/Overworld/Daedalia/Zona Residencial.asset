@@ -34,33 +34,37 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: 0, z: 0}
-  roomDescription: 
+  roomDescription: '<b>Zona Residencial.</b>
+
+    A ambos lados del camino adoquinado hay faroles y casas con ventanas redondas.
+    Cables gruesos emergen del suelo.
+
+'
   roomName: Zona Residencial
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: b8ec59fb1e96b5f4dbb8278e8a192231, type: 2}
-    exitDescription: Hay una salida al suroeste.
+    exitDescription: "Al <b>suroeste</b> emerge el r\xEDo por debajo del parque. "
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: Hay una salida al oeste.
+    exitDescription: "El parque principal est\xE1 al <b>oeste</b>."
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 9848766604034c442b616a565e5694e7, type: 2}
-    exitDescription: Hay una salida al sur.
+    exitDescription: 'Hacia el <b>sur</b> se encuentra la biblioteca principal. '
     exitActionDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 3e16417275b98054c99067369e8e037e, type: 2}
-    exitDescription: Hay una salida al norte.
+    exitDescription: "Detr\xE1s de las casas, hacia el <b>norte</b> hay un canopi
+      que va desde las f\xE1bricas hacia la planta de energ\xEDa."
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 34e4d1cd315290e459e5af9ced5b5a31, type: 2}
-    exitDescription: Hay una salida al este.
-    exitActionDescription: 
-  - myKeyword: 4
-    conectedRoom: {fileID: 11400000, guid: edd0d6524fccec043837ae0d894974aa, type: 2}
-    exitDescription: Hay una salida al noreste.
+    exitDescription: "El camino acaba hacia el <b>este</b>, en donde hay una peque\xF1a
+      pradera."
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

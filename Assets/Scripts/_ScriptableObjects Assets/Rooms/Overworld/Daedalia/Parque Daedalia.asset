@@ -47,15 +47,16 @@ MonoBehaviour:
   exits:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 060c27f3e6f4dfe46a80339e9da9cafe, type: 2}
-    exitDescription: "Tiendas y carpas se levantan al oeste en el mercado.\r"
+    exitDescription: "Tiendas y carpas se levantan al <b>oeste</b> en el mercado.\r"
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: b8ec59fb1e96b5f4dbb8278e8a192231, type: 2}
-    exitDescription: "Al sur, el rio emerge de un pasaje subterr\xE1neo."
+    exitDescription: "Al <b>sur</b>, el rio emerge de un pasaje subterr\xE1neo."
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
-    exitDescription: Hay una salida al este.
+    exitDescription: "Un grupo de peque\xF1as casas se extienden a trav\xE9s de un
+      camino adoquinado al <b>este</b>."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
