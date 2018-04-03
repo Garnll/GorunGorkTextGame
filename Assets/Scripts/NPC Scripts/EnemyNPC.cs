@@ -206,6 +206,12 @@ public class EnemyNPC : MonoBehaviour {
         }
 
         currentHealth -= damage;
+
+        if (currentEvasion < myTemplate.DefaultEvasion)
+        {
+            currentEvasion = myTemplate.DefaultEvasion;
+        }
+
         combatController.UpdateEnemyLife();
 
         if (currentState.GetType() == typeof(SupersonicState))

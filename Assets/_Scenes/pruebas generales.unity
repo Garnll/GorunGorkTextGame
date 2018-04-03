@@ -2523,7 +2523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 134.00003}
+  m_AnchoredPosition: {x: 0, y: 134}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -6919,7 +6919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 405610293}
-  originRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
+  originRoom: {fileID: 11400000, guid: 086809731ef80f14eb8c0212c53b4c46, type: 2}
 --- !u!4 &1565567487
 Transform:
   m_ObjectHideFlags: 0

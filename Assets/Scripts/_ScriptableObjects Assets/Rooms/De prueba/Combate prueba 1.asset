@@ -14,7 +14,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,14 +27,26 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
       Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  roomPosition: {x: 5, y: 1, z: 0}
+  roomPosition: {x: 5, y: 1, z: 2}
   roomDescription: "Apareces en una habitaci\xF3n en blanco. Esta habitaci\xF3n es
     solo una prueba."
   roomName: combate room
@@ -54,3 +67,4 @@ MonoBehaviour:
     exitDescription: Hay una salida al noroeste.
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 1
