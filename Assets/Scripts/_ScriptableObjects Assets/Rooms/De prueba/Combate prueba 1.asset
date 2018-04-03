@@ -15,7 +15,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 6166facfc6b834d49937e637e0427e87, type: 2}
+    - {fileID: 11400000, guid: 4d79ee8888771b94ebb8d726947f0682, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -66,5 +66,6 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: be7f6498eb4880d49a10349c604f8e18, type: 2}
     exitDescription: Hay una salida al noroeste.
     exitActionDescription: 
-  enemiesInRoom: []
+  enemiesInRoom:
+  - {fileID: 0}
   changeExits: 1
