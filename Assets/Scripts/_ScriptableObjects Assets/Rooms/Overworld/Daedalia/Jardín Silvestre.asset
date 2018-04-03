@@ -14,7 +14,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 4d79ee8888771b94ebb8d726947f0682, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,7 +27,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
       Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -34,13 +47,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: 1, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Jard\xEDn Silvestre.</b>\nParece ser un lugar muy pac\xEDfico.
+    Algunas mariposas vuelan alrededor. Es extra\xF1o que haya un lugar tan bonito
+    entre una f\xE1brica y una planta de energ\xEDa."
   roomName: "Jard\xEDn Silvestre"
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: Hay una salida al suroeste.
-    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
+    exitDescription: "Atravesando unos arbustos est\xE1 la zona residencial, al <b>sur</b>."
+    exitActionDescription: Volviendo a la realidad.
   enemiesInRoom: []
+  changeExits: 0

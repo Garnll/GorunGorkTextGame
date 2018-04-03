@@ -34,29 +34,29 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: -1, z: 0}
-  roomDescription: 
+  roomDescription: "<b>R\xEDo.</b>\nLa melod\xEDa del r\xEDo resuena a medida que
+    sale de un pasillo subterr\xE1neo, justo debajo del parque. El r\xEDo se tuerce
+    hacia el noroeste pero hay un peque\xF1o puente con el cual cruzar al otro llado."
   roomName: "R\xEDo"
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: cf73656dbbb4ea84a9f69ef2058fe843, type: 2}
-    exitDescription: Hay una salida al oeste.
-    exitActionDescription: 
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: 060c27f3e6f4dfe46a80339e9da9cafe, type: 2}
-    exitDescription: Hay una salida al noroeste.
+    exitDescription: Hay un molino hacia el <b>oeste</b>.
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: cf132df2e6e5f7445af905e6bc103211, type: 2}
-    exitDescription: Hay una salida al sur.
+    exitDescription: "Al <b>sur</b> hay un gran campo lleno de cultivos que contin\xFAan
+      hacia un lago."
     exitActionDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
     exitDescription: Hay una salida al norte.
-    exitActionDescription: 
+    exitActionDescription: "El Parque est\xE1 al <b>norte</b>."
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 9848766604034c442b616a565e5694e7, type: 2}
-    exitDescription: Hay una salida al este.
+    exitDescription: "La Bibiloteca est\xE1 sobre una saliente al <b>este</b>."
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

@@ -34,17 +34,25 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: -1, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Biblioteca.</b>\nLa biblioteca est\xE1 constru\xEDda justo
+    en la orilla de un precipio que da con el bosque. Tiene grandes ventanales pero
+    parece estar cerrada. Seguramente los desarrolladores la consideraron dispensable
+    para el Alfa."
   roomName: Exterior de Biblioteca Daedalia
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: cf132df2e6e5f7445af905e6bc103211, type: 2}
-    exitDescription: Hay una salida al suroeste.
-    exitActionDescription: 
   - myKeyword: 5
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: Hay una salida al noroeste.
+    exitDescription: "Al <b>noroeste</b> est\xE1 el Parque."
+    exitActionDescription: 
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
+    exitDescription: "Al <b>norte</b> est\xE1n las casas de algunos ciudadanos."
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: b8ec59fb1e96b5f4dbb8278e8a192231, type: 2}
+    exitDescription: "Bajando una pendiente, hacia el <b>oeste</b>, est\xE1 el r\xEDo."
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

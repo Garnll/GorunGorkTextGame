@@ -47,5 +47,9 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
     exitDescription: "El Parque est\xE1 hacia el <b>este</b>."
     exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: cf73656dbbb4ea84a9f69ef2058fe843, type: 2}
+    exitDescription: "Bajando por un pe\xF1azco hacia el <b>sur</b> hay un molino."
+    exitActionDescription: "Saltas del pe\xF1azco hacia el molino y caes rodando."
   enemiesInRoom: []
   changeExits: 0
