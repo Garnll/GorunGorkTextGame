@@ -21,13 +21,12 @@ MonoBehaviour:
   npcGender: macho
   npcRace: {fileID: 11400000, guid: 5283649a6373e814f996c2a68f691d6e, type: 2}
   npcJob: {fileID: 11400000, guid: 9bcb2abb7e752b5428d65ea6061cb49b, type: 2}
-  npcInRoomDescription: "Un robot peque\xF1o camina lentamente. Reconoces este robot
-    como un \"flip flop\""
+  npcInRoomDescription: Un robot diminuto camina lentamente.
   npcDetailedDescription: Un robot con unas patas delgadas y largas. Bastantes resistentes,
     aunque usualmente evitan pelear, si no es necesario.
   enemyGameObject: {fileID: 1724846261189214, guid: aef6438e35076b64891822134e922e8f,
     type: 2}
-  maxHealth: 100
+  maxHealth: 20
   maxTurn: 100
   maxWill: 10
   habilities: []
