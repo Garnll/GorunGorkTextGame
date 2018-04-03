@@ -45,6 +45,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     private void CheckEnemiesInRoom()
     {
+        if (currentRoom)
+
         if (currentRoom.enemiesInRoom.Count == 0)
         {
             CreateEnemies();
@@ -67,6 +69,21 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     private void CreateEnemies()
     {
+        int howManyEnemies = 0;
+
+        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+        {
+            if (currentRoom.npcTemplatesInRoom[i].GetType() == typeof(EnemyNPCTemplate))
+            {
+                howManyEnemies++;
+            }
+        }
+
+        if (howManyEnemies < 1)
+        {
+            return;
+        }
+
         int exhaust = 0;
 
         int maxEnemies = Random.Range(1, 5);

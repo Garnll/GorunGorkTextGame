@@ -40,15 +40,18 @@ public class RoomDataSaver {
         roomData.roomDescriptionData = roomToSave.roomDescription;
         roomData.roomNameData = roomToSave.roomName;
         roomData.exitsData = new Exit_Data[roomToSave.exits.Count];
-        for (int i = 0; i < roomData.exitsData.Length; i++)
+        if (roomToSave.exits.Count > 0)
         {
-            roomData.exitsData[i] = new Exit_Data();
-            roomData.exitsData[i].myKeywordData = converter.ConvertFromKeyword(roomToSave.exits[i].myKeyword);
-            roomData.exitsData[i].connectedRoomPosition = roomToSave.exits[i].conectedRoom.roomPosition;
-            roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
-            roomData.exitsData[i].exitActionDescriptionData = roomToSave.exits[i].exitActionDescription;
+       
+            for (int i = 0; i < roomData.exitsData.Length; i++)
+            {
+                roomData.exitsData[i] = new Exit_Data();
+                roomData.exitsData[i].myKeywordData = converter.ConvertFromKeyword(roomToSave.exits[i].myKeyword);
+                roomData.exitsData[i].connectedRoomPosition = roomToSave.exits[i].conectedRoom.roomPosition;
+                roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
+                roomData.exitsData[i].exitActionDescriptionData = roomToSave.exits[i].exitActionDescription;
+            }
         }
-
         SaveGame.Save<Room_Data>(roomToSave.name, roomData, SaveGamePath.RoomDataPath);
     }
 
@@ -69,17 +72,32 @@ public class RoomDataSaver {
                 roomToLoad.roomPosition = roomDataLoad.roomPositionData;
                 roomToLoad.roomDescription = roomDataLoad.roomDescriptionData;
                 roomToLoad.roomName = roomDataLoad.roomNameData;
-                roomToLoad.exits.Clear();
-                for (int i = 0; i < roomDataLoad.exitsData.Length; i++)
+                if (roomDataLoad.exitsData.Length > 0)
                 {
-                    Exit loadExit = new Exit();
+                    roomToLoad.exits.Clear();
+                    for (int i = 0; i < roomDataLoad.exitsData.Length; i++)
+                    {
+                        Exit loadExit = new Exit();
 
-                    loadExit.myKeyword = converter.ConvertFromString(roomDataLoad.exitsData[i].myKeywordData);
-                    loadExit.conectedRoom = RoomEditionController.existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
-                    loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
-                    loadExit.exitActionDescription = roomDataLoad.exitsData[i].exitActionDescriptionData;
+                        loadExit.myKeyword = converter.ConvertFromString(roomDataLoad.exitsData[i].myKeywordData);
+                        if (roomDataLoad.exitsData[i].connectedRoomPosition != null)
+                        {
+                            if (RoomEditionController.existingRooms.ContainsKey(roomDataLoad.exitsData[i].connectedRoomPosition))
+                            {
+                                loadExit.conectedRoom = RoomEditionController.existingRooms[roomDataLoad.exitsData[i].connectedRoomPosition];
+                            }
+                            else
+                            {
+                                Debug.LogWarning("Se está intentando acceder a una habitación no existente. Vector: " 
+                                    + roomDataLoad.exitsData[i].connectedRoomPosition + ", Habitación: " +
+                                    roomDataLoad.roomNameData);
+                            }
+                        }
+                        loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
+                        loadExit.exitActionDescription = roomDataLoad.exitsData[i].exitActionDescriptionData;
 
-                    roomToLoad.exits.Add(loadExit);
+                        roomToLoad.exits.Add(loadExit);
+                    }
                 }
             }
         }

@@ -50,6 +50,7 @@ public class RoomEditionController : MonoBehaviour {
             else
             {
                 Debug.LogError("The room '" + newRoom.roomName + "' couldn't be added to Dictionary. Please change it's position");
+                Debug.LogError("The room '" + existingRooms[newRoom.roomPosition] + "' already Is there");
             }
         }
 
@@ -79,7 +80,10 @@ public class RoomEditionController : MonoBehaviour {
         else
         {
             currentAnalizedRoom.roomPosition = newRoomPosition;
-            CheckForOtherRoomsInArea(currentAnalizedRoom);
+            if (currentAnalizedRoom.changeExits)
+            {
+                CheckForOtherRoomsInArea(currentAnalizedRoom);
+            }
         }
 
         existingRooms.Add(currentAnalizedRoom.roomPosition, currentAnalizedRoom);
@@ -205,7 +209,16 @@ public class RoomEditionController : MonoBehaviour {
 
         for (int i = 0; i < exitDirections.Length; i++)
         {
-            currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], existingRooms[otherRoomsPositions[i]]));
+            if (existingRooms.ContainsKey(otherRoomsPositions[i]))
+            {
+                currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], existingRooms[otherRoomsPositions[i]]));
+            }
+            else
+            {
+                currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], null));
+            }
+
+
         }
     }
 

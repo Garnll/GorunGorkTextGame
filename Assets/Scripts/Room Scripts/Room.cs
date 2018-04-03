@@ -23,8 +23,8 @@ public class Room : SerializedScriptableObject {
     public List<Exit> exits = new List<Exit>();
 
 
-     public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
-    
+    public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
+    [HideInInspector]public bool changeExits = false;
 
     private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
 

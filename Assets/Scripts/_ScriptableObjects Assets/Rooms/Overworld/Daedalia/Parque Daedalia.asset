@@ -39,8 +39,7 @@ MonoBehaviour:
     pac\xEDficamente sobre las cabezas de las personas."
   roomName: Parque de Daedalia
   roomResponse: {fileID: 0}
-  npcTemplatesInRoom:
-  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 060c27f3e6f4dfe46a80339e9da9cafe, type: 2}
@@ -54,6 +53,8 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
     exitDescription: "Tiendas y carpas se levantan al oeste en el mercado.\r"
     exitActionDescription: 
-  enemiesInRoom:
-  - {fileID: 0}
-  - {fileID: 0}
+  - myKeyword: 4
+    conectedRoom: {fileID: 11400000, guid: 3e16417275b98054c99067369e8e037e, type: 2}
+    exitDescription: Hay una salida al noreste.
+    exitActionDescription: 
+  enemiesInRoom: []

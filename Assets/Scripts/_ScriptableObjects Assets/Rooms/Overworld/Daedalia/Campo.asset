@@ -40,3 +40,4 @@ MonoBehaviour:
   npcTemplatesInRoom: []
   exits: []
   enemiesInRoom: []
+  changeExits: 0

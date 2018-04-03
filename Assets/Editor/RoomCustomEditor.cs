@@ -38,6 +38,8 @@ public class RoomCustomEditor : OdinEditor {
             targetRoom.ChangePosition(newPosition);
         }
 
+        targetRoom.changeExits = GUILayout.Toggle(targetRoom.changeExits, "Change Exits?");
+
         GUILayout.Space(20);
 
         ///Saves descriptions, connected rooms, keywords, etc.
