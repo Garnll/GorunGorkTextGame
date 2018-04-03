@@ -24,7 +24,7 @@ public class Room : SerializedScriptableObject {
 
 
     public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
-    [HideInInspector]public bool changeExits = false;
+    [HideInInspector]public bool changeExits = true;
 
     private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
 
