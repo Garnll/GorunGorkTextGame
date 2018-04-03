@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0838a2d1616864fac294635243900e, type: 3}
+  m_Name: Flip Flop
+  m_EditorClassIdentifier: 
+  npcName: flip flop
+  keyword:
+  - flip
+  - flop
+  - flipflop
+  - robot
+  npcLevel: 0
+  npcGender: macho
+  npcRace: {fileID: 11400000, guid: 5283649a6373e814f996c2a68f691d6e, type: 2}
+  npcJob: {fileID: 11400000, guid: 9bcb2abb7e752b5428d65ea6061cb49b, type: 2}
+  npcInRoomDescription: "Un robot peque\xF1o camina lentamente. Reconoces este robot
+    como un \"flip flop\""
+  npcDetailedDescription: Un robot con unas patas delgadas y largas. Bastantes resistentes,
+    aunque usualmente evitan pelear, si no es necesario.
+  enemyGameObject: {fileID: 1724846261189214, guid: aef6438e35076b64891822134e922e8f,
+    type: 2}
+  maxHealth: 100
+  maxTurn: 100
+  maxWill: 10
+  habilities: []
+  defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
+  defaultStrength: 1
+  defaultIntelligence: 2
+  defaultResistance: 3
+  defaultDexterity: 1
+  defaultCriticalHitProbability: 0
+  defaultCooldownReduction: 0
+  defaultHealthRegenPerSecond: 0.2
+  defaultTurnRegenPerSecond: 5
+  defaultEvasion: 0

@@ -71,8 +71,6 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
         int maxEnemies = Random.Range(1, 5);
 
-        Debug.Log(maxEnemies);
-
         int randomCheck = Random.Range(0,(currentRoom.npcTemplatesInRoom.Count-1));
 
         while (currentRoom.enemiesInRoom.Count < maxEnemies && exhaust < 50)

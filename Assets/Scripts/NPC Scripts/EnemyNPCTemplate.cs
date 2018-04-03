@@ -29,7 +29,7 @@ public class EnemyNPCTemplate : NPCTemplate {
 
     [SerializeField] private float defaultCooldownReduction = 0;
 
-    [SerializeField] private float defaultHealthRegenPerSecond = 2;
+    [SerializeField] private float defaultHealthRegenPerSecond = 0.2f;
 
     [SerializeField] private float defaultTurnRegenPerSecond = 5;
 
