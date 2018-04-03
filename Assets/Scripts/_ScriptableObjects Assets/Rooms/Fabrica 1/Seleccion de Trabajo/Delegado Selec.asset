@@ -19,10 +19,36 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  roomPosition: {x: 4, y: 2, z: 0}
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 4, y: 2, z: 1}
   roomDescription: Entras a la sala de delegados. La puerta se cierra.
   roomName: delegado selec
   roomResponse: {fileID: 11400000, guid: 7a6796a1d69107345883c3899dcc27d1, type: 2}
-  interactableObjectsInRoom: []
-  exits: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 7
+    conectedRoom: {fileID: 11400000, guid: f99b124c779178b4ca6de127e8b5c97b, type: 2}
+    exitDescription: Hay una salida al suroeste.
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 1544a69ee210cf64bbdd7c175af436ca, type: 2}
+    exitDescription: Hay una salida al oeste.
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 77aca6d64d9d5bb4088b9876bbc2c676, type: 2}
+    exitDescription: Hay una salida al sur.
+    exitActionDescription: 
+  enemiesInRoom: []

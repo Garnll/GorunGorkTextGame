@@ -19,18 +19,34 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  roomPosition: {x: 0, y: 0, z: 0}
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 0, y: 0, z: 1}
   roomDescription: "Una vez m\xE1s recuperas tu consciencia, pero esta vez puedes
     notar que hay un cambio. Al abrir tus ojos ves que est\xE1s en una especie de
     contenedor, con un cristal justo en frente tuyo."
   roomName: lobby room 1
   roomResponse: {fileID: 0}
-  interactableObjectsInRoom: []
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 1032bfbb65b5c8842be2deda7aad39dc, type: 2}
-    exitDescription: Notas que el cristal funciona como una especie de compuerta,
-      y que si la empujas puedes <color=green> ir al norte. </color>
-    exitActionDescription: "Empujas el cristal, que se abre facilmente, y sales de
-      lo que llamar\xEDas tu \"celda\"."
+    exitDescription: Hay una salida al norte.
+    exitActionDescription: 
+  - myKeyword: 4
+    conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}
+    exitDescription: Hay una salida al noreste.
+    exitActionDescription: 
+  enemiesInRoom: []

@@ -19,25 +19,43 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  roomPosition: {x: 2, y: 1, z: 0}
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 2, y: 1, z: 1}
   roomDescription: "Pasas por la puerta, la cual se cierra una vez est\xE1s al otro
     lado. En esta nueva habitaci\xF3n solo eres capaz de ver unos pasillos alejandose
     los unos de los otros. Cada pasillo tiene un letrero, indicando al parecer a d\xF3nde
     dirigen."
   roomName: lobby room 4
   roomResponse: {fileID: 0}
-  interactableObjectsInRoom: []
+  npcTemplatesInRoom: []
   exits:
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: c28f533aefe848c4fad0b4f397a1ebc9, type: 2}
+    exitDescription: Hay una salida al oeste.
+    exitActionDescription: 
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: fa9f514c7f084af4ebf174bea52b43a2, type: 2}
-    exitDescription: Hay un pasillo con el letrero <color=blue>pacificador</color>
-      al <color=blue>sureste.</color>
+    exitDescription: Hay una salida al sureste.
+    exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: f99b124c779178b4ca6de127e8b5c97b, type: 2}
-    exitDescription: Hay un pasillo con el letrero <color=blue>operario</color> al
-      <color=blue>este.</color>
+    exitDescription: Hay una salida al este.
+    exitActionDescription: 
   - myKeyword: 4
     conectedRoom: {fileID: 11400000, guid: 1544a69ee210cf64bbdd7c175af436ca, type: 2}
-    exitDescription: Hay un pasillo con el letrero <color=blue>delegado</color> al
-      <color=blue>noreste.</color>
+    exitDescription: Hay una salida al noreste.
+    exitActionDescription: 
+  enemiesInRoom: []

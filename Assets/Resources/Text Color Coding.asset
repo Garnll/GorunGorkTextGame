@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   white: {r: 1, g: 1, b: 1, a: 1}
   grey: {r: 0.5588235, g: 0.5588235, b: 0.5588235, a: 1}
-  green: {r: 0.07586217, g: 1, b: 0, a: 1}
-  blue: {r: 0, g: 1, b: 1, a: 1}
+  green: {r: 0.042171266, g: 0.9558824, b: 0.577795, a: 1}
+  blue: {r: 0.047307514, g: 0.9191176, b: 0.810893, a: 1}

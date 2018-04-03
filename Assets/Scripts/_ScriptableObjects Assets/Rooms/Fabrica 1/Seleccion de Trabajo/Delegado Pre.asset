@@ -19,18 +19,41 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  roomPosition: {x: 3, y: 2, z: 0}
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 3, y: 2, z: 1}
   roomDescription: "Avanzas por un pasillo que se ve de alta tecnolog\xEDa. Letras
     y lenguajes extra\xF1os se ven pintados en los muros."
   roomName: delegado pre
   roomResponse: {fileID: 0}
-  interactableObjectsInRoom: []
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: e840bb1dcd88a3042b6e97c2e566cbd1, type: 2}
-    exitDescription: "A\xFAn puedes volver al pasillo por el sureste."
+    exitDescription: Hay una salida al suroeste.
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: f99b124c779178b4ca6de127e8b5c97b, type: 2}
+    exitDescription: Hay una salida al sur.
+    exitActionDescription: 
+  - myKeyword: 6
+    conectedRoom: {fileID: 11400000, guid: 77aca6d64d9d5bb4088b9876bbc2c676, type: 2}
+    exitDescription: Hay una salida al sureste.
+    exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: be7f6498eb4880d49a10349c604f8e18, type: 2}
-    exitDescription: "Al este hay una puerta, que tiene un segundo aviso que dice
-      \"Delegados\". (Si sigues por esta puerta, no podr\xE1s volver)."
+    exitDescription: Hay una salida al este.
+    exitActionDescription: 
+  enemiesInRoom: []
