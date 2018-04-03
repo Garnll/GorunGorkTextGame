@@ -205,10 +205,34 @@ public class RoomEditionController : MonoBehaviour {
 
     private void CreateCurrentRoomExits(Room currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
     {
-        currentlyExaminedRoom.exits.Clear();
+        //currentlyExaminedRoom.exits.Clear();
 
         for (int i = 0; i < exitDirections.Length; i++)
         {
+            bool exitFound = false;
+
+            for (int f = 0; f < currentlyExaminedRoom.exits.Count; f++)
+            {
+                if (currentlyExaminedRoom.exits[f].myKeyword == exitDirections[i])
+                {
+                    if (existingRooms.ContainsKey(otherRoomsPositions[i]))
+                    {
+                        currentlyExaminedRoom.exits[i].conectedRoom = existingRooms[otherRoomsPositions[i]];
+                    }
+                    else
+                    {
+                        currentlyExaminedRoom.exits[i].conectedRoom = null;
+                    }
+                    exitFound = true;
+                    break;
+                }
+            }
+
+            if (exitFound)
+            {
+                continue;
+            }
+
             if (existingRooms.ContainsKey(otherRoomsPositions[i]))
             {
                 currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], existingRooms[otherRoomsPositions[i]]));
@@ -217,8 +241,25 @@ public class RoomEditionController : MonoBehaviour {
             {
                 currentlyExaminedRoom.exits.Add(CreateExit(exitDirections[i], null));
             }
+        }
 
+        for (int i = 0; i < currentlyExaminedRoom.exits.Count; i++)
+        {
+            bool hasKeyword = false;
+            for (int f = 0; f < exitDirections.Length; f++)
+            {
+                if (exitDirections[f] == currentlyExaminedRoom.exits[i].myKeyword)
+                {
+                    hasKeyword = true;
+                    break;
+                }
+            }
 
+            if (!hasKeyword)
+            {
+                currentlyExaminedRoom.exits[i].myKeyword = DirectionKeyword.unrecognized;
+                currentlyExaminedRoom.exits[i].conectedRoom = null;
+            }
         }
     }
 
