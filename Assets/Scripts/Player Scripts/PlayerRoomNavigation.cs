@@ -67,17 +67,27 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     private void CreateEnemies()
     {
-        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+        int exhaust = 0;
+
+        int maxEnemies = Random.Range(1, 5);
+
+        Debug.Log(maxEnemies);
+
+        int randomCheck = Random.Range(0,(currentRoom.npcTemplatesInRoom.Count-1));
+
+        while (currentRoom.enemiesInRoom.Count < maxEnemies && exhaust < 50)
         {
-            if (currentRoom.npcTemplatesInRoom[i].GetType() == typeof(EnemyNPCTemplate))
+            if (currentRoom.npcTemplatesInRoom[randomCheck].GetType() == typeof(EnemyNPCTemplate))
             {
-                EnemyNPCTemplate enemy = currentRoom.npcTemplatesInRoom[i] as EnemyNPCTemplate;
+                EnemyNPCTemplate enemy = currentRoom.npcTemplatesInRoom[randomCheck] as EnemyNPCTemplate;
                 GameObject newEnemy = Instantiate(enemy.enemyGameObject, currentRoom.roomPosition, Quaternion.identity);
 
                 newEnemy.name = enemy.npcName;
                 newEnemy.GetComponent<EnemyNPC>().myTemplate = enemy;
                 currentRoom.enemiesInRoom.Add(newEnemy.GetComponent<EnemyNPC>());
             }
+            randomCheck = Random.Range(0, (currentRoom.npcTemplatesInRoom.Count - 1));
+            exhaust++;
         }
     }
 

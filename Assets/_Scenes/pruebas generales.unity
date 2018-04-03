@@ -2284,8 +2284,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.681072
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2358,7 +2358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 134.00002}
+  m_AnchoredPosition: {x: 0, y: 133.87769}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -3122,8 +3122,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Escribe aqui....
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d82e015a6db778347b74984d37376ddb, type: 2}
-  m_sharedMaterial: {fileID: 21861402263725522, guid: d82e015a6db778347b74984d37376ddb,
+  m_fontAsset: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
+  m_sharedMaterial: {fileID: 21480766876471014, guid: 322e96d9d37671c4c81c00fa40607691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4035,7 +4035,7 @@ Prefab:
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 93.4
+      value: 134.7
       objectReference: {fileID: 0}
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
@@ -4998,8 +4998,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d82e015a6db778347b74984d37376ddb, type: 2}
-  m_sharedMaterial: {fileID: 21861402263725522, guid: d82e015a6db778347b74984d37376ddb,
+  m_fontAsset: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
+  m_sharedMaterial: {fileID: 21480766876471014, guid: 322e96d9d37671c4c81c00fa40607691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5298,7 +5298,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: d82e015a6db778347b74984d37376ddb, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -6910,7 +6910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72400f966ad7cc4fa9afcd99cbefd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  font: {fileID: 11400000, guid: d82e015a6db778347b74984d37376ddb, type: 2}
+  font: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
   sizeChanger: 0
 --- !u!4 &1864269308
 Transform:
