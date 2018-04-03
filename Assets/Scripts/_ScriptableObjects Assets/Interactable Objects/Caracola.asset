@@ -11,11 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce3d17e18d448b4ca79ea22bffaaf23, type: 3}
   m_Name: Caracola
   m_EditorClassIdentifier: 
-  nounGender: 1
-  noun: Caracola
-  description: "Hay una peque\xF1a caracola en el suelo. "
-  interactions:
-  - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
-    isInverseInteraction: 0
-    textResponse: Agarras la caracola.
-    actionResponse: {fileID: 0}
+  nounGender: 0
+  noun: nombre
+  description: "Descripci\xF3n en la habitaci\xF3n"
+  interactions: []
