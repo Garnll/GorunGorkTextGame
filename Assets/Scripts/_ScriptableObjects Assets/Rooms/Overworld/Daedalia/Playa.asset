@@ -14,7 +14,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,7 +27,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
       Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -34,17 +47,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 3, y: 0, z: 0}
-  roomDescription: 
+  roomDescription: "<b>Playa Abandonada.</b>\nPeque\xF1as rocas y caracolas se acumulan
+    en la orilla conforme son arrastradas por las olas. Hacia el horizonte, en el
+    mar, no se ve ni una sola isla. "
   roomName: Playa
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: edd0d6524fccec043837ae0d894974aa, type: 2}
-    exitDescription: Hay una salida al noroeste.
-    exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 34e4d1cd315290e459e5af9ced5b5a31, type: 2}
-    exitDescription: Hay una salida al oeste.
+    exitDescription: "La pradera est\xE1 al <b>oeste</b>."
     exitActionDescription: 
   enemiesInRoom: []
+  changeExits: 0

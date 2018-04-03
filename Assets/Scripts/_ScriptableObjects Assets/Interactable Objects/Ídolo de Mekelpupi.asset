@@ -11,7 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce3d17e18d448b4ca79ea22bffaaf23, type: 3}
   m_Name: "\xCDdolo de Mekelpupi"
   m_EditorClassIdentifier: 
-  nounGender: 0
-  noun: nombre
-  description: "Descripci\xF3n en la habitaci\xF3n"
-  interactions: []
+  nounGender: 1
+  noun: roca
+  description: Hay una roca tallada con inscripciones en un lenguaje desconocido.
+    Emana un poco de luz tenue.
+  interactions:
+  - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
+    isInverseInteraction: 1
+    textResponse: "No puedes levantar el \xCDdolo de Mekelpupi."
+    actionResponse: {fileID: 0}

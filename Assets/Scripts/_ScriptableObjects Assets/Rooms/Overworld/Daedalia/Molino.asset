@@ -34,8 +34,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -1, z: 0}
-  roomDescription: "<b>Molino.</b>\nCerca al r\xEDo hay un molino en funcionamiento
-    frente a un cultivo dorado. "
+  roomDescription: "<b>Molino.</b>\nEl r\xEDo cruza hacia el oeste por un molino en
+    funcionamiento frente a un cultivo dorado. "
   roomName: Molino
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
