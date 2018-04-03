@@ -44,7 +44,12 @@ public class AnalizeHability : Hability {
 
     private void WaitForCooldown(PlayerManager player)
     {
-        timeWaiter.WaitHabilityCooldown(cooldownTime, this, player);
+        if (timeWaiter == null)
+        {
+            timeWaiter = Timer.Instance;
+        }
+        timeWaiter.StopCoroutine(timeWaiter.WaitHabilityCooldown(cooldownTime, this, player));
+        timeWaiter.StartCoroutine(timeWaiter.WaitHabilityCooldown(cooldownTime, this, player));
     }
 
 }

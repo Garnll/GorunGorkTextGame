@@ -15,6 +15,6 @@ MonoBehaviour:
   jobName: operario
   jobDescription: 
   habilities:
-  - {fileID: 11400000, guid: e92b0cb29465f4848a18ebc3782645a7, type: 2}
-  - {fileID: 11400000, guid: 70b46ac838acc5b48839a853f89671f4, type: 2}
   - {fileID: 11400000, guid: 9ef9dd1ed0330fd4db732c822281838f, type: 2}
+  - {fileID: 11400000, guid: 70b46ac838acc5b48839a853f89671f4, type: 2}
+  - {fileID: 11400000, guid: e92b0cb29465f4848a18ebc3782645a7, type: 2}

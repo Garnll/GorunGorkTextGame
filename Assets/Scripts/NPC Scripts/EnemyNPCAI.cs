@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// La IA de todo EnemyNPC. Requiere estar en un prefab.
+/// </summary>
 public class EnemyNPCAI : MonoBehaviour {
 
     public enum EnemyMode

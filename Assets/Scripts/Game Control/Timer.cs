@@ -30,7 +30,6 @@ public class Timer : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(time);
         player.controller.combatController.SetEnemyDescription();
-        wichOne.isAvailable = true;
     }
 
     public IEnumerator RepositionTime(int time, PlayerManager player)

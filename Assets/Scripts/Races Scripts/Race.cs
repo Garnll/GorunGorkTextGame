@@ -11,4 +11,9 @@ public abstract class Race : ScriptableObject {
     public abstract void ChangePlayerStats(PlayerCharacteristics playerStats);
 
     public abstract void ActivatePassiveHability(PlayerManager player);
+
+    public virtual void ActivatePassiveHability(EnemyNPC player)
+    {
+
+    }
 }

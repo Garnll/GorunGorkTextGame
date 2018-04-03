@@ -41,6 +41,7 @@ public class EnemyNPC : MonoBehaviour {
     {
         currentState = myTemplate.defaultState;
         timePassed = 0;
+        combatController.ChangeEnemyState();
     }
 
     public void StartCombat(CombatController controller)
@@ -180,6 +181,7 @@ public class EnemyNPC : MonoBehaviour {
     {
         currentState = newState;
         currentState.ApplyStateEffect(this);
+        combatController.ChangeEnemyState();
     }
 
     public void ReceiveDamage(float damage)

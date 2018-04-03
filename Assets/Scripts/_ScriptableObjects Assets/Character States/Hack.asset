@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Hack
   m_EditorClassIdentifier: 
   stateName: hack
+  magnitude: 0
   stateDescription: Fuiste hackeado.
-  durationTime: 0
+  durationTime: 5

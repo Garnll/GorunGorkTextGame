@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   habilityID: 2
   jobIdentifier: 2
-  habilityName: schupiteiru
+  habilityName: desaparecer
   habilityDescription: 
+  timeWaiter: {fileID: 0}
   turnConsuption: 40
   cooldownTime: 4
   stateToChange: {fileID: 11400000, guid: 3bdba4cd86915b040884230a59d5b24a, type: 2}
   habiltyLevel: 1
+  isAvailable: 1
