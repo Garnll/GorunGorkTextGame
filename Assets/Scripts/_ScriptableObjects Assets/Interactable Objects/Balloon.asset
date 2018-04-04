@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: Balloon
   m_EditorClassIdentifier: 
   nounGender: 0
-  noun: globo
+  nouns:
+  - globo
   description: Hay un globo de prueba flotando por ahi.
   interactions:
   - inputAction: {fileID: 11400000, guid: 7a5de0dfac0692642b8f2d7a2ae1b1b1, type: 2}

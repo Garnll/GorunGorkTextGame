@@ -101,8 +101,8 @@ public class ItemHandler : MonoBehaviour {
         {
             for (int f = 0; f < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; f++)
             {
-                if (objectsFound[i].noun == 
-                    controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[f].interactableObject.noun)
+                if (objectsFound[i].nouns == 
+                    controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[f].interactableObject.nouns)
                 {
                     objectToInteract = controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[f].interactableObject;
                     break;
@@ -132,7 +132,7 @@ public class ItemHandler : MonoBehaviour {
         {
             for (int f = 0; f < inventoryManager.nounsInInventory.Count; f++)
             {
-                if (objectsFound[i].noun == inventoryManager.nounsInInventory[f].noun)
+                if (objectsFound[i].nouns == inventoryManager.nounsInInventory[f].nouns)
                 {
                     objectToInteract = inventoryManager.nounsInInventory[f];
                     break;
@@ -168,12 +168,12 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
         {
-            objectToDisplay = inventoryManager.nounsInInventory[i].noun;
+            objectToDisplay = inventoryManager.nounsInInventory[i].nouns[0];
 
             if (inventoryManager.nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].noun;
+                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].nouns[0];
             else
-                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].noun;
+                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].nouns[0];
 
             combinedText.Add(objectToDisplay);
         }
@@ -197,12 +197,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (examineInteraction == null)
         {
-            string objectToDisplay = objectToExamine.noun;
+            string objectToDisplay = objectToExamine.nouns[0];
 
             if (objectToExamine.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToExamine.noun;
+                objectToDisplay = "el " + objectToExamine.nouns[0];
             else
-                objectToDisplay = "la " + objectToExamine.noun;
+                objectToDisplay = "la " + objectToExamine.nouns[0];
 
             controller.LogStringWithReturn("No logras examinar " + objectToDisplay + ".");
             return;
@@ -226,12 +226,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (takeInteraction == null)
         {
-            string objectToDisplay = objectToTake.noun;
+            string objectToDisplay = objectToTake.nouns[0];
 
             if (objectToTake.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToTake.noun;
+                objectToDisplay = "el " + objectToTake.nouns[0];
             else
-                objectToDisplay = "la " + objectToTake.noun;
+                objectToDisplay = "la " + objectToTake.nouns[0];
 
             controller.LogStringWithReturn("No se puede coger " + objectToDisplay + ".");
             return;
@@ -275,12 +275,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (throwInteraction == null)
         {
-            string objectToDisplay = objectToThrow.noun;
+            string objectToDisplay = objectToThrow.nouns[0];
 
             if (objectToThrow.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToThrow.noun;
+                objectToDisplay = "el " + objectToThrow.nouns[0];
             else
-                objectToDisplay = "la " + objectToThrow.noun;
+                objectToDisplay = "la " + objectToThrow.nouns[0];
 
             controller.LogStringWithReturn("No se puede tirar " + objectToDisplay + ".");
             return;
@@ -319,12 +319,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (useInteraction == null)
         {
-            string objectToDisplay = objectToUse.noun;
+            string objectToDisplay = objectToUse.nouns[0];
 
             if (objectToUse.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToUse.noun;
+                objectToDisplay = "el " + objectToUse.nouns[0];
             else
-                objectToDisplay = "la " + objectToUse.noun;
+                objectToDisplay = "la " + objectToUse.nouns[0];
 
             controller.LogStringWithReturn("No se puede usar " + objectToDisplay + ".");
             return;

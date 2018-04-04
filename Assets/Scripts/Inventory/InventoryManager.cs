@@ -26,12 +26,12 @@ public class InventoryManager : MonoBehaviour {
         string newNounToDisplay;
         for (int i = 0; i < nounsInInventory.Count; i++)
         {
-            newNounToDisplay = nounsInInventory[i].noun;
+            newNounToDisplay = nounsInInventory[i].nouns[0];
 
             if (nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                newNounToDisplay = "\n-Un " + nounsInInventory[i].noun;
+                newNounToDisplay = "\n-Un " + nounsInInventory[i].nouns[0];
             else
-                newNounToDisplay = "\n-Una " + nounsInInventory[i].noun;
+                newNounToDisplay = "\n-Una " + nounsInInventory[i].nouns[0];
             
 
             textToDisplay += newNounToDisplay;
@@ -65,9 +65,9 @@ public class InventoryManager : MonoBehaviour {
         {
             int display = i - (totalPages * (page - 1));
 
-            newNounToDisplay = nounsInInventory[i].noun;
+            newNounToDisplay = nounsInInventory[i].nouns[0];
 
-            newNounToDisplay = "\n[" + display + "] " + TextConverter.MakeFirstLetterUpper(nounsInInventory[i].noun);
+            newNounToDisplay = "\n[" + display + "] " + TextConverter.MakeFirstLetterUpper(nounsInInventory[i].nouns[0]);
 
 
             textToDisplay += newNounToDisplay;
