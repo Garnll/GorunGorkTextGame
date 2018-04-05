@@ -34,13 +34,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: 1, z: 0}
-  roomDescription: 
-  roomName: "Jard\xEDn Silvestre"
+  roomDescription: "<b>Jard\xEDn Silvestre.</b>\nParece ser un lugar muy pac\xEDfico.
+    Algunas mariposas vuelan alrededor. Es extra\xF1o que haya un lugar tan bonito
+    entre una f\xE1brica y una planta de energ\xEDa."
+  roomName: Jardin Silvestre
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: Hay una salida al suroeste.
-    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: e2d89b899ca079b46be20e65bc3f6157, type: 2}
+    exitDescription: "Atravesando unos arbustos est\xE1 la zona residencial, al <b>sur</b>."
+    exitActionDescription: Volviendo a la realidad.
   enemiesInRoom: []
+  changeExits: 1
