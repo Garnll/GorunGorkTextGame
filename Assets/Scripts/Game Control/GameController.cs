@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     public PlayerRoomNavigation playerRoomNavigation;
     public CombatController combatController;
 
+    [HideInInspector] public List<string> exitDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
     [HideInInspector] public ItemHandler itemHandler;
@@ -69,11 +70,7 @@ public class GameController : MonoBehaviour {
 
         UnpackRoom();
 
-        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
-        string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
-
-        string combinedText = playerRoomNavigation.currentRoom.roomDescription 
-            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
+        string combinedText = RoomDescription();
 
         currentRoomDescription = combinedText;
 
@@ -93,9 +90,12 @@ public class GameController : MonoBehaviour {
     /// </summary>
     private void UnpackRoom()
     {
-        PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
-        playerRoomNavigation.CheckForNPCs();
         playerRoomNavigation.AddExitsToController();
+
+        PrepareObjectsToBeInteracted(playerRoomNavigation.currentRoom);
+
+        playerRoomNavigation.CheckForNPCs();
+
 
         playerRoomNavigation.TriggerRoomResponse();
     }
@@ -111,10 +111,22 @@ public class GameController : MonoBehaviour {
                 string descriptionNotInInventory = currentRoom.visibleObjectsInRoom[i].interactableObject.description;
                 if (descriptionNotInInventory != null)
                 {
-                    interactionDescriptionsInRoom.Add(descriptionNotInInventory);
+                    interactionDescriptionsInRoom.Add(descriptionNotInInventory + ".");
                 }
             }
         }
+    }
+
+    private string RoomDescription()
+    {
+        string joinedExitDescriptions = string.Join("\n", exitDescriptionsInRoom.ToArray());
+        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
+        string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
+
+        string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedExitDescriptions + "\n"
+            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
+
+        return combinedText;
     }
 
     /// <summary>
@@ -126,11 +138,8 @@ public class GameController : MonoBehaviour {
     {
         ClearCollectionsForNewRoom();
         UnpackRoom();
-        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
-        string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
 
-        string combinedText = playerRoomNavigation.currentRoom.roomDescription
-            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
+        string combinedText = RoomDescription();
 
         currentRoomDescription = combinedText;
 

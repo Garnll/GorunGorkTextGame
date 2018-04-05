@@ -52,7 +52,8 @@ MonoBehaviour:
   roomName: combate room
   roomResponse: {fileID: 0}
   npcTemplatesInRoom:
-  - {fileID: 11400000, guid: 9808674496bc46943b94f6ff4a24f0b3, type: 2}
+  - {fileID: 11400000, guid: be087d6650be65349874445f49389251, type: 2}
+  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
   exits:
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: 1080ac4703d1bd54abb61b1aed9faca2, type: 2}
@@ -66,6 +67,5 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: be7f6498eb4880d49a10349c604f8e18, type: 2}
     exitDescription: Hay una salida al noroeste.
     exitActionDescription: 
-  enemiesInRoom:
-  - {fileID: 0}
+  enemiesInRoom: []
   changeExits: 1
