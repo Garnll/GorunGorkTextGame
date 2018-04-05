@@ -54,18 +54,7 @@ MonoBehaviour:
   npcTemplatesInRoom:
   - {fileID: 11400000, guid: be087d6650be65349874445f49389251, type: 2}
   - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
-  exits:
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: 1080ac4703d1bd54abb61b1aed9faca2, type: 2}
-    exitDescription: Hay una salida al suroeste.
-    exitActionDescription: 
-  - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: 77aca6d64d9d5bb4088b9876bbc2c676, type: 2}
-    exitDescription: Hay una salida al oeste.
-    exitActionDescription: 
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: be7f6498eb4880d49a10349c604f8e18, type: 2}
-    exitDescription: Hay una salida al noroeste.
-    exitActionDescription: 
-  enemiesInRoom: []
+  exits: []
+  enemiesInRoom:
+  - {fileID: 0}
   changeExits: 1

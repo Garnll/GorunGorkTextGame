@@ -10,6 +10,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class RoomVisualMapper : MonoBehaviour {
 
+    public Transform mapParent;
     public Transform map0Parent;
     public Transform map10Parent;
     public GameObject roomSprite;
@@ -27,7 +28,22 @@ public class RoomVisualMapper : MonoBehaviour {
 
         for (int i = 0; i < mappedRooms.Length; i++)
         {
-            roomImagesDictionary.Add(mappedRooms[i].GetComponent<RoomSprite>().myRoom, mappedRooms[i]);
+            RoomSprite roomSprite = mappedRooms[i].GetComponent<RoomSprite>();
+
+            if (roomSprite.myRoom != null)
+            {
+                if (roomImagesDictionary.ContainsKey(roomSprite.myRoom))
+                {
+                    DestroyImmediate(roomImagesDictionary[roomSprite.myRoom]);
+                    roomImagesDictionary.Remove(roomSprite.myRoom);
+                }
+
+                roomImagesDictionary.Add(roomSprite.myRoom, mappedRooms[i]);
+            }
+            else
+            {
+                DestroyImmediate(roomSprite.gameObject);
+            }
         }
 
         RoomSprite.OnDestroyed += EliminateRoomFromDictionary;
@@ -59,6 +75,7 @@ public class RoomVisualMapper : MonoBehaviour {
         if (roomImagesDictionary.ContainsKey(roomToPut))
         {
             roomImagesDictionary[roomToPut].transform.SetPositionAndRotation(roomToPut.roomPosition, Quaternion.identity);
+            roomImagesDictionary[roomToPut].transform.SetParent(FindParent(roomImagesDictionary[roomToPut]).transform);
         }
         else
         {
@@ -73,12 +90,28 @@ public class RoomVisualMapper : MonoBehaviour {
             {
                 newRoomImage.transform.parent = map10Parent;
             }
+            else
+            {
+                newRoomImage.transform.parent = FindParent(newRoomImage).transform;
+            }
 
             newRoomImage.GetComponent<RoomSprite>().myRoom = roomToPut;
             roomImagesDictionary.Add(roomToPut, newRoomImage);
         }
 
         PutExitsInPlace(roomToPut);
+    }
+
+    private GameObject FindParent(GameObject roomImage)
+    {
+        GameObject newTransform = GameObject.Find("Map At " + roomImage.transform.position.z + " Z");
+        if (newTransform == null)
+        {
+            newTransform = new GameObject();
+            newTransform.transform.SetParent(mapParent);
+            newTransform.name = "Map At " + roomImage.transform.position.z + " Z";
+        }
+        return newTransform;
     }
 
     private void PutExitsInPlace(Room roomToPutExits)
