@@ -46,7 +46,7 @@ public class ItemKeywordHandler : SerializedMonoBehaviour {
                     bool existsInDictionary = false;
                     for (int g = 0; g < itemKeywordDictionary[interactableObjects[i].nouns[f]].Count; g++)
                     {
-                        if (itemKeywordDictionary[interactableObjects[i].nouns[f]][i] == interactableObjects[i])
+                        if (itemKeywordDictionary[interactableObjects[i].nouns[f]][g] == interactableObjects[i])
                         {
                             existsInDictionary = true;
                             break;

@@ -15,6 +15,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     Dictionary<DirectionKeyword, Exit> exitDictionary = new Dictionary<DirectionKeyword, Exit>();
 
+    Dictionary<string, int> enemyCounter = new Dictionary<string, int>();
+
     /// <summary>
     /// Le envía al GameController las salidas de la habitación actual.
     /// </summary>
@@ -26,7 +28,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
             if (currentRoom.exits[i].exitDescription != "")
             {
-                controller.interactionDescriptionsInRoom.Add(currentRoom.exits[i].exitDescription);
+                controller.exitDescriptionsInRoom.Add(currentRoom.exits[i].exitDescription);
             }
         }
     }
@@ -51,18 +53,65 @@ public class PlayerRoomNavigation : MonoBehaviour {
         {
             CreateEnemies();
         }
+
+
         for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
         {
             if (currentRoom.enemiesInRoom[i].isAlive)
             {
                 currentRoom.enemiesInRoom[i].gameObject.SetActive(true);
-                controller.npcDescriptionsInRoom.Add(currentRoom.enemiesInRoom[i].myTemplate.npcInRoomDescription);
+                if (!enemyCounter.ContainsKey(currentRoom.enemiesInRoom[i].myTemplate.npcName))
+                {
+                    enemyCounter.Add(currentRoom.enemiesInRoom[i].myTemplate.npcName, 1);
+                }
+                else
+                {
+                    enemyCounter[currentRoom.enemiesInRoom[i].myTemplate.npcName]++;
+                }
             }
             else
             {
                 Destroy(currentRoom.enemiesInRoom[i].gameObject);
                 currentRoom.enemiesInRoom.RemoveAt(i);
                 i--;
+            }
+        }
+
+        DisplayEnemies();
+    }
+
+
+    private void DisplayEnemies()
+    {
+        foreach (string enemy in enemyCounter.Keys)
+        {
+            switch (enemyCounter[enemy])
+            {
+                default:
+                case 1:
+                    controller.npcDescriptionsInRoom.Add("Hay un " + 
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
+                case 2:
+                    controller.npcDescriptionsInRoom.Add("Hay dos " + 
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
+                case 3:
+                    controller.npcDescriptionsInRoom.Add("Hay tres " +
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
+                case 4:
+                    controller.npcDescriptionsInRoom.Add("Hay cuatro " +
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
+                case 5:
+                    controller.npcDescriptionsInRoom.Add("Hay cinco " +
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
+                case 6:
+                    controller.npcDescriptionsInRoom.Add("Hay seis " +
+                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                    break;
             }
         }
     }
@@ -86,9 +135,9 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
         int exhaust = 0;
 
-        int maxEnemies = Random.Range(1, 3);
+        int maxEnemies = Random.Range(0, 5);
 
-        int randomCheck = Random.Range(0,(currentRoom.npcTemplatesInRoom.Count-1));
+        int randomCheck = Random.Range(0, (currentRoom.npcTemplatesInRoom.Count - 1));
 
         while (currentRoom.enemiesInRoom.Count < maxEnemies && exhaust < 50)
         {

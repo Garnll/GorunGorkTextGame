@@ -49,8 +49,8 @@ public class RoomEditionController : MonoBehaviour {
             }
             else
             {
-                Debug.LogError("The room '" + newRoom.roomName + "' couldn't be added to Dictionary. Please change it's position");
-                Debug.LogError("The room '" + existingRooms[newRoom.roomPosition] + "' already Is there");
+                Debug.LogError("Habitación '" + newRoom.roomName + "' no pudo añadirse al Diccionario. Por favor cambiar su posición.");
+                Debug.LogError("La habitación '" + existingRooms[newRoom.roomPosition] + "' ya está ahi.");
             }
         }
 
@@ -74,7 +74,7 @@ public class RoomEditionController : MonoBehaviour {
 
         if (existingRooms.ContainsKey(newRoomPosition))
         {
-            Debug.LogError("There's already a Room on position " + newRoomPosition.ToString());
+            Debug.LogError("Ya hay una habitación en la posición: " + newRoomPosition.ToString());
             currentAnalizedRoom.roomPosition = oldRoomPosition;
         }
         else
@@ -94,7 +94,7 @@ public class RoomEditionController : MonoBehaviour {
     private void SaveChanges(Room currentAnalizedRoom)
     {
         RoomDataSaver.SaveData(currentAnalizedRoom);
-        Debug.Log("Saved Room: " + currentAnalizedRoom.name.ToString());
+        Debug.Log("Habitación salvada: " + currentAnalizedRoom.name.ToString());
         PutVisualRepresentation(currentAnalizedRoom);
     }
 
@@ -144,7 +144,7 @@ public class RoomEditionController : MonoBehaviour {
         }
         else
         {
-            Debug.LogWarning("Couldn't Detect any Exits");
+            Debug.LogWarning("No se encontraton salidas.");
         }
     }
 
