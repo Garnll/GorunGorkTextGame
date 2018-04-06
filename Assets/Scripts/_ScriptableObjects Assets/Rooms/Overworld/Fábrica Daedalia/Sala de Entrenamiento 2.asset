@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: Sala de Entrenamiento 2
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: -2, y: -1, z: 1}
+  roomDescription: 
+  roomName: Entrenamiento 2
+  roomResponse: {fileID: 11400000, guid: 9ab33f72e8e276f419b12a8e2c69938e, type: 2}
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 4d96b3fe05d45374da348ad23f424f16, type: 2}
+    exitDescription: Hay una salida al este.
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: c0dcb13cf603ce04b85e256325b77fdb, type: 2}
+    exitDescription: Hay una salida al sur.
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

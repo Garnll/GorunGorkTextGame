@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 5 - Rupa
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 0, y: 0, z: 8}
+  roomDescription: <b>Rupa</b>.
+  roomName: Rupa
+  roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 4
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 5
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 6
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 7
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 8
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
+    exitDescription: Hay una salida al sur.
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

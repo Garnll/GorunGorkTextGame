@@ -23,7 +23,7 @@ public class MiniMapper : MonoBehaviour {
         for (int i = 0; i < mapsZs.Length; i++)
         {
 
-            if (mapsZs[i].name == "Map At " + playerPosition.z + " Z")
+            if (mapsZs[i].name == "Level " + playerPosition.z)
             {
                 mapsZs[i].SetActive(true);
             }

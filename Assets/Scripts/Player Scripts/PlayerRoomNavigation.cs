@@ -218,7 +218,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
         else if (directionNoun != DirectionKeyword.unrecognized)
         {
-            controller.LogStringWithReturn("No hay caminos hacia el " + converter.ConvertFromKeyword(directionNoun));
+            controller.LogStringWithReturn("No hay caminos hacia el " + converter.ConvertFromKeyword(directionNoun) + ".");
         }
         else
         {

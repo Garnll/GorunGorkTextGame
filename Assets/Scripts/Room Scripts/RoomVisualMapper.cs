@@ -104,12 +104,12 @@ public class RoomVisualMapper : MonoBehaviour {
 
     private GameObject FindParent(GameObject roomImage)
     {
-        GameObject newTransform = GameObject.Find("Map At " + roomImage.transform.position.z + " Z");
+        GameObject newTransform = GameObject.Find("Level " + roomImage.transform.position.z);
         if (newTransform == null)
         {
             newTransform = new GameObject();
             newTransform.transform.SetParent(mapParent);
-            newTransform.name = "Map At " + roomImage.transform.position.z + " Z";
+            newTransform.name = "Level " + roomImage.transform.position.z;
         }
         return newTransform;
     }

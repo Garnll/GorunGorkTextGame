@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 1 - Vignanna
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 0, y: -4, z: 8}
+  roomDescription: "<b>Vignanna.</b>\n<i>Si no te pierdes, existe la posibilidad de
+    que jam\xE1s te encuentren.</i>\nUn fuerte sonido te devuelve la conciencia. Has
+    estado durmiendo. Recuerdas que antes sol\xEDas existir, aunque es dif\xEDcil
+    considerar cuanto tiempo ha pasado. Tampoco sabes qu\xE9 era de ti antes, lo \xFAnico
+    de lo que tienes certeza es de que existes ahora."
+  roomName: Vignanna
+  roomResponse: {fileID: 0}
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: "Lo \xFAnico a la vista es niebla tenuemente iluminada, pero
+      escuchas susurros a tu alrededor. \nD\xE9jate caer hacia una direcci\xF3n cualquiera."
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 4
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 5
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 6
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 7
+    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0
