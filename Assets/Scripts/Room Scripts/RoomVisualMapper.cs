@@ -11,8 +11,6 @@ using UnityEditor;
 public class RoomVisualMapper : MonoBehaviour {
 
     public Transform mapParent;
-    public Transform map0Parent;
-    public Transform map10Parent;
     public GameObject roomSprite;
     public GameObject roomExitCorner;
     public GameObject roomExitSides;
@@ -82,18 +80,9 @@ public class RoomVisualMapper : MonoBehaviour {
             GameObject newRoomImage = PrefabUtility.InstantiatePrefab(roomSprite) as GameObject;
             newRoomImage.transform.position = roomToPut.roomPosition;
             newRoomImage.name = roomToPut.name + " Image";
-            if (newRoomImage.transform.position.z == 0)
-            {
-                newRoomImage.transform.parent = map0Parent;
-            }
-            else if (newRoomImage.transform.position.z == 10)
-            {
-                newRoomImage.transform.parent = map10Parent;
-            }
-            else
-            {
-                newRoomImage.transform.parent = FindParent(newRoomImage).transform;
-            }
+
+            newRoomImage.transform.parent = FindParent(newRoomImage).transform;
+            
 
             newRoomImage.GetComponent<RoomSprite>().myRoom = roomToPut;
             roomImagesDictionary.Add(roomToPut, newRoomImage);
