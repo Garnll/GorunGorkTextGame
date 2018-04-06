@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce3d17e18d448b4ca79ea22bffaaf23, type: 3}
   m_Name: Toalla
   m_EditorClassIdentifier: 
-  nounGender: 0
+  nounGender: 1
   nouns:
   - Toalla
-  - 
+  - toalla
   description: "Hay una toalla colgada en una de las paredes de la habitaci\xF3n."
   interactions:
   - inputAction: {fileID: 11400000, guid: 7a5de0dfac0692642b8f2d7a2ae1b1b1, type: 2}

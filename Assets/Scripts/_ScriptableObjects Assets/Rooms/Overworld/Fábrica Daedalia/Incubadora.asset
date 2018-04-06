@@ -49,8 +49,8 @@ MonoBehaviour:
   roomPosition: {x: -1, y: 0, z: 1}
   roomDescription: "<b>Incubadora.</b>\nMientras despiertas notas una canci\xF3n sonando
     en el exterior. \xBFEl exterior de qu\xE9? Para cuando abres los ojos la canci\xF3n
-    ya ha terminado. Est\xE1s dentro de una especie de una c\xE1psula cuya compuerta
-    se abre de golpe y sales tambaleando. "
+    ya ha terminado. Est\xE1s dentro de una especie de c\xE1psula cuya compuerta se
+    abre de golpe y sales tambaleando. "
   roomName: Incubadora
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
