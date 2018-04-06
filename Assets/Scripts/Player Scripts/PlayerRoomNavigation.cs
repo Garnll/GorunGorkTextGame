@@ -8,10 +8,11 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     public GameController controller;
     public Room currentRoom;
+    public MiniMapper miniMapper;
 
     KeywordToStringConverter converter;
 
-    Vector3 currentPosition;
+    [HideInInspector]public Vector3 currentPosition;
 
     Dictionary<DirectionKeyword, Exit> exitDictionary = new Dictionary<DirectionKeyword, Exit>();
 
@@ -210,6 +211,9 @@ public class PlayerRoomNavigation : MonoBehaviour {
             }
 
             currentRoom = exitDictionary[directionNoun].conectedRoom;
+
+            miniMapper.MovePlayerInMap(currentPosition);
+
             controller.DisplayRoomText();
         }
         else if (directionNoun != DirectionKeyword.unrecognized)
