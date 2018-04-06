@@ -14,7 +14,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: a36608022f776314da547622c3de68fc, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,7 +27,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
       Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -34,14 +47,17 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: 0, z: 1}
-  roomDescription: 
+  roomDescription: "<b>Incubadora.</b>\nMientras despiertas notas una canci\xF3n sonando
+    en el exterior. \xBFEl exterior de qu\xE9? Para cuando abres los ojos la canci\xF3n
+    ya ha terminado. Est\xE1s dentro de una especie de una c\xE1psula cuya compuerta
+    se abre de golpe y sales tambaleando. "
   roomName: Incubadora
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 4d96b3fe05d45374da348ad23f424f16, type: 2}
-    exitDescription: 
+    exitDescription: 'Hay un pasillo alto y ancho hacia el <b>sur</b>. '
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
