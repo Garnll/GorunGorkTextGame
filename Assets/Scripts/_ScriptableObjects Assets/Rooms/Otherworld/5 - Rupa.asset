@@ -34,7 +34,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: 0, z: 8}
-  roomDescription: <b>Rupa</b>.
+  roomDescription: "<b>Rupa</b>.\nLa luz te envuelve y ahora lo \xFAnico que hace
+    falta para estar vivo es un cuerpo. "
   roomName: Rupa
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
   npcTemplatesInRoom: []
@@ -70,14 +71,6 @@ MonoBehaviour:
   - myKeyword: 7
     conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
     exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 8
-    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 1
-    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
-    exitDescription: Hay una salida al sur.
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

@@ -34,14 +34,19 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: -1, z: 8}
-  roomDescription: <b>Vedana.</b>
+  roomDescription: "<b>Vedana.</b>\n<i>No es hasta que estamos perdidos que comenzamos
+    a comprendernos a nosotros mismos.</i>\nUna atracci\xF3n inexplicable hacia la
+    luz te incita a continuar acerc\xE1ndote. Casi puedes sentir la sensaci\xF3n de
+    la vida convergiendo en ella a trav\xE9s de todo el vac\xEDo. Recuerdas c\xF3mo
+    los sentidos hac\xEDan del vivir una experiencia \xFAnica. \n"
   roomName: Vedanna
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 859a420db49a1cb4ca660130d7d74b89, type: 2}
-    exitDescription: Hay una salida al norte.
+    exitDescription: "La luz se encuentra m\xE1s al frente, rodeada de una serie de
+      estatuillas de roca pulida. [N]"
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
