@@ -69,7 +69,7 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     Race newRace = possibleRaces[tempRaceCode];
                     gameController.playerManager.SelectRace(newRace);
-                    gameController.LogStringWithReturn("Ahora eres un " + newRace.keyword);
+                    gameController.LogStringWithReturn("Ahora eres un " + newRace.keyword + ".");
 
                     raceSelected = true;
 
@@ -77,7 +77,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Trata de volver a indicar la raza que deseas ser:");
+                    gameController.LogStringWithReturn("Indica nuevamente tu raza: [Toro], [Conejo], [Oso] o [Buho].");
                 }
             }
         }
@@ -92,7 +92,7 @@ public class CharacterCreationResponse : RoomResponse {
                 if (AskForConfirmation(input[0]))
                 {
                     gameController.playerManager.gender = tempInput;
-                    gameController.LogStringWithReturn("Renaceras como " + tempInput);
+                    gameController.LogStringWithReturn("Renacerás como " + tempInput + ".");
 
                     genderSelected = true;
 
@@ -100,7 +100,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Trata de volver a indicar el género que deseas ser:");
+                    gameController.LogStringWithReturn("Indica nuevamente tu género: [M]acho o [H]embra.");
                 }
             }
         }
@@ -115,7 +115,7 @@ public class CharacterCreationResponse : RoomResponse {
                 if (AskForConfirmation(input[0]))
                 {
                     gameController.playerManager.playerName = tempInput;
-                    gameController.LogStringWithReturn("Tu nombre es " + tempInput);
+                    gameController.LogStringWithReturn("Tu nombre es " + tempInput + ".");
 
                     nameGiven = true;
 
@@ -123,7 +123,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Trata de volver a indicar el nombre que deseas tener:");
+                    gameController.LogStringWithReturn("Indica nuevamente tu nombre:");
                 }
             }
         }
@@ -144,14 +144,14 @@ public class CharacterCreationResponse : RoomResponse {
             {
                 tempInput = raceName;
                 tempRaceCode = i;
-                gameController.LogStringWithReturn("¿Estás seguro de querer ser un " + raceName + "? (SI/NO)");
+                gameController.LogStringWithReturn("¿Estás seguro de querer ser " + raceName + "? [Si/No]");
                 isAskingForConfirmation = true;
                 return;
             }
         }
 
         gameController.LogStringWithReturn("La raza " + raceName 
-            + " no está disponible en el sistema. Por favor, elige una de las razas disponibles");
+            + " no está disponible en el sistema. Por favor, elige una de las razas disponibles.");
     }
 
     private string AskForRaceDescription(string raceName)
@@ -165,7 +165,7 @@ public class CharacterCreationResponse : RoomResponse {
         }
 
         return "La raza " + raceName + " no está disponible en el sistema. " +
-            "Por favor, pregunta por una de las razas disponibles";
+            "Por favor, pregunta por una de las razas disponibles.";
 
     }
 
