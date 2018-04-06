@@ -184,6 +184,7 @@ public class GameController : MonoBehaviour {
         roomExtraLog.Clear();
         interactionDescriptionsInRoom.Clear();
         playerRoomNavigation.ClearExits();
+        exitDescriptionsInRoom.Clear();
         npcDescriptionsInRoom.Clear();
         playerRoomNavigation.HideEnemies();
     }
