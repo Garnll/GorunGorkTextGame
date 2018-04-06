@@ -144,7 +144,7 @@ public class CharacterCreationResponse : RoomResponse {
             {
                 tempInput = raceName;
                 tempRaceCode = i;
-                gameController.LogStringWithReturn("¿Estás seguro de querer ser un " + raceName + "?");
+                gameController.LogStringWithReturn("¿Estás seguro de querer ser un " + raceName + "? (SI/NO)");
                 isAskingForConfirmation = true;
                 return;
             }
@@ -176,14 +176,14 @@ public class CharacterCreationResponse : RoomResponse {
         {
             isAskingForConfirmation = true;
             tempInput = "macho";
-            gameController.LogStringWithReturn("Has elegido renacer como macho. ¿Estás seguro?");
+            gameController.LogStringWithReturn("Has elegido renacer como macho. ¿Estás seguro? (SI/NO)");
             return;
         }
         if (playerGender == "hembra" || playerGender == "h")
         {
             isAskingForConfirmation = true;
             tempInput = "hembra";
-            gameController.LogStringWithReturn("Has elegido renacer como hembra. ¿Estás seguro?");
+            gameController.LogStringWithReturn("Has elegido renacer como hembra. ¿Estás seguro? (SI/NO)");
             return;
         }
 
@@ -197,7 +197,7 @@ public class CharacterCreationResponse : RoomResponse {
         tempInput = playerName;
         gameController.LogStringWithReturn("Tu nombre a partir de ahora será \"" 
             + playerName
-            + "\". ¿Quieres vivir con este nombre el resto de tu existencia?"
+            + "\". ¿Quieres vivir con este nombre el resto de tu existencia? (S/N)"
             );
         isAskingForConfirmation = true;
     }
