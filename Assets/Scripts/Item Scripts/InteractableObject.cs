@@ -3,7 +3,7 @@
 /// <summary>
 /// Clase base de todos los objetos con los que se pueden interactuar.
 /// </summary>
-[CreateAssetMenu(menuName = "Gorun Gork/Interactable Object")]
+[CreateAssetMenu(menuName = "Gorun Gork/Objects/Interactable Object")]
 public class InteractableObject : ScriptableObject {
 
     public enum WordGender

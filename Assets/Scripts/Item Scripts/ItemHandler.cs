@@ -308,11 +308,18 @@ public class ItemHandler : MonoBehaviour {
     {
         Interaction useInteraction = null;
 
+        InteractableConsumableObject consumable = null;
+
         for (int i = 0; i < objectToUse.interactions.Length; i++)
         {
             if (objectToUse.interactions[i].inputAction.GetType() == typeof(UseInput))
             {
                 useInteraction = objectToUse.interactions[i];
+
+                if (objectToUse.GetType() == typeof(InteractableConsumableObject))
+                {
+                    consumable = objectToUse as InteractableConsumableObject;
+                }
                 break;
             }
         }
@@ -336,15 +343,19 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
-
-        bool actionResult = useInteraction.actionResponse.DoActionResponse(controller);
-        if (!actionResult)
+        controller.LogStringWithReturn(useInteraction.textResponse);
+        bool action = useInteraction.actionResponse.DoActionResponse(controller);
+        if (action)
         {
-            controller.LogStringWithReturn("Jum. No parece que ocurra nada por acá.");
+            consumable.UseObject();
+            if (!consumable.IsUseful)
+            {
+                consumable.StopWorking(controller);
+                inventoryManager.nounsInInventory.Remove(consumable);
+
+                inventoryManager.DisplayInventory();
+            }
         }
-
-
-
     }
 
     /// <summary>
