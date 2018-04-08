@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if (UNITY_EDITOR)
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -6,7 +7,7 @@ using UnityEditor;
 /// Usado durante edición. Crea un mapa modular segun los cambios que se le hagan a las habitaciones
 /// tomando en cuenta sus posiciones y sus salidas
 /// </summary>
-#if (UNITY_EDITOR)
+
 [ExecuteInEditMode]
 public class RoomVisualMapper : MonoBehaviour {
 

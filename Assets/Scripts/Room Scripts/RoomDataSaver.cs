@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using BayatGames.SaveGameFree;
 
 /// <summary>
@@ -103,3 +104,4 @@ public class RoomDataSaver {
         }
     }
 }
+#endif

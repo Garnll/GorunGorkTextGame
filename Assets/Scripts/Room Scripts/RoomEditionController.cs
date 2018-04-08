@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEditor;
+﻿#if (UNITY_EDITOR)
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// Usado durante edicion. Recibe los eventos de las habitaciones para cambiarlas de lugar, detectar posiciones,
@@ -8,7 +9,7 @@ using UnityEngine;
 /// </summary>
 [ExecuteInEditMode]
 public class RoomEditionController : MonoBehaviour {
-#if (UNITY_EDITOR)
+
 
     public RoomVisualMapper mapper;
 
@@ -318,5 +319,5 @@ public class RoomEditionController : MonoBehaviour {
         existingRooms.Clear();
         roomsToLoad.Clear();
     }
-#endif
 }
+#endif
