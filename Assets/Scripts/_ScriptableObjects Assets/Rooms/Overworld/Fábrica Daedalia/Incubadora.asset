@@ -58,6 +58,7 @@ MonoBehaviour:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 4d96b3fe05d45374da348ad23f424f16, type: 2}
     exitDescription: 'Hay un pasillo alto y ancho hacia el <b>sur</b>. '
-    exitActionDescription: 
+    exitActionDescription: 'Atraviesas el pasillo y tras girar en una esquina llegas
+      a una sala de espera. '
   enemiesInRoom: []
   changeExits: 0

@@ -34,26 +34,26 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -1, z: 1}
-  roomDescription: 
+  roomDescription: "<b>Lobby.</b>\nHay varios asientos vac\xEDos y tres puertas alrededor
+    de la habitaci\xF3n. Cada puerta tiene un s\xEDmbolo y una leyenda. "
   roomName: Lobby
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 4a054725f90d1634d88d0576d682dd67, type: 2}
-    exitDescription: 
-    exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: c38d668cff8f6f04782dee7572dee547, type: 2}
-    exitDescription: Hay una salida al sur.
+    exitDescription: La puerta del <b>sur</b> da hacia la Sala de Entrenamiento para
+      los delegados.
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 068c4d325633e8342b903df420eab131, type: 2}
-    exitDescription: Hay una salida al este.
+    exitDescription: La puerta del <b>este</b> da hacia la Sala de Entrenamiento para
+      los operarios.
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 5b67d27def20886489505942927873ea, type: 2}
-    exitDescription: Hay una salida al oeste.
+    exitDescription: La puerta del <b>oeste</b> da hacia la Sala de Entrenamiento
+      para los pacificadores.
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
