@@ -34,15 +34,11 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -2, y: -1, z: 1}
-  roomDescription: 
+  roomDescription: <b>Entrenamiento para Pacificadores.</b>
   roomName: Entrenamiento 2
   roomResponse: {fileID: 11400000, guid: 9ab33f72e8e276f419b12a8e2c69938e, type: 2}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 2
-    conectedRoom: {fileID: 11400000, guid: 4d96b3fe05d45374da348ad23f424f16, type: 2}
-    exitDescription: Hay una salida al este.
-    exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: c0dcb13cf603ce04b85e256325b77fdb, type: 2}
     exitDescription: Hay una salida al sur.

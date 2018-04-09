@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateToChangeTo: 1
   responses:
-  - Ahora eres un operario, siempre trabajando.
+  - 'Ahora eres un operario, siempre trabajando. '
   willRespond: 1
   jobToGive: {fileID: 11400000, guid: 1fbb07e952ffe9a4aaf96fe0caffae2d, type: 2}
