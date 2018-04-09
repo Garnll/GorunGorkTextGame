@@ -348,6 +348,8 @@ public class ItemHandler : MonoBehaviour {
         if (action)
         {
             consumable.UseObject();
+            controller.LogStringWithReturn(useInteraction.actionResponse.responseDescription);
+
             if (!consumable.IsUseful)
             {
                 consumable.StopWorking(controller);
@@ -355,6 +357,10 @@ public class ItemHandler : MonoBehaviour {
 
                 inventoryManager.DisplayInventory();
             }
+        }
+        else
+        {
+            controller.LogStringWithReturn(useInteraction.actionResponse.negationDescription);
         }
     }
 

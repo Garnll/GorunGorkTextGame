@@ -31,6 +31,9 @@ public class PlayerCharacteristics : MonoBehaviour {
         vision = defaultVision;
     }
 
+    /// <summary>
+    /// Devuelve los valores actuales de los stats a sus defaults;
+    /// </summary>
     public void ChangeStats()
     {
         currentDexterity = defaultDexterity;
