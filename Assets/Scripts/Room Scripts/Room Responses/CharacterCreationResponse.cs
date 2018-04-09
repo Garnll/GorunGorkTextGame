@@ -153,8 +153,8 @@ public class CharacterCreationResponse : RoomResponse {
             }
         }
 
-        gameController.LogStringWithReturn("La raza " + raceName 
-            + " no está disponible en el sistema. Por favor, elige una de las razas disponibles.");
+        gameController.LogStringWithReturn("La raza \"" + raceName 
+            + "\" no está disponible en el sistema. Por favor, elige una de las razas disponibles.");
     }
 
     private string AskForRaceDescription(string raceName)
@@ -171,7 +171,7 @@ public class CharacterCreationResponse : RoomResponse {
 
         }
 
-        return "La raza " + raceName + " no está disponible en el sistema. " +
+        return "La raza \"" + raceName + "\" no está disponible en el sistema. " +
             "Por favor, pregunta por una de las razas disponibles.";
 
     }
@@ -194,8 +194,8 @@ public class CharacterCreationResponse : RoomResponse {
             return;
         }
 
-        gameController.LogStringWithReturn("No se ha detectado el género " + playerGender + ". " +
-            "En el sistema existen Macho(m) y Hembra(h).");
+        gameController.LogStringWithReturn("No se ha detectado el género \"" + playerGender + "\". " +
+            "En el sistema existen [M]acho y [H]embra.");
 
     }
 
@@ -204,7 +204,7 @@ public class CharacterCreationResponse : RoomResponse {
         tempInput = playerName;
         gameController.LogStringWithReturn("Tu nombre a partir de ahora será \"" 
             + playerName
-            + "\". ¿Quieres vivir con este nombre el resto de tu existencia? (S/N)"
+            + "\". ¿Quieres vivir con este nombre el resto de tu existencia? [S/N]"
             );
         isAskingForConfirmation = true;
     }
@@ -213,12 +213,16 @@ public class CharacterCreationResponse : RoomResponse {
 
     private bool AskForConfirmation(string playerResponse)
     {
-        if (playerResponse == "si" || playerResponse == "s")
+        if (playerResponse == "si" || playerResponse == "s" || 
+			playerResponse == "sí" || playerResponse == "Sí" || 
+			playerResponse == "Si" || playerResponse == "S" ||
+			playerResponse == "SI" || playerResponse == "SÍ")
         {
             isAskingForConfirmation = false;
             return true;
         }
-        else if (playerResponse == "no" || playerResponse == "n")
+        else if (playerResponse == "no" || playerResponse == "n" ||
+			playerResponse == "NO" || playerResponse == "No" || playerResponse == "N")
         {
             isAskingForConfirmation = false;
             return false;

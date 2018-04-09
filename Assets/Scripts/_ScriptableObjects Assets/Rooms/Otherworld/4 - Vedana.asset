@@ -47,6 +47,6 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 859a420db49a1cb4ca660130d7d74b89, type: 2}
     exitDescription: "La luz se encuentra m\xE1s al frente, rodeada de una serie de
       estatuillas de roca pulida. [N]"
-    exitActionDescription: 
+    exitActionDescription: 'La luz palpita, oscilante, y reclama el toque. '
   enemiesInRoom: []
   changeExits: 0

@@ -34,14 +34,19 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: -1, z: 1}
-  roomDescription: <b>Entrenamiento para Operarios.</b>
+  roomDescription: "<b>Entrenamiento para Operarios.</b>\n<i>En el minuto en que empiezas
+    a hacer lo que quieres hacer, es una clase de vida diferente.</i>\nLos operarios
+    son aquellos encargados de producir la energ\xEDa con la que funcionan los aparatos
+    de la ciudad, a trav\xE9s de aparatos con los que generan magia. Suelen usar poderosos
+    mazos electromagn\xE9ticos y sus habilidades tienen un 1 en el segundo d\xEDgito."
   roomName: Entrenamiento 1
   roomResponse: {fileID: 11400000, guid: c7f21526cca969e4aa9ae6937823fb71, type: 2}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: f9ce611267c2ad645b2702f881884f81, type: 2}
-    exitDescription: 
+    exitDescription: "Un pasillo con escaleras sube hacia el <b>este</b>, donde est\xE1
+      el hangar."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

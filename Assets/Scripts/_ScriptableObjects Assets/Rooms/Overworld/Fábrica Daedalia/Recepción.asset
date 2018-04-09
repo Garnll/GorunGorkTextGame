@@ -34,18 +34,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -3, z: 1}
-  roomDescription: 
+  roomDescription: "<b>Recepci\xF3n de la F\xE1brica.</b>"
   roomName: "Recepci\xF3n Principal"
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 5
     conectedRoom: {fileID: 11400000, guid: c0dcb13cf603ce04b85e256325b77fdb, type: 2}
-    exitDescription: Hay una salida al noroeste.
+    exitDescription: Un pasillo en arco hacia el <b>noroeste</b> da hacia la capilla.
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 66ad38013b79a35448dc4129edbf703a, type: 2}
-    exitDescription: 
+    exitDescription: "La puerta principal est\xE1 al <b>sur</b> de la recepci\xF3n."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

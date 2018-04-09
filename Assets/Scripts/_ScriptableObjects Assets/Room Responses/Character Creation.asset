@@ -19,9 +19,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b952421b052eff49a736eb70d52bba7, type: 2}
   - {fileID: 11400000, guid: 92cf5b76343aab441b0cc92a515b3cc2, type: 2}
   - {fileID: 11400000, guid: bb242b2270c512848bdebc9ee6952562, type: 2}
-  selectRaceText: 'Por favor, elije una raza entre Toro, Oso, Conejo y Buho:'
-  selectGenderText: "\xBFQuieres ser [M]acho o [H]embra?"
+  selectRaceText: 'Por favor, elije una <b>raza</b>, de las siguentes: [Toro], [Buho],
+    [Oso] o [Conejo].'
+  selectGenderText: "Define tu <b>g\xE9nero</b> \xBFQuieres ser [M]acho o [H]embra?"
   selectNameText: "<i>Lo que llamamos rosa oler\xEDa tan dulcemente con cualquier
-    otro nombre.</i> Elige el nombre con el que ser\xE1s conocido:"
-  endCreationText: "Tu pr\xF3ximo pensamiento te llevar\xE1 al mundo real una vez
-    m\xE1s."
+    otro nombre.</i> Elige el <b>nombre</b> con el que te conocer\xE1n al nacer."
+  endCreationText: "Tu pr\xF3ximo pensamiento te llevar\xE1 al mundo."

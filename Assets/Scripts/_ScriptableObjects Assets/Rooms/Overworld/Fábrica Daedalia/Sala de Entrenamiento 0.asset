@@ -34,14 +34,19 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -2, z: 1}
-  roomDescription: <b>Entrenamiento para Delegados.</b>
+  roomDescription: "<b>Entrenamiento para Delegados.</b>\n<i>En el minuto en que empiezas
+    a hacer lo que quieres hacer, es una clase de vida diferente.</i>\nLa labor de
+    los delegados consiste en solucionar problemas tecnol\xF3gicos y anomal\xEDas
+    m\xE1gicas. Sus habilidades se identifican porque su segundo d\xEDgito es el 0.
+    \n\n"
   roomName: Entrenamiento 0
   roomResponse: {fileID: 11400000, guid: 7a6796a1d69107345883c3899dcc27d1, type: 2}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: fc27b09f8249e13469cef06119e52745, type: 2}
-    exitDescription: Hay una salida al sureste.
+    exitDescription: "Un pasillo corto hacia el <b>sur</b> da con la recepci\xF3n
+      del lugar."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

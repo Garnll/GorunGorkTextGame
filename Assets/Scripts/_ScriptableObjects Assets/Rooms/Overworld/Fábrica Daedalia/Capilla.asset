@@ -34,18 +34,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -2, y: -2, z: 1}
-  roomDescription: 
+  roomDescription: <b>Capilla.</b>
   roomName: Capilla
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 5b67d27def20886489505942927873ea, type: 2}
-    exitDescription: Hay una salida al norte.
-    exitActionDescription: 
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: fc27b09f8249e13469cef06119e52745, type: 2}
-    exitDescription: Hay una salida al sureste.
+    exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

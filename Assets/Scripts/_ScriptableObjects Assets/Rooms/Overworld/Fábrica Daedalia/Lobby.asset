@@ -34,8 +34,10 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -1, z: 1}
-  roomDescription: "<b>Lobby.</b>\nHay varios asientos vac\xEDos y tres puertas alrededor
-    de la habitaci\xF3n. Cada puerta tiene un s\xEDmbolo y una leyenda. "
+  roomDescription: "<b>Lobby.</b>\nHay varios asientos vac\xEDos y tres puertas corredizas
+    alrededor de la habitaci\xF3n. Cada puerta tiene un s\xEDmbolo y una leyenda.
+    \n<i>Elige un trabajo que te guste y no tendr\xE1s que trabajar ni un d\xEDa de
+    tu vida.</i>"
   roomName: Lobby
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []

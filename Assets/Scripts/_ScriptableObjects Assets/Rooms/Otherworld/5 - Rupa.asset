@@ -35,7 +35,7 @@ MonoBehaviour:
       Data: 
   roomPosition: {x: 0, y: 0, z: 8}
   roomDescription: "<b>Rupa</b>.\n<i>He aqu\xED un agradable conjunto de sensaciones
-    que agrupamos bajo el nombre de rosa.</i> La luz te envuelve y ahora lo \xFAnico
+    que agrupamos bajo el nombre de la rosa.</i> La luz te envuelve y ahora lo \xFAnico
     que hace falta para estar vivo es un cuerpo. "
   roomName: Rupa
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}

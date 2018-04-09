@@ -34,7 +34,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: -1, z: 1}
-  roomDescription: 
+  roomDescription: <b>Hangar.</b>
   roomName: Hangar
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []

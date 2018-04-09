@@ -34,14 +34,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -2, y: -1, z: 1}
-  roomDescription: <b>Entrenamiento para Pacificadores.</b>
+  roomDescription: "<b>Entrenamiento para Pacificadores.</b>\n<i>En el minuto en que
+    empiezas a hacer lo que quieres hacer, es una clase de vida diferente.</i>\nLos
+    pacificadores son devotos agentes del Sistema, son personificaciones de la templanza,
+    dedicados a proteger la paz y mantener el equilibrio. Sus habilidades siempre
+    tienen un 2 en el segundo d\xEDgito. Son muy buenos con todo tipo de armas."
   roomName: Entrenamiento 2
   roomResponse: {fileID: 11400000, guid: 9ab33f72e8e276f419b12a8e2c69938e, type: 2}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: c0dcb13cf603ce04b85e256325b77fdb, type: 2}
-    exitDescription: Hay una salida al sur.
+    exitDescription: "Detr\xE1s de una cortina, al <b>sur</b>, est\xE1 la capilla."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
