@@ -34,14 +34,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -2, y: -2, z: 1}
-  roomDescription: <b>Capilla.</b>
+  roomDescription: "<b>Capilla.</b>\nHay una ventana triangular por la que entra la
+    luz del exterior. Un tapete rojo cubre todo el suelo de la habitaci\xF3n. "
   roomName: Capilla
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 6
     conectedRoom: {fileID: 11400000, guid: fc27b09f8249e13469cef06119e52745, type: 2}
-    exitDescription: 
+    exitDescription: "Tras una cortina al <b>sureste</b> hay un pasillo que lleva
+      hacia la recepci\xF3n."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

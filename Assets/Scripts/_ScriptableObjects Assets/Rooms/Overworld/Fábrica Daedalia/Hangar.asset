@@ -34,14 +34,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: -1, z: 1}
-  roomDescription: <b>Hangar.</b>
+  roomDescription: "<b>Hangar.</b>\nDesde el hangar se puede ver el lado este de la
+    ciudad Daedalia. Varios cables con poleas van de aqu\xED hacia la planta de energ\xEDa,
+    donde los operarios trabajan."
   roomName: Hangar
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: fc27b09f8249e13469cef06119e52745, type: 2}
-    exitDescription: 
-    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: edd0d6524fccec043837ae0d894974aa, type: 2}
+    exitDescription: "Al <b>este</b> se encuentra la planta de energ\xEDa."
+    exitActionDescription: Desatas una de las poleas y te dejas caer hacia la planta.
   enemiesInRoom: []
   changeExits: 0
