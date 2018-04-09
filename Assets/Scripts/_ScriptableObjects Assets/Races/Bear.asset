@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1b8d16370249e4a920fdd256391022, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  keyword: oso
+  raceName: Oso
+  keyword:
+  - oso
   raceDescription: "Los osos son una raza de osos humanoides. Muchos osos son conocidos
     por su gran nivel de resistencia, por m\xE1s lentos que sean."

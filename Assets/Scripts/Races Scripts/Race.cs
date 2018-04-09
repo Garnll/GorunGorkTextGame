@@ -5,7 +5,8 @@
 /// </summary>
 public abstract class Race : ScriptableObject {
 
-    public string keyword = "raza";
+    public string raceName = "Nombre";
+    public string[] keyword = { "raza" };
     [TextArea] public string raceDescription;
 
     public abstract void ChangePlayerStats(PlayerCharacteristics playerStats);

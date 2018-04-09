@@ -69,7 +69,7 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     Race newRace = possibleRaces[tempRaceCode];
                     gameController.playerManager.SelectRace(newRace);
-                    gameController.LogStringWithReturn("Ahora eres un " + newRace.keyword + ".");
+                    gameController.LogStringWithReturn("Ahora eres un " + newRace.raceName + ".");
 
                     raceSelected = true;
 
@@ -77,7 +77,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Indica nuevamente tu raza: [Toro], [Conejo], [Oso] o [Buho].");
+                    gameController.LogStringWithReturn("Indica nuevamente tu raza: [Toro], [Conejo], [Oso] o [Búho].");
                 }
             }
         }
@@ -140,13 +140,16 @@ public class CharacterCreationResponse : RoomResponse {
     {
         for (int i = 0; i < possibleRaces.Length; i++)
         {
-            if (raceName == possibleRaces[i].keyword)
+            for (int f = 0; f < possibleRaces[i].keyword.Length; f++)
             {
-                tempInput = raceName;
-                tempRaceCode = i;
-                gameController.LogStringWithReturn("¿Estás seguro de querer ser " + raceName + "? [Si/No]");
-                isAskingForConfirmation = true;
-                return;
+                if (raceName == possibleRaces[i].keyword[f])
+                {
+                    tempInput = raceName;
+                    tempRaceCode = i;
+                    gameController.LogStringWithReturn("¿Estás seguro de querer ser " + raceName + "? [Si/No]");
+                    isAskingForConfirmation = true;
+                    return;
+                }
             }
         }
 
@@ -158,10 +161,14 @@ public class CharacterCreationResponse : RoomResponse {
     {
         for (int i = 0; i < possibleRaces.Length; i++)
         {
-            if (raceName == possibleRaces[i].keyword)
+            for (int f = 0; f < possibleRaces[i].keyword.Length; f++)
             {
-                return possibleRaces[i].raceDescription;
+                if (raceName == possibleRaces[i].keyword[f])
+                {
+                    return possibleRaces[i].raceDescription;
+                }
             }
+
         }
 
         return "La raza " + raceName + " no está disponible en el sistema. " +

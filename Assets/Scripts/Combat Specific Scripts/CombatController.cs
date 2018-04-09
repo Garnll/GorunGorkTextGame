@@ -233,7 +233,7 @@ public class CombatController : MonoBehaviour {
         }
 
         playerUI.title.text = "<b>" + TextConverter.MakeFirstLetterUpper(player.playerName) + "</b>" + "\n" +
-            TextConverter.MakeFirstLetterUpper(player.characteristics.playerRace.keyword) + " " +
+            TextConverter.MakeFirstLetterUpper(player.characteristics.playerRace.raceName) + " " +
             TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.jobName) +
             state;
     }
@@ -391,7 +391,7 @@ public class CombatController : MonoBehaviour {
         }
 
         enemyUI.title.text = "<b>" + TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcName) + "</b>" + "\n" +
-              TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcRace.keyword) + " " +
+              TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcRace.raceName) + " " +
             TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcJob.jobName) +
             state;
 

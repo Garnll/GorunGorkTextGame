@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534f392cd7e5c11499dfe5fd0190bdf4, type: 3}
   m_Name: Robot
   m_EditorClassIdentifier: 
-  keyword: robot
+  raceName: Robot
+  keyword:
+  - robot
   raceDescription: 
