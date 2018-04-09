@@ -48,13 +48,12 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     private void CheckEnemiesInRoom()
     {
-        if (currentRoom)
-
         if (currentRoom.enemiesInRoom.Count == 0)
         {
             CreateEnemies();
         }
 
+        enemyCounter.Clear();
 
         for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
         {
@@ -209,6 +208,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
             {
                 controller.LogStringWithReturn(exitToGo.exitActionDescription);
             }
+
+            HideEnemies();
 
             currentRoom = exitDictionary[directionNoun].conectedRoom;
 
