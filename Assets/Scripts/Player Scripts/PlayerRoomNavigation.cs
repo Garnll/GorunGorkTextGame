@@ -203,7 +203,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
             if (exitToGo.exitActionDescription == "")
             {
-                controller.LogStringWithReturn("Te dirijes hacia el " + converter.ConvertFromKeyword(directionNoun));
+                controller.LogStringWithReturn("Te dirijes hacia el " + converter.ConvertFromKeyword(directionNoun) + ".");
             }
             else
             {

@@ -11,5 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b29b322bfd5bc4686b3485ffa42038, type: 3}
   m_Name: Owl Bear
   m_EditorClassIdentifier: 
-  keyword: oso buho
+  raceName: "Oso B\xFAho"
+  keyword:
+  - "oso b\xFAho"
+  - oso buho
+  - oso
+  - buho
   raceDescription: 

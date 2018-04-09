@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0838a2d1616864fac294635243900e, type: 3}
   m_Name: Owl Bear
   m_EditorClassIdentifier: 
-  npcName: oso buho
+  npcName: "oso b\xFAho"
   keyword:
   - oso
   - buho

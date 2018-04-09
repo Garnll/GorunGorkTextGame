@@ -11,7 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e304e004c8f5d0b499a058e56d91541e, type: 3}
   m_Name: Owl
   m_EditorClassIdentifier: 
-  keyword: buho
+  raceName: "B\xFAho"
+  keyword:
+  - buho
+  - "b\xFAho"
   raceDescription: "Los buhos son una raza de buhos humanoides. Conocidos por ser
     de los m\xE1s grandes intelectuales de la historia, prefiriendo usar su mente
     a su fuerza f\xEDsica."
