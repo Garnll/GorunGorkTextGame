@@ -75,10 +75,10 @@ public class GameController : MonoBehaviour {
         currentRoomDescription = combinedText;
 
 
-        if (playerRoomNavigation.currentRoom.roomResponse != null)
-        {
-            combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
-        }
+        //if (playerRoomNavigation.currentRoom.roomResponse != null)
+        //{
+        //    combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
+        //}
         combinedText += string.Join("\n", roomExtraLog.ToArray());
 
         LogStringWithReturn(combinedText);

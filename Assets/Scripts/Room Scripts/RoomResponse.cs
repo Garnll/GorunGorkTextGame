@@ -23,7 +23,7 @@ public abstract class RoomResponse : ScriptableObject {
         GameState.Instance.ChangeCurrentState(stateToChangeTo);
         for (int i = 0; i < responses.Length; i++)
         {
-            controller.LogStringWithReturn(responses[i]);
+            controller.LogStringAfterRoom(responses[i]);
         }
     }
 	
