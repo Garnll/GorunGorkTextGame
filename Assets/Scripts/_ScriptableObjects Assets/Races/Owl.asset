@@ -15,6 +15,7 @@ MonoBehaviour:
   keyword:
   - buho
   - "b\xFAho"
+  - b
   raceDescription: "Los buhos son una raza de buhos humanoides. Conocidos por ser
     de los m\xE1s grandes intelectuales de la historia, prefiriendo usar su mente
     a su fuerza f\xEDsica."

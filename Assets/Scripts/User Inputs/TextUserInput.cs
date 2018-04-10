@@ -21,8 +21,8 @@ public class TextUserInput : SerializedMonoBehaviour {
     private void Awake()
     {
         controller = GetComponent<GameController>();
-        inputField.onEndEdit.AddListener(AcceptStringInput);
 
+        //inputField.onEndEdit.AddListener(AcceptStringInput);
         for (int i = 0; i < controller.inputActions.Length; i++)
         {
             InputActions inputAction = controller.inputActions[i];
@@ -32,6 +32,16 @@ public class TextUserInput : SerializedMonoBehaviour {
             }
         }
 
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            AcceptStringInput(inputField.text);
+            inputField.text = "";
+        }
     }
 
     /// <summary>
@@ -79,11 +89,26 @@ public class TextUserInput : SerializedMonoBehaviour {
                 DisplayInput();
                 break;
 
+            case GameState.GameStates.introduction:
+
+                if (separatedInputWords[0] == "")
+                {
+                    return;
+                }
+
+                AnythingWorksResponse anythingWorks = controller.playerRoomNavigation.currentRoom.roomResponse as AnythingWorksResponse;
+
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                anythingWorks.AcceptInput(controller);
+                DisplayInput();
+
+                break;
+
             case GameState.GameStates.creation:
                 CharacterCreationResponse characterCreation = controller.playerRoomNavigation.currentRoom.roomResponse as CharacterCreationResponse;
 
                 controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
-                characterCreation.AcceptInput(separatedInputWords);
+                characterCreation.AcceptInput(separatedInputWords, originalInput);
                 DisplayInput();
                 break;
 

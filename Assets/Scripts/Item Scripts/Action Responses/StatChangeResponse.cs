@@ -13,6 +13,7 @@ public class StatChangeResponse : ActionResponse {
         Intelligence
     }
 
+    [System.Serializable]
     public class StatToChange
     {
         public Stats stat;

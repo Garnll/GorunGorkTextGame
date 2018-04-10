@@ -32,6 +32,10 @@ public class ItemKeywordHandler : SerializedMonoBehaviour {
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        itemKeywordDictionary.Clear();
+#endif
+
         GetObjectsFromList();
     }
 

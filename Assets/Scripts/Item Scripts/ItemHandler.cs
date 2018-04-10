@@ -344,6 +344,12 @@ public class ItemHandler : MonoBehaviour {
         }
 
         controller.LogStringWithReturn(useInteraction.textResponse);
+
+        if (useInteraction.actionResponse == null)
+        {
+            return;
+        }
+
         bool action = useInteraction.actionResponse.DoActionResponse(controller);
         if (action)
         {

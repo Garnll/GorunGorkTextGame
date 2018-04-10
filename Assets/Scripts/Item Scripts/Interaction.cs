@@ -6,6 +6,7 @@
 [System.Serializable]
 public class Interaction  {
 
+    [Space(10)]
     public InputActions inputAction;
     public bool isInverseInteraction; //Cuando se quiere que ocurra una acción especial si no se puede interactuar
     [TextArea] public string textResponse;

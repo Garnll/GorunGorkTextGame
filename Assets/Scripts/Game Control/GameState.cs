@@ -21,6 +21,7 @@ public class GameState {
     {
         creation,
         exploration,
+        introduction,
         combat,
         dead,
         none

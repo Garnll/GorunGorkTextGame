@@ -14,5 +14,6 @@ MonoBehaviour:
   raceName: Conejo
   keyword:
   - conejo
+  - c
   raceDescription: "Los conejos son la raza de conejos humanoides. La velocidad de
     un conejo es incomparable, aunque son realmente fr\xE1giles."

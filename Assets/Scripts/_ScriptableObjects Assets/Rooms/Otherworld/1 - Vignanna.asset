@@ -40,41 +40,13 @@ MonoBehaviour:
     considerar cuanto tiempo ha pasado. Tampoco sabes qu\xE9 era de ti antes, lo \xFAnico
     de lo que tienes certeza es de que existes ahora."
   roomName: Vignanna
-  roomResponse: {fileID: 0}
+  roomResponse: {fileID: 11400000, guid: e387d3f2eb1c10544bb86b167bc09eda, type: 2}
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 0
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
     exitDescription: "Lo \xFAnico a la vista es niebla tenuemente iluminada, pero
       escuchas susurros a tu alrededor. \nD\xE9jate caer hacia una direcci\xF3n cualquiera."
-    exitActionDescription: 
-  - myKeyword: 2
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 4
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 6
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
-    exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

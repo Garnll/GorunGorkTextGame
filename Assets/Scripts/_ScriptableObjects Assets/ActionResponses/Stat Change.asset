@@ -8,8 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0303a0273a1514eaf9326995d4a710, type: 3}
-  m_Name: Change Room Example
+  m_Script: {fileID: 11500000, guid: 8fef8cfcb906f1e4a80ccc429c405099, type: 3}
+  m_Name: Stat Change
   m_EditorClassIdentifier: 
-  requiredString: 
-  roomToChangeTo: {fileID: 0}
+  responseDescription: 
+  negationDescription: 
+  statsToChange:
+  - stat: 1
+    points: 520252

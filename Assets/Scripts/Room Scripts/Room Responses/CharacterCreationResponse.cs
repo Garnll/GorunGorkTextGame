@@ -41,7 +41,7 @@ public class CharacterCreationResponse : RoomResponse {
     /// (o está dando su confirmación).
     /// </summary>
     /// <param name="input"></param>
-    public void AcceptInput(string[] input)
+    public void AcceptInput(string[] input, string originalInput)
     {
         if (!raceSelected)
         {
@@ -108,7 +108,7 @@ public class CharacterCreationResponse : RoomResponse {
         {
             if (!isAskingForConfirmation)
             {
-                InputPlayerName(input[0]);
+                InputPlayerName(originalInput);
             }
             else
             {
@@ -146,7 +146,7 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     tempInput = raceName;
                     tempRaceCode = i;
-                    gameController.LogStringWithReturn("¿Estás seguro de querer ser " + raceName + "? [Si/No]");
+                    gameController.LogStringWithReturn("¿Estás seguro de querer ser " + possibleRaces[i].raceName + "? [Si/No]");
                     isAskingForConfirmation = true;
                     return;
                 }
