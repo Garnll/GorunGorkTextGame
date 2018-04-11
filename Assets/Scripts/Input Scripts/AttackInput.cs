@@ -41,7 +41,7 @@ public class AttackInput : InputActions {
 
     private void StartFight(GameController controller)
     {
-        controller.combatController.StartFight();
+        controller.combatController.StartCoroutine(controller.combatController.StartFight());
         TextUserInput.OnFight -= StartFight;
     }
 }

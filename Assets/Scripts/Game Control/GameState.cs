@@ -23,6 +23,7 @@ public class GameState {
         exploration,
         introduction,
         combat,
+        combatPreparation,
         dead,
         none
     }

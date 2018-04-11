@@ -587,6 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayTextTemplate: {fileID: 1712604994510202, guid: 497ff3be884d88940b99006cdfb0df57,
     type: 2}
+  textvelocity: 0.01
   contentContainer: {fileID: 841433917}
   inputActions:
   - {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
@@ -604,6 +605,9 @@ MonoBehaviour:
   interactionDescriptionsInRoom: []
   npcDescriptionsInRoom: []
   itemHandler: {fileID: 0}
+  currentCharPosition: 0
+  writing: 0
+  stopWriting: 0
 --- !u!4 &405610294
 Transform:
   m_ObjectHideFlags: 0
@@ -1200,7 +1204,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.993186
+  m_Size: 0.9948034
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1273,7 +1277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 133.99977}
+  m_AnchoredPosition: {x: 0, y: 134.00005}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -2170,7 +2174,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -2183,10 +2187,32 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 10
       Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: caracola
+    - Name: 
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
     - Name: 
       Entry: 10
       Data: 1
@@ -2966,7 +2992,7 @@ Prefab:
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}

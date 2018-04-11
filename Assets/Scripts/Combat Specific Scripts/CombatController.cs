@@ -52,11 +52,15 @@ public class CombatController : MonoBehaviour {
         enemy = npc;
         player = thisPlayer;
 
-        GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
 
-    public void StartFight()
+    public IEnumerator StartFight()
     {
+        yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
+
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
+
         ChangeLayout();
 
         InitializeEnemy();
@@ -74,6 +78,7 @@ public class CombatController : MonoBehaviour {
         enemy.myAI.player = player;
         enemy.myAI.myNPC = enemy;
         enemy.myAI.StartAI();
+
     }
 
     private void ClearCollections()
@@ -490,9 +495,10 @@ public class CombatController : MonoBehaviour {
 
     private void ReturnToRoom(string endMessage)
     {
-        player.controller.LogStringWithoutReturn(" ");
-        player.controller.LogStringWithoutReturn("Fin del combate.");
-        player.controller.LogStringWithoutReturn(player.controller.RefreshCurrentRoomDescription());
+        player.controller.PrepareForCombat();
+        player.controller.LogStringWithReturn(" ");
+        player.controller.LogStringWithReturn("Fin del combate.");
+        player.controller.LogStringWithReturn(player.controller.RefreshCurrentRoomDescription());
         player.controller.LogStringWithoutReturn(endMessage);
     }
 }

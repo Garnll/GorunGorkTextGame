@@ -112,6 +112,10 @@ public class TextUserInput : SerializedMonoBehaviour {
                 DisplayInput();
                 break;
 
+            case GameState.GameStates.combatPreparation:
+                DisplayInput();
+                break;
+
             case GameState.GameStates.combat:
                 char[] delimeterPoints = { '.', ' ' };
                 string[] separatedInputs = userInput.Split(delimeterPoints);
@@ -133,7 +137,7 @@ public class TextUserInput : SerializedMonoBehaviour {
         inputField.ActivateInputField();
         inputField.text = null;
 
-        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        if (GameState.Instance.CurrentState == GameState.GameStates.combatPreparation)
         {
             if (OnFight != null)
             {

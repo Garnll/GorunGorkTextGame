@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -8,6 +9,7 @@ using TMPro;
 public class GameController : MonoBehaviour {
 
     public GameObject displayTextTemplate;
+    [Range(0, 0.1f)] public float textvelocity = 0.01f;
     public RectTransform contentContainer;
     public InputActions[] inputActions;
     public PlayerManager playerManager;
@@ -24,9 +26,16 @@ public class GameController : MonoBehaviour {
     List<string> roomExtraLog = new List<string>();
     string currentRoomDescription = "";
 
+    [HideInInspector] public int currentCharPosition = 0;
+    string oldText = "";
+    [HideInInspector] public bool writing;
+    [HideInInspector] public bool stopWriting;
+
     private void Start()
     {
         itemHandler = GetComponent<ItemHandler>();
+        writing = false;
+        stopWriting = false;
 
         DisplayRoomText();
         DisplayLoggedText();
@@ -41,17 +50,97 @@ public class GameController : MonoBehaviour {
 
         if (displayText == null)
         {
+            StopAllCoroutines();
+
+            oldText = "";
+            currentCharPosition = 0;
             CreateNewDisplay();
+            writing = false;
+            stopWriting = false;
         }
 
-        displayText.text = logAsText;
+        if (writing)
+        {
+            stopWriting = true;
+        }
+
+        StartCoroutine(AnimateText(logAsText));
+    }
+
+    public bool HasFinishedWriting()
+    {
+        if (currentCharPosition == string.Join("\n", actionLog.ToArray()).Length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private IEnumerator AnimateText(string complete)
+    {
+        if (writing)
+        {
+            while (writing)
+            {
+                yield return new WaitForSeconds(textvelocity);
+            }
+        }
+
+        if (!writing)
+        {
+            writing = true;
+            string str = oldText;
+            while (currentCharPosition < complete.Length)
+            {
+                if (stopWriting)
+                {
+                    str = complete;
+                    currentCharPosition = complete.Length;
+                    displayText.text = str;
+                    stopWriting = false;
+                    oldText = displayText.text;
+                    writing = false;
+                   
+                    yield break;
+                }
+
+                if (currentCharPosition < complete.Length)
+                {
+                    if (complete[currentCharPosition] == '<')
+                    {
+                        while (complete[currentCharPosition] != '>')
+                        {
+                            str += complete[currentCharPosition++];
+                            if (currentCharPosition >= complete.Length)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                str += complete[currentCharPosition++];
+
+                displayText.text = str;
+                yield return new WaitForSeconds(textvelocity);
+            }
+
+            if (writing && displayText != null)
+            {
+                oldText = displayText.text;
+            }
+            writing = false;
+        }
     }
 
     public void CreateNewDisplay()
     {
         GameObject newDisplay = Instantiate(displayTextTemplate, contentContainer);
         displayText = newDisplay.GetComponent<TextMeshProUGUI>();
-        displayText.text = " ";
+        displayText.text = "";
     }
 
     public void PrepareForCombat()
