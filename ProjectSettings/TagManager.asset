@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CurrentRoom
+    uniqueID: 1360837159
+    locked: 0

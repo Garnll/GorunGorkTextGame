@@ -9,6 +9,8 @@ public class MiniMapper : MonoBehaviour {
 
     private GameObject[] mapsZs;
 
+    private int orderMultiplier = 10;
+
     public void Awake()
     {
         mapsZs = new GameObject[maps.transform.childCount];
@@ -26,16 +28,43 @@ public class MiniMapper : MonoBehaviour {
             if (mapsZs[i].name == "Level " + playerPosition.z)
             {
                 mapsZs[i].SetActive(true);
+
             }
             else
             {
                 mapsZs[i].SetActive(false);
             }
+
+            if (mapsZs[i].GetComponent<SpriteRenderer>() != null)
+            {
+                if (mapsZs[i].GetComponent<RoomSprite>() != null)
+                {
+                    if (mapsZs[i].GetComponent<RoomSprite>().myRoom.roomPosition != playerPosition)
+                    {
+                        SpriteRenderer[] mapChilds = mapsZs[i].GetComponentsInChildren<SpriteRenderer>();
+                        for (int f = 0; f < mapChilds.Length; f++)
+                        {
+                            mapChilds[f].sortingLayerName = "Default";
+                        }
+                        mapsZs[i].GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+                    }
+                    else
+                    {
+                        SpriteRenderer[] mapChilds = mapsZs[i].GetComponentsInChildren<SpriteRenderer>();
+                        for (int f = 0; f < mapChilds.Length; f++)
+                        {
+                            mapChilds[f].sortingLayerName = "CurrentRoom";
+                        }
+                        mapsZs[i].GetComponent<SpriteRenderer>().sortingLayerName = "CurrentRoom";
+
+                    }
+                }
+            }
         }
 
         mapCamera.transform.position = new Vector3(playerPosition.x, playerPosition.y, mapCamera.transform.position.z);
 
-        if (playerPosition.z == 10)
+        if (playerPosition.z == 8)
         {
             mapCamera.gameObject.SetActive(false);
         }

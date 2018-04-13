@@ -105,8 +105,10 @@ public class TextUserInput : SerializedMonoBehaviour {
                 break;
 
             case GameState.GameStates.creation:
+
                 if (separatedInputWords[0] == "")
                 {
+                    DisplayInput();
                     return;
                 }
 
