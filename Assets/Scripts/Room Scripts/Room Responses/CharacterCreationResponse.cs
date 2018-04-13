@@ -43,6 +43,11 @@ public class CharacterCreationResponse : RoomResponse {
     /// <param name="input"></param>
     public void AcceptInput(string[] input, string originalInput)
     {
+        if (input[0] == "")
+        {
+            return;
+        }
+
         if (!raceSelected)
         {
             if (!isAskingForConfirmation)

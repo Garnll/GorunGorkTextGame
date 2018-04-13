@@ -105,6 +105,11 @@ public class TextUserInput : SerializedMonoBehaviour {
                 break;
 
             case GameState.GameStates.creation:
+                if (separatedInputWords[0] == "")
+                {
+                    return;
+                }
+
                 CharacterCreationResponse characterCreation = controller.playerRoomNavigation.currentRoom.roomResponse as CharacterCreationResponse;
 
                 controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
