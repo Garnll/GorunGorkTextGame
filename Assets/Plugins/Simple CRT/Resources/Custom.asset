@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: Custom
   m_EditorClassIdentifier: 
   downscale: 1
-  screenCurve: 0
+  screenCurve: 0.312
   horizontalScanlineStrength: 0.08
   verticalScanlineStrength: 0
   scanlineSize: 1
   scanlineSpacing: 4
   movScanlineStrength: 0.05
   movScanlineSize: 0.92
-  movScanlineSpeed: 1
+  movScanlineSpeed: 1.47
   sharpenStrength: 0
   brightness: 0.03
   contrast: 0

@@ -47,6 +47,7 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 48bfbf23d8cc4694382114c5932785a6, type: 2}
     exitDescription: "Lo \xFAnico a la vista es niebla tenuemente iluminada, pero
       escuchas susurros a tu alrededor. \nD\xE9jate caer hacia una direcci\xF3n cualquiera."
-    exitActionDescription: 
+    exitActionDescription: A veces hay que tocar fondo para entender la grandeza del
+      cielo.
   enemiesInRoom: []
   changeExits: 0
