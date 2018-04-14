@@ -30,4 +30,4 @@ MonoBehaviour:
   noiseStrength: 0.005
   noiseDistortion: 0.07
   jitter: 0.04
-  wobble: 0.02
+  wobble: 0.005

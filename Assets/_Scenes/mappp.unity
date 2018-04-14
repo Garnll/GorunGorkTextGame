@@ -1557,8 +1557,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 873116474}
   m_HandleRect: {fileID: 873116473}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2008,7 +2008,7 @@ RectTransform:
   m_GameObject: {fileID: 438897950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 619418490}
   m_Father: {fileID: 1280517653}
@@ -2403,8 +2403,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9948032
+  m_Value: 0.99999964
+  m_Size: 0.7516849
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2477,7 +2477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 133.99998}
+  m_AnchoredPosition: {x: 0, y: 134.00002}
   m_SizeDelta: {x: -6.51, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -2868,7 +2868,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.07586217, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.23161766, g: 0.875, b: 0.5555274, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3138,6 +3138,7 @@ GameObject:
   - component: {fileID: 770022764}
   - component: {fileID: 770022763}
   - component: {fileID: 770022767}
+  - component: {fileID: 770022768}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3232,6 +3233,18 @@ MonoBehaviour:
   - Retro
   presetIndex: 1
   curPreset: {fileID: 11400000, guid: b05dcd398cad8ce43a473e5ac67beae9, type: 2}
+--- !u!114 &770022768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 770022762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: a03310bc2c7751d4ab507edfd658107b, type: 2}
 --- !u!1001 &771276996
 Prefab:
   m_ObjectHideFlags: 0
@@ -4702,7 +4715,7 @@ Prefab:
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
@@ -4712,7 +4725,7 @@ Prefab:
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 134.7
+      value: 178.26
       objectReference: {fileID: 0}
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
@@ -4747,7 +4760,7 @@ Prefab:
     - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
@@ -4758,6 +4771,77 @@ Prefab:
         type: 2}
       propertyPath: m_fontColor32.rgba
       value: 4291160831
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_text
+      value: '<b>Inventario</b>
+
+        - An thing
+
+        - Another Thing
+
+        - Holy shit how many things do you have
+
+        - yes
+
+        - More things
+
+        - How many things more?
+
+        - Holy cow'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691,
+        type: 2}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21480766876471014, guid: 322e96d9d37671c4c81c00fa40607691,
+        type: 2}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 132
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_margin.y
+      value: 0.250066
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553483207919026, guid: 2542159605200c44fafe3111f61a03ec,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2542159605200c44fafe3111f61a03ec, type: 2}
@@ -8049,7 +8133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   font: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
-  sizeChanger: 0
 --- !u!4 &1864269308
 Transform:
   m_ObjectHideFlags: 0
