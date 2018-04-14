@@ -22,12 +22,48 @@ public class MiniMapper : MonoBehaviour {
 
     public void MovePlayerInMap(Vector3 playerPosition)
     {
+        if (playerPosition.z == 8)
+        {
+            mapCamera.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            mapCamera.gameObject.SetActive(true);
+        }
+
         for (int i = 0; i < mapsZs.Length; i++)
         {
-
             if (mapsZs[i].name == "Level " + playerPosition.z)
             {
                 mapsZs[i].SetActive(true);
+
+                RoomSprite[] visualRooms = mapsZs[i].GetComponentsInChildren<RoomSprite>();
+
+                for (int g = 0; g < visualRooms.Length; g++)
+                {
+
+                    if (visualRooms[g].GetComponent<RoomSprite>().myRoom.roomPosition != playerPosition)
+                    {
+                        SpriteRenderer[] mapChilds = visualRooms[g].GetComponentsInChildren<SpriteRenderer>();
+
+                        for (int f = 0; f < mapChilds.Length; f++)
+                        {
+                            mapChilds[f].sortingLayerName = "Default";
+                        }
+                        visualRooms[g].GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+                    }
+                    else
+                    {
+                        SpriteRenderer[] mapChilds = visualRooms[g].GetComponentsInChildren<SpriteRenderer>();
+                        for (int f = 0; f < mapChilds.Length; f++)
+                        {
+                            mapChilds[f].sortingLayerName = "CurrentRoom";
+                        }
+                        visualRooms[g].GetComponent<SpriteRenderer>().sortingLayerName = "CurrentRoom";
+
+                    }
+                }
 
             }
             else
@@ -35,43 +71,11 @@ public class MiniMapper : MonoBehaviour {
                 mapsZs[i].SetActive(false);
             }
 
-            if (mapsZs[i].GetComponent<SpriteRenderer>() != null)
-            {
-                if (mapsZs[i].GetComponent<RoomSprite>() != null)
-                {
-                    if (mapsZs[i].GetComponent<RoomSprite>().myRoom.roomPosition != playerPosition)
-                    {
-                        SpriteRenderer[] mapChilds = mapsZs[i].GetComponentsInChildren<SpriteRenderer>();
-                        for (int f = 0; f < mapChilds.Length; f++)
-                        {
-                            mapChilds[f].sortingLayerName = "Default";
-                        }
-                        mapsZs[i].GetComponent<SpriteRenderer>().sortingLayerName = "Default";
-                    }
-                    else
-                    {
-                        SpriteRenderer[] mapChilds = mapsZs[i].GetComponentsInChildren<SpriteRenderer>();
-                        for (int f = 0; f < mapChilds.Length; f++)
-                        {
-                            mapChilds[f].sortingLayerName = "CurrentRoom";
-                        }
-                        mapsZs[i].GetComponent<SpriteRenderer>().sortingLayerName = "CurrentRoom";
 
-                    }
-                }
-            }
+
         }
 
         mapCamera.transform.position = new Vector3(playerPosition.x, playerPosition.y, mapCamera.transform.position.z);
-
-        if (playerPosition.z == 8)
-        {
-            mapCamera.gameObject.SetActive(false);
-        }
-        else
-        {
-            mapCamera.gameObject.SetActive(true);
-        }
 
 
     }
