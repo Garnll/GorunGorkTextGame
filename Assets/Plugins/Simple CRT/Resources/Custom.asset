@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44269401c47e4849a2a1007ca7ba10a, type: 3}
+  m_Name: Custom
+  m_EditorClassIdentifier: 
+  downscale: 1
+  screenCurve: 0
+  horizontalScanlineStrength: 0.08
+  verticalScanlineStrength: 0
+  scanlineSize: 1
+  scanlineSpacing: 4
+  movScanlineStrength: 0.05
+  movScanlineSize: 0.92
+  movScanlineSpeed: 1
+  sharpenStrength: 0
+  brightness: 0.03
+  contrast: 0
+  saturation: 0.17
+  vignetteStrength: 0.43
+  chromatic: 0.07
+  replacementColor: {r: 0.07006922, g: 0.7641569, b: 0.7941176, a: 0}
+  noiseStrength: 0.005
+  noiseDistortion: 0.07
+  jitter: 0.04
+  wobble: 0.02

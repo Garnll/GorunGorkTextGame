@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e44269401c47e4849a2a1007ca7ba10a
+labels:
+- crt
+- monitor
+- old
+- retro
+- screen
+- vhs
+timeCreated: 1495832391
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

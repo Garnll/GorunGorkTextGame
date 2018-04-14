@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44269401c47e4849a2a1007ca7ba10a, type: 3}
+  m_Name: LCD
+  m_EditorClassIdentifier: 
+  downscale: 3
+  screenCurve: 0.5
+  horizontalScanlineStrength: 0.2
+  verticalScanlineStrength: 0
+  scanlineSize: 4
+  scanlineSpacing: 3
+  movScanlineStrength: 0
+  movScanlineSize: 0
+  movScanlineSpeed: 1
+  sharpenStrength: 1
+  brightness: 0
+  contrast: 0.3
+  saturation: 0
+  vignetteStrength: 0.4
+  chromatic: 0.2
+  replacementColor: {r: 0, g: 0, b: 0, a: 0}
+  noiseStrength: 0.04
+  noiseDistortion: 0
+  jitter: 0
+  wobble: 0

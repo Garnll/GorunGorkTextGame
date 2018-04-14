@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44269401c47e4849a2a1007ca7ba10a, type: 3}
+  m_Name: Retro
+  m_EditorClassIdentifier: 
+  downscale: 3
+  screenCurve: 0
+  horizontalScanlineStrength: 0
+  verticalScanlineStrength: 0
+  scanlineSize: 1
+  scanlineSpacing: 2
+  movScanlineStrength: 0
+  movScanlineSize: 0
+  movScanlineSpeed: 1
+  sharpenStrength: 0.6
+  brightness: 0.1
+  contrast: -0.1
+  saturation: -0.1
+  vignetteStrength: 0.3
+  chromatic: 0.4
+  replacementColor: {r: 0.9044118, g: 0.27265355, b: 0.7301339, a: 0.15686275}
+  noiseStrength: 0
+  noiseDistortion: 0
+  jitter: 0
+  wobble: 0
