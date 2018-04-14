@@ -30,17 +30,15 @@ public class FontReceiver : MonoBehaviour {
         FontEqualizer.OnFontChange += ChangeMyFont;
 	}
 
-    void ChangeMyFont(TMP_FontAsset newFont, float sizeChange)
+    void ChangeMyFont(TMP_FontAsset newFont)
     {
         if (myTextMesh != null)
         {
             myTextMesh.font = newFont;
-            myTextMesh.fontSize = originalSize + sizeChange;
         }
         if (myInput != null)
         {
             myInput.fontAsset = newFont;
-            myInput.pointSize = originalSize + sizeChange;
         }
     }
 
