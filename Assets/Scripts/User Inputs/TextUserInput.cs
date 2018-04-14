@@ -93,6 +93,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
                 if (separatedInputWords[0] == "")
                 {
+                    DisplayInput();
                     return;
                 }
 
