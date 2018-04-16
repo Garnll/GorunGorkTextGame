@@ -397,10 +397,16 @@ public class ItemHandler : MonoBehaviour {
 		}
 
 		controller.LogStringWithReturn(equipInteraction.textResponse);
+		equipManager.put(equip);
+
+
+
+		if (equipInteraction.actionResponse == null) {
+			return;
+		}
 
 		bool action = equipInteraction.actionResponse.DoActionResponse(controller);
 		if (action) {
-			equipManager.put(equip);
 			controller.LogStringWithReturn(equipInteraction.actionResponse.responseDescription);
 			//Aquí se debe sacar el equipo del inventario o de la habitación.
 			foreach (InteractableObject i in inventoryManager.nounsInInventory) {

@@ -6,10 +6,10 @@ using UnityEngine;
 public class EquipInput : InputActions {
 
 	public override void RespondToInput(GameController controller, string[] separatedInputWords) {
-		InteractableObject target = controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, false, true);
+		InteractableObject target = controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, true);
 
 		if (target != null) {
-			controller.itemHandler.UseObject(target);
+			controller.itemHandler.EquipObject(target);
 		}
 	}
 }
