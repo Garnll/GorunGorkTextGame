@@ -11,6 +11,8 @@ public class TakeInput : InputActions {
     /// </summary>
     /// <param name="controller"></param>
     /// <param name="separatedInputWords"></param>
+	/// 
+
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
         InteractableObject objectToTake = 

@@ -8,5 +8,5 @@ public class IntBuff {
 	public enum IntBuffType { None, Health, Strength, Intelligence, Resistance, Dexterity, Infravision, Hypervision}
 
 	public IntBuffType type;
-	public int buffMagnitude;
+	public int magnitude;
 }

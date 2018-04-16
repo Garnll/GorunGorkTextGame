@@ -116,4 +116,11 @@ public class PlayerOther : MonoBehaviour {
         }
     }
 
+	public void applyBuffs(Equip equip) {
+
+	}
+
+	public void removeBuffs(Equip equip) {
+
+	}
 }

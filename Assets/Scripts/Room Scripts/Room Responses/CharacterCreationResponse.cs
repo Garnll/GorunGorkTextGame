@@ -159,7 +159,7 @@ public class CharacterCreationResponse : RoomResponse {
         }
 
         gameController.LogStringWithReturn("La raza \"" + raceName 
-            + "\" no está disponible en el sistema. Por favor, elige una de las razas disponibles.");
+            + "\" no está disponible en el sistema. Por favor, elige una de las razas disponibles: [Toro], [Conejo], [Oso] o [Búho].");
     }
 
     private string AskForRaceDescription(string raceName)
@@ -176,7 +176,7 @@ public class CharacterCreationResponse : RoomResponse {
 
         }
 
-        return "La raza \"" + raceName + "\" no está disponible en el sistema. " +
+        return "No existe nadie tan perfecto como para ser \"" + raceName + "\". " +
             "Por favor, pregunta por una de las razas disponibles.";
 
     }
@@ -199,8 +199,8 @@ public class CharacterCreationResponse : RoomResponse {
             return;
         }
 
-        gameController.LogStringWithReturn("No se ha detectado el género \"" + playerGender + "\". " +
-            "En el sistema existen [M]acho y [H]embra.");
+        gameController.LogStringWithReturn("Es comprensivo que quieras ser \"" + playerGender + "\", pero eso solo existe en Tumblr. " +
+            "Elige un género entre [M]acho y [H]embra.");
 
     }
 
