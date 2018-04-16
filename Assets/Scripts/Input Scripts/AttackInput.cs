@@ -11,7 +11,7 @@ public class AttackInput : InputActions {
         if (separatedInputWords.Length > 1)
         {
             NPCTemplate npcToAttack = 
-                controller.combatController.TryToFight(separatedInputWords[1], controller.playerRoomNavigation.currentRoom);
+                controller.combatController.TryToFight(separatedInputWords, controller.playerRoomNavigation.currentRoom);
 
             if (npcToAttack == null)
             {

@@ -9,27 +9,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8589c50b0575e504cababc57fc121547, type: 3}
-  m_Name: "Traje de Bu\xF1uelo"
+  m_Name: Traje de Chikorita
   m_EditorClassIdentifier: 
   nounGender: 0
   nouns:
   - traje
-  - "traje de bu\xF1uelo"
-  description: Hay un traje.
+  - traje de chikorita
+  description: Hay un traje de Chikorita en el lugar.
   interactions:
-  - inputAction: {fileID: 11400000, guid: b303c890f60f7ec46ba9de16ed39b2fa, type: 2}
-    isInverseInteraction: 0
-    textResponse: 'Te equipas la wea.
-
-'
-    actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
     isInverseInteraction: 0
-    textResponse: Coges el traje.
+    textResponse: Tomas el traje de Chikorita. Muy bonito
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: b303c890f60f7ec46ba9de16ed39b2fa, type: 2}
+    isInverseInteraction: 0
+    textResponse: Ahora luces cual Chikorita.
     actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
     isInverseInteraction: 0
-    textResponse: Lo tiras. Pum.
+    textResponse: Tiras el traje de Chikorita al suelo.
     actionResponse: {fileID: 0}
   intBuffs: []
   floatBuffs: []

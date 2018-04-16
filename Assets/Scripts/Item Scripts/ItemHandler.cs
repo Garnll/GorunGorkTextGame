@@ -370,14 +370,18 @@ public class ItemHandler : MonoBehaviour {
 	public void EquipObject(InteractableObject objectToEquip) {
 		Interaction equipInteraction = null;
 		Equip equip = null;
+
+		try {
+			equip = objectToEquip as Equip;
+		} catch {
+			controller.LogStringWithReturn("Eso no es un equipo.");
+		}
+
+
 		for (int i=0; i<objectToEquip.interactions.Length; i++) {
 			if (objectToEquip.interactions[i].inputAction.GetType() == typeof(EquipInput)) {
 				equipInteraction = objectToEquip.interactions[i];
-
 				//Revisar si debo hacerlo por cada tipo de una vez aquí.
-				if (objectToEquip.GetType() == typeof(Equip)) {
-					equip = objectToEquip as Equip;
-				}
 				break;
 			}
 		}

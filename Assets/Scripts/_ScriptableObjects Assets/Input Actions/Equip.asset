@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28eb21533977cc541981658f3ec02aa6, type: 3}
   m_Name: Equip
   m_EditorClassIdentifier: 
-  keyWord: 
+  keyWord: equipar

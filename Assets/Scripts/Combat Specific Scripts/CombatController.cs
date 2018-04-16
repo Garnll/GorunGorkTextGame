@@ -25,20 +25,26 @@ public class CombatController : MonoBehaviour {
     private int inventoryPage = 1;
 
 
-    public NPCTemplate TryToFight(string keywordGiven, Room currentRoom)
+    public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
     {
-        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+		string[] newString = new string[keywordGiven.Length - 1];
+
+		for (int i = 1; i < keywordGiven.Length; i++) {
+			newString[i - 1] = keywordGiven[i];
+		}
+
+		for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
         {
             NPCTemplate npc = currentRoom.npcTemplatesInRoom[i];
 
             if (npc.GetType() == typeof(EnemyNPCTemplate))
             {
-                foreach (string keyword in npc.keyword)
-                {
-                    if (keyword == keywordGiven)
-                    {
-                        return npc;
-                    }
+				foreach (string keyword in npc.keyword) {
+					foreach (string keyworkByPlayer in newString) {
+						if (keyword == keyworkByPlayer) {
+							return npc;
+						}
+					}
                 }
             }
         }
