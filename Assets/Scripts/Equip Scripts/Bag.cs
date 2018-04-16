@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/Equip/Mochila")]
 public class Bag : Equip {
 
+	public int capacity;
+
 	public override void put() {
 		throw new NotImplementedException();
 	}

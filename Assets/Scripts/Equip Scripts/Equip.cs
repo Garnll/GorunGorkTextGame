@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Equip : ScriptableObject {
+public abstract class Equip : InteractableObject {
 
-	public bool equiped;
+	public IntBuff[] intBuffs;
+	public FloatBuff[] floatBuffs;
+
+
 	public abstract void put();
 	public abstract void remove();
 
