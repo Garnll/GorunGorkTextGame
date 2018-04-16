@@ -22,16 +22,16 @@ public class InventoryManager : MonoBehaviour {
     /// </summary>
     public void DisplayInventory()
     {
-        string textToDisplay = "Mochila: ";
+        string textToDisplay = "<b>Inventario</b>";
         string newNounToDisplay;
         for (int i = 0; i < nounsInInventory.Count; i++)
         {
             newNounToDisplay = nounsInInventory[i].nouns[0];
 
             if (nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                newNounToDisplay = "\n-Un " + nounsInInventory[i].nouns[0];
+                newNounToDisplay = "\n- Un " + nounsInInventory[i].nouns[0] + ".";
             else
-                newNounToDisplay = "\n-Una " + nounsInInventory[i].nouns[0];
+                newNounToDisplay = "\n- Una " + nounsInInventory[i].nouns[0] + ".";
             
 
             textToDisplay += newNounToDisplay;
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour {
 
         List<string> optionsText = new List<string>();
 
-        string textToDisplay = "Inventario página "+ page.ToString() + "/" + totalPages.ToString() +": ";
+        string textToDisplay = "Inventario Página "+ page.ToString() + "/" + totalPages.ToString() +": ";
 
 
 
