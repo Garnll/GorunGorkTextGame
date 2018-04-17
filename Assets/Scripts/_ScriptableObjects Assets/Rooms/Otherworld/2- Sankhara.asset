@@ -14,7 +14,9 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 2e3040ae32c58f44fa442840b69327d4, type: 2}
+    - {fileID: 11400000, guid: 9ba2856be27f6384d9164c4c7465260a, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,7 +28,31 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
       Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|Room+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 1
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -35,10 +61,10 @@ MonoBehaviour:
       Data: 
   roomPosition: {x: 0, y: -3, z: 8}
   roomDescription: "<b>Sankhara.</b>\nRecuerdas c\xF3mo sol\xEDas utilizar ese tipo
-    de palabras para indicar movimientos en el espacio. Tambi\xE9n al sol, que se
-    desplazaba desde el este hacia el oeste. Es curioso c\xF3mo tenemos palabras para
-    todo. \n<i>Con la palabra creamos y con ella destru\xEDmos.</i>\nRecuerdas la
-    existencia de al menos cuatro nombres importantes para el movimiento.\n"
+    de palabras antes. Tambi\xE9n al sol, que se desplazaba desde el este hacia el
+    oeste. Es curioso c\xF3mo tenemos palabras para todo. \n<i>Con la palabra creamos
+    y con ella destru\xEDmos.</i>\nRecuerdas la existencia de al menos cuatro nombres
+    importantes para el movimiento.\n"
   roomName: Sankhara
   roomResponse: {fileID: 0}
   npcTemplatesInRoom: []

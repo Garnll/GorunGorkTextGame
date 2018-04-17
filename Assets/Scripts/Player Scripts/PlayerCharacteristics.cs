@@ -54,4 +54,11 @@ public class PlayerCharacteristics : MonoBehaviour {
         vision.y = defaultVision.y + SupraFactor;
     }
 
+	public void applyBuffs(Equip equip) {
+
+	}
+
+	public void removeBuffs(Equip equip) {
+
+	}
 }

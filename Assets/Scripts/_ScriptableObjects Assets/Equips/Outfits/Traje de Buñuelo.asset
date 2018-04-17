@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8589c50b0575e504cababc57fc121547, type: 3}
+  m_Name: "Traje de Bu\xF1uelo"
+  m_EditorClassIdentifier: 
+  nounGender: 0
+  nouns:
+  - traje
+  - "traje de bu\xF1uelo"
+  description: Hay un traje.
+  interactions:
+  - inputAction: {fileID: 11400000, guid: b303c890f60f7ec46ba9de16ed39b2fa, type: 2}
+    isInverseInteraction: 0
+    textResponse: 'Te equipas la wea.
+
+'
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
+    isInverseInteraction: 0
+    textResponse: Coges el traje.
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
+    isInverseInteraction: 0
+    textResponse: Lo tiras. Pum.
+    actionResponse: {fileID: 0}
+  intBuffs: []
+  floatBuffs: []
+  type: 0

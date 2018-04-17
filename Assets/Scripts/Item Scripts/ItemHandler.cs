@@ -7,6 +7,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour {
 
     public InventoryManager inventoryManager;
+	public EquipManager equipManager;
     [SerializeField] private ItemKeywordHandler itemKeywordHandler;
 
     private GameController controller;
@@ -304,20 +305,17 @@ public class ItemHandler : MonoBehaviour {
         controller.LogStringWithReturn(throwInteraction.textResponse);
     }
 
-    public void UseObject(InteractableObject objectToUse)
-    {
+    public void UseObject(InteractableObject objectToUse){
         Interaction useInteraction = null;
-
         InteractableConsumableObject consumable = null;
 
-        for (int i = 0; i < objectToUse.interactions.Length; i++)
-        {
-            if (objectToUse.interactions[i].inputAction.GetType() == typeof(UseInput))
-            {
+        for (int i = 0; i < objectToUse.interactions.Length; i++) 
+			{
+
+			if (objectToUse.interactions[i].inputAction.GetType() == typeof(UseInput)){
                 useInteraction = objectToUse.interactions[i];
 
-                if (objectToUse.GetType() == typeof(InteractableConsumableObject))
-                {
+				if (objectToUse.GetType() == typeof(InteractableConsumableObject)){
                     consumable = objectToUse as InteractableConsumableObject;
                 }
                 break;
@@ -325,7 +323,7 @@ public class ItemHandler : MonoBehaviour {
         }
 
         if (useInteraction == null)
-        {
+			{
             string objectToDisplay = objectToUse.nouns[0];
 
             if (objectToUse.nounGender == InteractableObject.WordGender.male)
@@ -333,12 +331,12 @@ public class ItemHandler : MonoBehaviour {
             else
                 objectToDisplay = "la " + objectToUse.nouns[0];
 
-            controller.LogStringWithReturn("No se puede usar " + objectToDisplay + ".");
+            controller.LogStringWithReturn("No puedes usar " + objectToDisplay + ".");
             return;
         }
 
         if (useInteraction.isInverseInteraction)
-        {
+		{
             controller.LogStringWithReturn(useInteraction.textResponse);
             return;
         }
@@ -360,7 +358,6 @@ public class ItemHandler : MonoBehaviour {
             {
                 consumable.StopWorking(controller);
                 inventoryManager.nounsInInventory.Remove(consumable);
-
                 inventoryManager.DisplayInventory();
             }
         }
@@ -369,6 +366,63 @@ public class ItemHandler : MonoBehaviour {
             controller.LogStringWithReturn(useInteraction.actionResponse.negationDescription);
         }
     }
+
+	public void EquipObject(InteractableObject objectToEquip) {
+		Interaction equipInteraction = null;
+		Equip equip = null;
+
+		try {
+			equip = objectToEquip as Equip;
+		} catch {
+			controller.LogStringWithReturn("Eso no es un equipo.");
+		}
+
+
+		for (int i=0; i<objectToEquip.interactions.Length; i++) {
+			if (objectToEquip.interactions[i].inputAction.GetType() == typeof(EquipInput)) {
+				equipInteraction = objectToEquip.interactions[i];
+				//Revisar si debo hacerlo por cada tipo de una vez aquí.
+				break;
+			}
+		}
+
+		if (equipInteraction == null) {
+			string objectToDisplay = objectToEquip.nouns[0];
+			if (objectToEquip.nounGender == InteractableObject.WordGender.male)
+				objectToDisplay = "el " + objectToEquip.nouns[0];
+			else
+				objectToDisplay = "la " + objectToEquip.nouns[0];
+			controller.LogStringWithReturn("No puedes equiparte " + objectToDisplay + ".");
+			return;
+		}
+		if (equipInteraction.isInverseInteraction) {
+			controller.LogStringWithReturn(equipInteraction.textResponse);
+			return;
+		}
+
+		controller.LogStringWithReturn(equipInteraction.textResponse);
+		equipManager.put(equip);
+
+
+
+		if (equipInteraction.actionResponse == null) {
+			return;
+		}
+
+		bool action = equipInteraction.actionResponse.DoActionResponse(controller);
+		if (action) {
+			controller.LogStringWithReturn(equipInteraction.actionResponse.responseDescription);
+			//Aquí se debe sacar el equipo del inventario o de la habitación.
+			foreach (InteractableObject i in inventoryManager.nounsInInventory) {
+				if (i == equip) {
+
+				}
+			}
+		}
+		else {
+			controller.LogStringWithReturn(equipInteraction.actionResponse.negationDescription);
+		}
+	}
 
     /// <summary>
     /// Separa las palabras enviadas desde el input, dejando el input a un lado,
