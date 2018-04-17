@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour {
     public int defaultVisibility = 0;
     [HideInInspector] public int currentVisibility;
 
+    private int experiencePoints = 0;
 
     private int timePassed = 0;
     public int pacifier = 1;
@@ -70,6 +71,8 @@ public class PlayerManager : MonoBehaviour {
     /// </summary>
     public void Initialize()
     {
+        experiencePoints = 0;
+
         currentHealth = maxHealth;
         currentTurn = maxTurn;
         currentWill = maxWill;
@@ -86,6 +89,66 @@ public class PlayerManager : MonoBehaviour {
 
         StartCoroutine(ChargeLife());
     }
+
+    public int CurrentExperiencePoints
+    {
+        get
+        {
+            return experiencePoints;
+        }
+    }
+
+    public void AddExperiencePoints(int howMuch)
+    {
+        experiencePoints += howMuch;
+        controller.LogStringWithReturn("Ganaste " + howMuch + " puntos de experiencia.");
+        CheckLevelUp();
+    }
+
+    private void CheckLevelUp()
+    {
+        if (playerLevel == 0)
+        {
+            if (experiencePoints >= CheckLevelUpFormulae(playerLevel + 1))
+            {
+                playerLevel++;
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            int tempLevelCheck = playerLevel;
+            int z = 0;
+
+            while (tempLevelCheck >= 1)
+            {
+                z += CheckLevelUpFormulae(playerLevel + 1);
+
+                tempLevelCheck--;
+            }
+
+            if (experiencePoints >= z)
+            {
+                playerLevel++;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        controller.LogStringWithReturn("¡Avanzaste al nivel " + playerLevel + "!");
+        characteristics.playerJob.CheckLevelPerks(playerLevel, controller);
+    }
+
+    private int CheckLevelUpFormulae(int level)
+    {
+        return (2 * (level ^ 2) + 8);
+    }
+
 
     public void ReturnToNormalState()
     {

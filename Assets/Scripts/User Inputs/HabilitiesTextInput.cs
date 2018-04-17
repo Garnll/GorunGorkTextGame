@@ -7,6 +7,21 @@ public class HabilitiesTextInput : MonoBehaviour {
 	public void CheckHabilitiesInputDuringCombat(string[] separatedInputWords, GameController controller, EnemyNPC enemy)
     {
         Job playerJob = controller.playerManager.characteristics.playerJob;
+        char[] habilitiesChars = separatedInputWords[0].ToCharArray();
+
+        if (habilitiesChars.Length == 3)
+        {
+            string[] tempSeparatedInputWords = new string[separatedInputWords.Length + 3];
+            for (int i = 0; i < habilitiesChars.Length; i++)
+            {
+                tempSeparatedInputWords[i] = habilitiesChars[i].ToString();
+            }
+            for (int i = 1; i < separatedInputWords.Length; i++)
+            {
+                tempSeparatedInputWords[i + 2] = separatedInputWords[i];
+            }
+            separatedInputWords = tempSeparatedInputWords;
+        }
 
         if (separatedInputWords.Length < 3)
         {
@@ -21,6 +36,7 @@ public class HabilitiesTextInput : MonoBehaviour {
                 "Valores invalidos recibidos.");
             return;
         }
+
         if (separatedInputWords[1] != playerJob.identifier.ToString())
         {
             TryToSendResponse(controller,
@@ -28,25 +44,26 @@ public class HabilitiesTextInput : MonoBehaviour {
                 ".");
             return;
         }
-        for (int i = 0; i < playerJob.habilities.Count; i++)
+
+        for (int i = 0; i < playerJob.unlockedHabilities.Count; i++)
         {
-            if (separatedInputWords[2] == playerJob.habilities[i].habilityID.ToString())
+            if (separatedInputWords[2] == playerJob.unlockedHabilities[i].habilityID.ToString())
             {
                 if (separatedInputWords.Length == 3)
                 {
-                    playerJob.habilities[i].ImplementHability(controller.playerManager, enemy);
+                    playerJob.unlockedHabilities[i].ImplementHability(controller.playerManager, enemy);
                 }
                 else if (separatedInputWords.Length == 4)
                 {
                     string[] separatedString = { separatedInputWords[3]};
 
-                    playerJob.habilities[i].ImplementHability(controller.playerManager, enemy, separatedString);
+                    playerJob.unlockedHabilities[i].ImplementHability(controller.playerManager, enemy, separatedString);
                 }
                 else if (separatedInputWords.Length == 5)
                 {
                     string[] separatedString = { separatedInputWords[3], separatedInputWords[4] };
 
-                    playerJob.habilities[i].ImplementHability(controller.playerManager, enemy, separatedString);
+                    playerJob.unlockedHabilities[i].ImplementHability(controller.playerManager, enemy, separatedString);
                 }
 
                 return;
@@ -81,9 +98,9 @@ public class HabilitiesTextInput : MonoBehaviour {
                 ".");
             return;
         }
-        for (int i = 0; i < playerJob.habilities.Count; i++)
+        for (int i = 0; i < playerJob.jobHabilities.Count; i++)
         {
-            if (separatedInputWords[2] == playerJob.habilities[i].habilityID.ToString())
+            if (separatedInputWords[2] == playerJob.jobHabilities[i].habilityID.ToString())
             {
 
                 return;

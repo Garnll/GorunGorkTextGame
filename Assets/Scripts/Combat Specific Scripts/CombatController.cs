@@ -278,9 +278,9 @@ public class CombatController : MonoBehaviour {
         habilitiesText.Clear();
 
         habilitiesText.Add("[0] Atacar");
-        for (int i = 0; i < player.characteristics.playerJob.habilities.Count; i++)
+        for (int i = 0; i < player.characteristics.playerJob.jobHabilities.Count; i++)
         {
-            Hability currentHability = player.characteristics.playerJob.habilities[i];
+            Hability currentHability = player.characteristics.playerJob.jobHabilities[i];
 
             if (currentHability.isAvailable)
             {

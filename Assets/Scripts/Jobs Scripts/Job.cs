@@ -10,8 +10,8 @@ public abstract class Job : ScriptableObject {
     public string jobName = "job name";
     [TextArea]public string jobDescription;
 
-    public List<Hability> habilities = new List<Hability>();
+    public List<Hability> jobHabilities = new List<Hability>();
+    [HideInInspector] public List<Hability> unlockedHabilities = new List<Hability>();
 
-    public abstract void TryToUseHability(string code, PlayerManager player);
-
+    public abstract void CheckLevelPerks(int playerLevel, GameController controller);
 }
