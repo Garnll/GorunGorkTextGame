@@ -25,6 +25,11 @@ public class DissapearHability : Hability {
 
             player.ChangeState(stateToChange);
         }
+        else if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        {
+            player.controller.LogStringWithReturn("Has desaparecido.");
+            player.ChangeState(stateToChange);
+        }
 
         WaitForCooldown();
     }

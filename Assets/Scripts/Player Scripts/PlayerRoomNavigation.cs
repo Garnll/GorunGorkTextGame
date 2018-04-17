@@ -17,6 +17,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
     Dictionary<DirectionKeyword, Exit> exitDictionary = new Dictionary<DirectionKeyword, Exit>();
 
     Dictionary<string, int> enemyCounter = new Dictionary<string, int>();
+    Dictionary<string, int> enemyVisiblity = new Dictionary<string, int>();
 
     /// <summary>
     /// Le envía al GameController las salidas de la habitación actual.
@@ -40,7 +41,11 @@ public class PlayerRoomNavigation : MonoBehaviour {
         {
             if (currentRoom.npcTemplatesInRoom[i].GetType() != typeof(EnemyNPCTemplate))
             {
-                controller.npcDescriptionsInRoom.Add(currentRoom.npcTemplatesInRoom[i].npcInRoomDescription);
+                if (currentRoom.npcTemplatesInRoom[i].currentVisibility >= controller.playerManager.characteristics.vision.x &&
+                    currentRoom.npcTemplatesInRoom[i].currentVisibility <= controller.playerManager.characteristics.vision.y)
+                {
+                    controller.npcDescriptionsInRoom.Add(currentRoom.npcTemplatesInRoom[i].npcInRoomDescription);
+                }
             }
         }
         CheckEnemiesInRoom();
@@ -54,6 +59,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
 
         enemyCounter.Clear();
+        enemyVisiblity.Clear();
 
         for (int i = 0; i < currentRoom.enemiesInRoom.Count; i++)
         {
@@ -67,6 +73,17 @@ public class PlayerRoomNavigation : MonoBehaviour {
                 else
                 {
                     enemyCounter[currentRoom.enemiesInRoom[i].myTemplate.npcName]++;
+                }
+
+                if (!enemyVisiblity.ContainsKey(currentRoom.enemiesInRoom[i].myTemplate.npcName))
+                {
+                    enemyCounter.Add(currentRoom.enemiesInRoom[i].myTemplate.npcName, 
+                        currentRoom.enemiesInRoom[i].myTemplate.currentVisibility);
+                }
+                else
+                {
+                    enemyVisiblity[currentRoom.enemiesInRoom[i].myTemplate.npcName] = 
+                        currentRoom.enemiesInRoom[i].myTemplate.currentVisibility;
                 }
             }
             else
@@ -85,6 +102,13 @@ public class PlayerRoomNavigation : MonoBehaviour {
     {
         foreach (string enemy in enemyCounter.Keys)
         {
+
+            if (enemyVisiblity[enemy] < controller.playerManager.characteristics.vision.x ||
+                enemyVisiblity[enemy] > controller.playerManager.characteristics.vision.y)
+            {
+                continue;
+            }
+
             switch (enemyCounter[enemy])
             {
                 default:
@@ -94,23 +118,23 @@ public class PlayerRoomNavigation : MonoBehaviour {
                     break;
                 case 2:
                     controller.npcDescriptionsInRoom.Add("Hay dos " + 
-                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                        TextConverter.MakeFirstLetterUpper(enemy) + "s.");
                     break;
                 case 3:
                     controller.npcDescriptionsInRoom.Add("Hay tres " +
-                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                        TextConverter.MakeFirstLetterUpper(enemy) + "s.");
                     break;
                 case 4:
                     controller.npcDescriptionsInRoom.Add("Hay cuatro " +
-                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                        TextConverter.MakeFirstLetterUpper(enemy) + "s.");
                     break;
                 case 5:
                     controller.npcDescriptionsInRoom.Add("Hay cinco " +
-                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                        TextConverter.MakeFirstLetterUpper(enemy) + "s.");
                     break;
                 case 6:
                     controller.npcDescriptionsInRoom.Add("Hay seis " +
-                        TextConverter.MakeFirstLetterUpper(enemy) + ".");
+                        TextConverter.MakeFirstLetterUpper(enemy) + "s.");
                     break;
             }
         }
@@ -144,6 +168,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
             if (currentRoom.npcTemplatesInRoom[randomCheck].GetType() == typeof(EnemyNPCTemplate))
             {
                 EnemyNPCTemplate enemy = currentRoom.npcTemplatesInRoom[randomCheck] as EnemyNPCTemplate;
+                enemy.currentVisibility = enemy.defaultVisibility;
+
                 GameObject newEnemy = Instantiate(enemy.enemyGameObject, currentRoom.roomPosition, Quaternion.identity);
 
                 newEnemy.name = enemy.npcName;

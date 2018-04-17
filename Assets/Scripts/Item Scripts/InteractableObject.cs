@@ -13,8 +13,12 @@ public class InteractableObject : ScriptableObject {
     }
 
     public WordGender nounGender = WordGender.male;
+    public string objectName = "nombre";
     public string[] nouns = { "nombre" };
-    [TextArea]public string description = "Descripción en la habitación";
+    public float weight = 10;
+    [TextArea] public string description = "Descripción en la habitación";
+    [TextArea] public string descriptionAtAnalized = "Descripción al ser analizado";
+    [Space(10)]
     public Interaction[] interactions;
 
 }

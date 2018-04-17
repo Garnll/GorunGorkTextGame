@@ -17,13 +17,13 @@ public abstract class Hability : ScriptableObject {
     public int cooldownTime = 8;
     public CharacterState stateToChange;
 
-    public int habiltyLevel = 1;
+    public int habilityLevel = 1;
 
     public bool isAvailable = true;
 
     private void OnEnable()
     {
-        habiltyLevel = 1;
+        habilityLevel = 1;
         isAvailable = true;
     }
 
@@ -42,7 +42,7 @@ public abstract class Hability : ScriptableObject {
     /// Requiere que se le envíe un objeto
     /// </summary>
     /// <param name="interactable"></param>
-    public virtual void ImplementHability(InteractableObject interactable)
+    public virtual void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
         //Do something
     }

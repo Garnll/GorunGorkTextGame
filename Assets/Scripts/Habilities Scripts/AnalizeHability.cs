@@ -29,7 +29,6 @@ public class AnalizeHability : Hability {
             "Destreza: " + enemy.currentDexterity + "\n" +
             "Inteligencia: " + enemy.currentIntelligence + "\n" +
             "Resistencia: " + enemy.currentResistance;
-        //Supondré que debería ser fuerza, destreza, etc. Falta por implementar eso.
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
@@ -38,8 +37,18 @@ public class AnalizeHability : Hability {
             player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
             WaitForCooldown(player);
         }
+        else if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        {
+            player.controller.LogStringWithReturn(TextConverter.MakeFirstLetterUpper(enemy.myTemplate.npcName) +  ":\n" 
+                + characteristicsEnemy);
+        }
 
         WaitForCooldown();
+    }
+
+    public override void ImplementHability(PlayerManager player, InteractableObject interactable)
+    {
+        player.controller.LogStringWithReturn(interactable.descriptionAtAnalized);
     }
 
     private void WaitForCooldown(PlayerManager player)

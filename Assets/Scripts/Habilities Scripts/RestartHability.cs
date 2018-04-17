@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Habilities/Restart")]
-public class RestartHabiity : Hability {
+public class RestartHability : Hability {
 
     public override void ImplementHability(PlayerManager player, EnemyNPC enemy)
     {

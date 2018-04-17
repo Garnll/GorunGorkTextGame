@@ -37,4 +37,19 @@ public class AtractHability : Hability {
 
         WaitForCooldown();
     }
+
+    public override void ImplementHability(PlayerManager player, InteractableObject interactable)
+    {
+        if (interactable.weight > habilityLevel * 10)
+        {
+            player.controller.LogStringWithReturn("Atraes " + TextConverter.OutputObjectHimOrHer(interactable) + " hacia ti.");
+            //Generará carga en el mazo
+        }
+        else
+        {
+            player.controller.LogStringWithReturn(TextConverter.MakeFirstLetterUpper(
+                TextConverter.OutputObjectHimOrHer(interactable)) 
+                + " es muy pesado para ti.");
+        }
+    }
 }

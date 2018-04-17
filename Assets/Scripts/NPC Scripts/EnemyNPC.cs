@@ -53,6 +53,8 @@ public class EnemyNPC : MonoBehaviour {
         currentResistance = myTemplate.defaultResistance;
         currentStrength = myTemplate.defaultStrength;
 
+        myTemplate.currentVisibility = myTemplate.defaultVisibility;
+
         currentTurnRegenPerSecond = myTemplate.DefaultTurnRegenPerSecond;
         currentHealthRegenPerSecond = myTemplate.DefaultHealthRegenPerSecond;
         currentCriticalHitProbability = myTemplate.DefaultCriticalHitProbability;

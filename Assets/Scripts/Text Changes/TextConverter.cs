@@ -12,4 +12,16 @@ public class TextConverter {
 
         return new string(separatedString);
     }
+
+    public static string OutputObjectHimOrHer(InteractableObject interactable)
+    {
+        if (interactable.nounGender == InteractableObject.WordGender.male)
+        {
+            return "el " + interactable.objectName;
+        }
+        else
+        {
+            return "la " + interactable.objectName;
+        }
+    }
 }

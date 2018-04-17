@@ -14,12 +14,12 @@ public class StealthState : CharacterState {
         {
             PlayerManager player = character as PlayerManager;
 
+            player.currentVisibility = -4 + (player.playerLevel/2);
 
         }
         else if (character.GetType() == typeof(EnemyNPC))
         {
             EnemyNPC enemy = character as EnemyNPC;
-
 
         }
     }
@@ -30,6 +30,7 @@ public class StealthState : CharacterState {
         {
             PlayerManager player = character as PlayerManager;
 
+            player.currentVisibility = player.defaultVisibility;
 
             player.ReturnToNormalState();
         }

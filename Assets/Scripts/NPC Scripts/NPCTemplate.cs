@@ -11,6 +11,8 @@ public abstract class NPCTemplate : ScriptableObject {
     public string npcGender = "macho";
     public Race npcRace;
     public Job npcJob;
+    public int defaultVisibility = 0;
+    [HideInInspector] public int currentVisibility;
     [TextArea] public string npcInRoomDescription;
     [TextArea] public string npcDetailedDescription;
 

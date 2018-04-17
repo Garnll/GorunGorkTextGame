@@ -12,6 +12,8 @@ public class SupersonicState : CharacterState
         {
             PlayerManager player = character as PlayerManager;
 
+            player.currentVisibility = 4 + (player.playerLevel/2);
+
             player.characteristics.other.currentEvasion = 50;
             player.characteristics.other.InvokeRepeating("ReduceEvasionBySecond", 1, 1);
 
@@ -30,6 +32,8 @@ public class SupersonicState : CharacterState
         if (character.GetType() == typeof(PlayerManager))
         {
             PlayerManager player = character as PlayerManager;
+
+            player.currentVisibility = player.defaultVisibility;
 
             player.characteristics.other.currentEvasion = player.characteristics.other.DefaultEvasion;
             player.characteristics.other.CancelInvoke();

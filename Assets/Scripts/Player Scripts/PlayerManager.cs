@@ -22,6 +22,10 @@ public class PlayerManager : MonoBehaviour {
     [SerializeField] private float maxWill = 10;
     [HideInInspector] public float currentWill;
 
+    public int defaultVisibility = 0;
+    [HideInInspector] public int currentVisibility;
+
+
     private int timePassed = 0;
     public int pacifier = 1;
 
@@ -69,6 +73,7 @@ public class PlayerManager : MonoBehaviour {
         currentHealth = maxHealth;
         currentTurn = maxTurn;
         currentWill = maxWill;
+        currentVisibility = defaultVisibility;
         defaultState.ApplyStateEffect(this);
 
         characteristics.InitializeCharacteristics();
