@@ -169,12 +169,12 @@ public class ItemHandler : MonoBehaviour {
 
         for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
         {
-            objectToDisplay = inventoryManager.nounsInInventory[i].nouns[0];
+            objectToDisplay = inventoryManager.nounsInInventory[i].objectName;
 
             if (inventoryManager.nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].nouns[0];
+                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].objectName;
             else
-                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].nouns[0];
+                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].objectName;
 
             combinedText.Add(objectToDisplay);
         }
@@ -198,12 +198,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (examineInteraction == null)
         {
-            string objectToDisplay = objectToExamine.nouns[0];
+            string objectToDisplay = objectToExamine.objectName;
 
             if (objectToExamine.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToExamine.nouns[0];
+                objectToDisplay = "el " + objectToExamine.objectName;
             else
-                objectToDisplay = "la " + objectToExamine.nouns[0];
+                objectToDisplay = "la " + objectToExamine.objectName;
 
             controller.LogStringWithReturn("No logras examinar " + objectToDisplay + ".");
             return;
@@ -227,12 +227,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (takeInteraction == null)
         {
-            string objectToDisplay = objectToTake.nouns[0];
+            string objectToDisplay = objectToTake.objectName;
 
             if (objectToTake.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToTake.nouns[0];
+                objectToDisplay = "el " + objectToTake.objectName;
             else
-                objectToDisplay = "la " + objectToTake.nouns[0];
+                objectToDisplay = "la " + objectToTake.objectName;
 
             controller.LogStringWithReturn("No se puede coger " + objectToDisplay + ".");
             return;
@@ -276,12 +276,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (throwInteraction == null)
         {
-            string objectToDisplay = objectToThrow.nouns[0];
+            string objectToDisplay = objectToThrow.objectName;
 
             if (objectToThrow.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToThrow.nouns[0];
+                objectToDisplay = "el " + objectToThrow.objectName;
             else
-                objectToDisplay = "la " + objectToThrow.nouns[0];
+                objectToDisplay = "la " + objectToThrow.objectName;
 
             controller.LogStringWithReturn("No se puede tirar " + objectToDisplay + ".");
             return;
@@ -324,12 +324,12 @@ public class ItemHandler : MonoBehaviour {
 
         if (useInteraction == null)
 			{
-            string objectToDisplay = objectToUse.nouns[0];
+            string objectToDisplay = objectToUse.objectName;
 
             if (objectToUse.nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "el " + objectToUse.nouns[0];
+                objectToDisplay = "el " + objectToUse.objectName;
             else
-                objectToDisplay = "la " + objectToUse.nouns[0];
+                objectToDisplay = "la " + objectToUse.objectName;
 
             controller.LogStringWithReturn("No puedes usar " + objectToDisplay + ".");
             return;
@@ -387,11 +387,11 @@ public class ItemHandler : MonoBehaviour {
 		}
 
 		if (equipInteraction == null) {
-			string objectToDisplay = objectToEquip.nouns[0];
+			string objectToDisplay = objectToEquip.objectName;
 			if (objectToEquip.nounGender == InteractableObject.WordGender.male)
-				objectToDisplay = "el " + objectToEquip.nouns[0];
+				objectToDisplay = "el " + objectToEquip.objectName;
 			else
-				objectToDisplay = "la " + objectToEquip.nouns[0];
+				objectToDisplay = "la " + objectToEquip.objectName;
 			controller.LogStringWithReturn("No puedes equiparte " + objectToDisplay + ".");
 			return;
 		}
