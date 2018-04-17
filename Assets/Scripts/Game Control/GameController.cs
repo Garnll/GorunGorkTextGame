@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour {
         {
             while (writing)
             {
-                yield return new WaitForSeconds(textvelocity);
+                yield return new WaitUntil(() => !writing);
             }
         }
 

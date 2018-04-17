@@ -77,7 +77,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
                 if (!enemyVisiblity.ContainsKey(currentRoom.enemiesInRoom[i].myTemplate.npcName))
                 {
-                    enemyCounter.Add(currentRoom.enemiesInRoom[i].myTemplate.npcName, 
+                    enemyVisiblity.Add(currentRoom.enemiesInRoom[i].myTemplate.npcName, 
                         currentRoom.enemiesInRoom[i].myTemplate.currentVisibility);
                 }
                 else
