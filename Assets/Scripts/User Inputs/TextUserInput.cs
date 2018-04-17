@@ -120,6 +120,20 @@ public class TextUserInput : SerializedMonoBehaviour {
                 DisplayInput();
                 break;
 
+
+            case GameState.GameStates.levelUp:
+
+                if (separatedInputWords[0] == "")
+                {
+                    DisplayInput();
+                    return;
+                }
+
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                controller.playerManager.characteristics.playerJob.ReceiveCharacteristicInput(userInput);
+                DisplayInput();
+                break;
+
             case GameState.GameStates.combatPreparation:
                 DisplayInput();
                 break;

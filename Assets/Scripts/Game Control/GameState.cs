@@ -21,6 +21,7 @@ public class GameState {
     {
         creation,
         exploration,
+        levelUp,
         introduction,
         combat,
         combatPreparation,
