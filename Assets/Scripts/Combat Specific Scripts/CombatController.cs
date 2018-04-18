@@ -24,7 +24,13 @@ public class CombatController : MonoBehaviour {
     private bool inInventory = false;
     private int inventoryPage = 1;
 
-
+    /// <summary>
+    /// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
+    /// Devuelve el enemigo que encuentre.
+    /// </summary>
+    /// <param name="keywordGiven"></param>
+    /// <param name="currentRoom"></param>
+    /// <returns></returns>
     public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
     {
 		string[] newString = new string[keywordGiven.Length - 1];
@@ -52,7 +58,11 @@ public class CombatController : MonoBehaviour {
         return null;
     }
 
-
+    /// <summary>
+    /// Comienza preparaciones del combate, inicializa variables de enemy y player.
+    /// </summary>
+    /// <param name="npc"></param>
+    /// <param name="thisPlayer"></param>
     public void PrepareFight(EnemyNPC npc, PlayerManager thisPlayer)
     {
         enemy = npc;
@@ -61,6 +71,10 @@ public class CombatController : MonoBehaviour {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
 
+    /// <summary>
+    /// Inicia la batalla una vez la UI de exploración haya acabado de copiar.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator StartFight()
     {
         yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
@@ -87,12 +101,18 @@ public class CombatController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Limpia los logs antiguos de jugador y enemigo.
+    /// </summary>
     private void ClearCollections()
     {
         enemyLog.Clear();
         playerLog.Clear();
     }
 
+    /// <summary>
+    /// Cambia el layout del juego para volverse el que debe aparecer durante el comabte.
+    /// </summary>
     private void ChangeLayout()
     {
         player.controller.PrepareForCombat();
@@ -114,7 +134,7 @@ public class CombatController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Recibe y maneja el input del jugador
+    /// Recibe y maneja el input del jugador durante este estado de combate.
     /// </summary>
     /// <param name="input"></param>
     public void ReceiveInput(string[] input, HabilitiesTextInput habilitiesInput)
@@ -210,7 +230,7 @@ public class CombatController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Inicializar GUI del jugador
+    /// Inicializa GUI del jugador.
     /// </summary>
     private void InitializePlayer()
     {
@@ -232,6 +252,9 @@ public class CombatController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Cambia el tituloo del jugador para reflejar su CharacterState actual.
+    /// </summary>
     public void ChangePlayerState ()
     {
         string state = "";
@@ -249,6 +272,9 @@ public class CombatController : MonoBehaviour {
             state;
     }
 
+    /// <summary>
+    /// Cambia la GUI del jugador para mostrar la vida actual.
+    /// </summary>
     public void UpdatePlayerLife()
     {
         playerUI.lifeSlider.maxValue = player.MaxHealth;
@@ -256,18 +282,26 @@ public class CombatController : MonoBehaviour {
         playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
     }
 
+    /// <summary>
+    /// Cambia la GUI del jugador para mostrar su carga de turno actual.
+    /// </summary>
     public void UpdatePlayerTurn()
     {
         playerUI.turnSlider.maxValue = player.MaxTurn;
         playerUI.turnSlider.value = player.currentTurn;
     }
 
+    /// <summary>
+    /// Cambia la GUI del jugador para mostrar su voluntad actual.
+    /// </summary>
     public void UpdatePlayerWill()
     {
         playerUI.willText.text = "V[" + player.currentWill + "/" + player.MaxWill + "]";
     }
 
-
+    /// <summary>
+    /// Muestra las habilidades disponibles del jugador.
+    /// </summary>
     public void SetPlayerHabilities()
     {
         if (inInventory)
@@ -304,11 +338,17 @@ public class CombatController : MonoBehaviour {
         playerUI.habilitiesText.text = string.Join("\n", habilitiesText.ToArray());
     }
 
+    /// <summary>
+    /// Pone un texto alterno en el lugar donde irían las habilidades del jugador.
+    /// </summary>
     public void SetPlayerHabilities(string newText)
     {
         playerUI.habilitiesText.text = newText;
     }
 
+    /// <summary>
+    /// Cambia la GUI del jugador para mostrar sus opciones actuales.
+    /// </summary>
     public void SetPlayerOptions()
     {
         if (inInventory)
@@ -344,7 +384,9 @@ public class CombatController : MonoBehaviour {
         playerUI.optionsText.text = newText;
     }
 
-
+    /// <summary>
+    /// Actualiza el log actual del jugador, mostrando eventos que él realice o le sucedan.
+    /// </summary>
     public void UpdatePlayerLog(string newLog)
     {
         playerLog.Enqueue(newLog);
@@ -358,6 +400,10 @@ public class CombatController : MonoBehaviour {
         UpdateEnemyLogOnly("-");
     }
 
+    /// <summary>
+    /// Actualiza el log actual del jugador sin enviarle un mensaje extra al log del enemigo.
+    /// </summary>
+    /// <param name="newLog"></param>
     public void UpdatePlayerLogOnly(string newLog)
     {
         playerLog.Enqueue(newLog);
@@ -371,7 +417,7 @@ public class CombatController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Inicializar GUI del enemigo
+    /// Inicializa GUI del enemigo.
     /// </summary>
     private void InitializeEnemy()
     {
@@ -389,6 +435,9 @@ public class CombatController : MonoBehaviour {
       
     }
 
+    /// <summary>
+    /// Cambia la GUI del npc enemigo para reflejar su CharacterState actual.
+    /// </summary>
     public void ChangeEnemyState()
     {
         string state = "";
@@ -409,6 +458,9 @@ public class CombatController : MonoBehaviour {
         enemy.myTemplate.npcRace.ActivatePassiveHability(enemy);
     }
 
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su vida actual.
+    /// </summary>
     public void UpdateEnemyLife()
     {
         enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
@@ -416,19 +468,26 @@ public class CombatController : MonoBehaviour {
         enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("0") + "%";
     }
 
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su carga de turno actual.
+    /// </summary>
     public void UpdateEnemyTurn()
     {
         enemyUI.turnSlider.maxValue = enemy.myTemplate.MaxTurn;
         enemyUI.turnSlider.value = enemy.currentTurn;
     }
 
-
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su descipción detallada.
+    /// </summary>
     public void SetEnemyDescription()
     {
         enemyUI.descriptionText.text = enemy.myTemplate.npcDetailedDescription;
     }
 
-
+    /// <summary>
+    /// Actualiza el Log del enemigo mostrando sus acciones y cosas que recibe. Envia un mensaje "-" al log del jugador.
+    /// </summary>
     public void UpdateEnemyLog(string newLog)
     {
         enemyLog.Enqueue(newLog);
@@ -443,6 +502,9 @@ public class CombatController : MonoBehaviour {
         UpdatePlayerLogOnly("-");
     }
 
+    /// <summary>
+    /// Actualiza el Log del enemigo mostrando acciones y consecuencias de acciones. No envía mensajes al log del jugador.
+    /// </summary>
     public void UpdateEnemyLogOnly(string newLog)
     {
         enemyLog.Enqueue(newLog);
@@ -456,7 +518,9 @@ public class CombatController : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Termina el combate con el Npc Enemigo como perdedor.
+    /// </summary>
     public IEnumerator EndCombat(EnemyNPC loser)
     {
         EndAllCombat();
@@ -465,6 +529,9 @@ public class CombatController : MonoBehaviour {
         ReturnToRoom("¡Ganaste!");
     }
 
+    /// <summary>
+    /// Termina el combate cuando el npc enemigo huye.
+    /// </summary>
     public IEnumerator EndCombatByEscaping(EnemyNPC runner)
     {
         EndAllCombat();
@@ -473,7 +540,9 @@ public class CombatController : MonoBehaviour {
         ReturnToRoom("¡El enemigo huyó!");
     }
 
-
+    /// <summary>
+    /// Termina el combate con el jugador como perdedor.
+    /// </summary>
     public IEnumerator EndCombat(PlayerManager loser)
     {
         EndAllCombat();
@@ -482,7 +551,10 @@ public class CombatController : MonoBehaviour {
         ReturnToRoom("¡Perdiste!");
     }
 
-    public IEnumerator EndCombatByEscaping(PlayerManager loser)
+    /// <summary>
+    /// Termina el combate cuando el jugador huye.
+    /// </summary>
+    public IEnumerator EndCombatByEscaping(PlayerManager runner)
     {
         EndAllCombat();
         yield return new WaitForSecondsRealtime(2);
@@ -490,15 +562,21 @@ public class CombatController : MonoBehaviour {
         ReturnToRoom("¡Huiste!");
     }
 
-
+    /// <summary>
+    /// Termina el estado del combate en todos sus sentidos.
+    /// </summary>
     private void EndAllCombat()
     {
-        enemy.myAI.StartAI();
+        enemy.myAI.StopAI();
         CancelInvoke();
         GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
         player.controller.CreateNewDisplay();
     }
 
+    /// <summary>
+    /// Devuelve el jugador a la habitación en la que estaba antes del combate.
+    /// </summary>
+    /// <param name="endMessage"></param>
     private void ReturnToRoom(string endMessage)
     {
         player.controller.PrepareForCombat();

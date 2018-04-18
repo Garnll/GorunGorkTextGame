@@ -5,16 +5,10 @@ using TMPro;
 /// <summary>
 /// Parametros en script del prefab del UI del jugador durante el combate.
 /// </summary>
-public class PlayerUIDuringCombat : MonoBehaviour {
-
-    [HideInInspector] public TextMeshProUGUI title;
-    [HideInInspector] public Slider lifeSlider;
-    [HideInInspector] public TextMeshProUGUI lifeText;
-    [HideInInspector] public Slider turnSlider;
-    [HideInInspector] public TextMeshProUGUI willText;
+public class PlayerUIDuringCombat : UIDuringCombat {
     [HideInInspector] public TextMeshProUGUI habilitiesText;
     [HideInInspector] public TextMeshProUGUI optionsText;
-    [HideInInspector] public TextMeshProUGUI logText;
+
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject playerTitle;
@@ -25,7 +19,11 @@ public class PlayerUIDuringCombat : MonoBehaviour {
     [SerializeField] private GameObject separator;
     [SerializeField] private GameObject playerLog;
 
-    public void InstantiateMyStuff(RectTransform combatParent)
+    /// <summary>
+    /// Instancia los gameObjects necesarios del jugador para el combate, pasandose a si mismo estas referencias.
+    /// </summary>
+    /// <param name="combatParent"></param>
+    public override void InstantiateMyStuff(RectTransform combatParent)
     {
         RectTransform enemyContainer = Instantiate(playerPrefab, combatParent).GetComponent<RectTransform>();
 

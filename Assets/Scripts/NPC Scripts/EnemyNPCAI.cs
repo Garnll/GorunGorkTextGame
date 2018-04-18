@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class EnemyNPCAI : MonoBehaviour {
 
+    /// <summary>
+    /// Modos de pelea del enemigo
+    /// </summary>
     public enum EnemyMode
     {
         Defensive,
@@ -15,6 +18,9 @@ public class EnemyNPCAI : MonoBehaviour {
         Afraid
     }
 
+    /// <summary>
+    /// Estados para actuar del enemigo
+    /// </summary>
     public enum EnemyStates
     {
         Wait,
@@ -54,10 +60,11 @@ public class EnemyNPCAI : MonoBehaviour {
     protected float npcHealthPercent;
     protected float npcTurnPercent;
 
-
+    /// <summary>
+    /// Inicia la IA del enemigo.
+    /// </summary>
     public void StartAI()
     {
-
         isActive = true;
         currentMode = defaultMode;
 
@@ -65,6 +72,9 @@ public class EnemyNPCAI : MonoBehaviour {
         StartCoroutine(WaitBetweenIterations(timeBetweenIterations));
     }
 
+    /// <summary>
+    /// Termina el funcionamiento de la IA del enemigo.
+    /// </summary>
     public void StopAI()
     {
         isActive = false;
@@ -72,6 +82,11 @@ public class EnemyNPCAI : MonoBehaviour {
         StopCoroutine(WaitBetweenIterations(timeBetweenIterations));
     }
 
+    /// <summary>
+    /// El tiempo que esperará la IA antes de analizar la situación de combate.
+    /// </summary>
+    /// <param name="howMuchTime"></param>
+    /// <returns></returns>
     public IEnumerator WaitBetweenIterations(float howMuchTime)
     {
         while (isActive)
@@ -81,6 +96,11 @@ public class EnemyNPCAI : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Analiza el estado de la vida propia contra la del jugador, cuanto turno falta para que el jugador actúe, si tiene
+    /// habilidades, etc. Y lo resuelve según su modo de combate actual.
+    /// Funciona como una "máquina de estados".
+    /// </summary>
     public void AnalizeSituation()
     {
         if (myNPC.currentTurn < myNPC.myTemplate.MaxTurn)
@@ -307,7 +327,9 @@ public class EnemyNPCAI : MonoBehaviour {
         RealizeAction();
     }
 
-
+    /// <summary>
+    /// Después de Analizar la situación, envía la acción a tomar según su estado actual.
+    /// </summary>
     public void RealizeAction()
     {
         switch (currentState)
@@ -327,7 +349,7 @@ public class EnemyNPCAI : MonoBehaviour {
             case EnemyStates.UseLowerHability:
                 if (habilitiesReady[0])
                 {
-                    //myNPC.myTemplate.habilities[0].ImplementHability(myNPC, player);
+                    //myNPC.myTemplate.habilities[0].ImplementHability(myNPC, player); No implementado aún
                 }
                 else
                 {
@@ -338,7 +360,7 @@ public class EnemyNPCAI : MonoBehaviour {
             case EnemyStates.UseMidHability:
                 if (habilitiesReady[1])
                 {
-                    //myNPC.myTemplate.habilities[1].ImplementHability(myNPC, player);
+                    //myNPC.myTemplate.habilities[1].ImplementHability(myNPC, player); No implementado aún
                 }
                 else
                 {
@@ -349,7 +371,7 @@ public class EnemyNPCAI : MonoBehaviour {
             case EnemyStates.UseHighHability:
                 if (habilitiesReady[2])
                 {
-                    //myNPC.myTemplate.habilities[2].ImplementHability(myNPC, player);
+                    //myNPC.myTemplate.habilities[2].ImplementHability(myNPC, player); No implementado aún
                 }
                 else
                 {
@@ -359,6 +381,9 @@ public class EnemyNPCAI : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Revisa si sus habilidades están listas para usar.
+    /// </summary>
     public void CheckHabilities()
     {
         habilitiesReady.Clear();

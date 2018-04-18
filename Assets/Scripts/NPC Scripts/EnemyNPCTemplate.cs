@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Base para crear los NPCs puramente enemigos. No tienen texto para hablarles, y funcionan
@@ -36,8 +34,6 @@ public class EnemyNPCTemplate : NPCTemplate {
     [SerializeField] private float defaultEvasion = 0;
 
     private float escapeProbability = 0;
-
-    CombatController combatController;
 
     public float MaxHealth
     {
@@ -105,8 +101,10 @@ public class EnemyNPCTemplate : NPCTemplate {
     }
 
     /// <summary>
-    /// Aun no implementada.
+    /// Calcula la probabilidad de escape del enemigo según los parametros dados.
     /// </summary>
+    /// <param name="enemy"></param>
+    /// <param name="player"></param>
     /// <returns></returns>
     public float EscapeProbability(EnemyNPC enemy, PlayerManager player)
     {

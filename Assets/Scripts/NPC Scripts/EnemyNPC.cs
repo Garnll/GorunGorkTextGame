@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Instancia de una NPC Enemigo, creada y manejada a partir de un EnemyNPCTemplate.
+/// </summary>
 public class EnemyNPC : MonoBehaviour {
 
     [HideInInspector] public EnemyNPCTemplate myTemplate;
@@ -36,7 +39,9 @@ public class EnemyNPC : MonoBehaviour {
 
     [HideInInspector] public EnemyNPCAI myAI;
 
-
+    /// <summary>
+    /// Devuelve el CharacterState del enemigo a su default.
+    /// </summary>
     public void ReturnToNormalState()
     {
         currentState = myTemplate.defaultState;
@@ -44,6 +49,10 @@ public class EnemyNPC : MonoBehaviour {
         combatController.ChangeEnemyState();
     }
 
+    /// <summary>
+    /// Inicializa al enemigo para el combate.
+    /// </summary>
+    /// <param name="controller"></param>
     public void StartCombat(CombatController controller)
     {
         combatController = controller;
@@ -74,6 +83,10 @@ public class EnemyNPC : MonoBehaviour {
         return currentCriticalHitProbability;
     }
 
+    /// <summary>
+    /// Gasta una cantidad de turno dada;
+    /// </summary>
+    /// <param name="toWaste"></param>
     public void WasteTurn (float toWaste)
     {
         currentTurn -= (myTemplate.MaxTurn * toWaste);
@@ -134,6 +147,9 @@ public class EnemyNPC : MonoBehaviour {
         timer.StartCoroutine(timer.RepositionTime((1 + (currentIntelligence / 5)), this));
     }
 
+    /// <summary>
+    /// Recarga el turno y la vida cada segundo según los parámetros de recarga de ambos.
+    /// </summary>
     public void ChargeBySecond()
     {
         currentTurn += (currentTurnRegenPerSecond + (0.03f * currentDexterity));
@@ -159,6 +175,9 @@ public class EnemyNPC : MonoBehaviour {
         CheckForStateDuration();
     }
 
+    /// <summary>
+    /// Revisa si ya pasó el tiempo de duración del estado actual.
+    /// </summary>
     private void CheckForStateDuration()
     {
         if (currentState.durationTime > 0)
@@ -171,6 +190,9 @@ public class EnemyNPC : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Reduce la evasión del enemigo cada segundo si esta supera su default.
+    /// </summary>
     public void ReduceEvasionBySecond()
     {
         if (currentEvasion > myTemplate.DefaultEvasion)
@@ -179,12 +201,17 @@ public class EnemyNPC : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Cambia el CharacterState actual a uno dado.
+    /// </summary>
+    /// <param name="newState"></param>
     public void ChangeState(CharacterState newState)
     {
         currentState = newState;
         currentState.ApplyStateEffect(this);
         combatController.ChangeEnemyState();
     }
+
 
     public void ReceiveDamage(float damage)
     {
@@ -251,6 +278,9 @@ public class EnemyNPC : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// "Mata" al enemigo, terminando el combate.
+    /// </summary>
     public void Die()
     {
         combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha muerto.");

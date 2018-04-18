@@ -5,15 +5,9 @@ using TMPro;
 /// <summary>
 /// Parametros en script del prefab del UI del enemigo durante el combate.
 /// </summary>
-public class EnemyUIDuringCombat : MonoBehaviour {
+public class EnemyUIDuringCombat : UIDuringCombat {
 
-    [HideInInspector] public TextMeshProUGUI title;
-    [HideInInspector] public Slider lifeSlider;
-    [HideInInspector] public TextMeshProUGUI lifeText;
-    [HideInInspector] public Slider turnSlider;
-    [HideInInspector] public TextMeshProUGUI willText;
     [HideInInspector] public TextMeshProUGUI descriptionText;
-    [HideInInspector] public TextMeshProUGUI logText;
 
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyTitle;
@@ -23,7 +17,11 @@ public class EnemyUIDuringCombat : MonoBehaviour {
     [SerializeField] private GameObject separator;
     [SerializeField] private GameObject enemyLog;
 
-    public void InstantiateMyStuff(RectTransform combatParent)
+    /// <summary>
+    /// Instancia los gameObjects necesarios del enemigo para el combate, pasandose a si mismo estas referencias.
+    /// </summary>
+    /// <param name="combatParent"></param>
+    public override void InstantiateMyStuff(RectTransform combatParent)
     {
         RectTransform enemyContainer = Instantiate(enemyPrefab, combatParent).GetComponent<RectTransform>();
 
