@@ -54,7 +54,34 @@ public class PlayerCharacteristics : MonoBehaviour {
         vision.y = defaultVision.y + SupraFactor;
     }
 
-	public void applyBuffs(Equip equip) {
+    public bool AddPointsToDefaultStrength(int howMany)
+    {
+        defaultStrength += howMany;
+        return true;
+    }
+
+
+    public bool AddPointsToDefaultDexterity(int howMany)
+    {
+        defaultDexterity += howMany;
+        return true;
+    }
+
+
+    public bool AddPointsToDefaultIntelligence(int howMany)
+    {
+        defaultIntelligence += howMany;
+        return true;
+    }
+
+
+    public bool AddPointsToDefaultResistance(int howMany)
+    {
+        defaultResistance += howMany;
+        return true;
+    }
+
+    public void applyBuffs(Equip equip) {
 
 	}
 

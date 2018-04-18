@@ -20,7 +20,7 @@ public class OperarioJob : Job
 
             case 1:
                 controller.LogStringWithoutReturn("Puedes mejorar 1 caracteristica... ");
-                //Hacer algo para que esto se pueda hacer de verdad
+                controller.playerManager.characteristicsChanger.StartCharacteristicLevelUp(1, controller);
                 break;
 
             case 2:
@@ -30,7 +30,7 @@ public class OperarioJob : Job
 
             case 3:
                 controller.LogStringWithoutReturn("Puedes mejorar 2 caracteristicas... ");
-                //Hacer algo para que esto se pueda hacer de verdad
+                controller.playerManager.characteristicsChanger.StartCharacteristicLevelUp(2, controller);
                 break;
 
             case 4:
@@ -40,7 +40,7 @@ public class OperarioJob : Job
 
             case 5:
                 controller.LogStringWithoutReturn("Puedes mejorar 1 caracteristicas... ");
-                //Hacer algo para que esto se pueda hacer de verdad
+                controller.playerManager.characteristicsChanger.StartCharacteristicLevelUp(1, controller);
                 break;
         }
     }

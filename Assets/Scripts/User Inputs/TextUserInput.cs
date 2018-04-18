@@ -130,7 +130,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                 }
 
                 controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
-                controller.playerManager.characteristics.playerJob.ReceiveCharacteristicInput(userInput);
+                controller.playerManager.characteristicsChanger.AcceptInput(separatedInputWords, controller);
                 DisplayInput();
                 break;
 

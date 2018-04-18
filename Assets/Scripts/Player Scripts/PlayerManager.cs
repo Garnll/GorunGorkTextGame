@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour {
     public int playerLevel = 0;
 
     private bool isAlive = true;
+    public CharacteristicsChanger characteristicsChanger;
     public CharacterState defaultState;
     [HideInInspector] public CharacterState currentState;
 

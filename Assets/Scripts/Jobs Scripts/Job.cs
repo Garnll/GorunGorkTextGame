@@ -14,14 +14,4 @@ public abstract class Job : ScriptableObject {
     [HideInInspector] public List<Hability> unlockedHabilities = new List<Hability>();
 
     public abstract void CheckLevelPerks(int playerLevel, GameController controller);
-
-    protected void ShowIntructions(int howManyPoints)
-    {
-
-    }
-
-    public void ReceiveCharacteristicInput(string characteristic)
-    {
-
-    }
 }
