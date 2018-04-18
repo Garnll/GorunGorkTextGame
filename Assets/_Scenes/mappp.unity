@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 0.99999964
-  m_Size: 0.6116686
+  m_Size: 0.6151867
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4130,6 +4130,11 @@ Prefab:
       propertyPath: playerName
       value: jugador
       objectReference: {fileID: 0}
+    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: characteristicsChanger
+      value: 
+      objectReference: {fileID: 1091861670}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8b29c4ad725ee74a8cd42559a0254f0, type: 2}
   m_IsPrefabParent: 0
@@ -5335,6 +5340,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1167064984694596, guid: f8b29c4ad725ee74a8cd42559a0254f0,
     type: 2}
   m_PrefabInternal: {fileID: 849154490}
+--- !u!114 &1091861670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091861669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187d4ee26c9205a4e9675d9176d27445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToDisplay: Elije entre FUERZA, DESTREZA, INTELIGENCIA o RESISTENCIA.
+  endText: "No tienes m\xE1s puntos para gastar."
 --- !u!1 &1092048369
 GameObject:
   m_ObjectHideFlags: 0
