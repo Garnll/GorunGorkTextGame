@@ -6,16 +6,16 @@
 public class PlayerCharacteristics : MonoBehaviour {
 
     public int defaultStrength = 1;
-    [HideInInspector] public int currentStrength;
+	[HideInInspector] public int currentStrength;
     public int defaultIntelligence = 1;
-    [HideInInspector] public int currentIntelligence;
+	[HideInInspector] public int currentIntelligence;
     public int defaultResistance = 1;
-    [HideInInspector] public int currentResistance;
+	[HideInInspector] public int currentResistance;
     public int defaultDexterity = 1;
-    [HideInInspector] public int currentDexterity;
+	[HideInInspector] public int currentDexterity;
 
 	public int defaultPods = 10;
-	[HideInInspector] public int currentPods;
+	 public int currentPods;
 
     /// <summary>
     /// x es infravisión.
@@ -90,6 +90,34 @@ public class PlayerCharacteristics : MonoBehaviour {
 		return true;
 	}
 
+	public void modifyStrengthBy(int amount) {
+		currentStrength += amount;
+	}
 
-   
+	public void modifyIntelligenceBy(int amount) {
+		currentIntelligence += amount;
+	}
+
+	public void modifyDexterityBy(int amount) {
+		currentDexterity += amount;
+	}
+
+	public void modifyResistanceBy(int amount) {
+		currentResistance += amount;
+	}
+
+	public void modifyPodsBy(int amount) {
+		currentPods += amount;
+	}
+
+	public void modifyInfravisionBy(int amount) {
+		vision.x -= amount;
+	}
+
+	public void modifySupravisionBy(int amount) {
+		vision.y += amount;
+	}
+
+
+
 }

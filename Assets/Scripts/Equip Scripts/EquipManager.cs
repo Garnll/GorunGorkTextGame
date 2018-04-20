@@ -104,23 +104,31 @@ public class EquipManager : MonoBehaviour {
 					break;
 
 				case IntBuff.IntBuffType.Strength:
-					character.AddPointsToDefaultStrength(buffs[i].magnitude * value);
+					character.modifyStrengthBy(buffs[i].magnitude * value);
 					break;
 
 				case IntBuff.IntBuffType.Dexterity:
-					character.AddPointsToDefaultDexterity(buffs[i].magnitude * value);
+					character.modifyDexterityBy(buffs[i].magnitude * value);
 					break;
 
 				case IntBuff.IntBuffType.Intelligence:
-					character.AddPointsToDefaultIntelligence(buffs[i].magnitude * value);
+					character.modifyIntelligenceBy(buffs[i].magnitude * value);
 					break;
 
 				case IntBuff.IntBuffType.Resistance:
-					character.AddPointsToDefaultResistance(buffs[i].magnitude * value);
+					character.modifyResistanceBy(buffs[i].magnitude * value);
 					break;
 
 				case IntBuff.IntBuffType.Pods:
-					character.AddPointsToDefaultPods(buffs[i].magnitude * value);
+					character.modifyPodsBy(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Infravision:
+					character.modifyInfravisionBy(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Hypervision:
+					character.modifySupravisionBy(buffs[i].magnitude * value);
 					break;
 			}
 		}

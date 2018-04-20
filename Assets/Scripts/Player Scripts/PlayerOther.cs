@@ -6,19 +6,19 @@
 public class PlayerOther : MonoBehaviour {
 
     [SerializeField] private float defaultCriticalHitProbability = 0;
-    [HideInInspector] private float currentCriticalHitProbability;
+    [HideInInspector] public float currentCriticalHitProbability;
 
     [SerializeField] private float defaultCooldownReduction = 0;
-    [HideInInspector] public float currentCooldownReduction;
+	[HideInInspector] public float currentCooldownReduction;
 
     [SerializeField] private float defaultHealthRegenPerSecond = 2;
-    [HideInInspector] public float currentHealthRegenPerSecond;
+	[HideInInspector] public float currentHealthRegenPerSecond;
 
     [SerializeField] private float defaultTurnRegenPerSecond = 5;
-    [HideInInspector] public float currentTurnRegenPerSecond;
+	[HideInInspector] public float currentTurnRegenPerSecond;
 
     [SerializeField] private float defaultEvasion = 0;
-    [HideInInspector] public float currentEvasion;
+	[HideInInspector] public float currentEvasion;
 
     private float escapeProbability = 0;
 
