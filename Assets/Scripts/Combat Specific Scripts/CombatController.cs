@@ -277,9 +277,14 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void UpdatePlayerLife()
     {
+		Color tempColor = playerUI.lifeSlider.colors.normalColor;
         playerUI.lifeSlider.maxValue = player.MaxHealth;
         playerUI.lifeSlider.value = player.currentHealth;
-        playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
+		playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color = 
+			Color.Lerp(Color.red, tempColor, player.currentHealth/player.MaxHealth);
+
+		playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
+
     }
 
     /// <summary>

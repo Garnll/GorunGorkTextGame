@@ -31,6 +31,7 @@ public class PlayerUIDuringCombat : UIDuringCombat {
         title = temp.GetComponent<TextMeshProUGUI>();
 
         temp = Instantiate(playerLife, enemyContainer);
+		//lifeLabel = temp.GetComponentInChildren<>
         lifeSlider = temp.GetComponentInChildren<Slider>();
         lifeText = temp.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
