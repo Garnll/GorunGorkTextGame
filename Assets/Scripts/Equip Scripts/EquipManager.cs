@@ -25,7 +25,7 @@ public class EquipManager : MonoBehaviour {
 	public void put(Equip equip) {
 		if (equip.GetType() == typeof(Tool)) {
 			if (tool != null) {
-				tool.remove();
+				remove(tool);
 			}
 			tool = equip as Tool;
 			characteristics.applyBuffs(tool);
@@ -34,7 +34,7 @@ public class EquipManager : MonoBehaviour {
 
 		if (equip.GetType() == typeof(Outfit)) {
 			if (outfit != null) {
-				outfit.remove();
+				remove(outfit);
 			}
 			outfit = equip as Outfit;
 			characteristics.applyBuffs(outfit);
@@ -43,7 +43,7 @@ public class EquipManager : MonoBehaviour {
 
 		if (equip.GetType() == typeof(Bag)) {
 			if (bag != null) {
-				bag.remove();
+				remove(bag);
 			}
 			bag = equip as Bag;
 			characteristics.applyBuffs(bag);
@@ -52,13 +52,14 @@ public class EquipManager : MonoBehaviour {
 
 		if (equip.GetType() == typeof(Accesory)) {
 			if (accesory != null) {
-				accesory.remove();
+				remove(accesory);
 			}
 			accesory = equip as Accesory;
 			characteristics.applyBuffs(accesory);
 			other.applyBuffs(accesory);
 		}
 		//Le doy los buffs del objeto.
+		inventoryManager.DisplayInventory();
 	}
 
 
@@ -68,5 +69,22 @@ public class EquipManager : MonoBehaviour {
 		inventoryManager.nounsInInventory.Add(equip);
 		characteristics.removeBuffs(equip);
 		other.removeBuffs(equip);
+		inventoryManager.DisplayInventory();
+
+		if (equip.GetType() == typeof(Tool)) {
+			tool = null;
+		}
+
+		if (equip.GetType() == typeof(Outfit)) {
+			outfit = null;
+		}
+
+		if (equip.GetType() == typeof(Bag)) {
+			bag = null;
+		}
+
+		if (equip.GetType() == typeof(Accesory)) {
+			accesory = null;
+		}
 	}
 }

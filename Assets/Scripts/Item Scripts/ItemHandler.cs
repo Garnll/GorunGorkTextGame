@@ -403,7 +403,21 @@ public class ItemHandler : MonoBehaviour {
 		controller.LogStringWithReturn(equipInteraction.textResponse);
 		equipManager.put(equip);
 
+		for (int i = 0; i < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; i++) {
+			if (controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[i].interactableObject ==
+				objectToEquip) {
+				controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.RemoveAt(i);
+				break;
+			}
+		}
 
+		for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++) {
+			if (inventoryManager.nounsInInventory[i] == objectToEquip) {
+				inventoryManager.nounsInInventory.RemoveAt(i);
+				break;
+			}
+		}
+		inventoryManager.DisplayInventory();
 
 		if (equipInteraction.actionResponse == null) {
 			return;
@@ -412,7 +426,6 @@ public class ItemHandler : MonoBehaviour {
 		bool action = equipInteraction.actionResponse.DoActionResponse(controller);
 		if (action) {
 			controller.LogStringWithReturn(equipInteraction.actionResponse.responseDescription);
-			//Aquí se debe sacar el equipo del inventario o de la habitación.
 			foreach (InteractableObject i in inventoryManager.nounsInInventory) {
 				if (i == equip) {
 
