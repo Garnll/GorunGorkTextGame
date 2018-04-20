@@ -9,16 +9,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8589c50b0575e504cababc57fc121547, type: 3}
-  m_Name: "Traje de Bu\xF1uel"
+  m_Name: "Traje de Bu\xF1uelo"
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: nombre
+  objectName: "Traje de Bu\xF1uelo"
   nouns:
-  - nombre
-  weight: 10
-  description: "Descripci\xF3n en la habitaci\xF3n"
+  - "Traje de Bu\xF1uelo"
+  - traje
+  - "bu\xF1uetraje"
+  - "traje de bu\xF1uelo"
+  weight: 1
+  description: "Hay un traje de Bu\xF1uelo"
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"
-  interactions: []
-  intBuffs: []
-  floatBuffs: []
+  interactions:
+  - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
+    isInverseInteraction: 0
+    textResponse: "Tomas el traje abu\xF1uelado, te queda muy bien."
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
+    isInverseInteraction: 0
+    textResponse: "Tiras el traje de Bu\xF1uelo. Pum."
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: b303c890f60f7ec46ba9de16ed39b2fa, type: 2}
+    isInverseInteraction: 0
+    textResponse: "Te equipas el traje de Bu\xF1uelo."
+    actionResponse: {fileID: 0}
+  intBuffs:
+  - type: 8
+    magnitude: 5
+  floatBuffs:
+  - type: 2
+    magnitude: 1
   type: 0

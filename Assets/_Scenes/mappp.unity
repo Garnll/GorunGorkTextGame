@@ -545,7 +545,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Equipo
+  m_text: '<b>Equipo</b>
+
+    H:
+
+    T:
+
+    M:
+
+    A:
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
   m_sharedMaterial: {fileID: 21480766876471014, guid: 322e96d9d37671c4c81c00fa40607691,
@@ -555,8 +565,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288995625
+  m_fontColor: {r: 0.16219723, g: 0.88235295, b: 0.6439566, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -573,8 +583,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -591,7 +601,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 10
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -613,12 +623,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 95063136}
-    characterCount: 6
+    characterCount: 19
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 5
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -2591,8 +2601,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.6151856
+  m_Value: 1
+  m_Size: 0.615183
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2665,7 +2675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 134}
+  m_AnchoredPosition: {x: 3, y: 133.99991}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -4140,6 +4150,16 @@ Prefab:
       propertyPath: currentPods
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: defaultStrength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentCooldownReduction
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8b29c4ad725ee74a8cd42559a0254f0, type: 2}
   m_IsPrefabParent: 0
@@ -4472,8 +4492,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a36608022f776314da547622c3de68fc, type: 2}
     - {fileID: 11400000, guid: ff814f82751669e4cb22e275c4c83b9d, type: 2}
     - {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
-    - {fileID: 11400000, guid: 2e3040ae32c58f44fa442840b69327d4, type: 2}
-    - {fileID: 11400000, guid: 9ba2856be27f6384d9164c4c7465260a, type: 2}
+    - {fileID: 11400000, guid: 2b41162b1d45ecc429b117a25a746341, type: 2}
+    - {fileID: 11400000, guid: 92f2881bc7492bb45927949320150b91, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -4485,7 +4505,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 13
     - Name: 
       Entry: 7
       Data: 
@@ -4641,10 +4661,35 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: traje
+      Data: "Traje de Bu\xF1uelo"
     - Name: 
       Entry: 7
       Data: 7|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: traje
+    - Name: 
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4669,10 +4714,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: "traje de bu\xF1uelo"
+      Data: "bu\xF1uetraje"
     - Name: 
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+      Data: 9|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4694,10 +4739,85 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: traje de Chikorita
+      Data: "traje de bu\xF1uelo"
     - Name: 
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+      Data: 10|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Traje de Chikorita
+    - Name: 
+      Entry: 7
+      Data: 11|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: chikotraje
+    - Name: 
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: traje de chikorita
+    - Name: 
+      Entry: 7
+      Data: 13|System.Collections.Generic.List`1[[InteractableObject, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4724,8 +4844,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a36608022f776314da547622c3de68fc, type: 2}
   - {fileID: 11400000, guid: ff814f82751669e4cb22e275c4c83b9d, type: 2}
   - {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
-  - {fileID: 11400000, guid: 2e3040ae32c58f44fa442840b69327d4, type: 2}
-  - {fileID: 11400000, guid: 9ba2856be27f6384d9164c4c7465260a, type: 2}
+  - {fileID: 11400000, guid: 2b41162b1d45ecc429b117a25a746341, type: 2}
+  - {fileID: 11400000, guid: 92f2881bc7492bb45927949320150b91, type: 2}
 --- !u!1 &902942630
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,6 +6222,7 @@ MonoBehaviour:
   player: {fileID: 1178118717}
   stats: {fileID: 1091861669}
   inventoryManager: {fileID: 1178118716}
+  text: {fileID: 95063136}
   tool: {fileID: 0}
   outfit: {fileID: 0}
   bag: {fileID: 0}
@@ -9536,7 +9657,7 @@ Prefab:
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}

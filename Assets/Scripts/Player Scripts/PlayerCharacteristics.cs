@@ -15,7 +15,7 @@ public class PlayerCharacteristics : MonoBehaviour {
 	[HideInInspector] public int currentDexterity;
 
 	public int defaultPods = 10;
-	 public int currentPods;
+	[HideInInspector] public int currentPods;
 
     /// <summary>
     /// x es infravisión.

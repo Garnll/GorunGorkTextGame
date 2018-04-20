@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EquipManager : MonoBehaviour {
 
 	public PlayerManager player;
 	public GameObject stats;
 	public InventoryManager inventoryManager;
+	public TextMeshProUGUI text;
 
 	PlayerCharacteristics character;
 	PlayerOther other;
@@ -21,6 +23,7 @@ public class EquipManager : MonoBehaviour {
 	public void Start() {
 		character = stats.GetComponent<PlayerCharacteristics>();
 		other = stats.GetComponent<PlayerOther>();
+		updateText();
 	}
 
 	public void put(Equip equip) {
@@ -57,8 +60,8 @@ public class EquipManager : MonoBehaviour {
 		}
 		//Le doy los buffs del objeto.
 		inventoryManager.DisplayInventory();
+		updateText();
 	}
-
 
 	public void remove(Equip equip) {
 		//Aquí se pone el equipo actual en el inventario.
@@ -162,6 +165,31 @@ public class EquipManager : MonoBehaviour {
 		}
 	}
 
+	public void updateText() {
+
+		string toolName = nameOf(tool);
+		string outfitName = nameOf(outfit);
+		string bagName = nameOf(bag);
+		string accesoryName = nameOf(accesory);
+
+
+		string info = "<b>Equipo</b>\n" +
+			"<b>H:</b> " + toolName + "\n" +
+			"<b>T:</b> " + outfitName + "\n" +
+			"<b>M:</b> " + bagName + "\n" +
+			"<b>A:</b> " + accesoryName;
+		text.text = info;
+	}
+
+	private string nameOf(Equip equip) {
+		string temp = " ";
+		try {
+			temp = equip.objectName + ".";
+		} catch {
+
+		}
+		return temp;
+	}
 
 }
 
