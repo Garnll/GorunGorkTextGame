@@ -116,11 +116,24 @@ public class PlayerOther : MonoBehaviour {
         }
     }
 
-	public void applyBuffs(Equip equip) {
-
+	public void modifyCritBy(float amount) {
+		currentCriticalHitProbability += amount;
 	}
 
-	public void removeBuffs(Equip equip) {
-
+	public void modifyCoolDownBy(float amount) {
+		currentCooldownReduction += amount;
 	}
+
+	public void modifyHealthRegenBy(float amount) {
+		currentHealthRegenPerSecond += amount;
+	}
+
+	public void modifyTurnRegenBy(float amount) {
+		currentTurnRegenPerSecond += amount;
+	}
+
+	public void modifyEvasionBy(float amount) {
+		currentEvasion += amount;
+	}
+
 }

@@ -14,6 +14,9 @@ public class PlayerCharacteristics : MonoBehaviour {
     public int defaultDexterity = 1;
     [HideInInspector] public int currentDexterity;
 
+	public int defaultPods = 10;
+	[HideInInspector] public int currentPods;
+
     /// <summary>
     /// x es infravisión.
     /// y es supravisión.
@@ -40,6 +43,7 @@ public class PlayerCharacteristics : MonoBehaviour {
         currentIntelligence = defaultIntelligence;
         currentResistance = defaultResistance;
         currentStrength = defaultStrength;
+		currentPods = defaultPods;
     }
 
     /// <summary>
@@ -81,11 +85,11 @@ public class PlayerCharacteristics : MonoBehaviour {
         return true;
     }
 
-    public void applyBuffs(Equip equip) {
-
+	public bool AddPointsToDefaultPods(int howMany) {
+		defaultPods += howMany;
+		return true;
 	}
 
-	public void removeBuffs(Equip equip) {
 
-	}
+   
 }

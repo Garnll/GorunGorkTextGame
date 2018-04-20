@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Name: "Traje de Bu\xF1uelo"
   m_EditorClassIdentifier: 
   nounGender: 0
+  objectName: "Traje de Bu\xF1uelo"
   nouns:
   - traje
   - "traje de bu\xF1uelo"
+  weight: 10
   description: Hay un traje.
+  descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions:
   - inputAction: {fileID: 11400000, guid: b303c890f60f7ec46ba9de16ed39b2fa, type: 2}
     isInverseInteraction: 0
@@ -31,6 +34,12 @@ MonoBehaviour:
     isInverseInteraction: 0
     textResponse: Lo tiras. Pum.
     actionResponse: {fileID: 0}
-  intBuffs: []
-  floatBuffs: []
+  intBuffs:
+  - type: 0
+    magnitude: 0
+  floatBuffs:
+  - type: 4
+    magnitude: 2
+  - type: 3
+    magnitude: 10
   type: 0

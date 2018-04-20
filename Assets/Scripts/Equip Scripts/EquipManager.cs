@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EquipManager : MonoBehaviour {
 
+	public PlayerManager player;
 	public GameObject stats;
 	public InventoryManager inventoryManager;
 
-	PlayerCharacteristics characteristics;
+	PlayerCharacteristics character;
 	PlayerOther other;
 
 	[Space(10)]
@@ -18,7 +19,7 @@ public class EquipManager : MonoBehaviour {
 	[SerializeField] public Accesory accesory;
 
 	public void Start() {
-		characteristics = stats.GetComponent<PlayerCharacteristics>();
+		character = stats.GetComponent<PlayerCharacteristics>();
 		other = stats.GetComponent<PlayerOther>();
 	}
 
@@ -28,8 +29,7 @@ public class EquipManager : MonoBehaviour {
 				remove(tool);
 			}
 			tool = equip as Tool;
-			characteristics.applyBuffs(tool);
-			other.applyBuffs(tool);
+			applyBuffs(tool);
 		}
 
 		if (equip.GetType() == typeof(Outfit)) {
@@ -37,8 +37,7 @@ public class EquipManager : MonoBehaviour {
 				remove(outfit);
 			}
 			outfit = equip as Outfit;
-			characteristics.applyBuffs(outfit);
-			other.applyBuffs(outfit);
+			applyBuffs(outfit);
 		}
 
 		if (equip.GetType() == typeof(Bag)) {
@@ -46,8 +45,7 @@ public class EquipManager : MonoBehaviour {
 				remove(bag);
 			}
 			bag = equip as Bag;
-			characteristics.applyBuffs(bag);
-			other.applyBuffs(bag);
+			applyBuffs(bag);
 		}
 
 		if (equip.GetType() == typeof(Accesory)) {
@@ -55,8 +53,7 @@ public class EquipManager : MonoBehaviour {
 				remove(accesory);
 			}
 			accesory = equip as Accesory;
-			characteristics.applyBuffs(accesory);
-			other.applyBuffs(accesory);
+			applyBuffs(accesory);
 		}
 		//Le doy los buffs del objeto.
 		inventoryManager.DisplayInventory();
@@ -67,8 +64,7 @@ public class EquipManager : MonoBehaviour {
 		//Aquí se pone el equipo actual en el inventario.
 		//Y le quito los buffs del objeto.
 		inventoryManager.nounsInInventory.Add(equip);
-		characteristics.removeBuffs(equip);
-		other.removeBuffs(equip);
+		removeBuffs(equip);
 		inventoryManager.DisplayInventory();
 
 		if (equip.GetType() == typeof(Tool)) {
@@ -87,4 +83,78 @@ public class EquipManager : MonoBehaviour {
 			accesory = null;
 		}
 	}
+
+	public void applyBuffs(Equip equip) {
+		modifyIntStats(equip, 1);
+		modifyFloatStats(equip, 1);
+
+	}
+
+	public void removeBuffs(Equip equip) {
+		modifyIntStats(equip, -1);
+		modifyFloatStats(equip, -1);
+	}
+
+	private void modifyIntStats(Equip equip, int value) {
+		IntBuff[] buffs = equip.intBuffs;
+		for (int i = 0; i < buffs.Length; i++) {
+			switch (buffs[i].type) {
+				case IntBuff.IntBuffType.Health:
+					player.ModifyHealthBy(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Strength:
+					character.AddPointsToDefaultStrength(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Dexterity:
+					character.AddPointsToDefaultDexterity(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Intelligence:
+					character.AddPointsToDefaultIntelligence(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Resistance:
+					character.AddPointsToDefaultResistance(buffs[i].magnitude * value);
+					break;
+
+				case IntBuff.IntBuffType.Pods:
+					character.AddPointsToDefaultPods(buffs[i].magnitude * value);
+					break;
+			}
+		}
+	}
+
+	private void modifyFloatStats(Equip equip, int value) {
+		FloatBuff[] buffs = equip.floatBuffs;
+		for (int i = 0; i < buffs.Length; i++) {
+			switch (buffs[i].type) {
+				case FloatBuff.FloatBuffType.Cooldown:
+					other.modifyCoolDownBy(buffs[i].magnitude * value);
+					break;
+
+				case FloatBuff.FloatBuffType.Crit:
+					other.modifyCritBy(buffs[i].magnitude * value);
+					break;
+
+				case FloatBuff.FloatBuffType.Evasion:
+					other.modifyEvasionBy(buffs[i].magnitude * value);
+					break;
+
+				case FloatBuff.FloatBuffType.HealthRegen:
+					other.modifyHealthRegenBy(buffs[i].magnitude * value);
+					break;
+
+				case FloatBuff.FloatBuffType.TurnRegen:
+					other.modifyTurnRegenBy(buffs[i].magnitude * value);
+					break;
+
+			}
+		}
+	}
+
+
 }
+
+

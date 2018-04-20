@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Name: Traje de Chikorita
   m_EditorClassIdentifier: 
   nounGender: 0
+  objectName: Traje de Chikorita
   nouns:
+  - traje de Chikorita
   - traje
-  - traje de chikorita
+  weight: 10
   description: Hay un traje de Chikorita en el lugar.
+  descriptionAtAnalized: El traje de Chikorita dice "Ola k ase".
   interactions:
   - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
     isInverseInteraction: 0
@@ -29,6 +32,12 @@ MonoBehaviour:
     isInverseInteraction: 0
     textResponse: Tiras el traje de Chikorita al suelo.
     actionResponse: {fileID: 0}
-  intBuffs: []
-  floatBuffs: []
+  intBuffs:
+  - type: 2
+    magnitude: 2
+  - type: 4
+    magnitude: 1
+  floatBuffs:
+  - type: 4
+    magnitude: 5
   type: 0
