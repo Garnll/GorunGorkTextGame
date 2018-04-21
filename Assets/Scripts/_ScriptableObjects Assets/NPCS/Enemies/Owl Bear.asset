@@ -21,6 +21,8 @@ MonoBehaviour:
   npcGender: macho
   npcRace: {fileID: 11400000, guid: e42a372732a58004f81e3eeae1c66d21, type: 2}
   npcJob: {fileID: 11400000, guid: 97ae48b2fc7e6e6418b6ae7c4dbf70a4, type: 2}
+  defaultVisibility: 0
+  currentVisibility: 0
   npcInRoomDescription: "Una criatura extra\xF1a camina por ahi. Es una combinaci\xF3n
     de oso y buho."
   npcDetailedDescription: Un oso-buho macho, conocido por ser muy agresivo en contra
@@ -32,12 +34,12 @@ MonoBehaviour:
   maxWill: 10
   habilities: []
   defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
-  defaultStrength: 3
+  defaultStrength: 2
   defaultIntelligence: 1
   defaultResistance: 3
   defaultDexterity: 2
   defaultCriticalHitProbability: 0
   defaultCooldownReduction: 0
   defaultHealthRegenPerSecond: 0.2
-  defaultTurnRegenPerSecond: 5
+  defaultTurnRegenPerSecond: 12.15
   defaultEvasion: 0

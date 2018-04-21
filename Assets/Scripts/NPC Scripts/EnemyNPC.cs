@@ -6,6 +6,7 @@
 public class EnemyNPC : MonoBehaviour {
 
     [HideInInspector] public EnemyNPCTemplate myTemplate;
+	[HideInInspector] public float maxHealth;
 
     [HideInInspector] public float currentHealth;
     [HideInInspector] public float currentTurn;
@@ -57,6 +58,7 @@ public class EnemyNPC : MonoBehaviour {
     {
         combatController = controller;
 
+		maxHealth = myTemplate.MaxHealth;
         currentDexterity = myTemplate.defaultDexterity;
         currentIntelligence = myTemplate.defaultIntelligence;
         currentResistance = myTemplate.defaultResistance;

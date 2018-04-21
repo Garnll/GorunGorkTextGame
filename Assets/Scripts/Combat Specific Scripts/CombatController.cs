@@ -24,14 +24,17 @@ public class CombatController : MonoBehaviour {
     private bool inInventory = false;
     private int inventoryPage = 1;
 
-    /// <summary>
-    /// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
-    /// Devuelve el enemigo que encuentre.
-    /// </summary>
-    /// <param name="keywordGiven"></param>
-    /// <param name="currentRoom"></param>
-    /// <returns></returns>
-    public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
+	public Gradient playerColorGradient;
+	public Gradient enemyColorGradient;
+
+	/// <summary>
+	/// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
+	/// Devuelve el enemigo que encuentre.
+	/// </summary>
+	/// <param name="keywordGiven"></param>
+	/// <param name="currentRoom"></param>
+	/// <returns></returns>
+	public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
     {
 		string[] newString = new string[keywordGiven.Length - 1];
 
@@ -235,8 +238,11 @@ public class CombatController : MonoBehaviour {
     private void InitializePlayer()
     {
         player.StartCombat();
+		playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color = 
+			playerColorGradient.Evaluate(player.currentHealth / player.MaxHealth);
 
-        ChangePlayerState();
+
+		ChangePlayerState();
 
         UpdatePlayerLife();
 
@@ -272,16 +278,23 @@ public class CombatController : MonoBehaviour {
             state;
     }
 
-    /// <summary>
-    /// Cambia la GUI del jugador para mostrar la vida actual.
-    /// </summary>
+	/// <summary>
+	/// Cambia la GUI del jugador para mostrar la vida actual.
+	/// </summary>
+	/// 
+	int colorIndex = 0;
+
     public void UpdatePlayerLife()
     {
-		Color tempColor = playerUI.lifeSlider.colors.normalColor;
-        playerUI.lifeSlider.maxValue = player.MaxHealth;
+		float t = player.currentHealth / player.MaxHealth;
+		Color oldColor = playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
+
+		playerUI.lifeSlider.maxValue = player.MaxHealth;
         playerUI.lifeSlider.value = player.currentHealth;
 		playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color = 
-			Color.Lerp(Color.red, tempColor, player.currentHealth/player.MaxHealth);
+			Color.Lerp(playerColorGradient.Evaluate(t), oldColor, t);
+
 
 		playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
 
@@ -427,8 +440,10 @@ public class CombatController : MonoBehaviour {
     private void InitializeEnemy()
     {
         enemy.StartCombat(this);
+		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+		enemyColorGradient.Evaluate(enemy.currentHealth / enemy.maxHealth);
 
-        ChangeEnemyState();
+		ChangeEnemyState();
 
         UpdateEnemyLife();
 
@@ -468,10 +483,15 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void UpdateEnemyLife()
     {
-        enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
+		float t = enemy.currentHealth / enemy.maxHealth;
+		Color oldColor = enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
+		enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
         enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("0") + "%";
-    }
+		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+			Color.Lerp(enemyColorGradient.Evaluate(t), oldColor, t);
+	}
 
     /// <summary>
     /// Cambia la GUI del npc enemigo mostrando su carga de turno actual.

@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour {
     public int pacifier = 1;
 
     public PlayerCharacteristics characteristics;
-
+	
     public GameController controller;
 
     public bool IsAlive
@@ -73,7 +73,6 @@ public class PlayerManager : MonoBehaviour {
     public void Initialize()
     {
         experiencePoints = 0;
-
         currentHealth = maxHealth;
         currentTurn = maxTurn;
         currentWill = maxWill;

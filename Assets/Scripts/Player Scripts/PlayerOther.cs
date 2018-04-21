@@ -93,7 +93,8 @@ public class PlayerOther : MonoBehaviour {
             (player.currentState.magnitude) -
             (enemy.currentState.magnitude);
 
-        return escapeProbability;
+		//return escapeProbability;
+		return 50;
     }
 
     public float CriticalHitProbability(PlayerManager player)

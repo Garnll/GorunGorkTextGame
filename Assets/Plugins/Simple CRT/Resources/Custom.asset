@@ -19,13 +19,13 @@ MonoBehaviour:
   scanlineSpacing: 4
   movScanlineStrength: 0.05
   movScanlineSize: 0.92
-  movScanlineSpeed: 1.47
-  sharpenStrength: 0
+  movScanlineSpeed: 2.5
+  sharpenStrength: 0.079
   brightness: 0.03
   contrast: 0
-  saturation: 0.17
+  saturation: 0.22
   vignetteStrength: 0.43
-  chromatic: 0.07
+  chromatic: 0.039
   replacementColor: {r: 0.07006922, g: 0.7641569, b: 0.7941176, a: 0}
   noiseStrength: 0.005
   noiseDistortion: 0.07

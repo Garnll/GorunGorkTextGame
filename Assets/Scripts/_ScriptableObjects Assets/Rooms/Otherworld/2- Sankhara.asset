@@ -14,9 +14,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 2b41162b1d45ecc429b117a25a746341, type: 2}
-    - {fileID: 11400000, guid: 92f2881bc7492bb45927949320150b91, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,31 +26,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
-    - Name: interactableObject
-      Entry: 10
       Data: 0
-    - Name: visionRange
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|Room+RoomVisibleObjects, Assembly-CSharp
-    - Name: interactableObject
-      Entry: 10
-      Data: 1
-    - Name: visionRange
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -67,7 +41,8 @@ MonoBehaviour:
     importantes para el movimiento.\n"
   roomName: Sankhara
   roomResponse: {fileID: 0}
-  npcTemplatesInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: be087d6650be65349874445f49389251, type: 2}
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
@@ -86,5 +61,7 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     exitDescription: 
     exitActionDescription: 
-  enemiesInRoom: []
+  enemiesInRoom:
+  - {fileID: 0}
+  - {fileID: 0}
   changeExits: 0
