@@ -26,4 +26,13 @@ public abstract class NPCTemplate : ScriptableObject {
             return isAlive;
         }
     }
+
+	public bool respondsTo(string k) {
+		foreach (string key in keyword) {
+			if (key == k) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -22,13 +22,11 @@ public class Room : SerializedScriptableObject {
     [Space(5)]
     public List<Exit> exits = new List<Exit>();
 
-
-    public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
+	public List<DialogueNPC> charactersInRoom = new List<DialogueNPC>();
+	public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
     [HideInInspector]public bool changeExits = true;
 
     private List<RoomVisibleObjects> savedInteractableObjects = new List<RoomVisibleObjects>();
-
-
 
     /// <summary>
     /// Clase que tienen las habitaciones que contiene un objeto interactuable y su rango de visión respectivo
@@ -39,7 +37,6 @@ public class Room : SerializedScriptableObject {
         [PropertyRange(-10, 10)] public int visionRange = 0;
     }
 
-
     //Eventos enviados a RoomEditionController, para poder salvar, cambiar posiciones, etc.
     public delegate void RoomChanges(Room thisRoom, Vector3 newPosition);
     public static event RoomChanges OnChangePosition;
@@ -47,11 +44,9 @@ public class Room : SerializedScriptableObject {
     public delegate void DescriptionChanges(Room thisRoom);
     public static event DescriptionChanges OnChangeStuff;
 
-
     private void OnEnable()
     {
         enemiesInRoom.Clear();
-
         RoomObjectSaver.OnSaveObjects += SaveMyObjects;
         RoomObjectSaver.OnLoadObjects += LoadMyObjects;
     }
@@ -89,7 +84,6 @@ public class Room : SerializedScriptableObject {
             visibleObjectsInRoom.Add(savedInteractableObjects[i]);
         }
     }
-
 
     /// <summary>
     /// Cambia la posición de la habitación.

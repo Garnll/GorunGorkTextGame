@@ -9,7 +9,6 @@ public class ItemHandler : MonoBehaviour {
     public InventoryManager inventoryManager;
 	public EquipManager equipManager;
     [SerializeField] private ItemKeywordHandler itemKeywordHandler;
-
     private GameController controller;
 
     private void Start()
@@ -88,7 +87,6 @@ public class ItemHandler : MonoBehaviour {
         return objectToInteract;
 
     }
-
 
     /// <summary>
     /// Busca la existencia de un objeto dado en la habitación.

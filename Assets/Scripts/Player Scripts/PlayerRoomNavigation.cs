@@ -11,9 +11,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
     public MiniMapper miniMapper;
 
     KeywordToStringConverter converter;
-
     [HideInInspector]public Vector3 currentPosition;
-
     Dictionary<DirectionKeyword, Exit> exitDictionary = new Dictionary<DirectionKeyword, Exit>();
 
     Dictionary<string, int> enemyCounter = new Dictionary<string, int>();
@@ -96,7 +94,6 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
         DisplayEnemies();
     }
-
 
     private void DisplayEnemies()
     {
@@ -203,7 +200,6 @@ public class PlayerRoomNavigation : MonoBehaviour {
             }
         }
     }
-
 
     public void TriggerRoomResponse()
     {

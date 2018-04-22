@@ -24,4 +24,5 @@ MonoBehaviour:
   dialogueTree:
     keywords: []
     text: []
+    variables: []
     choices: []
