@@ -21,3 +21,7 @@ MonoBehaviour:
   currentVisibility: 0
   npcInRoomDescription: 
   npcDetailedDescription: 
+  dialogueTree:
+    keywords: []
+    text: []
+    choices: []
