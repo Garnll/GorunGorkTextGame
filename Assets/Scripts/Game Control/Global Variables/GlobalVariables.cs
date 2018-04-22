@@ -5,7 +5,7 @@ public class GlobalVariables {
 
     static Dictionary<string, int> globalVariablesDictionary = new Dictionary<string, int>();
 
-    public static void AddVariable(string variableName, int start)
+    public static void AddNewAs(string variableName, int start)
     {
         if (!globalVariablesDictionary.ContainsKey(variableName))
         {
@@ -29,12 +29,12 @@ public class GlobalVariables {
         }
     }
 
-    public static int GetVariableCurrentValue(string variableName)
+    public static int GetValueOf(string variableName)
     {
         return globalVariablesDictionary[variableName];
     }
 
-    public static void NewVariableValue(string variableName, int newvalue)
+    public static void SetValue(string variableName, int newvalue)
     {
         if (globalVariablesDictionary.ContainsKey(variableName))
         {
