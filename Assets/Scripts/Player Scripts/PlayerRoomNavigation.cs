@@ -47,6 +47,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
             }
         }
         CheckEnemiesInRoom();
+
+		foreach (DialogueNPC npc in currentRoom.charactersInRoom) {
+			controller.npcDescriptionsInRoom.Add(npc.npcInRoomDescription);
+		}
     }
 
     private void CheckEnemiesInRoom()

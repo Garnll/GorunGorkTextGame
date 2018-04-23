@@ -22,7 +22,14 @@ MonoBehaviour:
   npcInRoomDescription: 
   npcDetailedDescription: 
   dialogueTree:
-    keywords: []
-    text: []
-    variables: []
-    choices: []
+    text:
+    - "Este es el primer di\xE1logo."
+    choices:
+    - text: "Esta es una opci\xF3n."
+      keywords:
+      - opcion
+      - o
+      dialogue:
+        text:
+        - "Este es el segundo di\xE1logo."
+        choices: []

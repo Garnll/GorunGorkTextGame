@@ -146,6 +146,15 @@ public class TextUserInput : SerializedMonoBehaviour {
                 inputField.ActivateInputField();
                 inputField.text = null;
                 break;
+
+			case GameState.GameStates.conversation:
+				if (separatedInputWords[0] == "") {
+					DisplayInput();
+					return;
+				}
+				controller.dialogueController.takeInput(userInput);
+				DisplayInput();
+				break;
         }
 
     }
@@ -174,8 +183,8 @@ public class TextUserInput : SerializedMonoBehaviour {
     /// <returns></returns>
     string AnswerToWrongInput()
     {
-        string[] randomAnswer = new string[10];
-        randomAnswer[0] = "¿Eh?";
+        string[] randomAnswer = new string[11];
+        randomAnswer[0] = "¿Eh? Repite eso.";
         randomAnswer[1] = "Piensas algo incoherente.";
         randomAnswer[2] = "Quieres hacer algo imposible.";
         randomAnswer[3] = "No entiendes tus propios pensamientos.";
@@ -185,8 +194,9 @@ public class TextUserInput : SerializedMonoBehaviour {
         randomAnswer[7] = "¿Disculpa?";
         randomAnswer[8] = "¿Qué dijiste?";
         randomAnswer[9] = "Nada, no entiendo.";
+		randomAnswer[10] = "La tuya por si acaso.";
 
-        string answer = randomAnswer[Random.Range(0, randomAnswer.Length)];
+		string answer = randomAnswer[Random.Range(0, randomAnswer.Length)];
 
         return answer;
     }

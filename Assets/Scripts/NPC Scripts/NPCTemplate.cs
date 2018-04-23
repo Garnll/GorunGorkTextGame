@@ -6,7 +6,7 @@
 public abstract class NPCTemplate : ScriptableObject {
 
     public string npcName = "Lukashenko";
-    public string[] keyword;
+    public string[] keywords;
     public int npcLevel = 0;
     public string npcGender = "macho";
     public Race npcRace;
@@ -28,7 +28,7 @@ public abstract class NPCTemplate : ScriptableObject {
     }
 
 	public bool respondsTo(string k) {
-		foreach (string key in keyword) {
+		foreach (string key in keywords) {
 			if (key == k) {
 				return true;
 			}

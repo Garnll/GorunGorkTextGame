@@ -6,12 +6,13 @@ using UnityEngine;
 public class Dialogue {
 
 	[Space(10)]
-	public string[] keywords;
 	[TextArea] public string[] text;
+
+	[System.NonSerialized]
 	public GlobalVariable[] variables;
 
 	[Space(5)]
-	public Dialogue[] choices;
+	public Choice[] choices;
 
 	public int getNumberOfChoices() {
 		int count = 0;
@@ -45,32 +46,34 @@ public class Dialogue {
 		return false;
 	}
 
-	public bool hasKeyword(string k) {
-		foreach (string key in keywords) {
-			if (key == k) { return true; }
-		}
-		return false;
-	}
-
 	public Dialogue getChoiceWithKeyword(string keyword) {
-		foreach (Dialogue d in choices) {
-			if (d.hasKeyword(keyword)) {
-				return d;
+		for (int i=0; i<choices.Length; i++) {
+			for (int j=0; j<choices[i].keywords.Length; j++) {
+				if (choices[i].keywords[j] == keyword) {
+					return choices[i].dialogue;
+				}
 			}
 		}
 		return null;
 	}
 
 	public void applyEffects() {
-		foreach (GlobalVariable v in variables) {
-			if (GlobalVariables.ContainsVariable(v.name)) {
-				GlobalVariables.SetValue(v.name, v.value);
-				Debug.Log("'" + v.name + "' = " + v.value + ".");
-			}
-			else {
-				GlobalVariables.AddNewAs(v.name, v.value);
-				Debug.Log("new: '" + v.name + "' = " + v.value + ".");
+		if (variables != null) {
+			foreach (GlobalVariable v in variables) {
+				if (GlobalVariables.ContainsVariable(v.name)) {
+					GlobalVariables.SetValue(v.name, v.value);
+					Debug.Log("'" + v.name + "' = " + v.value + ".");
+				}
+				else {
+					GlobalVariables.AddNewAs(v.name, v.value);
+					Debug.Log("new: '" + v.name + "' = " + v.value + ".");
+				}
 			}
 		}
+	}
+
+	public string getText() {
+		int r = Random.Range(0, text.Length - 1);
+		return text[r];
 	}
 }

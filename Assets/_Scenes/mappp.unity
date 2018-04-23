@@ -1037,9 +1037,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0760bbc395d846bd34b470f0f466b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 0}
+  currentNpc: {fileID: 0}
   inventoryManager: {fileID: 1178118716}
   roomNav: {fileID: 1178118714}
+  ends: []
 --- !u!4 &235414003
 Transform:
   m_ObjectHideFlags: 0
@@ -1883,6 +1884,7 @@ MonoBehaviour:
   playerManager: {fileID: 1178118717}
   playerRoomNavigation: {fileID: 1178118714}
   combatController: {fileID: 2040956635}
+  dialogueController: {fileID: 235414002}
   exitDescriptionsInRoom: []
   interactionDescriptionsInRoom: []
   npcDescriptionsInRoom: []
@@ -2644,8 +2646,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.61518687
+  m_Value: 0.99999964
+  m_Size: 0.6151868
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2718,7 +2720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 134.00002}
+  m_AnchoredPosition: {x: 3, y: 134.00003}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491

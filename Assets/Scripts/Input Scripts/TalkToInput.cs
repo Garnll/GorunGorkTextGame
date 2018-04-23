@@ -7,11 +7,21 @@ public class TalkToInput : InputActions {
 
 	public override void RespondToInput(GameController controller, string[] separatedInputWords) {
 
-		//InteractableObject target = controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, true);
-		//target - > Buscar npcs en la habitación.
+		if (separatedInputWords.Length > 1) {
 
-		//if (target != null) {
-		//	controller.itemHandler.EquipObject(target);
-		//}
+			DialogueNPC npc = controller.dialogueController.tryTalkingTo(separatedInputWords);
+
+			if (npc == null) {
+				controller.LogStringWithReturn("No existe '" + separatedInputWords[1] + "' con quien hablar.");
+				return;
+			}
+
+			controller.LogStringWithReturn(npc.dialogueTree.getText() + "");
+
+			controller.dialogueController.input = separatedInputWords[0];
+			controller.dialogueController.StartCoroutine("talk");
+		}
+
 	}
+
 }

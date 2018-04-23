@@ -48,7 +48,7 @@ public class CombatController : MonoBehaviour {
 
             if (npc.GetType() == typeof(EnemyNPCTemplate))
             {
-				foreach (string keyword in npc.keyword) {
+				foreach (string keyword in npc.keywords) {
 					foreach (string keyworkByPlayer in newString) {
 						if (keyword == keyworkByPlayer) {
 							return npc;

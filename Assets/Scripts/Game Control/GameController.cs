@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     public PlayerManager playerManager;
     public PlayerRoomNavigation playerRoomNavigation;
     public CombatController combatController;
+	public DialogueController dialogueController;
 
     [HideInInspector] public List<string> exitDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
