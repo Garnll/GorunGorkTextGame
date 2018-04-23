@@ -11,25 +11,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
   m_Name: Bebe
   m_EditorClassIdentifier: 
-  npcName: Lukashenko
-  keyword: []
+  npcName: Bebe
+  keywords:
+  - bebe
+  - baby
+  - "beb\xE9"
   npcLevel: 0
   npcGender: macho
   npcRace: {fileID: 0}
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: 
+  npcInRoomDescription: "Hay un beb\xE9 tirado en el suelo. Podr\xEDa llegar a ser
+    un ingeniero."
   npcDetailedDescription: 
   dialogueTree:
     text:
-    - "Este es el primer di\xE1logo."
+    - "Este es el primer di\xE1logo. Presiona <b>[W]</b> o escribe \"Weno\" para seguir
+      hablando."
     choices:
     - text: "Esta es una opci\xF3n."
       keywords:
-      - opcion
-      - o
+      - w
+      - weno
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo."
+        - "Este es el segundo di\xE1logo, y el final. Presiona <b>[X]</b> para dejar
+          de hablarme."
         choices: []

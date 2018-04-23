@@ -16,7 +16,7 @@ public class TalkToInput : InputActions {
 				return;
 			}
 
-			controller.LogStringWithReturn(npc.dialogueTree.getText() + "");
+			controller.LogStringWithReturn(npc.npcName + ": " + npc.dialogueTree.getText());
 
 			controller.dialogueController.input = separatedInputWords[0];
 			controller.dialogueController.StartCoroutine("talk");

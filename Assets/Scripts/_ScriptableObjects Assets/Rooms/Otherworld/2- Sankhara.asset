@@ -61,6 +61,7 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     exitDescription: 
     exitActionDescription: 
-  charactersInRoom: []
+  charactersInRoom:
+  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
   enemiesInRoom: []
   changeExits: 0

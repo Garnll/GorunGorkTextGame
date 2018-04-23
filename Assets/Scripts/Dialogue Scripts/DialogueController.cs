@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class DialogueController : MonoBehaviour {
 
+	[HideInInspector] public string input;
+	[HideInInspector] public bool isTalking;
 	[HideInInspector] public DialogueNPC currentNpc;
 	private List<DialogueNPC> npcsInRoom;
+	private Dialogue currentDialogue;
 
 	public GameController controller;
 	public PlayerManager player;
 	public InventoryManager inventoryManager;
 	public PlayerRoomNavigation roomNav;
 
-	[HideInInspector] public string input;
-
 	public string[] ends;
 
-	private Dialogue currentDialogue;
+
 
 	public DialogueNPC tryTalkingTo(string[] keywords) {
 		npcsInRoom = roomNav.currentRoom.charactersInRoom;
@@ -35,16 +36,19 @@ public class DialogueController : MonoBehaviour {
 
 	public void setDialogue() {
 		if (currentNpc != null) {
-			currentDialogue = currentNpc.dialogueTree;
-			
+			currentDialogue = currentNpc.dialogueTree;			
 		}
+	}
+
+	public void displayText() {
+		controller.LogStringWithReturn(currentNpc.npcName + ": " + currentDialogue.getText());
 	}
 
 	public void selectChoiceWith(string keyword) {
 		if (currentDialogue.getChoiceWithKeyword(keyword) != null) {
 			currentDialogue = currentDialogue.getChoiceWithKeyword(keyword);
 			currentDialogue.applyEffects();
-			controller.LogStringWithReturn(currentDialogue.getText());
+			displayText();
 		}
 	}
 
@@ -68,11 +72,11 @@ public class DialogueController : MonoBehaviour {
 
 		foreach (string e in ends) {
 			if (input == e) {
+				isTalking = false;
 				controller.DisplayRoomText();
 				GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
 			}
-		}
-		
+		}	
 		foreach (Choice c in currentDialogue.choices) {
 			foreach (string keyword in c.keywords) {
 				if (input == keyword) {
@@ -83,10 +87,28 @@ public class DialogueController : MonoBehaviour {
 
 	}
 
+	public bool checkInput(string input) {
+		foreach (Choice c in currentDialogue.choices) {
+			foreach (string keyword in c.keywords) {
+				if (input == keyword) {
+					return true;
+				}
+			}
+		}
+
+		foreach (string s in ends) {
+			if (input == s) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 	public IEnumerator talk() {
 		yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
 		GameState.Instance.ChangeCurrentState(GameState.GameStates.conversation);
-
+		isTalking = true;
 		takeInput(input);
 	}
 

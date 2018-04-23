@@ -12,6 +12,10 @@ public class TextUserInput : SerializedMonoBehaviour {
     public HabilitiesTextInput habilitiesTextInput;
     [SerializeField] Dictionary<string, InputActions> inputDictionary = new Dictionary<string, InputActions>();
 
+	[Space(15)]
+	[SerializeField]
+	string[] wrongDialogueInputs;
+
     GameController controller;
 
     //Enviado a CombatController cuando inicia una pelea.
@@ -152,6 +156,14 @@ public class TextUserInput : SerializedMonoBehaviour {
 					DisplayInput();
 					return;
 				}
+
+				if (!controller.dialogueController.checkInput(separatedInputWords[0]) && controller.dialogueController.isTalking) {
+					string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+					string answer = "<color=#9C9C9CC0>" + getWrongDialogue() + "</color>";
+					controller.LogStringWithReturn(userInputChanged + "\n" + answer);
+					controller.dialogueController.displayText();
+				}
+
 				controller.dialogueController.takeInput(userInput);
 				DisplayInput();
 				break;
@@ -200,4 +212,11 @@ public class TextUserInput : SerializedMonoBehaviour {
 
         return answer;
     }
+
+	string getWrongDialogue() {
+		int r = Random.Range(0, wrongDialogueInputs.Length - 1);
+		return wrongDialogueInputs[r];
+	}
+
+
 }
