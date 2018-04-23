@@ -16,14 +16,18 @@ MonoBehaviour:
   - bebe
   - baby
   - "beb\xE9"
+  - "bebe c\xF3smico"
+  - bebe cosmico
+  - "beb\xE9 c\xF3smico"
+  - "beb\xE9 cosmico"
   npcLevel: 0
   npcGender: macho
   npcRace: {fileID: 0}
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: "Hay un beb\xE9 tirado en el suelo. Podr\xEDa llegar a ser
-    un ingeniero."
+  npcInRoomDescription: "Hay un Beb\xE9 C\xF3smico tirado en el suelo. Podr\xEDa llegar
+    a ser un ingeniero."
   npcDetailedDescription: 
   dialogueTree:
     text:

@@ -12,11 +12,11 @@ public class TalkToInput : InputActions {
 			DialogueNPC npc = controller.dialogueController.tryTalkingTo(separatedInputWords);
 
 			if (npc == null) {
-				controller.LogStringWithReturn("No existe '" + separatedInputWords[1] + "' con quien hablar.");
+				controller.LogStringWithReturn("No existe '" + separatedInputWords[separatedInputWords.Length - 1] + "' con quien hablar.");
 				return;
 			}
 
-			controller.LogStringWithReturn(npc.npcName + ": " + npc.dialogueTree.getText());
+			controller.LogStringWithReturn("<b>" + npc.npcName + ":</b> " + npc.dialogueTree.getText());
 
 			controller.dialogueController.input = separatedInputWords[0];
 			controller.dialogueController.StartCoroutine("talk");

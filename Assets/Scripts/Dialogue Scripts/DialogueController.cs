@@ -22,16 +22,30 @@ public class DialogueController : MonoBehaviour {
 	public DialogueNPC tryTalkingTo(string[] keywords) {
 		npcsInRoom = roomNav.currentRoom.charactersInRoom;
 
-		foreach (DialogueNPC npc in npcsInRoom) {
-			foreach (string keyword in npc.keywords) {
-				if (keywords[keywords.Length - 1] == keyword) {
-					currentNpc = npc;
-					setDialogue();
+		string temp = keywords[keywords.Length - 1];
+		for (int i = keywords.Length - 2; i > 0; i--) {
+			temp = keywords[i] + " " + temp;
+
+			foreach (DialogueNPC npc in npcsInRoom) {
+				foreach (string k in npc.keywords) {
+
+					if (k == temp) {
+						currentNpc = npc;
+						setDialogue();
+						return currentNpc;
+					}
+
+					if (keywords[keywords.Length - 1] == k) {
+						currentNpc = npc;
+						setDialogue();
+						return currentNpc;
+					}
+
 				}
 			}
-		}
 
-		return currentNpc;
+		}
+		return null;	
 	}
 
 	public void setDialogue() {
@@ -41,7 +55,7 @@ public class DialogueController : MonoBehaviour {
 	}
 
 	public void displayText() {
-		controller.LogStringWithReturn(currentNpc.npcName + ": " + currentDialogue.getText());
+		controller.LogStringWithReturn("<b>" + currentNpc.npcName + ":</b> " + currentDialogue.getText());
 	}
 
 	public void selectChoiceWith(string keyword) {
