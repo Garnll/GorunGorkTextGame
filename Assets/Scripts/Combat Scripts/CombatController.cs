@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class CombatController : MonoBehaviour {
 
+	public float pace = 0.1f;
+
     public InventoryManager inventoryManager;
     [Space(10)]
     public GameObject combatLayout;
@@ -26,6 +28,10 @@ public class CombatController : MonoBehaviour {
 
 	public Gradient playerColorGradient;
 	public Gradient enemyColorGradient;
+
+	[Space(10)]
+	public Gradient playerTurnColor;
+	public Gradient enemyTurnColor;
 
 	/// <summary>
 	/// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
@@ -86,7 +92,7 @@ public class CombatController : MonoBehaviour {
 
         ChangeLayout();
 
-        InitializeEnemy();
+		InitializeEnemy();
         InitializePlayer();
 
         CancelInvoke();
@@ -130,7 +136,7 @@ public class CombatController : MonoBehaviour {
     {
         while (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
-            yield return new WaitForSecondsRealtime(1);
+			yield return new WaitForSecondsRealtime(pace);
             player.ChargeTurn();
             enemy.ChargeBySecond();
         }
@@ -241,6 +247,10 @@ public class CombatController : MonoBehaviour {
 		playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color = 
 			playerColorGradient.Evaluate(player.currentHealth / player.MaxHealth);
 
+		playerUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+			playerTurnColor.Evaluate(player.currentTurn / player.MaxTurn);
+
+		playerUI.lifeText.color = playerTurnColor.Evaluate(player.currentTurn / player.MaxTurn);
 
 		ChangePlayerState();
 
@@ -298,15 +308,23 @@ public class CombatController : MonoBehaviour {
 
 		playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
 
-    }
+		playerUI.lifeText.color = Color.Lerp(playerColorGradient.Evaluate(t), oldColor, t); ;
+
+	}
 
     /// <summary>
     /// Cambia la GUI del jugador para mostrar su carga de turno actual.
     /// </summary>
     public void UpdatePlayerTurn()
     {
+		float t = player.currentTurn / player.MaxTurn;
+		Color oldColor = playerUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
         playerUI.turnSlider.maxValue = player.MaxTurn;
         playerUI.turnSlider.value = player.currentTurn;
+		playerUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+			Color.Lerp(playerTurnColor.Evaluate(t), oldColor, t);
+
     }
 
     /// <summary>
@@ -443,6 +461,11 @@ public class CombatController : MonoBehaviour {
 		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
 		enemyColorGradient.Evaluate(enemy.currentHealth / enemy.maxHealth);
 
+		enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+		enemyTurnColor.Evaluate(enemy.currentTurn / enemy.maxTurn);
+
+		enemyUI.lifeText.color = enemyColorGradient.Evaluate(enemy.currentHealth / enemy.maxHealth);
+
 		ChangeEnemyState();
 
         UpdateEnemyLife();
@@ -489,8 +512,11 @@ public class CombatController : MonoBehaviour {
 		enemyUI.lifeSlider.maxValue = enemy.myTemplate.MaxHealth;
         enemyUI.lifeSlider.value = enemy.currentHealth;
         enemyUI.lifeText.text = ((enemy.currentHealth / enemy.myTemplate.MaxHealth) * 100).ToString("0") + "%";
+
 		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
 			Color.Lerp(enemyColorGradient.Evaluate(t), oldColor, t);
+
+		enemyUI.lifeText.color = Color.Lerp(enemyColorGradient.Evaluate(t), oldColor, t);
 	}
 
     /// <summary>
@@ -498,9 +524,14 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void UpdateEnemyTurn()
     {
-        enemyUI.turnSlider.maxValue = enemy.myTemplate.MaxTurn;
+		float t = enemy.currentTurn / enemy.maxTurn;
+		Color oldColor = enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
+		enemyUI.turnSlider.maxValue = enemy.myTemplate.MaxTurn;
         enemyUI.turnSlider.value = enemy.currentTurn;
-    }
+		enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+			Color.Lerp(enemyTurnColor.Evaluate(t), oldColor, t);
+	}
 
     /// <summary>
     /// Cambia la GUI del npc enemigo mostrando su descipción detallada.

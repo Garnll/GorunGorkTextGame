@@ -17,17 +17,17 @@ MonoBehaviour:
   verticalScanlineStrength: 0
   scanlineSize: 1
   scanlineSpacing: 4
-  movScanlineStrength: 0.05
-  movScanlineSize: 0.92
-  movScanlineSpeed: 2.5
-  sharpenStrength: 0.079
+  movScanlineStrength: 0.07
+  movScanlineSize: 1
+  movScanlineSpeed: 3
+  sharpenStrength: 0.066
   brightness: 0.03
   contrast: 0
-  saturation: 0.22
+  saturation: 0.36
   vignetteStrength: 0.43
-  chromatic: 0.039
+  chromatic: 0
   replacementColor: {r: 0.07006922, g: 0.7641569, b: 0.7941176, a: 0}
-  noiseStrength: 0.005
+  noiseStrength: 0.008
   noiseDistortion: 0.07
   jitter: 0.04
   wobble: 0.005

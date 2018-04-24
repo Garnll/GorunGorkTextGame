@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: Owl Bear
   m_EditorClassIdentifier: 
   npcName: "oso b\xFAho"
-  keyword:
+  keywords:
   - oso
-  - buho
   - osobuho
-  - criatura
+  - "osob\xFAho"
+  - oso buho
+  - "oso b\xFAho"
   npcLevel: 0
   npcGender: macho
   npcRace: {fileID: 11400000, guid: e42a372732a58004f81e3eeae1c66d21, type: 2}
@@ -29,17 +30,17 @@ MonoBehaviour:
     de otras criaturas. Usualmente busca comida.
   enemyGameObject: {fileID: 1724846261189214, guid: 8f0c3dbd5058b584c8116fcae1f84ed2,
     type: 2}
-  maxHealth: 100
+  maxHealth: 50
   maxTurn: 100
   maxWill: 10
   habilities: []
   defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
-  defaultStrength: 2
+  defaultStrength: 1
   defaultIntelligence: 1
-  defaultResistance: 3
+  defaultResistance: 2
   defaultDexterity: 2
   defaultCriticalHitProbability: 0
   defaultCooldownReduction: 0
-  defaultHealthRegenPerSecond: 0.2
-  defaultTurnRegenPerSecond: 12.15
+  defaultHealthRegenPerSecond: 0.05
+  defaultTurnRegenPerSecond: 1
   defaultEvasion: 0
