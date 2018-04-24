@@ -415,7 +415,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'T
+  m_text: 'T:
 
 '
   m_isRightToLeft: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4279041792
-  m_fontColor: {r: 0.71966946, g: 0.97794116, b: 0.37391868, a: 1}
+  m_fontColor: {r: 0.9117647, g: 0.7897029, b: 0.10726643, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}

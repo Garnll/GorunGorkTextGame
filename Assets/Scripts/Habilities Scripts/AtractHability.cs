@@ -23,7 +23,7 @@ public class AtractHability : Hability {
             player.currentTurn -= turnConsuption;
             player.controller.combatController.UpdatePlayerLog("¡Has usado Atraer!");
 
-            int damage = player.characteristics.currentStrength + Random.Range(1, 5) + 10;
+            float damage = player.characteristics.currentStrength + Random.Range(1, 5) + 10;
 
             enemy.ReceiveDamage(damage);
             enemy.currentEvasion = 0;

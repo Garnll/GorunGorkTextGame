@@ -20,24 +20,24 @@ public class Timer : MonoBehaviour {
         }
     }
 
-    public IEnumerator WaitHabilityCooldown(int time, Hability wichOne)
+    public IEnumerator WaitHabilityCooldown(float time, Hability wichOne)
     {
         yield return new WaitForSecondsRealtime(time);
         wichOne.isAvailable = true;
     }
 
-    public IEnumerator WaitHabilityCooldown(int time, Hability wichOne, PlayerManager player)
+    public IEnumerator WaitHabilityCooldown(float time, Hability wichOne, PlayerManager player)
     {
         yield return new WaitForSecondsRealtime(time);
         player.controller.combatController.SetEnemyDescription();
     }
 
-    public IEnumerator RepositionTime(int time, PlayerManager player)
+    public IEnumerator RepositionTime(float time, PlayerManager player)
     {
         yield return new WaitForSecondsRealtime(time);
         player.characteristics.other.currentEvasion = player.characteristics.other.DefaultEvasion;
     }
-    public IEnumerator RepositionTime(int time, EnemyNPC enemy)
+    public IEnumerator RepositionTime(float time, EnemyNPC enemy)
     {
         yield return new WaitForSecondsRealtime(time);
         enemy.currentEvasion = enemy.myTemplate.DefaultEvasion;

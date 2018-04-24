@@ -192,7 +192,7 @@ public class PlayerManager : MonoBehaviour {
 
         controller.combatController.UpdatePlayerLog( "Has atacado.");
 
-        int damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
+        float damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
 
         float r = Random.Range(0f, 1f);
 

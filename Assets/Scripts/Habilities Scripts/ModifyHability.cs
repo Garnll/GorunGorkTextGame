@@ -31,7 +31,7 @@ public class ModifyHability : Hability {
                 pickTwo = Random.Range(1, 5);
             }
 
-            int temp;
+            float temp;
 
             switch(pickOne)
             {
@@ -175,7 +175,7 @@ public class ModifyHability : Hability {
             string statOne = separatedInputs[0];
             string statTwo = separatedInputs[1];
 
-            int temp;
+            float temp;
 
             switch (statOne)
             {

@@ -5,14 +5,14 @@
 /// </summary>
 public class PlayerCharacteristics : MonoBehaviour {
 
-    public int defaultStrength = 1;
-	[HideInInspector] public int currentStrength;
-    public int defaultIntelligence = 1;
-	[HideInInspector] public int currentIntelligence;
-    public int defaultResistance = 1;
-	[HideInInspector] public int currentResistance;
-    public int defaultDexterity = 1;
-	[HideInInspector] public int currentDexterity;
+    public float defaultStrength = 1;
+	[HideInInspector] public float currentStrength;
+    public float defaultIntelligence = 1;
+	[HideInInspector] public float currentIntelligence;
+    public float defaultResistance = 1;
+	[HideInInspector] public float currentResistance;
+    public float defaultDexterity = 1;
+	[HideInInspector] public float currentDexterity;
 
 	public int defaultPods = 10;
 	[HideInInspector] public int currentPods;
@@ -90,19 +90,19 @@ public class PlayerCharacteristics : MonoBehaviour {
 		return true;
 	}
 
-	public void modifyStrengthBy(int amount) {
+	public void modifyStrengthBy(float amount) {
 		currentStrength += amount;
 	}
 
-	public void modifyIntelligenceBy(int amount) {
+	public void modifyIntelligenceBy(float amount) {
 		currentIntelligence += amount;
 	}
 
-	public void modifyDexterityBy(int amount) {
+	public void modifyDexterityBy(float amount) {
 		currentDexterity += amount;
 	}
 
-	public void modifyResistanceBy(int amount) {
+	public void modifyResistanceBy(float amount) {
 		currentResistance += amount;
 	}
 

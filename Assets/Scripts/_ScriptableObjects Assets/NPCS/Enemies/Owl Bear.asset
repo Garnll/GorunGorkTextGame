@@ -35,9 +35,9 @@ MonoBehaviour:
   maxWill: 10
   habilities: []
   defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
-  defaultStrength: 1
+  defaultStrength: 0.5
   defaultIntelligence: 1
-  defaultResistance: 2
+  defaultResistance: 1
   defaultDexterity: 2
   defaultCriticalHitProbability: 0
   defaultCooldownReduction: 0

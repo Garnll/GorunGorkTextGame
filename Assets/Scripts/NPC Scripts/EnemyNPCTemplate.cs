@@ -17,10 +17,10 @@ public class EnemyNPCTemplate : NPCTemplate {
     public Hability[] habilities;
     public CharacterState defaultState;
 
-    public int defaultStrength = 1;
-    public int defaultIntelligence = 1;
-    public int defaultResistance = 1;
-    public int defaultDexterity = 1;
+    public float defaultStrength = 1;
+    public float defaultIntelligence = 1;
+    public float defaultResistance = 1;
+    public float defaultDexterity = 1;
 
     [Space(5)]
     [SerializeField] private float defaultCriticalHitProbability = 0;
