@@ -124,7 +124,7 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     private void ChangeLayout()
     {
-        player.controller.PrepareForCombat();
+        player.controller.NullCurrentDisplay();
 
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
@@ -635,7 +635,7 @@ public class CombatController : MonoBehaviour {
     /// <param name="endMessage"></param>
     private void ReturnToRoom(string endMessage)
     {
-        player.controller.PrepareForCombat();
+        player.controller.NullCurrentDisplay();
         player.controller.LogStringWithReturn(" ");
         player.controller.LogStringWithReturn("Fin del combate.");
         player.controller.LogStringWithReturn(player.controller.RefreshCurrentRoomDescription());

@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
 
     public GameObject displayTextTemplate;
     [Range(0, 0.1f)] public float textvelocity = 0.01f;
+    public int textMaxLength = 1000;
+    public int textMaxDisplays = 50;
     public RectTransform contentContainer;
     public InputActions[] inputActions;
     public PlayerManager playerManager;
@@ -22,7 +24,7 @@ public class GameController : MonoBehaviour {
     [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
     [HideInInspector] public ItemHandler itemHandler;
 
-    TextMeshProUGUI displayText;
+    TextMeshProUGUI currentDisplayText;
     List<string> actionLog = new List<string>();
     List<string> roomExtraLog = new List<string>();
     string currentRoomDescription = "";
@@ -31,9 +33,12 @@ public class GameController : MonoBehaviour {
     string oldText = "";
     [HideInInspector] public bool writing;
     [HideInInspector] public bool stopWriting;
+    int displayTextCounter = 0;
+    List<TextMeshProUGUI> displayTexts;
 
     private void Start()
     {
+        displayTexts = new List<TextMeshProUGUI>(textMaxDisplays + 1);
         itemHandler = GetComponent<ItemHandler>();
         writing = false;
         stopWriting = false;
@@ -49,15 +54,16 @@ public class GameController : MonoBehaviour {
     {
         string logAsText = string.Join("\n", actionLog.ToArray());
 
-        if (displayText == null)
+        if (currentDisplayText == null)
         {
             StopAllCoroutines();
-
             oldText = "";
             currentCharPosition = 0;
             CreateNewDisplay();
             writing = false;
             stopWriting = false;
+            currentDisplayText.autoSizeTextContainer = false;
+            currentDisplayText.autoSizeTextContainer = true;
         }
 
         if (writing)
@@ -100,11 +106,12 @@ public class GameController : MonoBehaviour {
                 {
                     str = complete;
                     currentCharPosition = complete.Length;
-                    displayText.text = str;
+                    currentDisplayText.text = str;
                     stopWriting = false;
-                    oldText = displayText.text;
+                    oldText = currentDisplayText.text;
                     writing = false;
-                   
+                    currentDisplayText.autoSizeTextContainer = false;
+                    currentDisplayText.autoSizeTextContainer = true;
                     yield break;
                 }
 
@@ -125,28 +132,50 @@ public class GameController : MonoBehaviour {
 
                 str += complete[currentCharPosition++];
 
-                displayText.text = str;
+                currentDisplayText.text = str;
                 yield return new WaitForSeconds(textvelocity);
             }
 
-            if (writing && displayText != null)
+            if (writing && currentDisplayText != null)
             {
-                oldText = displayText.text;
+                oldText = currentDisplayText.text;
             }
             writing = false;
+
+            if (currentCharPosition >= textMaxLength)
+            {
+                NullCurrentDisplay();
+            }
         }
     }
 
     public void CreateNewDisplay()
     {
-        GameObject newDisplay = Instantiate(displayTextTemplate, contentContainer);
-        displayText = newDisplay.GetComponent<TextMeshProUGUI>();
-        displayText.text = "";
+        if (displayTexts.Count < textMaxDisplays)
+        {
+            GameObject newDisplay = Instantiate(displayTextTemplate, contentContainer);
+            currentDisplayText = newDisplay.GetComponent<TextMeshProUGUI>();
+            displayTexts.Add(currentDisplayText);       
+        }
+        else
+        {
+            currentDisplayText = displayTexts[displayTextCounter];
+            currentDisplayText.transform.SetAsLastSibling();
+
+            displayTextCounter++;
+
+            if (displayTextCounter >= textMaxDisplays)
+            {
+                displayTextCounter = 0;
+            }
+        }
+
+        currentDisplayText.text = "";
     }
 
-    public void PrepareForCombat()
+    public void NullCurrentDisplay()
     {
-        displayText = null;
+        currentDisplayText = null;
         actionLog.Clear();
     }
 
