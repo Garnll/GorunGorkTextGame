@@ -9,11 +9,28 @@ using System;
 public class InventoryManager : MonoBehaviour {
 
     [SerializeField] public List<InteractableObject> nounsInInventory = new List<InteractableObject>();
+    private int lemons = 0;
 
     public TextMeshProUGUI text;
 
     private void Start()
     {
+        DisplayInventory();
+    }
+
+    public void AddLemons(int amount)
+    {
+        lemons += amount;
+        DisplayInventory();
+    }
+
+    public void RemoveLemons(int amount)
+    {
+        lemons -= amount;
+        if (lemons < 0)
+        {
+            lemons = 0;
+        }
         DisplayInventory();
     }
 
@@ -23,6 +40,11 @@ public class InventoryManager : MonoBehaviour {
     public void DisplayInventory()
     {
         string textToDisplay = "<b>Inventario</b>";
+        if (lemons > 0)
+        {
+            textToDisplay += "\n- " + lemons.ToString() + " Limones";
+        }
+
         string newNounToDisplay;
         for (int i = 0; i < nounsInInventory.Count; i++)
         {

@@ -33,14 +33,16 @@ public class CombatController : MonoBehaviour {
 	public Gradient playerTurnColor;
 	public Gradient enemyTurnColor;
 
-	/// <summary>
-	/// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
-	/// Devuelve el enemigo que encuentre.
-	/// </summary>
-	/// <param name="keywordGiven"></param>
-	/// <param name="currentRoom"></param>
-	/// <returns></returns>
-	public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
+    int lemonsWon;
+
+    /// <summary>
+    /// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
+    /// Devuelve el enemigo que encuentre.
+    /// </summary>
+    /// <param name="keywordGiven"></param>
+    /// <param name="currentRoom"></param>
+    /// <returns></returns>
+    public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
     {
 		string[] newString = new string[keywordGiven.Length - 1];
 
@@ -76,6 +78,7 @@ public class CombatController : MonoBehaviour {
     {
         enemy = npc;
         player = thisPlayer;
+        lemonsWon = 0;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -583,6 +586,7 @@ public class CombatController : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡Ganaste!");
+        WinLemons(50);
     }
 
     /// <summary>
@@ -594,6 +598,7 @@ public class CombatController : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡El enemigo huyó!");
+        WinLemons(10);
     }
 
     /// <summary>
@@ -629,6 +634,13 @@ public class CombatController : MonoBehaviour {
         player.controller.CreateNewDisplay();
     }
 
+
+    private void WinLemons(int factor)
+    {
+        lemonsWon = (int)Random.Range(factor, factor * 1.5f);
+        player.controller.itemHandler.inventoryManager.AddLemons(lemonsWon);
+    }
+
     /// <summary>
     /// Devuelve el jugador a la habitación en la que estaba antes del combate.
     /// </summary>
@@ -638,6 +650,11 @@ public class CombatController : MonoBehaviour {
         player.controller.NullCurrentDisplay();
         player.controller.LogStringWithReturn(" ");
         player.controller.LogStringWithReturn("Fin del combate.");
+        if (lemonsWon > 0)
+        {
+            player.controller.LogStringWithReturn("¡Ganaste " + lemonsWon.ToString() + " Limones por la batalla!");
+        }
+
         player.controller.LogStringWithReturn(player.controller.RefreshCurrentRoomDescription());
         player.controller.LogStringWithoutReturn(endMessage);
     }
