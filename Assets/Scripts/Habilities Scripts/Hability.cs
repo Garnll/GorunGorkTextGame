@@ -34,7 +34,7 @@ public abstract class Hability : ScriptableObject {
     /// <param name="player"></param>
     public virtual void ImplementHability(PlayerManager player, EnemyNPC npc)
     {
-        //Do something
+        AddExperience();
     }
 
     /// <summary>
@@ -44,12 +44,17 @@ public abstract class Hability : ScriptableObject {
     /// <param name="interactable"></param>
     public virtual void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
-        //Do something
+        AddExperience();
     }
 
     public virtual void ImplementHability<T>(PlayerManager player, T thing, string[] separatedInputs)
     {
-        //Do something
+        AddExperience();
+    }
+
+    protected void AddExperience()
+    {
+
     }
 
     protected virtual void WaitForCooldown()

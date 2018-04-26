@@ -16,6 +16,8 @@ public class TrackHability : Hability {
             }
         }
 
+        base.ImplementHability(player, enemy);
+
         isAvailable = false;
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)

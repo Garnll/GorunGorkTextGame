@@ -20,6 +20,8 @@ public class AnalizeHability : Hability {
             }
         }
 
+        base.ImplementHability(player, enemy);
+
         isAvailable = false;
 
         string characteristicsEnemy;
@@ -48,6 +50,8 @@ public class AnalizeHability : Hability {
 
     public override void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
+        base.ImplementHability(player, interactable);
+
         player.controller.LogStringWithReturn(interactable.descriptionAtAnalized);
     }
 

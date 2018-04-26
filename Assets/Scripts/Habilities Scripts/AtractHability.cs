@@ -16,6 +16,8 @@ public class AtractHability : Hability {
             }
         }
 
+        base.ImplementHability(player, enemy);
+
         isAvailable = false;
 
         if (GameState.Instance.CurrentState == GameState.GameStates.combat)
@@ -40,6 +42,8 @@ public class AtractHability : Hability {
 
     public override void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
+        base.ImplementHability(player, interactable);
+
         if (interactable.weight > habilityLevel * 10)
         {
             player.controller.LogStringWithReturn("Atraes " + TextConverter.OutputObjectHimOrHer(interactable) + " hacia ti.");
