@@ -16,7 +16,14 @@ public class TalkToInput : InputActions {
 				return;
 			}
 
-			controller.LogStringWithReturn("<b>" + npc.npcName + ":</b> " + npc.dialogueTree.getText());
+			string tempNarrationText = "";
+
+			if (controller.dialogueController.currentDialogue.narrator == Dialogue.NarratorType.character) {
+				tempNarrationText = "<b>" + controller.dialogueController.currentNpc.npcName + ":</b> ";
+			}
+
+			controller.LogStringWithReturn(tempNarrationText + npc.dialogueTree.getText()
+				+ controller.dialogueController.getChoicesText() + controller.dialogueController.endText);
 
 			controller.dialogueController.input = separatedInputWords[0];
 			controller.dialogueController.StartCoroutine("talk");

@@ -8,6 +8,9 @@ public class Dialogue {
 	[Space(10)]
 	[TextArea] public string[] text;
 
+	public enum NarratorType { narrator, character}
+	public NarratorType narrator;
+
 	[System.NonSerialized]
 	public GlobalVariable[] variables;
 
@@ -74,6 +77,6 @@ public class Dialogue {
 
 	public string getText() {
 		int r = Random.Range(0, text.Length - 1);
-		return text[r];
+		return text[r] + "\n";
 	}
 }

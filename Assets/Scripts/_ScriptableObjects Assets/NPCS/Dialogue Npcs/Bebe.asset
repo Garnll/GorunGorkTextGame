@@ -33,13 +33,27 @@ MonoBehaviour:
     text:
     - "Este es el primer di\xE1logo. Presiona <b>[W]</b> o escribe \"Weno\" para seguir
       hablando."
+    narrator: 0
     choices:
-    - text: "Esta es una opci\xF3n."
+    - text: Weno.
       keywords:
       - w
       - weno
+      conditions: []
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo, y el final. Presiona <b>[X]</b> para dejar
-          de hablarme."
+        - "Este es el segundo di\xE1logo, y el final."
+        narrator: 1
         choices: []
+      able: 0
+    - text: 
+      keywords:
+      - v
+      - vale
+      conditions: []
+      dialogue:
+        text:
+        - "Este es el segundo di\xE1logo tambi\xE9n, pero la segunda opci\xF3n."
+        narrator: 0
+        choices: []
+      able: 0

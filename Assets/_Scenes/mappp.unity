@@ -1163,10 +1163,15 @@ MonoBehaviour:
   input: 
   isTalking: 0
   currentNpc: {fileID: 0}
+  currentDialogue:
+    text: []
+    narrator: 0
+    choices: []
   controller: {fileID: 405610293}
   player: {fileID: 1178118717}
   inventoryManager: {fileID: 1178118716}
   roomNav: {fileID: 1178118714}
+  endText: '<b>[X]</b> Para dejar de hablar. '
   ends:
   - salir
   - dejar de hablar
@@ -2838,8 +2843,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.6151849
+  m_Value: 0.99999964
+  m_Size: 0.61518675
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2912,7 +2917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 133.99997}
+  m_AnchoredPosition: {x: 3, y: 134}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
