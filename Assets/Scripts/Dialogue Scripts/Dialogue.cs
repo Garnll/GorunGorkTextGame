@@ -79,4 +79,10 @@ public class Dialogue {
 		int r = Random.Range(0, text.Length - 1);
 		return text[r] + "\n";
 	}
+
+	public void setGlobalVariables() {
+		foreach (Choice c in choices) {
+			c.setGlobalVariables();
+		}
+	}
 }

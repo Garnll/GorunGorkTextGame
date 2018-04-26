@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class Choice {
 
@@ -36,5 +37,11 @@ public class Choice {
 			}
 		}
 		return true;
+	}
+
+	public void setGlobalVariables() {
+		foreach (Condition c in conditions) {
+			c.createGlobalVariable();
+		}
 	}
 }

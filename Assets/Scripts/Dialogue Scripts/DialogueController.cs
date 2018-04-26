@@ -71,7 +71,8 @@ public class DialogueController : MonoBehaviour {
 
 	public void setDialogue() {
 		if (currentNpc != null) {
-			currentDialogue = currentNpc.dialogueTree;			
+			currentDialogue = currentNpc.dialogueTree;
+			currentDialogue.setGlobalVariables();
 		}
 	}
 

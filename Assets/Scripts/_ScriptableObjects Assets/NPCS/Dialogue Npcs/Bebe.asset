@@ -31,8 +31,8 @@ MonoBehaviour:
   npcDetailedDescription: 
   dialogueTree:
     text:
-    - "Este es el primer di\xE1logo. Presiona <b>[W]</b> o escribe \"Weno\" para seguir
-      hablando."
+    - "Este es el primer di\xE1logo, contado por el narrador, en pro de describir
+      las acciones pasivas del personaje de forma que no necesariamente deba hablar."
     narrator: 0
     choices:
     - text: Weno.
@@ -42,18 +42,22 @@ MonoBehaviour:
       conditions: []
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo, y el final."
+        - "Este es el segundo di\xE1logo, y el final. Narrado por el personaje."
         narrator: 1
         choices: []
       able: 0
-    - text: 
+    - text: Vale.
       keywords:
       - v
       - vale
-      conditions: []
+      conditions:
+      - variable: bebe_prueba
+        condition: 0
+        value: 1
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo tambi\xE9n, pero la segunda opci\xF3n."
+        - "Este es el segundo di\xE1logo tambi\xE9n, pero la segunda opci\xF3n, narrada
+          por el personaje."
         narrator: 0
         choices: []
       able: 0
