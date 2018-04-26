@@ -17,12 +17,16 @@ public class Room : SerializedScriptableObject {
     public RoomResponse roomResponse;
     [Space(5)]
     public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
-    [Space(5)]
-    public List<NPCTemplate> npcTemplatesInRoom = new List<NPCTemplate>();
-    [Space(5)]
-    public List<Exit> exits = new List<Exit>();
-
+	[Space(5)]
 	public List<DialogueNPC> charactersInRoom = new List<DialogueNPC>();
+	[Space(5)]
+    public List<NPCTemplate> npcTemplatesInRoom = new List<NPCTemplate>();
+  
+
+	[Space(10)]
+	public List<Exit> exits = new List<Exit>();
+
+	
 	public List<EnemyNPC> enemiesInRoom = new List<EnemyNPC>();
     [HideInInspector]public bool changeExits = true;
 

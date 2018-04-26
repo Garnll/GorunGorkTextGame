@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Equip : InteractableObject {
 
 	[Space(10)]
-	public IntBuff[] intBuffs;
-	public FloatBuff[] floatBuffs;
+	public MainBuff[] intBuffs;
+	public OtherBuff[] floatBuffs;
 
 
 	public abstract void put();

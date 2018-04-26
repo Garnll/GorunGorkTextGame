@@ -361,7 +361,7 @@ public class PlayerManager : MonoBehaviour {
         controller.combatController.StartCoroutine(controller.combatController.EndCombat(this));
     }
 
-	public void ModifyHealthBy(int amount) {
+	public void ModifyHealthBy(float amount) {
 		maxHealth += amount;
 	}
 }

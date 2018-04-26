@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class FloatBuff {
+public class OtherBuff {
 
-	public enum FloatBuffType { Crit, Cooldown, HealthRegen, TurnRegen, Evasion }
+	public enum OtherBuffType { Crit, Cooldown, HealthRegen, TurnRegen, Evasion }
 
-	public FloatBuffType type;
+	public OtherBuffType type;
 	public float magnitude;
 }

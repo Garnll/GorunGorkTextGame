@@ -99,65 +99,68 @@ public class EquipManager : MonoBehaviour {
 	}
 
 	private void modifyIntStats(Equip equip, int value) {
-		IntBuff[] buffs = equip.intBuffs;
+		MainBuff[] buffs = equip.intBuffs;
 		for (int i = 0; i < buffs.Length; i++) {
 			switch (buffs[i].type) {
-				case IntBuff.IntBuffType.Health:
+				case MainBuff.MainBuffType.Health:
 					player.ModifyHealthBy(buffs[i].magnitude * value);
 					break;
 
-				case IntBuff.IntBuffType.Strength:
+				case MainBuff.MainBuffType.Strength:
 					character.modifyStrengthBy(buffs[i].magnitude * value);
 					break;
 
-				case IntBuff.IntBuffType.Dexterity:
+				case MainBuff.MainBuffType.Dexterity:
 					character.modifyDexterityBy(buffs[i].magnitude * value);
 					break;
 
-				case IntBuff.IntBuffType.Intelligence:
+				case MainBuff.MainBuffType.Intelligence:
 					character.modifyIntelligenceBy(buffs[i].magnitude * value);
 					break;
 
-				case IntBuff.IntBuffType.Resistance:
+				case MainBuff.MainBuffType.Resistance:
 					character.modifyResistanceBy(buffs[i].magnitude * value);
 					break;
 
-				case IntBuff.IntBuffType.Pods:
-					character.modifyPodsBy(buffs[i].magnitude * value);
+				case MainBuff.MainBuffType.Pods:
+					int tempP = Mathf.RoundToInt(buffs[i].magnitude * value);
+					character.modifyPodsBy(tempP);
 					break;
 
-				case IntBuff.IntBuffType.Infravision:
-					character.modifyInfravisionBy(buffs[i].magnitude * value);
+				case MainBuff.MainBuffType.Infravision:
+					int tempI = Mathf.RoundToInt(buffs[i].magnitude * value);
+					character.modifyInfravisionBy(tempI);
 					break;
 
-				case IntBuff.IntBuffType.Hypervision:
-					character.modifySupravisionBy(buffs[i].magnitude * value);
+				case MainBuff.MainBuffType.Hypervision:
+					int tempS = Mathf.RoundToInt(buffs[i].magnitude * value);
+					character.modifySupravisionBy(tempS);
 					break;
 			}
 		}
 	}
 
 	private void modifyFloatStats(Equip equip, int value) {
-		FloatBuff[] buffs = equip.floatBuffs;
+		OtherBuff[] buffs = equip.floatBuffs;
 		for (int i = 0; i < buffs.Length; i++) {
 			switch (buffs[i].type) {
-				case FloatBuff.FloatBuffType.Cooldown:
+				case OtherBuff.OtherBuffType.Cooldown:
 					other.modifyCoolDownBy(buffs[i].magnitude * value);
 					break;
 
-				case FloatBuff.FloatBuffType.Crit:
+				case OtherBuff.OtherBuffType.Crit:
 					other.modifyCritBy(buffs[i].magnitude * value);
 					break;
 
-				case FloatBuff.FloatBuffType.Evasion:
+				case OtherBuff.OtherBuffType.Evasion:
 					other.modifyEvasionBy(buffs[i].magnitude * value);
 					break;
 
-				case FloatBuff.FloatBuffType.HealthRegen:
+				case OtherBuff.OtherBuffType.HealthRegen:
 					other.modifyHealthRegenBy(buffs[i].magnitude * value);
 					break;
 
-				case FloatBuff.FloatBuffType.TurnRegen:
+				case OtherBuff.OtherBuffType.TurnRegen:
 					other.modifyTurnRegenBy(buffs[i].magnitude * value);
 					break;
 
