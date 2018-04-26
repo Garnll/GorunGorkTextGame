@@ -36,8 +36,8 @@ MonoBehaviour:
     actionResponse: {fileID: 0}
   intBuffs:
   - type: 2
-    magnitude: 5
+    magnitude: 3.15
   floatBuffs:
   - type: 1
-    magnitude: 20
+    magnitude: 17.75
   type: 0

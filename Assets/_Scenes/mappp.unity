@@ -259,60 +259,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28318486}
---- !u!1001 &30313555
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2053960537}
-    m_Modifications:
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.5263158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5789484
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_Name
-      value: 2- Sankhara Image Exit este
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &30560767
 Prefab:
   m_ObjectHideFlags: 0
@@ -886,6 +832,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &181130336
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2053960537}
+    m_Modifications:
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.5263158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_Name
+      value: 2- Sankhara Image Exit oeste
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5789484
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &184154685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,60 +1025,6 @@ Transform:
   m_Father: {fileID: 2040956636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &217043082
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2053960537}
-    m_Modifications:
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.5263158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5789474
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_Name
-      value: 2- Sankhara Image Exit sur
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &226971597
 Prefab:
   m_ObjectHideFlags: 0
@@ -2417,6 +2363,60 @@ MonoBehaviour:
   inventoryManager: {fileID: 1178118716}
   equipManager: {fileID: 1261326710}
   itemKeywordHandler: {fileID: 898120133}
+--- !u!1001 &425145344
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2053960537}
+    m_Modifications:
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5263158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_Name
+      value: 2- Sankhara Image Exit norte
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5789474
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &438897950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,60 +2499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1001 &486736506
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2053960537}
-    m_Modifications:
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.5263158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_Name
-      value: 2- Sankhara Image Exit oeste
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5789484
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &503860389 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4409290807584454, guid: 250cf8c86ebbc204c97d9f21c7afd5ec,
@@ -2893,7 +2839,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6151689
+  m_Size: 0.6151849
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2966,7 +2912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 133.99995}
+  m_AnchoredPosition: {x: 3, y: 133.99997}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -5666,6 +5612,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e721c62d14706b5479f476513e323b34, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1078378204
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2053960537}
+    m_Modifications:
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.5263158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5789484
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_Name
+      value: 2- Sankhara Image Exit este
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1084734489
 Prefab:
   m_ObjectHideFlags: 0
@@ -7693,60 +7693,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1527827877
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2053960537}
-    m_Modifications:
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.5263158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_Name
-      value: 2- Sankhara Image Exit norte
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5789474
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1565567485
 GameObject:
   m_ObjectHideFlags: 0
@@ -8963,6 +8909,60 @@ Transform:
   m_Father: {fileID: 578586441}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1900758507
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2053960537}
+    m_Modifications:
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.5263158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376861050115676, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_Name
+      value: 2- Sankhara Image Exit sur
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682914810621180, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5789474
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: bc9dae46ecb2bed4aa3a582a7a881c97, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1907307709
 Prefab:
   m_ObjectHideFlags: 0
@@ -9924,7 +9924,7 @@ Prefab:
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 224742286679972806, guid: 4982796fb3ac234429cd893df5c990b1,
         type: 2}
