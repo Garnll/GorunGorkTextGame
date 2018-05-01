@@ -2005,7 +2005,7 @@ MonoBehaviour:
   displayTextTemplate: {fileID: 1712604994510202, guid: 497ff3be884d88940b99006cdfb0df57,
     type: 2}
   textvelocity: 0.0002
-  textMaxLength: 500
+  textMaxLength: 1000
   textMaxDisplays: 3
   contentContainer: {fileID: 841433917}
   inputActions:
@@ -2843,8 +2843,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.6151868
+  m_Value: 0.99999964
+  m_Size: 0.61518675
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

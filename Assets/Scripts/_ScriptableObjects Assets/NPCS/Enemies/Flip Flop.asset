@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: Flip Flop
   m_EditorClassIdentifier: 
   npcName: flip flop
-  keyword:
+  keywords:
+  - flip flop
   - flip
   - flop
   - flipflop
@@ -21,6 +22,8 @@ MonoBehaviour:
   npcGender: macho
   npcRace: {fileID: 11400000, guid: 5283649a6373e814f996c2a68f691d6e, type: 2}
   npcJob: {fileID: 11400000, guid: 9bcb2abb7e752b5428d65ea6061cb49b, type: 2}
+  defaultVisibility: 0
+  currentVisibility: 0
   npcInRoomDescription: Un robot diminuto camina lentamente.
   npcDetailedDescription: Un robot con unas patas delgadas y largas. Bastantes resistentes,
     aunque usualmente evitan pelear, si no es necesario.

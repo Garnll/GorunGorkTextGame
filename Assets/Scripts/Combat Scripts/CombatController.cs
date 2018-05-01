@@ -8,6 +8,7 @@ using UnityEngine;
 public class CombatController : MonoBehaviour {
 
 	public float pace = 0.1f;
+    //public float battleTimeInMins = 2;
 
     public InventoryManager inventoryManager;
     [Space(10)]

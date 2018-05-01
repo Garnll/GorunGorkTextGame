@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 /// <summary>
 /// Controlador del juego. Maneja gran parte del texto y parte de las mecanicas.
@@ -99,14 +100,16 @@ public class GameController : MonoBehaviour {
         if (!writing)
         {
             writing = true;
-            string str = oldText;
+            StringBuilder str = new StringBuilder();
+            str.Append(oldText);
             while (currentCharPosition < complete.Length)
             {
                 if (stopWriting)
                 {
-                    str = complete;
+                    str.Length = 0;
+                    str.Append(complete);
                     currentCharPosition = complete.Length;
-                    currentDisplayText.text = str;
+                    currentDisplayText.text = str.ToString();
                     stopWriting = false;
                     oldText = currentDisplayText.text;
                     writing = false;
@@ -121,7 +124,7 @@ public class GameController : MonoBehaviour {
                     {
                         while (complete[currentCharPosition] != '>')
                         {
-                            str += complete[currentCharPosition++];
+                            str.Append(complete[currentCharPosition++]);
                             if (currentCharPosition >= complete.Length)
                             {
                                 break;
@@ -130,9 +133,9 @@ public class GameController : MonoBehaviour {
                     }
                 }
 
-                str += complete[currentCharPosition++];
+                str.Append(complete[currentCharPosition++]);
 
-                currentDisplayText.text = str;
+                currentDisplayText.text = str.ToString();
                 yield return new WaitForSeconds(textvelocity);
             }
 
