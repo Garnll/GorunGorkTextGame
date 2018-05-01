@@ -6,7 +6,7 @@ using UnityEngine;
 /// No implementada porque los personajes no tiene rango de vision aun 
 /// </summary>
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Stealth")]
-public class StealthState : CharacterState {
+public class StealthState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

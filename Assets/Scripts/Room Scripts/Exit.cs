@@ -9,7 +9,7 @@ public class Exit {
 
     [Space(10)]
     public DirectionKeyword myKeyword;
-    public Room conectedRoom;
+    public RoomObject conectedRoom;
     [TextArea] public string exitDescription;
     [Space(5)]
     [TextArea] public string exitActionDescription;

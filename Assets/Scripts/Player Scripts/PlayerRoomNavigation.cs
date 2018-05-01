@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerRoomNavigation : MonoBehaviour {
 
     public GameController controller;
-    public Room currentRoom;
+    public RoomObject currentRoom;
     public MiniMapper miniMapper;
 
     KeywordToStringConverter converter;

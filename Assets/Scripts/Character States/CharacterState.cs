@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterState : ScriptableObject {
+public abstract class CharacterEffectiveState : ScriptableObject {
 
     public string stateName = "estado";
     public int magnitude = 0;

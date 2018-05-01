@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Hack")]
-public class HackState : CharacterState {
+public class HackState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

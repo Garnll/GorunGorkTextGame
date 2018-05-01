@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Gorun Gork/Room Responses/Anything Works")]
+[CreateAssetMenu(menuName = "Gorun Gork/RoomObject Responses/Anything Works")]
 public class AnythingWorksResponse : RoomResponse {
 
     public override void TriggerResponse(GameController controller)

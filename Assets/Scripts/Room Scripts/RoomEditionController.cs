@@ -13,9 +13,9 @@ public class RoomEditionController : MonoBehaviour {
 
     public RoomVisualMapper mapper;
 
-    public static Dictionary<Vector3, Room> existingRooms = new Dictionary<Vector3, Room>();
+    public static Dictionary<Vector3, RoomObject> existingRooms = new Dictionary<Vector3, RoomObject>();
 
-    List<Room> roomsToLoad = new List<Room>();
+    List<RoomObject> roomsToLoad = new List<RoomObject>();
     private bool isEventSuscribed = false;
 
     KeywordToStringConverter converter;
@@ -27,8 +27,8 @@ public class RoomEditionController : MonoBehaviour {
 
         if (!isEventSuscribed)
         {
-            Room.OnChangePosition += RoomPositionChanged;
-            Room.OnChangeStuff += SaveChanges;
+            RoomObject.OnChangePosition += RoomPositionChanged;
+            RoomObject.OnChangeStuff += SaveChanges;
             isEventSuscribed = true;
         }
         existingRooms.Clear();
@@ -37,11 +37,11 @@ public class RoomEditionController : MonoBehaviour {
         string[] path = new string[1];
         path[0] = "Assets/Scripts/_ScriptableObjects Assets/Rooms";
 
-        var findRooms = AssetDatabase.FindAssets("t:Room", path);
+        var findRooms = AssetDatabase.FindAssets("t:RoomObject", path);
         for (int i = 0; i < findRooms.Length; i++)
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(findRooms[i]);
-            Room newRoom = AssetDatabase.LoadAssetAtPath<Room>(assetPath);
+            RoomObject newRoom = AssetDatabase.LoadAssetAtPath<RoomObject>(assetPath);
             roomsToLoad.Add(newRoom);
 
             if (!existingRooms.ContainsKey(newRoom.roomPosition))
@@ -61,7 +61,7 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
-    private void RoomPositionChanged(Room currentAnalizedRoom, Vector3 newRoomPosition)
+    private void RoomPositionChanged(RoomObject currentAnalizedRoom, Vector3 newRoomPosition)
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
@@ -92,25 +92,25 @@ public class RoomEditionController : MonoBehaviour {
         SaveChanges(currentAnalizedRoom);
     }
 
-    private void SaveChanges(Room currentAnalizedRoom)
+    private void SaveChanges(RoomObject currentAnalizedRoom)
     {
         RoomDataSaver.SaveData(currentAnalizedRoom);
         Debug.Log("Habitación salvada: " + currentAnalizedRoom.name.ToString());
         PutVisualRepresentation(currentAnalizedRoom);
     }
 
-    private void PutVisualRepresentation(Room currentAnalizedRoom)
+    private void PutVisualRepresentation(RoomObject currentAnalizedRoom)
     {
         mapper.PutRoomInPlace(currentAnalizedRoom);
     }
 
-    private void CheckForOtherRoomsInArea(Room roomBeingAnalized)
+    private void CheckForOtherRoomsInArea(RoomObject roomBeingAnalized)
     {
         Vector3 centerRoom = roomBeingAnalized.roomPosition;
         List<DirectionKeyword> directions = new List<DirectionKeyword>();
         List<Vector3> positions = new List<Vector3>();
 
-        List<Room> roomsToChangeExit = new List<Room>();
+        List<RoomObject> roomsToChangeExit = new List<RoomObject>();
 
         int posX;
         int posY;
@@ -204,7 +204,7 @@ public class RoomEditionController : MonoBehaviour {
         return direction;
     }
 
-    private void CreateCurrentRoomExits(Room currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
+    private void CreateCurrentRoomExits(RoomObject currentlyExaminedRoom, DirectionKeyword[] exitDirections, Vector3[] otherRoomsPositions)
     {
         //currentlyExaminedRoom.exits.Clear();
 
@@ -264,7 +264,7 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
-    private Exit CreateExit(DirectionKeyword direction, Room myConnectedRoom)
+    private Exit CreateExit(DirectionKeyword direction, RoomObject myConnectedRoom)
     {
         Exit newExitToCreate = new Exit()
         {
@@ -278,7 +278,7 @@ public class RoomEditionController : MonoBehaviour {
         return newExitToCreate;
     }
 
-    private void ChangeOtherRoomExits(Room[] otherRooms, Room currentAnalizedRoom, Vector3 centerRoom)
+    private void ChangeOtherRoomExits(RoomObject[] otherRooms, RoomObject currentAnalizedRoom, Vector3 centerRoom)
     {
         for (int i = 0; i < otherRooms.Length; i++)
         {
@@ -313,8 +313,8 @@ public class RoomEditionController : MonoBehaviour {
 
     private void OnDisable()
     {
-        Room.OnChangePosition -= RoomPositionChanged;
-        Room.OnChangeStuff -= SaveChanges;
+        RoomObject.OnChangePosition -= RoomPositionChanged;
+        RoomObject.OnChangeStuff -= SaveChanges;
         isEventSuscribed = false;
         existingRooms.Clear();
         roomsToLoad.Clear();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Trail")]
-public class TrailState : CharacterState {
+public class TrailState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

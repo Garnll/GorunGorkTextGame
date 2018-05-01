@@ -6,7 +6,7 @@
 public class RoomObjectSaver : MonoBehaviour {
 
     /// <summary>
-    /// Enviados específicamente a Room, para que puedan activar sus eventos de salvar y cargar los objetos.
+    /// Enviados específicamente a RoomObject, para que puedan activar sus eventos de salvar y cargar los objetos.
     /// </summary>
     public delegate void RoomSaving();
     public static event RoomSaving OnSaveObjects;

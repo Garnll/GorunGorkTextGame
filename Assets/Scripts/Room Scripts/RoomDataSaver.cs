@@ -30,7 +30,7 @@ public class RoomDataSaver {
     /// Salva todos los datos que se puedan cambiar de una habitación.
     /// </summary>
     /// <param name="roomToSave"></param>
-	public static void SaveData(Room roomToSave)
+	public static void SaveData(RoomObject roomToSave)
     {
         if (converter == null)
             converter = KeywordToStringConverter.Instance;
@@ -57,7 +57,7 @@ public class RoomDataSaver {
     }
 
 
-    public static void LoadData(Room roomToLoad)
+    public static void LoadData(RoomObject roomToLoad)
     {
         Room_Data roomDataLoad = null;
 

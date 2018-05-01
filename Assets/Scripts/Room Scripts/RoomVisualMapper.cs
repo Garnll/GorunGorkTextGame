@@ -16,7 +16,7 @@ public class RoomVisualMapper : MonoBehaviour {
     public GameObject roomExitCorner;
     public GameObject roomExitSides;
 
-    private Dictionary<Room, GameObject> roomImagesDictionary = new Dictionary<Room, GameObject>();
+    private Dictionary<RoomObject, GameObject> roomImagesDictionary = new Dictionary<RoomObject, GameObject>();
 
     private void OnEnable()
     {
@@ -58,7 +58,7 @@ public class RoomVisualMapper : MonoBehaviour {
     /// Elimina la referencia a la habitación dada del diccionario.
     /// </summary>
     /// <param name="imageFromRoom"></param>
-    private void EliminateRoomFromDictionary(Room imageFromRoom)
+    private void EliminateRoomFromDictionary(RoomObject imageFromRoom)
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             return;
@@ -69,7 +69,7 @@ public class RoomVisualMapper : MonoBehaviour {
         }
     }
 
-    public void PutRoomInPlace(Room roomToPut)
+    public void PutRoomInPlace(RoomObject roomToPut)
     {
         if (roomImagesDictionary.ContainsKey(roomToPut))
         {
@@ -104,7 +104,7 @@ public class RoomVisualMapper : MonoBehaviour {
         return newTransform;
     }
 
-    private void PutExitsInPlace(Room roomToPutExits)
+    private void PutExitsInPlace(RoomObject roomToPutExits)
     {
         RoomSprite imageRoom = roomImagesDictionary[roomToPutExits].GetComponent<RoomSprite>();
 

@@ -15,7 +15,7 @@ public class EnemyNPCTemplate : NPCTemplate {
 
 
     public Hability[] habilities;
-    public CharacterState defaultState;
+    public CharacterEffectiveState defaultState;
 
     public float defaultStrength = 1;
     public float defaultIntelligence = 1;

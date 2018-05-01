@@ -13,7 +13,7 @@ public class EnemyNPC : MonoBehaviour {
     [HideInInspector] public float currentTurn;
     [HideInInspector] public float currentWill;
 
-    [HideInInspector] public CharacterState currentState;
+    [HideInInspector] public CharacterEffectiveState currentState;
 
     [HideInInspector] public float currentStrength;
     [HideInInspector] public float currentIntelligence;
@@ -42,7 +42,7 @@ public class EnemyNPC : MonoBehaviour {
     [HideInInspector] public EnemyNPCAI myAI;
 
     /// <summary>
-    /// Devuelve el CharacterState del enemigo a su default.
+    /// Devuelve el CharacterEffectiveState del enemigo a su default.
     /// </summary>
     public void ReturnToNormalState()
     {
@@ -206,10 +206,10 @@ public class EnemyNPC : MonoBehaviour {
     }
 
     /// <summary>
-    /// Cambia el CharacterState actual a uno dado.
+    /// Cambia el CharacterEffectiveState actual a uno dado.
     /// </summary>
     /// <param name="newState"></param>
-    public void ChangeState(CharacterState newState)
+    public void ChangeState(CharacterEffectiveState newState)
     {
         currentState = newState;
         currentState.ApplyStateEffect(this);

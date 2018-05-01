@@ -291,7 +291,7 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
-        Room.RoomVisibleObjects newObjectInRoom = new Room.RoomVisibleObjects();
+        RoomObject.RoomVisibleObjects newObjectInRoom = new RoomObject.RoomVisibleObjects();
         newObjectInRoom.interactableObject = objectToThrow;
         newObjectInRoom.visionRange = (int)Random.Range(-4,4);
 

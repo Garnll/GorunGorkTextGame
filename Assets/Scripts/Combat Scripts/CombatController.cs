@@ -44,7 +44,7 @@ public class CombatController : MonoBehaviour {
     /// <param name="keywordGiven"></param>
     /// <param name="currentRoom"></param>
     /// <returns></returns>
-    public NPCTemplate TryToFight(string[] keywordGiven, Room currentRoom)
+    public NPCTemplate TryToFight(string[] keywordGiven, RoomObject currentRoom)
     {
 		string[] newString = new string[keywordGiven.Length - 1];
 
@@ -284,7 +284,7 @@ public class CombatController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Cambia el tituloo del jugador para reflejar su CharacterState actual.
+    /// Cambia el tituloo del jugador para reflejar su CharacterEffectiveState actual.
     /// </summary>
     public void ChangePlayerState ()
     {
@@ -494,7 +494,7 @@ public class CombatController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Cambia la GUI del npc enemigo para reflejar su CharacterState actual.
+    /// Cambia la GUI del npc enemigo para reflejar su CharacterEffectiveState actual.
     /// </summary>
     public void ChangeEnemyState()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Lethargy")]
-public class LethargyState : CharacterState {
+public class LethargyState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

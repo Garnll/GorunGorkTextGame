@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Inertia")]
-public class InertiaState : CharacterState {
+public class InertiaState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

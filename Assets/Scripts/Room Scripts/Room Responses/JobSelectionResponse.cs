@@ -3,7 +3,7 @@
 /// <summary>
 /// Hijo de Respuesta de la Habitación. Hace que el jugador que pase por la habitación obtenga el trabajo dado.
 /// </summary>
-[CreateAssetMenu(menuName = "Gorun Gork/Room Responses/Job Selection")]
+[CreateAssetMenu(menuName = "Gorun Gork/RoomObject Responses/Job Selection")]
 public class JobSelectionResponse : RoomResponse {
 
     public Job jobToGive;

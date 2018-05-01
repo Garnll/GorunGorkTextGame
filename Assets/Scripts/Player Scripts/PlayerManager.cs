@@ -13,8 +13,8 @@ public class PlayerManager : MonoBehaviour {
 
     private bool isAlive = true;
     public CharacteristicsChanger characteristicsChanger;
-    public CharacterState defaultState;
-    [HideInInspector] public CharacterState currentState;
+    public CharacterEffectiveState defaultState;
+    [HideInInspector] public CharacterEffectiveState currentState;
 
     [SerializeField] private float maxHealth = 100;
     [HideInInspector] public float currentHealth;
@@ -284,7 +284,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public void ChangeState(CharacterState newState)
+    public void ChangeState(CharacterEffectiveState newState)
     {
         currentState = newState;
         currentState.ApplyStateEffect(this);

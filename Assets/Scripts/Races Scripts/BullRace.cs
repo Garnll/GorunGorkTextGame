@@ -6,7 +6,7 @@
 [CreateAssetMenu(menuName = "Gorun Gork/Races/Bull")]
 public class BullRace : Race {
 
-    public CharacterState berserk;
+    public CharacterEffectiveState berserk;
 
     public override void ChangePlayerStats(PlayerCharacteristics playerStats)
     {

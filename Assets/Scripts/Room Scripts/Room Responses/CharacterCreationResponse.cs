@@ -4,7 +4,7 @@
 /// Hijo de Respuesta de la Habitación. Hace que la habitación se convierta en un lugar para crear
 /// el personaje y controla casi todos los aspectos de esto.
 /// </summary>
-[CreateAssetMenu(menuName = "Gorun Gork/Room Responses/Character Creation")]
+[CreateAssetMenu(menuName = "Gorun Gork/RoomObject Responses/Character Creation")]
 public class CharacterCreationResponse : RoomResponse {
 
     public Race[] possibleRaces;

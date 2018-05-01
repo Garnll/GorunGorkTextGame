@@ -5,21 +5,21 @@ using Sirenix.OdinInspector.Editor;
 /// <summary>
 /// Clase responsable del inspector customizado de as habitaciones.
 /// </summary>
-[CustomEditor(typeof(Room))]
+[CustomEditor(typeof(RoomObject))]
 public class RoomCustomEditor : OdinEditor {
 
     public Vector3Int newPosition = new Vector3Int();
-    Room targetRoom;
+    RoomObject targetRoom;
 
     protected override void OnEnable()
     {
-        targetRoom = (Room)target;
+        targetRoom = (RoomObject)target;
         newPosition = Vector3Int.CeilToInt(targetRoom.roomPosition);
     }
 
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.LabelField("Room Position:");
+        EditorGUILayout.LabelField("RoomObject Position:");
         EditorGUILayout.LabelField("X: " + targetRoom.roomPosition.x 
             + "\tY: " + targetRoom.roomPosition.y
             + "\tZ: " + targetRoom.roomPosition.z);

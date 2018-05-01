@@ -8,12 +8,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RoomSprite : MonoBehaviour {
 
-    [HideInInspector] public Room myRoom;
+    [HideInInspector] public RoomObject myRoom;
 
     [HideInInspector] public List<GameObject> myExits = new List<GameObject>();
 
     ///Enviado a RoomVisuaMapper en caso de que el GameObject sea destruido.
-    public delegate void DestroyEvent(Room thisRoom);
+    public delegate void DestroyEvent(RoomObject thisRoom);
     public static event DestroyEvent OnDestroyed;
 
     private void OnDestroy()

@@ -7,7 +7,7 @@
 public class GameStart : MonoBehaviour {
 
     public GameController controller;
-    public Room originRoom;
+    public RoomObject originRoom;
 
     void Awake () {
         Application.runInBackground = true;

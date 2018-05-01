@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gorun Gork/Character States/Pacifier")]
-public class PeaceState : CharacterState {
+public class PeaceState : CharacterEffectiveState {
 
     public override void ApplyStateEffect<T>(T character)
     {

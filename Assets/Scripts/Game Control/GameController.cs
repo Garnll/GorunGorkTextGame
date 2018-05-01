@@ -225,7 +225,7 @@ public class GameController : MonoBehaviour {
         playerRoomNavigation.TriggerRoomResponse();
     }
 
-    private void PrepareObjectsToBeInteracted(Room currentRoom)
+    private void PrepareObjectsToBeInteracted(RoomObject currentRoom)
     {
         for (int i = 0; i < currentRoom.visibleObjectsInRoom.Count; i++)
         {

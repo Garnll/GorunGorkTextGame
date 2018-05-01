@@ -15,7 +15,7 @@ public abstract class Hability : ScriptableObject {
 
     public int turnConsuption = 50;
     public int cooldownTime = 8;
-    public CharacterState stateToChange;
+    public CharacterEffectiveState stateToChange;
 
     public int habilityLevel = 1;
 
