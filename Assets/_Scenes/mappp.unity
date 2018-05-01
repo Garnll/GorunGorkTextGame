@@ -2843,8 +2843,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.61518675
+  m_Value: 1
+  m_Size: 0.6151868
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9339,6 +9339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pace: 0.1
+  battleTimeInMins: 2
   inventoryManager: {fileID: 1178118716}
   combatLayout: {fileID: 1228525000710756, guid: 80946d64efc8b644ca05c3c15b2f7729,
     type: 2}

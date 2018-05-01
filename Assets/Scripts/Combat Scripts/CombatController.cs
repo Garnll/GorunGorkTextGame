@@ -8,7 +8,8 @@ using UnityEngine;
 public class CombatController : MonoBehaviour {
 
 	public float pace = 0.1f;
-    //public float battleTimeInMins = 2;
+    public float battleTimeInMins = 2;
+    private float currentBattleTime = 0;
 
     public InventoryManager inventoryManager;
     [Space(10)]
@@ -80,6 +81,7 @@ public class CombatController : MonoBehaviour {
         enemy = npc;
         player = thisPlayer;
         lemonsWon = 0;
+        currentBattleTime = battleTimeInMins*60;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -141,6 +143,15 @@ public class CombatController : MonoBehaviour {
         while (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
 			yield return new WaitForSecondsRealtime(pace);
+            currentBattleTime -= pace;
+            SetEnemyDescription();
+
+            if (currentBattleTime <= 0)
+            {
+                currentBattleTime = 0;
+                EndCombatByTime();
+            }
+
             player.ChargeTurn();
             enemy.ChargeBySecond();
         }
@@ -542,7 +553,8 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void SetEnemyDescription()
     {
-        enemyUI.descriptionText.text = enemy.myTemplate.npcDetailedDescription;
+        enemyUI.descriptionText.text = "Deshabilitado en: " +  (currentBattleTime / 60).ToString("0.##") + "\n" +
+            enemy.myTemplate.npcDetailedDescription;
     }
 
     /// <summary>
@@ -577,6 +589,21 @@ public class CombatController : MonoBehaviour {
         enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
     }
 
+
+
+    private void EndCombatByTime()
+    {
+        UpdatePlayerLog("¡Se acabó el tiempo!");
+
+        if (player.currentHealth >= enemy.currentHealth)
+        {
+            EndCombat(enemy);
+        }
+        else
+        {
+            EndCombat(player);
+        }
+    }
 
     /// <summary>
     /// Termina el combate con el Npc Enemigo como perdedor.
