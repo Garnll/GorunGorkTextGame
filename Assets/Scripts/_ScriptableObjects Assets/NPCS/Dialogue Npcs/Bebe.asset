@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
   m_Name: Bebe
   m_EditorClassIdentifier: 
-  npcName: Bebe
+  npcName: "Beb\xE9 C\xF3smico"
   keywords:
   - bebe
   - baby
@@ -31,33 +31,31 @@ MonoBehaviour:
   npcDetailedDescription: 
   dialogueTree:
     text:
-    - "Este es el primer di\xE1logo, contado por el narrador, en pro de describir
-      las acciones pasivas del personaje de forma que no necesariamente deba hablar."
-    narrator: 0
+    - "Creemos saber de d\xF3nde venimos, pero \xBFNos hemos preguntado alguna vez
+      a d\xF3nde vamos?"
+    narrator: 1
     choices:
-    - text: Weno.
+    - text: Darle un <b>besito</b>.
       keywords:
-      - w
-      - weno
+      - b
+      - besito
+      - darle besito
       conditions: []
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo, y el final. Narrado por el personaje."
-        narrator: 1
+        - "El beb\xE9 c\xF3smico se regocija con el besito y te da su bendici\xF3n."
+        narrator: 0
         choices: []
       able: 0
-    - text: Vale.
+    - text: Hacerle <b>cosquillas</b>.
       keywords:
-      - v
-      - vale
-      conditions:
-      - variable: bebe_prueba
-        condition: 0
-        value: 1
+      - c
+      - cosquillas
+      - hacerle cosquillas
+      conditions: []
       dialogue:
         text:
-        - "Este es el segundo di\xE1logo tambi\xE9n, pero la segunda opci\xF3n, narrada
-          por el personaje."
+        - "Al beb\xE9 c\xF3smico no le gustan las cosquillas. Pao pao."
         narrator: 0
         choices: []
       able: 0
