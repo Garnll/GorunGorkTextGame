@@ -14,7 +14,6 @@ MonoBehaviour:
   identifier: 0
   jobName: delegado
   jobDescription: 
-  habilities:
+  jobHabilities:
   - {fileID: 11400000, guid: fb6018261ed85a8449ab1bea0d564531, type: 2}
-  - {fileID: 11400000, guid: f3657c4e83920274781842c72f0b9b34, type: 2}
-  - {fileID: 11400000, guid: a6847933d15aaa440bbade04a912d13c, type: 2}
+  unlockedHabilities: []

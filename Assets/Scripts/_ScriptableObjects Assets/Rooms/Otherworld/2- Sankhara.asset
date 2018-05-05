@@ -14,8 +14,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 92f2881bc7492bb45927949320150b91, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -23,23 +22,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 1|Room+RoomVisibleObjects, Assembly-CSharp
-    - Name: interactableObject
-      Entry: 10
       Data: 0
-    - Name: visionRange
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -54,10 +41,8 @@ MonoBehaviour:
     importantes para el movimiento.\n"
   roomName: Sankhara
   roomResponse: {fileID: 0}
-  charactersInRoom:
-  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
-  npcTemplatesInRoom:
-  - {fileID: 11400000, guid: be087d6650be65349874445f49389251, type: 2}
+  charactersInRoom: []
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
