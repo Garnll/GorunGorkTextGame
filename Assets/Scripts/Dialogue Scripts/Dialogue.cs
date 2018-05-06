@@ -49,7 +49,7 @@ public class Dialogue {
 		return false;
 	}
 
-	public Dialogue getChoiceWithKeyword(string keyword) {
+	public Dialogue getDialogueFromChoice(string keyword) {
 		for (int i=0; i<choices.Length; i++) {
 			for (int j=0; j<choices[i].keywords.Length; j++) {
 				if (choices[i].keywords[j] == keyword) {
@@ -58,6 +58,21 @@ public class Dialogue {
 			}
 		}
 		return null;
+	}
+
+	public Choice getChoice(string keyword) {
+		for (int i = 0; i < choices.Length; i++) {
+			for (int j = 0; j < choices[i].keywords.Length; j++) {
+				if (choices[i].keywords[j] == keyword) {
+					return choices[i];
+				}
+			}
+		}
+		return null;
+	}
+
+	public void applyChoosenEffects(Choice c) {
+		c.applyEffects();
 	}
 
 	public void applyEffects() {
@@ -77,7 +92,19 @@ public class Dialogue {
 
 	public string getText() {
 		int r = Random.Range(0, text.Length - 1);
-		return text[r] + "\n";
+		string temp = " ";
+		try {
+
+			if (text[r] == null) {
+				temp = "<i>No hay texto.</i>";
+			}
+			else {
+				temp = text[r];
+			}
+		} catch {
+			Debug.Log("No hay texto para mostrar.");
+		}
+		return temp + "\n";
 	}
 
 	public void setGlobalVariables() {

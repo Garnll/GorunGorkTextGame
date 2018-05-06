@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
+  m_Name: Bebe
+  m_EditorClassIdentifier: 
+  npcName: Bebe
+  keywords:
+  - bebe
+  - baby
+  - "beb\xE9"
+  - "bebe c\xF3smico"
+  - bebe cosmico
+  - "beb\xE9 c\xF3smico"
+  - "beb\xE9 cosmico"
+  npcLevel: 0
+  npcGender: macho
+  npcRace: {fileID: 0}
+  npcJob: {fileID: 0}
+  defaultVisibility: 0
+  currentVisibility: 0
+  npcInRoomDescription: "Hay un Beb\xE9 C\xF3smico tirado en el suelo. Podr\xEDa llegar
+    a ser un ingeniero."
+  npcDetailedDescription: 
+  dialogueTree:
+    text:
+    - "\xBFQuieres la misi\xF3n beb\xE9?"
+    narrator: 1
+    choices:
+    - text: "S\xED"
+      keywords:
+      - s
+      - si
+      - "s\xED"
+      conditions:
+      - variable: a
+        condition: 5
+        value: 1
+      vars: []
+      quests:
+      - type: 0
+        quest: {fileID: 11400000, guid: 3479ed2018965af49aa979b03f361807, type: 2}
+      dialogue:
+        text:
+        - "\xA1Perfecto! Ya tienes la misi\xF3n, revisa en el inspector."
+        narrator: 0
+        choices: []
+      able: 0
+    - text: No
+      keywords:
+      - n
+      - no
+      conditions: []
+      vars: []
+      quests: []
+      dialogue:
+        text:
+        - Vale, vale. :c
+        narrator: 1
+        choices: []
+      able: 0
+    - text: "\xA1Pero beb\xE9, ya me diste esa misi\xF3n!"
+      keywords:
+      - p
+      - pero
+      conditions:
+      - variable: a
+        condition: 0
+        value: 1
+      vars: []
+      quests: []
+      dialogue:
+        text:
+        - "Tienes raz\xF3n, murrapo."
+        narrator: 1
+        choices: []
+      able: 0

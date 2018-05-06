@@ -14,14 +14,13 @@ public class DialogueController : MonoBehaviour {
 	public PlayerManager player;
 	public InventoryManager inventoryManager;
 	public PlayerRoomNavigation roomNav;
+	public QuestManager questManager;
 
 	[Space(20)]
 	[TextArea]
 	public string endText;
 
 	public string[] ends;
-
-
 
 	public DialogueNPC tryTalkingTo(string[] keywords) {
 		npcsInRoom = roomNav.currentRoom.charactersInRoom;
@@ -73,6 +72,7 @@ public class DialogueController : MonoBehaviour {
 		if (currentNpc != null) {
 			currentDialogue = currentNpc.dialogueTree;
 			currentDialogue.setGlobalVariables();
+			questManager.updateQuests();
 		}
 	}
 
@@ -101,8 +101,9 @@ public class DialogueController : MonoBehaviour {
 	}
 
 	public void selectChoiceWith(string keyword) {
-		if (currentDialogue.getChoiceWithKeyword(keyword) != null) {
-			currentDialogue = currentDialogue.getChoiceWithKeyword(keyword);
+		if (currentDialogue.getDialogueFromChoice(keyword) != null) {
+			currentDialogue.getChoice(keyword).applyEffects();
+			currentDialogue = currentDialogue.getDialogueFromChoice(keyword);
 			currentDialogue.applyEffects();
 			displayText();
 		}
@@ -125,6 +126,8 @@ public class DialogueController : MonoBehaviour {
 	}
 
 	public void takeInput(string input) {
+
+		questManager.updateQuests();
 
 		foreach (string e in ends) {
 			if (input == e) {

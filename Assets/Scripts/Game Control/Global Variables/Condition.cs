@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Condition {
-	public enum ConditionType { Equal, Smaller, SmallerOrEqual, Greater, GreaterOrEqual }
+	public enum ConditionType { Equal, Smaller, SmallerOrEqual, Greater, GreaterOrEqual, Different }
 
 	public string variable;
 	public ConditionType condition;
@@ -48,6 +48,11 @@ public class Condition {
 				break;
 			case ConditionType.GreaterOrEqual:
 				if (GlobalVariables.GetValueOf(variable) >= value) {
+					t = true;
+				}
+				break;
+			case ConditionType.Different:
+				if (GlobalVariables.GetValueOf(variable) != value) {
 					t = true;
 				}
 				break;

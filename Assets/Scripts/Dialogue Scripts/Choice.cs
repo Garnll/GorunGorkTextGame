@@ -17,7 +17,7 @@ public class Choice {
 
 	public Dialogue dialogue;
 
-	public bool able;
+	[HideInInspector] public bool able;
 
 	
 
@@ -47,6 +47,18 @@ public class Choice {
 	public void setGlobalVariables() {
 		foreach (Condition c in conditions) {
 			c.createGlobalVariable();
+		}
+	}
+
+	public void applyEffects() {
+		Debug.Log("Aplicando Efectos de Opción.");
+
+		foreach (ChangeVarEffect v in vars) {
+			v.apply();
+		}
+
+		foreach (AddQuestEffect q in quests) {
+			q.apply();
 		}
 	}
 }

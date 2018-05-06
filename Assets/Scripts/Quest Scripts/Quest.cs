@@ -22,6 +22,16 @@ public class Quest : ScriptableObject{
 	[Space(5)]
 	public ChangeVarEffect[] vars;
 
+	public void initialize() {
+
+		done = false;
+		foreach (Step s in steps) {
+			s.initialize();
+		}
+		currentStep = steps[0];
+		currentStep.applyEffects();
+	}
+
 	private bool isInFinalStep() {
 		if (currentStep == steps[steps.Length - 1]) {
 			return true;

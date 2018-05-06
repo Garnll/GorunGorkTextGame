@@ -11,14 +11,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da39c48b67bd484abb8dabee79a7396, type: 3}
   m_Name: BebeMision
   m_EditorClassIdentifier: 
-  questName: 
+  questName: Bebemision
   priority: 0
   loopeable: 1
-  description: 
-  steps: []
+  description: "Esta es la misi\xF3n del beb\xE9."
+  steps:
+  - conditions: []
+    description: "Este es el primer paso de la misi\xF3n del beb\xE9."
+    vars:
+    - type: 0
+      variableName: a
+      operation: 0
+      value: 1
+    quests: []
   currentStep:
     conditions: []
-    description: 
-    vars: []
+    description: "Este es el primer paso de la misi\xF3n del beb\xE9."
+    vars:
+    - type: 0
+      variableName: a
+      operation: 0
+      value: 1
     quests: []
   vars: []
