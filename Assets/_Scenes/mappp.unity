@@ -1171,6 +1171,7 @@ MonoBehaviour:
   player: {fileID: 1178118717}
   inventoryManager: {fileID: 1178118716}
   roomNav: {fileID: 1178118714}
+  questManager: {fileID: 1261326709}
   endText: <b>[X]</b> Para dejar de hablar.
   ends:
   - salir

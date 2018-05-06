@@ -15,6 +15,7 @@ public class AddQuestEffect : Effect {
 	}
 
 	public void apply() {
+		Debug.Log("Añadiendo Quest " + quest.questName + ".");
 		addQuest(quest);
 	}
 

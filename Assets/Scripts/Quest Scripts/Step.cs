@@ -13,6 +13,10 @@ public class Step {
 
 	private bool done;
 
+	public void initialize() {
+		done = false;
+	}
+
 	public void score() {
 		done = true;
 	}
@@ -25,6 +29,7 @@ public class Step {
 	}
 
 	public void applyEffects() {
+
 		foreach (ChangeVarEffect v in vars) {
 			v.apply();
 		}
@@ -35,6 +40,10 @@ public class Step {
 	}
 
 	public bool canBePassedTo() {
+		if (conditions == null) {
+			return true;
+		}
+
 		foreach (Condition c in conditions) {
 			if (!c.isTrue()) {
 				return false;
