@@ -12,9 +12,14 @@ public class Choice {
 
 	public Condition[] conditions;
 
+	public ChangeVarEffect[] vars;
+	public AddQuestEffect[] quests;
+
 	public Dialogue dialogue;
 
 	public bool able;
+
+	
 
 	public bool hasKeyword(string k) {
 		foreach (string key in keywords) {
