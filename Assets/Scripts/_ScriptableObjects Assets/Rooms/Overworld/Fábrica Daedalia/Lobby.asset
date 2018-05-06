@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -40,6 +40,7 @@ MonoBehaviour:
     tu vida.</i>"
   roomName: Lobby
   roomResponse: {fileID: 0}
+  charactersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1

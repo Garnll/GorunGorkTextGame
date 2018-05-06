@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Sirenix.OdinInspector;
 
 /// <summary>
 /// Usado durante edicion. Recibe los eventos de las habitaciones para cambiarlas de lugar, detectar posiciones,
@@ -14,6 +15,13 @@ public class RoomEditionController : MonoBehaviour {
     public RoomVisualMapper mapper;
 
     public static Dictionary<Vector3, RoomObject> existingRooms = new Dictionary<Vector3, RoomObject>();
+
+    [ShowInInspector]
+    private Dictionary<Vector3, RoomObject> ShowSomeStaticVariableInTheInspector
+    {
+        get { return RoomEditionController.existingRooms; }
+        //set { MyComponent.SomeStaticVariable = value; }
+    }
 
     List<RoomObject> roomsToLoad = new List<RoomObject>();
     private bool isEventSuscribed = false;
