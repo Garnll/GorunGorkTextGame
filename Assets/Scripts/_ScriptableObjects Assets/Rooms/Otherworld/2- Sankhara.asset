@@ -14,7 +14,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,13 +27,37 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 7
       Data: 1|RoomObject+RoomVisibleObjects, Assembly-CSharp
     - Name: interactableObject
-      Entry: 6
+      Entry: 10
+      Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 0
     - Name: visionRange
       Entry: 3
       Data: 0

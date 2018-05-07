@@ -50,7 +50,7 @@ public class ItemHandler : MonoBehaviour {
                 else
                     objectToDisplay = "una " + noun;
 
-                controller.LogStringWithReturn("No hay " + objectToDisplay + " en este lugar.");
+                controller.LogStringWithReturn("No hay " + objectToDisplay + " aquí.");
             }
         }
 
@@ -70,19 +70,6 @@ public class ItemHandler : MonoBehaviour {
                 controller.LogStringWithReturn("No hay " + objectToDisplay + " en tu inventario.");
             }
         }
-
-        if (objectToInteract == null)
-        {
-            string objectToDisplay = noun;
-
-            if (objectsFound[0].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "un " + noun;
-            else
-                objectToDisplay = "una " + noun;
-
-            controller.LogStringWithReturn("No hay " + objectToDisplay + " por acá.");
-        }
-
 
         return objectToInteract;
 
@@ -246,7 +233,14 @@ public class ItemHandler : MonoBehaviour {
 			else
 				objectToDisplay = "La " + objectToTake.objectName;
 
-			controller.LogStringWithReturn(objectToDisplay + " pesa demasiado para levantarle.");
+			objectToDisplay += " pesa demasiado para levantarl";
+
+			if (objectToTake.nounGender == InteractableObject.WordGender.male)
+				objectToDisplay += "o.";
+			else
+				objectToDisplay += "a.";
+
+			controller.LogStringWithReturn(objectToDisplay);
 
 			return;
 		}

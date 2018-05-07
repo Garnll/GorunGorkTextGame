@@ -44,7 +44,7 @@ public class InventoryManager : MonoBehaviour {
         string textToDisplay = "<b>Inventario</b>";
 
 
-		textToDisplay += "\n[" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
+		textToDisplay += "\nCapacidad [" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
 
         if (lemons > 0)
         {

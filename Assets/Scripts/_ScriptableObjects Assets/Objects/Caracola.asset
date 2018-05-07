@@ -16,7 +16,7 @@ MonoBehaviour:
   nouns:
   - caracola
   weight: 10
-  pods: 1
+  pods: 4
   description: Hay una caracola.
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions:
