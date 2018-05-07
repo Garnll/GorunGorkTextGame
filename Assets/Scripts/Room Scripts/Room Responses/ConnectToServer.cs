@@ -10,6 +10,8 @@ public class ConnectToServer : RoomResponse {
 
 	public override void TriggerResponse(GameController controller)
     {
+        controller.StartCoroutine(controller.StopTextWhileConnecting());
+
         base.TriggerResponse(controller);
 
         NetworkManager.Instance.ConnectToServer();

@@ -1,19 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Manager de todo los callbacks para el Networking de Photon
 /// </summary>
-public class NetworkManager : Photon.PunBehaviour {
+public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public static NetworkManager Instance = null;
 
+    public GameController controller;
     public string gameVersion = "0.1";
     public byte maxPlayers = 10;
 
+    [HideInInspector]public bool isConnecting;
+    [HideInInspector]public bool connected;
+
     private void Awake()
     {
+        isConnecting = false;
+        connected = false;
         Instance = this;
         PhotonNetwork.autoJoinLobby = false;
         PhotonNetwork.automaticallySyncScene = true;
@@ -21,6 +28,8 @@ public class NetworkManager : Photon.PunBehaviour {
 
     public void ConnectToServer()
     {
+        isConnecting = true;
+
         if (PhotonNetwork.connected)
         {
             PhotonNetwork.JoinRandomRoom();
@@ -44,10 +53,29 @@ public class NetworkManager : Photon.PunBehaviour {
     public override void OnJoinedRoom()
     {
         Debug.Log("Conectado a habitación. ");
+        isConnecting = false;
+        connected = true;
+
+        photonView.RPC("NewPlayerJoined", PhotonTargets.Others, controller.playerManager.playerName);
     }
 
     public override void OnDisconnectedFromPhoton()
     {
         Debug.Log("Desconectado de Photon. ");
+        connected = false;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+
+        }
+    }
+
+    [PunRPC]
+    public void NewPlayerJoined(string playerName)
+    {
+        controller.LogStringWithoutReturn("Nuevo jugador conectado: " + playerName);
     }
 }

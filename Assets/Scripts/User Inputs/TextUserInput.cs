@@ -41,7 +41,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !NetworkManager.Instance.isConnecting)
         {
             AcceptStringInput(inputField.text);
             inputField.text = "";

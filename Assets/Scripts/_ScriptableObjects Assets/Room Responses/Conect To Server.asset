@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Name: Conect To Server
   m_EditorClassIdentifier: 
   stateToChangeTo: 1
-  responses:
-  - Conectado al Mundo Real.
+  responses: []
   willRespond: 1

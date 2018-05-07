@@ -45,8 +45,7 @@ public class RoomEditionController : MonoBehaviour {
         string[] path = new string[1];
         path[0] = "Assets/Scripts/_ScriptableObjects Assets/Rooms";
 
-        var findRooms = AssetDatabase.FindAssets("t: RoomObject", path);
-        Debug.Log(findRooms.Length);
+        var findRooms = AssetDatabase.FindAssets("t: RoomObject", path);    
 
         for (int i = 0; i < findRooms.Length; i++)
         {
