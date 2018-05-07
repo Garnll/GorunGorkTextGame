@@ -90,7 +90,7 @@ public class RoomDataSaver {
                             else
                             {
                                 Debug.LogWarning("Se está intentando acceder a una habitación no existente. Vector: " 
-                                    + roomDataLoad.exitsData[i].connectedRoomPosition + ", Habitación: " +
+                                    + roomDataLoad.exitsData[i].connectedRoomPosition + ", Habitación de origen: " +
                                     roomDataLoad.roomNameData);
                             }
                         }

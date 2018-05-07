@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Sirenix.OdinInspector;
 
 /// <summary>
 /// Usado durante edicion. Recibe los eventos de las habitaciones para cambiarlas de lugar, detectar posiciones,
@@ -14,6 +15,13 @@ public class RoomEditionController : MonoBehaviour {
     public RoomVisualMapper mapper;
 
     public static Dictionary<Vector3, RoomObject> existingRooms = new Dictionary<Vector3, RoomObject>();
+
+    [ShowInInspector]
+    private Dictionary<Vector3, RoomObject> ShowSomeStaticVariableInTheInspector
+    {
+        get { return RoomEditionController.existingRooms; }
+        //set { MyComponent.SomeStaticVariable = value; }
+    }
 
     List<RoomObject> roomsToLoad = new List<RoomObject>();
     private bool isEventSuscribed = false;
@@ -37,11 +45,12 @@ public class RoomEditionController : MonoBehaviour {
         string[] path = new string[1];
         path[0] = "Assets/Scripts/_ScriptableObjects Assets/Rooms";
 
-        var findRooms = AssetDatabase.FindAssets("t:RoomObject", path);
+        var findRooms = AssetDatabase.FindAssets("t: RoomObject", path);    
+
         for (int i = 0; i < findRooms.Length; i++)
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(findRooms[i]);
-            RoomObject newRoom = AssetDatabase.LoadAssetAtPath<RoomObject>(assetPath);
+            RoomObject newRoom = AssetDatabase.LoadAssetAtPath(assetPath, typeof(RoomObject)) as RoomObject;
             roomsToLoad.Add(newRoom);
 
             if (!existingRooms.ContainsKey(newRoom.roomPosition))

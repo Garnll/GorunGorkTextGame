@@ -37,12 +37,15 @@ public class GameController : MonoBehaviour {
     int displayTextCounter = 0;
     List<TextMeshProUGUI> displayTexts;
 
+    bool isConnecting;
+
     private void Start()
     {
         displayTexts = new List<TextMeshProUGUI>(textMaxDisplays + 1);
         itemHandler = GetComponent<ItemHandler>();
         writing = false;
         stopWriting = false;
+        isConnecting = false;
 
         DisplayRoomText();
         DisplayLoggedText();
@@ -57,7 +60,7 @@ public class GameController : MonoBehaviour {
 
         if (currentDisplayText == null)
         {
-            StopAllCoroutines();
+            StopCoroutine("AnimateText");
             oldText = "";
             currentCharPosition = 0;
             CreateNewDisplay();
@@ -150,6 +153,15 @@ public class GameController : MonoBehaviour {
                 NullCurrentDisplay();
             }
         }
+    }
+
+    public IEnumerator StopTextWhileConnecting()
+    {
+        LogStringWithoutReturn("Entrando....");
+
+        yield return new WaitUntil(() => NetworkManager.Instance.connected);
+
+        LogStringWithoutReturn("Conectado al mundo real");
     }
 
     public void CreateNewDisplay()
