@@ -20,6 +20,8 @@ public class TakeInput : InputActions {
 
         if (objectToTake != null)
         {
+
+
             controller.itemHandler.TakeObject(objectToTake);
         }
     }

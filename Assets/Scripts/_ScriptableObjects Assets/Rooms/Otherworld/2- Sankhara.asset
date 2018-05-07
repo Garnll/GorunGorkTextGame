@@ -26,7 +26,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 6
+      Data: 
+    - Name: visionRange
+      Entry: 3
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

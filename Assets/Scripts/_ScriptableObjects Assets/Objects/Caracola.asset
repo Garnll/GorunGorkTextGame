@@ -11,16 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce3d17e18d448b4ca79ea22bffaaf23, type: 3}
   m_Name: Caracola
   m_EditorClassIdentifier: 
-  nounGender: 0
+  nounGender: 1
+  objectName: Caracola
   nouns:
   - caracola
-  description: "Descripci\xF3n en la habitaci\xF3n"
+  weight: 10
+  pods: 1
+  description: Hay una caracola.
+  descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions:
-  - inputAction: {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
-    isInverseInteraction: 0
-    textResponse: salve la gran caracola
-    actionResponse: {fileID: 0}
   - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
     isInverseInteraction: 0
-    textResponse: tomas la gran caracla
+    textResponse: Tomas una caracola.
+    actionResponse: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
+    isInverseInteraction: 0
+    textResponse: Tiras una caracola.
     actionResponse: {fileID: 0}

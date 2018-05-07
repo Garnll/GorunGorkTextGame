@@ -15,7 +15,8 @@ public class PlayerCharacteristics : MonoBehaviour {
 	[HideInInspector] public float currentDexterity;
 
 	public int defaultPods = 10;
-	[HideInInspector] public int currentPods;
+	[HideInInspector] public int usedPods;
+	[HideInInspector] public int currentMaxPods;
 
     /// <summary>
     /// x es infravisión.
@@ -43,7 +44,7 @@ public class PlayerCharacteristics : MonoBehaviour {
         currentIntelligence = defaultIntelligence;
         currentResistance = defaultResistance;
         currentStrength = defaultStrength;
-		currentPods = defaultPods;
+		currentMaxPods = defaultPods;
     }
 
     /// <summary>
@@ -64,20 +65,17 @@ public class PlayerCharacteristics : MonoBehaviour {
         return true;
     }
 
-
     public bool AddPointsToDefaultDexterity(int howMany)
     {
         defaultDexterity += howMany;
         return true;
     }
 
-
     public bool AddPointsToDefaultIntelligence(int howMany)
     {
         defaultIntelligence += howMany;
         return true;
     }
-
 
     public bool AddPointsToDefaultResistance(int howMany)
     {
@@ -107,7 +105,7 @@ public class PlayerCharacteristics : MonoBehaviour {
 	}
 
 	public void modifyPodsBy(int amount) {
-		currentPods += amount;
+		currentMaxPods += amount;
 	}
 
 	public void modifyInfravisionBy(int amount) {
@@ -118,6 +116,20 @@ public class PlayerCharacteristics : MonoBehaviour {
 		vision.y += amount;
 	}
 
+	public bool checkPodsWith(int weight) {
+		if (usedPods + weight > currentMaxPods) {
+			return false;
+		}
+		return true;
+	}
+
+	public void addWeight(int weight) {
+		usedPods += weight;
+	}
+
+	public void removeWeight(int weight) {
+		usedPods -= weight;
+	}
 
 
 }

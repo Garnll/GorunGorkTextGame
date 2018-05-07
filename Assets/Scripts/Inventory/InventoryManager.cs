@@ -8,6 +8,8 @@ using System;
 /// </summary>
 public class InventoryManager : MonoBehaviour {
 
+	public PlayerManager player;
+
     [SerializeField] public List<InteractableObject> nounsInInventory = new List<InteractableObject>();
     private int lemons = 0;
 
@@ -40,9 +42,13 @@ public class InventoryManager : MonoBehaviour {
     public void DisplayInventory()
     {
         string textToDisplay = "<b>Inventario</b>";
+
+
+		textToDisplay += "\n[" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
+
         if (lemons > 0)
         {
-            textToDisplay += "\n- " + lemons.ToString() + " Limones";
+            textToDisplay += "\n- " + lemons.ToString() + " Limones.";
         }
 
         string newNounToDisplay;

@@ -16,6 +16,7 @@ public class InteractableObject : ScriptableObject {
     public string objectName = " ";
     public string[] nouns = { "nombre" };
     public float weight = 10;
+	public int pods = 1;
     [TextArea] public string description = "Descripción en la habitación";
     [TextArea] public string descriptionAtAnalized = "Descripción al ser analizado";
     [Space(10)]

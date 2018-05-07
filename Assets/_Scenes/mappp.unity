@@ -2864,7 +2864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 133.99998}
+  m_AnchoredPosition: {x: 3, y: 134}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -4424,6 +4424,11 @@ Prefab:
       propertyPath: defaultDexterity
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114821141371468156, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1178118717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8b29c4ad725ee74a8cd42559a0254f0, type: 2}
   m_IsPrefabParent: 0
@@ -5399,7 +5404,7 @@ Prefab:
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
@@ -5409,7 +5414,7 @@ Prefab:
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224460525361660618, guid: 2542159605200c44fafe3111f61a03ec,
         type: 2}

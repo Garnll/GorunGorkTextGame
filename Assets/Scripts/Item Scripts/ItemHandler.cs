@@ -157,7 +157,9 @@ public class ItemHandler : MonoBehaviour {
     {
         List<string> combinedText = new List<string>();
 
-        combinedText.Add("Miras en tu bolsillo e, increiblemente, ves: ");
+        combinedText.Add("<b>Inventario.</b> \n" +
+			"[" + controller.playerManager.characteristics.usedPods + "/" + controller.playerManager.characteristics.currentMaxPods
+			+ "]" + "\n");
         string objectToDisplay = "";
 
         if (inventoryManager.nounsInInventory.Count == 0)
@@ -236,6 +238,19 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
+		if (!controller.playerManager.characteristics.checkPodsWith(objectToTake.pods)) {
+			string objectToDisplay = objectToTake.objectName;
+
+			if (objectToTake.nounGender == InteractableObject.WordGender.male)
+				objectToDisplay = "El " + objectToTake.objectName;
+			else
+				objectToDisplay = "La " + objectToTake.objectName;
+
+			controller.LogStringWithReturn(objectToDisplay + " pesa demasiado para levantarle.");
+
+			return;
+		}
+
         if (takeInteraction.isInverseInteraction)
         {
             controller.LogStringWithReturn(takeInteraction.textResponse);
@@ -243,6 +258,7 @@ public class ItemHandler : MonoBehaviour {
         }
 
         inventoryManager.nounsInInventory.Add(objectToTake);
+		controller.playerManager.characteristics.addWeight(objectToTake.pods);
 
         for (int i = 0; i < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; i++)
         {
@@ -298,6 +314,7 @@ public class ItemHandler : MonoBehaviour {
         controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Add(newObjectInRoom);
         inventoryManager.nounsInInventory.Remove(objectToThrow);
 
+		controller.playerManager.characteristics.removeWeight(objectToThrow.pods);
         inventoryManager.DisplayInventory();
 
         controller.LogStringWithReturn(throwInteraction.textResponse);
