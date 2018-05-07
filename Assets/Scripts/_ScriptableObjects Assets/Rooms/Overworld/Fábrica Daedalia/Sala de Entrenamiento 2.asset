@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -41,11 +41,10 @@ MonoBehaviour:
     tienen un 2 en el segundo d\xEDgito. Son muy buenos con todo tipo de armas."
   roomName: Entrenamiento 2
   roomResponse: {fileID: 11400000, guid: 9ab33f72e8e276f419b12a8e2c69938e, type: 2}
-  charactersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
-    conectedRoom: {fileID: 0}
+    conectedRoom: {fileID: 11400000, guid: c0dcb13cf603ce04b85e256325b77fdb, type: 2}
     exitDescription: "Detr\xE1s de una cortina, al <b>sur</b>, est\xE1 la capilla."
     exitActionDescription: 
   enemiesInRoom: []
