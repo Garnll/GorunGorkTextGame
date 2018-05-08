@@ -275,7 +275,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
     public void PlayerChangedRooms()
     {
-        NetworkManager.Instance.MyPlayerChangedRooms(controller.playerManager.playerName, currentPosition);
+        if (NetworkManager.Instance.connected)
+        {
+            NetworkManager.Instance.MyPlayerChangedRooms(controller.playerManager.playerName, currentPosition);
+        }
     }
 
 
