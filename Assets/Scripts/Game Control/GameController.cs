@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
     [HideInInspector] public List<string> exitDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> npcDescriptionsInRoom = new List<string>();
+    [HideInInspector] public List<string> playerDescriptionssInRoom = new List<string>();
     [HideInInspector] public ItemHandler itemHandler;
 
     TextMeshProUGUI currentDisplayText;
@@ -94,10 +95,7 @@ public class GameController : MonoBehaviour {
     {
         if (writing)
         {
-            while (writing)
-            {
-                yield return new WaitUntil(() => !writing);
-            }
+            yield return new WaitUntil(() => !writing);           
         }
 
         if (!writing)
@@ -208,11 +206,6 @@ public class GameController : MonoBehaviour {
 
         currentRoomDescription = combinedText;
 
-
-        //if (playerRoomNavigation.currentRoom.roomResponse != null)
-        //{
-        //    combinedText += string.Join("\n", playerRoomNavigation.currentRoom.roomResponse.responses);
-        //}
         combinedText += string.Join("\n", roomExtraLog.ToArray());
 
         LogStringWithReturn(combinedText);
@@ -258,9 +251,10 @@ public class GameController : MonoBehaviour {
         string joinedExitDescriptions = string.Join("\n", exitDescriptionsInRoom.ToArray());
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
         string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
+        string joinedPlayers = string.Join("\n", playerDescriptionssInRoom.ToArray());
 
         string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedExitDescriptions + "\n"
-            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions;
+            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions + "\n" + joinedPlayers;
 
         return combinedText;
     }

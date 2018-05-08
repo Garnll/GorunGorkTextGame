@@ -241,6 +241,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
             miniMapper.MovePlayerInMap(currentPosition);
 
+            PlayerChangedRooms(); //Añadido para network
+
+            CheckPlayersInRoom();
+
             controller.DisplayRoomText();
         }
         else if (directionNoun != DirectionKeyword.unrecognized)
@@ -252,6 +256,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
             controller.LogStringWithReturn("Pensaste en una dirección dificil de alcanzar fisicamente...");
         }
     }
+
 
     /// <summary>
     /// Da una respuesta erronea por no haber entrado correctamente a dirección
@@ -267,4 +272,23 @@ public class PlayerRoomNavigation : MonoBehaviour {
         exitDictionary.Clear();
     }
 
+
+    public void PlayerChangedRooms()
+    {
+        NetworkManager.Instance.MyPlayerChangedRooms(controller.playerManager.playerName, currentPosition);
+    }
+
+
+    private void CheckPlayersInRoom()
+    {
+        for (int i = 0; i < currentRoom.playersInRoom.Count; i++)
+        {
+            if (currentRoom.playersInRoom[i].currentVisibility >= controller.playerManager.characteristics.vision.x &&
+                currentRoom.playersInRoom[i].currentVisibility <= controller.playerManager.characteristics.vision.y)
+            {
+                //Temporal, supongo
+                controller.playerDescriptionssInRoom.Add(currentRoom.playersInRoom[i].playerName + " está aqui.");
+            }          
+        }
+    }
 }
