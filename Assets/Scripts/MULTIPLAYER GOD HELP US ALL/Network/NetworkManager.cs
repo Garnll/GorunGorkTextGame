@@ -56,7 +56,17 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         isConnecting = false;
         connected = true;
 
-        photonView.RPC("NewPlayerJoined", PhotonTargets.Others, controller.playerManager.playerName);
+        //Temp
+        string[] newPlayer = new string[]
+        {
+            controller.playerManager.playerName,
+            controller.playerManager.gender,
+            controller.playerManager.playerLevel.ToString(),
+            controller.playerManager.currentHealth.ToString(),
+            controller.playerManager.currentVisibility.ToString()
+        };
+
+        photonView.RPC("NewPlayerJoined", PhotonTargets.Others, newPlayer);
     }
 
     public override void OnDisconnectedFromPhoton()
@@ -74,8 +84,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     }
 
     [PunRPC]
-    public void NewPlayerJoined(string playerName)
+    public void NewPlayerJoined(string[] playerData)
     {
-        controller.LogStringWithoutReturn("Nuevo jugador conectado: " + playerName);
+        controller.LogStringWithoutReturn("Nuevo jugador conectado: " + playerData[0]);
     }
 }
