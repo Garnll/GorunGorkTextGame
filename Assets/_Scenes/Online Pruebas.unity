@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.61518675
+  m_Size: 0.6151868
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3026,7 +3026,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 405610293}
-  gameVersion: 0.1
+  playerInstancePrefab: {fileID: 0}
+  gameVersion: 0.2
   maxPlayers: 10
   isConnecting: 0
   connected: 0

@@ -11,4 +11,6 @@ public class PlayerInstance : MonoBehaviour {
     public int currentHealth = 100;
 
     public int currentVisibility = 0;
+
+    public RoomObject currentRoom;
 }

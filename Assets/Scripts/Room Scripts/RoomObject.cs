@@ -19,7 +19,9 @@ public class RoomObject : SerializedScriptableObject {
     public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
 	[Space(5)]
 	public List<DialogueNPC> charactersInRoom = new List<DialogueNPC>();
-	[Space(5)]
+    [Space(5)]
+    public List<PlayerInstance> playersInRoom = new List<PlayerInstance>();
+    [Space(5)]
     public List<NPCTemplate> npcTemplatesInRoom = new List<NPCTemplate>();
   
 
@@ -51,6 +53,8 @@ public class RoomObject : SerializedScriptableObject {
     private void OnEnable()
     {
         enemiesInRoom.Clear();
+        playersInRoom.Clear();
+
         RoomObjectSaver.OnSaveObjects += SaveMyObjects;
         RoomObjectSaver.OnLoadObjects += LoadMyObjects;
     }
@@ -58,6 +62,7 @@ public class RoomObject : SerializedScriptableObject {
     private void OnDisable()
     {
         enemiesInRoom.Clear();
+        playersInRoom.Clear();
 
         RoomObjectSaver.OnSaveObjects -= SaveMyObjects;
         RoomObjectSaver.OnLoadObjects -= LoadMyObjects;
@@ -88,6 +93,20 @@ public class RoomObject : SerializedScriptableObject {
             visibleObjectsInRoom.Add(savedInteractableObjects[i]);
         }
     }
+
+
+    public void PlayerEnteredRoom(PlayerInstance newPlayer, GameController controller)
+    {
+        playersInRoom.Add(newPlayer);
+
+        if (controller.playerRoomNavigation.currentRoom == newPlayer.currentRoom)
+        {
+            controller.LogStringWithoutReturn(newPlayer.playerName + " ha llegado.");
+        }
+    }
+
+
+    #region Metodos Usados en editor
 
     /// <summary>
     /// Cambia la posición de la habitación.
@@ -123,7 +142,7 @@ public class RoomObject : SerializedScriptableObject {
         }
     }
 
-    
 
+    #endregion
 
 }

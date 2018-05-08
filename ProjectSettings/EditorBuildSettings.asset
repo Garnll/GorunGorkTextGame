@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/mappp.unity
     guid: feaf4c34c3330464db2d987d21ed4b16
+  - enabled: 1
+    path: Assets/_Scenes/Online Pruebas.unity
+    guid: f5f15629ec8aa5b49bf29a4ea9709df2
