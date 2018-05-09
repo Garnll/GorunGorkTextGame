@@ -238,8 +238,9 @@ public class PlayerRoomNavigation : MonoBehaviour {
             HideEnemies();
 
             currentRoom = exitDictionary[directionNoun].conectedRoom;
+            currentPosition = currentRoom.roomPosition;
 
-            miniMapper.MovePlayerInMap(currentRoom.roomPosition);
+            miniMapper.MovePlayerInMap(currentPosition);
 
             PlayerChangedRooms(); //Añadido para network
 
