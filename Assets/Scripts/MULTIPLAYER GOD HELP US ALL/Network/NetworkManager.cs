@@ -93,6 +93,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void NewPlayerJoined(string[] playerData)
     {
+        Debug.Log("Player entered");
         PlayerInstance newPlayer = Instantiate(playerInstancePrefab).GetComponent<PlayerInstance>();
 
         newPlayer.playerName = playerData[0];
