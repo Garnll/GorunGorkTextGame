@@ -71,10 +71,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.isWriting)
-        {
-
-        }
     }
 
     public string[] StoreMyPlayerData()
@@ -90,10 +86,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         };
     }
 
-    [PunRPC]
-    public void NewPlayerJoined(string[] playerData)
+    public PlayerInstance CreatePlayerInstance(string[] playerData)
     {
-        Debug.Log("Player entered");
         PlayerInstance newPlayer = Instantiate(playerInstancePrefab).GetComponent<PlayerInstance>();
 
         newPlayer.playerName = playerData[0];
@@ -106,6 +100,30 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             );
 
         playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
+
+        return newPlayer;
+    }
+
+    [PunRPC]
+    public void InstantiateAlreadyExistingPlayers(string[] playerData)
+    {
+        Debug.Log("Player entered");
+        PlayerInstance oldPlayer = CreatePlayerInstance(playerData);
+
+        if (oldPlayer.currentRoom != null)
+        {
+            if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
+            {
+                controller.playerRoomNavigation.currentRoom.AddPlayerInRoom(oldPlayer);
+            }
+        }
+    }
+
+    [PunRPC]
+    public void NewPlayerJoined(string[] playerData)
+    {
+        Debug.Log("Player entered");
+        PlayerInstance newPlayer = CreatePlayerInstance(playerData);
 
         if (newPlayer.currentRoom != null)
         {

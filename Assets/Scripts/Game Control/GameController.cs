@@ -313,6 +313,7 @@ public class GameController : MonoBehaviour {
         playerRoomNavigation.ClearExits();
         exitDescriptionsInRoom.Clear();
         npcDescriptionsInRoom.Clear();
+        playerDescriptionssInRoom.Clear();
     }
 
     /// <summary>

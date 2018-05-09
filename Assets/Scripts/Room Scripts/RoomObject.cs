@@ -104,6 +104,11 @@ public class RoomObject : SerializedScriptableObject {
         }
     }
 
+    public void AddPlayerInRoom(PlayerInstance newPlayer)
+    {
+        playersInRoom.Add(newPlayer);
+    }
+
     public void PlayerLeftRoom(PlayerInstance oldPlayer, GameController controller)
     {
         if (controller.playerRoomNavigation.currentRoom != oldPlayer.currentRoom)

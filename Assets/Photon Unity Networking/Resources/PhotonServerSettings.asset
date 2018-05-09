@@ -45,4 +45,5 @@ MonoBehaviour:
   - NewPlayerJoined
   - PlayerLeftRoom
   - PlayerChangedRoom
+  - InstantiateAlreadyExistingPlayers
   DisableAutoOpenWizard: 1
