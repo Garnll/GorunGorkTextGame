@@ -111,7 +111,7 @@ public class RoomObject : SerializedScriptableObject {
 
     public void PlayerLeftRoom(PlayerInstance oldPlayer, GameController controller)
     {
-        if (controller.playerRoomNavigation.currentRoom == oldPlayer.currentRoom)
+        if (controller.playerRoomNavigation.currentRoom != oldPlayer.currentRoom)
         {
             playersInRoom.Remove(oldPlayer);
             controller.LogStringWithoutReturn(oldPlayer.playerName + " ha salido.");
