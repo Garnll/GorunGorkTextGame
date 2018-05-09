@@ -145,16 +145,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void PlayerChangedRoom(string playerID, string newRoomPosition)
     {
-        Debug.Log("Player Changed Rooms");
-
-        foreach(PlayerInstance player in controller.playerRoomNavigation.currentRoom.playersInRoom)
-        {
-            if (player.playerName == playerID)
-            {
-                controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(player, controller);
-                break;
-            }
-        }
+        Debug.Log(playerID + " Cambió habitaciones hacia " + newRoomPosition);
 
         if (RoomsChecker.roomsDictionary.ContainsKey(
             RoomsChecker.RoomPositionFromText(newRoomPosition)
@@ -162,6 +153,18 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         {
             if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerID))
             {
+                playerInstanceManager.playerInstancesOnScene[playerID].currentRoom =
+                    RoomsChecker.RoomObjectFromVector(
+                    RoomsChecker.RoomPositionFromText(newRoomPosition)
+                    );
+
+                if (playerInstanceManager.playerInstancesOnScene[playerID].currentRoom ==
+                    controller.playerRoomNavigation.currentRoom)
+                {
+                    controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
+                        playerInstanceManager.playerInstancesOnScene[playerID], controller);
+                }
+
                 controller.playerRoomNavigation.currentRoom.PlayerEnteredRoom(
                     playerInstanceManager.playerInstancesOnScene[playerID],
                     controller
