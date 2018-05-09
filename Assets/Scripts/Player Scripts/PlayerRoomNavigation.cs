@@ -239,7 +239,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
             currentRoom = exitDictionary[directionNoun].conectedRoom;
 
-            miniMapper.MovePlayerInMap(currentPosition);
+            miniMapper.MovePlayerInMap(currentRoom.roomPosition);
 
             PlayerChangedRooms(); //Añadido para network
 
@@ -298,6 +298,6 @@ public class PlayerRoomNavigation : MonoBehaviour {
     public void ShowPlayersInRoom()
     {
         CheckPlayersInRoom();
-        controller.DisplayLoggedText();
+        controller.LogStringWithoutReturn(string.Join("\n",controller.playerDescriptionssInRoom.ToArray()));
     }
 }
