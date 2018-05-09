@@ -159,12 +159,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
                     RoomsChecker.RoomPositionFromText(newRoomPosition)
                     );
 
-                if (playerInstanceManager.playerInstancesOnScene[playerID].currentRoom ==
-                    controller.playerRoomNavigation.currentRoom)
-                {
-                    controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
-                        playerInstanceManager.playerInstancesOnScene[playerID], controller);
-                }
+                controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
+                    playerInstanceManager.playerInstancesOnScene[playerID], controller);
 
                 controller.playerRoomNavigation.currentRoom.PlayerEnteredRoom(
                     playerInstanceManager.playerInstancesOnScene[playerID],
