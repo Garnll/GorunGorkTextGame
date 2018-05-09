@@ -223,9 +223,7 @@ public class GameController : MonoBehaviour {
 
         playerRoomNavigation.CheckForNPCs();
 
-        //playerRoomNavigation.currentPosition = playerRoomNavigation.currentRoom.roomPosition;
-
-        //playerRoomNavigation.miniMapper.MovePlayerInMap(playerRoomNavigation.currentPosition);
+        playerRoomNavigation.CheckPlayersInRoom();
 
         playerRoomNavigation.TriggerRoomResponse();
     }

@@ -244,8 +244,6 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
             PlayerChangedRooms(); //Añadido para network
 
-            CheckPlayersInRoom();
-
             controller.DisplayRoomText();
         }
         else if (directionNoun != DirectionKeyword.unrecognized)
@@ -283,7 +281,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
     }
 
 
-    private void CheckPlayersInRoom()
+    public void CheckPlayersInRoom()
     {
         for (int i = 0; i < currentRoom.playersInRoom.Count; i++)
         {
