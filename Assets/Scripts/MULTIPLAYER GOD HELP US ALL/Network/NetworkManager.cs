@@ -129,6 +129,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         {
             newPlayer.currentRoom.PlayerEnteredRoom(newPlayer, controller);
         }
+
+        photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonTargets.Others, playerData);
     }
 
     #region Exploration Players
