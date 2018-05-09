@@ -294,4 +294,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
             }          
         }
     }
+
+    public void ShowPlayersInRoom()
+    {
+        CheckPlayersInRoom();
+        controller.DisplayLoggedText();
+    }
 }

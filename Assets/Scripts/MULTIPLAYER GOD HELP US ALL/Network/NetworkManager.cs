@@ -115,6 +115,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
             {
                 controller.playerRoomNavigation.currentRoom.AddPlayerInRoom(oldPlayer);
+                controller.playerRoomNavigation.ShowPlayersInRoom();
             }
         }
     }
@@ -130,7 +131,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             newPlayer.currentRoom.PlayerEnteredRoom(newPlayer, controller);
         }
 
-        photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonTargets.Others, playerData);
+        photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonTargets.Others, StoreMyPlayerData());
+
     }
 
     #region Exploration Players
