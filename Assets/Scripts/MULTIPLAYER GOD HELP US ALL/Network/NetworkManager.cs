@@ -123,6 +123,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void PlayerChangedRoom(string playerID, string newRoomPosition)
     {
+        Debug.Log("Player Changed Rooms");
+
         foreach(PlayerInstance player in controller.playerRoomNavigation.currentRoom.playersInRoom)
         {
             if (player.playerName == playerID)
