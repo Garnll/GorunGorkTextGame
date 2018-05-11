@@ -12,8 +12,8 @@ public class RoomObject : SerializedScriptableObject {
 
     [HideInInspector] public Vector3 roomPosition = new Vector3(0,0,358);
 
-    [TextArea] public string roomDescription;
-    public string roomName = "template name";
+	public string roomName = "template name";
+	[TextArea] public string roomDescription;
     public RoomResponse roomResponse;
     [Space(5)]
     public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();

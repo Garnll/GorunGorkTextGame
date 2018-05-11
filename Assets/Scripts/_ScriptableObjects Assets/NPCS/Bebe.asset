@@ -49,8 +49,9 @@ MonoBehaviour:
         quest: {fileID: 11400000, guid: 3479ed2018965af49aa979b03f361807, type: 2}
       dialogue:
         text:
-        - "\xA1Perfecto! Ya tienes la misi\xF3n, revisa en el inspector."
-        narrator: 0
+        - "\xA1Perfecto! Ya tienes la misi\xF3n, revisa en el inspector mientras los
+          desarrolladores implementan el comando de Misiones."
+        narrator: 1
         choices: []
       able: 0
     - text: No

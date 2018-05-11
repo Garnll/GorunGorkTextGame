@@ -251,7 +251,8 @@ public class GameController : MonoBehaviour {
         string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
         string joinedPlayers = string.Join("\n", playerDescriptionssInRoom.ToArray());
 
-        string combinedText = playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedExitDescriptions + "\n"
+        string combinedText = "<b>" + playerRoomNavigation.currentRoom.roomName + ".</b>\n"
+			+ playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedExitDescriptions + "\n"
             + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions + "\n" + joinedPlayers;
 
         return combinedText;
