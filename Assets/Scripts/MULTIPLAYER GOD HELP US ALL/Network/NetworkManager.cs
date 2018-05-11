@@ -107,6 +107,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void InstantiateAlreadyExistingPlayers(string[] playerData)
     {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerData[0]))
+        {
+            return;
+        }
+
         Debug.Log("Player entered");
         PlayerInstance oldPlayer = CreatePlayerInstance(playerData);
 
