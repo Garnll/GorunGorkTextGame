@@ -63,7 +63,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         photonView.RPC("NewPlayerJoined", PhotonTargets.Others, newPlayer);
     }
 
-    public override void OnDisconnectedFromPhoton()
+    public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
         Debug.Log("Desconectado de Photon. ");
         connected = false;
