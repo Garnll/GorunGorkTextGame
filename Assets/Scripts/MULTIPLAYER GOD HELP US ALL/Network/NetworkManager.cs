@@ -67,6 +67,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     {
         Debug.Log("Desconectado de Photon. ");
         connected = false;
+
+        photonView.RPC("PlayerDisconnected", PhotonTargets.Others, controller.playerManager.playerName);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -139,6 +141,24 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
         photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonTargets.Others, StoreMyPlayerData());
 
+    }
+
+
+    //NetworkPlayer
+    //photonview().ownerID
+    public void PlayerDisconnected(string playerID)
+    {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerID))
+        {
+            if (playerInstanceManager.playerInstancesOnScene[playerID].currentRoom == 
+                controller.playerRoomNavigation.currentRoom)
+            {
+                controller.LogStringWithoutReturn(playerID + " se ha desvanecido frente a tus ojos.");
+            }
+
+            Destroy(playerInstanceManager.playerInstancesOnScene[playerID]);
+            playerInstanceManager.playerInstancesOnScene.Remove(playerID);
+        }
     }
 
     #region Exploration Players

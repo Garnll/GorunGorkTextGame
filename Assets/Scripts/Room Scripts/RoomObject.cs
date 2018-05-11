@@ -97,6 +97,11 @@ public class RoomObject : SerializedScriptableObject {
 
     public void PlayerEnteredRoom(PlayerInstance newPlayer, GameController controller)
     {
+        if (playersInRoom.Contains(newPlayer))
+        {
+            return;
+        }
+
         if (controller.playerRoomNavigation.currentRoom == newPlayer.currentRoom)
         {
             playersInRoom.Add(newPlayer);
@@ -111,6 +116,11 @@ public class RoomObject : SerializedScriptableObject {
 
     public void PlayerLeftRoom(PlayerInstance oldPlayer, GameController controller)
     {
+        if (!playersInRoom.Contains(oldPlayer))
+        {
+            return;
+        }
+
         if (controller.playerRoomNavigation.currentRoom != oldPlayer.currentRoom)
         {
             playersInRoom.Remove(oldPlayer);
