@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -34,11 +34,13 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 1, y: 1, z: 0}
+  roomName: Jardin Silvestre
   roomDescription: "<b>Jard\xEDn Silvestre.</b>\nParece ser un lugar muy pac\xEDfico.
     Algunas mariposas vuelan alrededor. Es extra\xF1o que haya un lugar tan bonito
     entre una f\xE1brica y una planta de energ\xEDa."
-  roomName: Jardin Silvestre
   roomResponse: {fileID: 0}
+  charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
