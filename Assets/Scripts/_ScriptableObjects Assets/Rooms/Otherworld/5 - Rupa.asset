@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -34,11 +34,13 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: 0, z: 8}
-  roomDescription: "<b>Rupa</b>.\n<i>He aqu\xED un agradable conjunto de sensaciones
-    que agrupamos bajo el nombre de la rosa.</i> La luz te envuelve y ahora lo \xFAnico
-    que hace falta para estar vivo es un cuerpo. "
   roomName: Rupa
+  roomDescription: "<i>He aqu\xED un agradable conjunto de sensaciones que agrupamos
+    bajo el nombre de la rosa.</i> La luz te envuelve y ahora lo \xFAnico que hace
+    falta para estar vivo es un cuerpo. "
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
+  charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0

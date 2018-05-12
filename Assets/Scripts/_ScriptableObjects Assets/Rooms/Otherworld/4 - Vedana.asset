@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -34,13 +34,15 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: -1, z: 8}
-  roomDescription: "<b>Vedana.</b>\n<i>No es hasta que estamos perdidos que comenzamos
-    a comprendernos a nosotros mismos.</i>\nUna atracci\xF3n inexplicable hacia la
-    luz te incita a continuar acerc\xE1ndote. Casi puedes sentir la sensaci\xF3n de
-    la vida convergiendo en ella a trav\xE9s de todo el vac\xEDo. Recuerdas c\xF3mo
-    los sentidos hac\xEDan del vivir una experiencia \xFAnica. \n"
   roomName: Vedanna
+  roomDescription: "<i>No es hasta que estamos perdidos que comenzamos a comprendernos
+    a nosotros mismos.</i>\nUna atracci\xF3n inexplicable hacia la luz te incita a
+    continuar acerc\xE1ndote. Casi puedes sentir la sensaci\xF3n de la vida convergiendo
+    en ella a trav\xE9s de todo el vac\xEDo. Recuerdas c\xF3mo los sentidos hac\xEDan
+    del vivir una experiencia \xFAnica. \n"
   roomResponse: {fileID: 0}
+  charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0

@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -34,15 +34,15 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: 0, z: 0}
-  roomDescription: '<b>Parque de Daedalia.</b>
-
-    Varias banquitas se distribuyen alrededor de una fuente de piedra en el centro.
-    Algunos dispositivos de vigilancia flotan pacificamente sobre las cabezas de las
-    personas.
+  roomName: Parque de Daedalia
+  roomDescription: 'Varias banquitas se distribuyen alrededor de una fuente de piedra
+    en el centro. Algunos dispositivos de vigilancia flotan pacificamente sobre las
+    cabezas de las personas.
 
 '
-  roomName: Parque de Daedalia
   roomResponse: {fileID: 0}
+  charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 3

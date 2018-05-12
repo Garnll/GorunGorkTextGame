@@ -34,13 +34,13 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: -1, y: -1, z: 1}
-  roomDescription: "<b>Lobby.</b>\nHay varios asientos vac\xEDos y tres puertas corredizas
-    alrededor de la habitaci\xF3n. Cada puerta tiene un s\xEDmbolo y una leyenda.
-    \n<i>Elige un trabajo que te guste y no tendr\xE1s que trabajar ni un d\xEDa de
-    tu vida.</i>"
   roomName: Lobby
+  roomDescription: "Hay varios asientos vac\xEDos y tres puertas corredizas alrededor
+    de la habitaci\xF3n. Cada puerta tiene un s\xEDmbolo y una leyenda. \n<i>Elige
+    un trabajo que te guste y no tendr\xE1s que trabajar ni un d\xEDa de tu vida.</i>"
   roomResponse: {fileID: 11400000, guid: ef7198d7bbdd8ef4da2d9eb441a11502, type: 2}
   charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 1

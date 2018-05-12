@@ -22,7 +22,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: visibleObjectsInRoom
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Room+RoomVisibleObjects, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -34,13 +34,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
   roomPosition: {x: 0, y: -2, z: 8}
-  roomDescription: "<b>Sanna.</b>\nCorrientes de aire se desplazan entre la niebla
-    como si fuesen peque\xF1os animales. Un estruendo que dice \"Aum\" resuena desde
-    arriba y los susurros se dispersan. La luz que rodea el lugar se hace m\xE1s brillante,
-    permiti\xE9ndote reconocer algunas siluetas en la lejan\xEDa y un peque\xF1o punto
-    brillante."
   roomName: Sanna
+  roomDescription: "Corrientes de aire se desplazan entre la niebla como si fuesen
+    peque\xF1os animales. Un estruendo que dice \"Aum\" resuena desde arriba y los
+    susurros se dispersan. La luz que rodea el lugar se hace m\xE1s brillante, permiti\xE9ndote
+    reconocer algunas siluetas en la lejan\xEDa y un peque\xF1o punto brillante."
   roomResponse: {fileID: 0}
+  charactersInRoom: []
+  playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
