@@ -47,4 +47,5 @@ MonoBehaviour:
   - PlayerChangedRoom
   - InstantiateAlreadyExistingPlayers
   - ThingBeingSaidToeveryone
+  - ThingBeingSaidToSomeone
   DisableAutoOpenWizard: 1
