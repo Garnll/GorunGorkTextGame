@@ -219,6 +219,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         photonView.RPC("ThingBeingSaidToeveryone", PhotonTargets.Others, thingToSay, playerName);
     }
 
+    public void SayThingInRoomToPlayer(string thingToSay, string myPlayerName, int otherPlayerID)
+    {
+        photonView.RPC("ThingBeingSaidToSomeone", PhotonPlayer.Find(otherPlayerID), thingToSay, myPlayerName, otherPlayerID);
+    }
+
     [PunRPC]
     public void ThingBeingSaidToeveryone(string thingSaid, string playerName)
     {
@@ -232,6 +237,23 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
         {
             string thingSomeoneSaid = string.Format("{0}: \"{1}\" ", playerName, thingSaid);
+            controller.LogStringWithoutReturn(thingSomeoneSaid);
+        }
+    }
+
+    [PunRPC]
+    public void ThingBeingSaidToSomeone(string thingSaid, string playerName, int otherPlayerID)
+    {
+        if (!playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            return;
+        }
+
+        PlayerInstance speakingPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
+
+        if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
+        {
+            string thingSomeoneSaid = string.Format("{0} te dice: \"{1}\" ", playerName, thingSaid);
             controller.LogStringWithoutReturn(thingSomeoneSaid);
         }
     }
