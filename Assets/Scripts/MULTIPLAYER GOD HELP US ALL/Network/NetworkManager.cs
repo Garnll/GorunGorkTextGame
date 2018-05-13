@@ -129,10 +129,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
         if (oldPlayer.currentRoom != null)
         {
+            oldPlayer.currentRoom.AddPlayerInRoom(oldPlayer);
+
             if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
             {
                 Debug.Log("Jugador en la habitación");
-                controller.playerRoomNavigation.currentRoom.AddPlayerInRoom(oldPlayer);
                 controller.playerRoomNavigation.ShowPlayersInRoom();
             }
         }
