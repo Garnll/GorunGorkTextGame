@@ -13,9 +13,8 @@ public class SayInput : InputActions {
     /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        string thingToSay = SayExactString(separatedInputWords);
-        NetworkManager.Instance.SayThingInRoom(thingToSay, controller.playerManager.playerName);
-        controller.LogStringWithReturn(thingToSay);
+        NetworkManager.Instance.SayThingInRoom(SayJustTheString(separatedInputWords), controller.playerManager.playerName);
+        controller.LogStringWithReturn(SayExactString(separatedInputWords));
     }
 
     /// <summary>
@@ -30,6 +29,25 @@ public class SayInput : InputActions {
         stringToSay[stringToSay.Length - 1] = stringToSay[stringToSay.Length - 1] + "\"";
 
         string combinedStrings = string.Join(" ", stringToSay);
+
+        return combinedStrings;
+    }
+
+    /// <summary>
+    /// Quita el primer input y deja el resto como una string
+    /// </summary>
+    /// <param name="stringToSay"></param>
+    /// <returns></returns>
+    private string SayJustTheString(string[] stringToSay)
+    {
+        string[] newString = new string[stringToSay.Length - 1];
+
+        for (int i = 1; i < stringToSay.Length; i++)
+        {
+            newString[i - 1] = stringToSay[i];
+        }
+
+        string combinedStrings = string.Join(" ", newString);
 
         return combinedStrings;
     }
