@@ -6,8 +6,7 @@
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Say")]
 public class SayInput : InputActions {
 
-    bool sayToPlayer;
-    string playerName;
+    PlayerInstance playerToSpeakTo;
 
     /// <summary>
     /// Responde exactamente lo que dijo el jugador menos el input.
@@ -16,7 +15,7 @@ public class SayInput : InputActions {
     /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        sayToPlayer = false;
+        playerToSpeakTo = null;
 
         if (separatedInputWords.Length <= 1)
         {
@@ -25,18 +24,25 @@ public class SayInput : InputActions {
 
         separatedInputWords =  CheckDifferentPossibilities(separatedInputWords);
 
-        if (!sayToPlayer)
+        if (!playerToSpeakTo)
         {
             NetworkManager.Instance.SayThingInRoom(SayJustTheString(separatedInputWords), controller.playerManager.playerName);
             controller.LogStringWithReturn(SayExactString(separatedInputWords));
         }
         else
         {
-            NetworkManager.Instance.SayThingInRoomToPlayer(SayJustTheString(separatedInputWords),
-                controller.playerManager.playerName,
-                NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene[playerName].playerUserID);
+            if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(playerToSpeakTo))
+            {
+                NetworkManager.Instance.SayThingInRoomToPlayer(SayJustTheString(separatedInputWords),
+                    controller.playerManager.playerName,
+                    playerToSpeakTo.playerUserID);
 
-            controller.LogStringWithReturn(SayExactString(separatedInputWords, playerName));
+                controller.LogStringWithReturn(SayExactString(separatedInputWords, playerToSpeakTo.playerName));
+            }
+            else
+            {
+                controller.LogStringWithReturn(playerToSpeakTo.playerName + " no está en este lugar...");
+            }
         }
     }
 
@@ -101,6 +107,8 @@ public class SayInput : InputActions {
 
         if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(lastString[playerPossiblePosition]))
         {
+            playerToSpeakTo = NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene[lastString[playerPossiblePosition]];
+
             string[] newString = new string[lastString.Length - playerPossiblePosition];
 
             newString[0] = "";
