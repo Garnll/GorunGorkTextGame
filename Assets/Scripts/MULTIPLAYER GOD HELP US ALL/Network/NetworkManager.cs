@@ -65,7 +65,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
-        Debug.Log(otherPlayer);
+        Debug.Log(otherPlayer.ToStringFull());
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
