@@ -186,18 +186,20 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         {
             if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
             {
+                PlayerInstance otherPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
+
                 //Se borra al jugador de la habitación, revisando que nosotros no estuvieramos ahi
-                controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
+                otherPlayer.currentRoom.PlayerLeftRoom(
                     playerInstanceManager.playerInstancesOnScene[playerName], controller);
 
                 //Se cambia la habitación actual del jugador
-                playerInstanceManager.playerInstancesOnScene[playerName].currentRoom =
+                otherPlayer.currentRoom =
                     RoomsChecker.RoomObjectFromVector(
                     RoomsChecker.RoomPositionFromText(newRoomPosition)
                     );
 
                 //Se agrega al jugador a la nueva habitación
-                controller.playerRoomNavigation.currentRoom.PlayerEnteredRoom(
+                otherPlayer.currentRoom.PlayerEnteredRoom(
                     playerInstanceManager.playerInstancesOnScene[playerName],
                     controller
                     );
