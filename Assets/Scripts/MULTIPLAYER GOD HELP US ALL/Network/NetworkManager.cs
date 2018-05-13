@@ -65,10 +65,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
-        Debug.Log("Desconectado de Photon. ");
-        connected = false;
-
-        photonView.RPC("PlayerDisconnected", PhotonTargets.Others, controller.playerManager.playerName);
+        Debug.Log(otherPlayer.UserId);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -84,7 +81,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             controller.playerManager.playerLevel.ToString(),
             controller.playerManager.currentHealth.ToString(),
             controller.playerManager.currentVisibility.ToString(),
-            controller.playerRoomNavigation.currentPosition.ToString()
+            controller.playerRoomNavigation.currentPosition.ToString(),
+            photonView.ownerId.ToString()
         };
     }
 
@@ -100,6 +98,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         newPlayer.currentRoom = RoomsChecker.RoomObjectFromVector(
             RoomsChecker.RoomPositionFromText(playerData[5])
             );
+        Int32.TryParse(playerData[6], out newPlayer.playerUserID);
 
         playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
 

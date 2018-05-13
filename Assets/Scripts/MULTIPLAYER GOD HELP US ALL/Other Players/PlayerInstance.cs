@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerInstance : MonoBehaviour {
 
     public string playerName = "";
+    public int playerUserID;
+
     public string playerGender = "";
     public int playerLevel = 0;
 
