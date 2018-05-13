@@ -223,8 +223,17 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void ThingBeingSaidToeveryone(string thingSaid, string playerName)
     {
-        string thingSomeoneSaid = string.Format("{0} les dice a todos: \n\"{1}\" ", playerName, thingSaid);
-        controller.LogStringWithoutReturn(thingSomeoneSaid);
+        if (!playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            return;
+        }
+
+        PlayerInstance speakingPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
+        if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
+        {
+            string thingSomeoneSaid = string.Format("{0} les dice a todos: \n\"{1}\" ", playerName, thingSaid);
+            controller.LogStringWithoutReturn(thingSomeoneSaid);
+        }
     }
 
     #endregion
