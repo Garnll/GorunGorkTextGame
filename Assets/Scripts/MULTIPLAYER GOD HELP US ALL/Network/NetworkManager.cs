@@ -58,6 +58,9 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         isConnecting = false;
         connected = true;
 
+        PhotonNetwork.player.NickName = controller.playerManager.playerName;
+        photonView.viewID = PhotonNetwork.player.ID;
+
         string[] newPlayer = StoreMyPlayerData();
 
         photonView.RPC("NewPlayerJoined", PhotonTargets.Others, newPlayer);
@@ -66,6 +69,9 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
         Debug.Log(otherPlayer.ToStringFull());
+        Debug.Log(otherPlayer.ID);
+
+        PlayerDisconnected(otherPlayer.NickName);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
