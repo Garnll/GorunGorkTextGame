@@ -82,7 +82,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             controller.playerManager.currentHealth.ToString(),
             controller.playerManager.currentVisibility.ToString(),
             controller.playerRoomNavigation.currentPosition.ToString(),
-            photonView.viewID.ToString()
+            PhotonNetwork.player.ID.ToString()
         };
     }
 
