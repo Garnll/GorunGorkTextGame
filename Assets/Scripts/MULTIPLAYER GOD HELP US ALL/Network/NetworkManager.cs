@@ -157,13 +157,16 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     {
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
         {
-            if (playerInstanceManager.playerInstancesOnScene[playerName].currentRoom == 
-                controller.playerRoomNavigation.currentRoom)
+            PlayerInstance oldPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
+
+            if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
             {
                 controller.LogStringWithoutReturn(playerName + " se ha desvanecido frente a tus ojos.");
             }
 
+            oldPlayer.currentRoom.RemovePlayerInRoom(oldPlayer);
             Destroy(playerInstanceManager.playerInstancesOnScene[playerName].gameObject);
+
             playerInstanceManager.playerInstancesOnScene.Remove(playerName);
         }
     }
@@ -209,4 +212,20 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     #endregion
 
+
+    #region Players say something
+
+    public void SayThingInRoom(string thingToSay, string playerName)
+    {
+        photonView.RPC("ThingBeingSaidToeveryone", PhotonTargets.Others, thingToSay, playerName);
+    }
+
+    [PunRPC]
+    public void ThingBeingSaidToeveryone(string thingSaid, string playerName)
+    {
+        string thingSomeoneSaid = string.Format("{0} les dice a todos: \n\"{1}\" ", playerName, thingSaid);
+        controller.LogStringWithoutReturn(thingSomeoneSaid);
+    }
+
+    #endregion
 }

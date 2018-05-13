@@ -13,7 +13,9 @@ public class SayInput : InputActions {
     /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        controller.LogStringWithReturn(SayExactString(separatedInputWords));
+        string thingToSay = SayExactString(separatedInputWords);
+        NetworkManager.Instance.SayThingInRoom(thingToSay, controller.playerManager.playerName);
+        controller.LogStringWithReturn(thingToSay);
     }
 
     /// <summary>

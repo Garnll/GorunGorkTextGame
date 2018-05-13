@@ -130,6 +130,12 @@ public class RoomObject : SerializedScriptableObject {
         playersInRoom.Remove(oldPlayer);
     }
 
+    public void RemovePlayerInRoom (PlayerInstance oldPlayer)
+    {
+        playersInRoom.Add(oldPlayer);
+    }
+
+
 
     #region Metodos Usados en editor
 
