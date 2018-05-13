@@ -62,14 +62,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
         string[] newPlayer = StoreMyPlayerData();
 
-        photonView.RPC("NewPlayerJoined", PhotonTargets.Others, newPlayer);
+        photonView.RPC("NewPlayerJoined", PhotonTargets.Others, newPlayer, PhotonNetwork.player.ID);
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
-        Debug.Log(otherPlayer.ToStringFull());
-        Debug.Log(otherPlayer.ID);
-
         PlayerDisconnected(otherPlayer.NickName);
     }
 
@@ -93,6 +90,12 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public PlayerInstance CreatePlayerInstance(string[] playerData)
     {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerData[0]))
+        {
+            Debug.Log("Player already exists");
+            return null;
+        }
+
         PlayerInstance newPlayer = Instantiate(playerInstancePrefab).GetComponent<PlayerInstance>();
 
         newPlayer.playerName = playerData[0];
@@ -117,6 +120,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     {
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerData[0]))
         {
+            Debug.Log("Player already exists here");
             return;
         }
 
@@ -135,7 +139,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     }
 
     [PunRPC]
-    public void NewPlayerJoined(string[] playerData)
+    public void NewPlayerJoined(string[] playerData, int playerID)
     {
         Debug.Log("Player entered");
         PlayerInstance newPlayer = CreatePlayerInstance(playerData);
@@ -145,29 +149,26 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             newPlayer.currentRoom.PlayerEnteredRoom(newPlayer, controller);
         }
 
-        photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonTargets.Others, StoreMyPlayerData());
+        photonView.RPC("InstantiateAlreadyExistingPlayers", PhotonPlayer.Find(playerID), StoreMyPlayerData());
 
     }
 
-
-    //NetworkPlayer
-    //photonview().ownerID
-    public void PlayerDisconnected(string playerID)
+    public void PlayerDisconnected(string playerName)
     {
-        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerID))
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
         {
-            if (playerInstanceManager.playerInstancesOnScene[playerID].currentRoom == 
+            if (playerInstanceManager.playerInstancesOnScene[playerName].currentRoom == 
                 controller.playerRoomNavigation.currentRoom)
             {
-                controller.LogStringWithoutReturn(playerID + " se ha desvanecido frente a tus ojos.");
+                controller.LogStringWithoutReturn(playerName + " se ha desvanecido frente a tus ojos.");
             }
 
-            Destroy(playerInstanceManager.playerInstancesOnScene[playerID]);
-            playerInstanceManager.playerInstancesOnScene.Remove(playerID);
+            Destroy(playerInstanceManager.playerInstancesOnScene[playerName].gameObject);
+            playerInstanceManager.playerInstancesOnScene.Remove(playerName);
         }
     }
 
-    #region Exploration Players
+    #region Players Exploring Methods
 
     public void MyPlayerChangedRooms(string playerID, Vector3 newPosition)
     {
@@ -175,26 +176,29 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     }
 
     [PunRPC]
-    public void PlayerChangedRoom(string playerID, string newRoomPosition)
+    public void PlayerChangedRoom(string playerName, string newRoomPosition)
     {
-        Debug.Log(playerID + " Cambió habitaciones hacia " + newRoomPosition);
+        Debug.Log(playerName + " Cambió habitaciones hacia " + newRoomPosition);
 
         if (RoomsChecker.roomsDictionary.ContainsKey(
             RoomsChecker.RoomPositionFromText(newRoomPosition)
             ))
         {
-            if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerID))
+            if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
             {
-                playerInstanceManager.playerInstancesOnScene[playerID].currentRoom =
+                //Se borra al jugador de la habitación, revisando que nosotros no estuvieramos ahi
+                controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
+                    playerInstanceManager.playerInstancesOnScene[playerName], controller);
+
+                //Se cambia la habitación actual del jugador
+                playerInstanceManager.playerInstancesOnScene[playerName].currentRoom =
                     RoomsChecker.RoomObjectFromVector(
                     RoomsChecker.RoomPositionFromText(newRoomPosition)
                     );
 
-                controller.playerRoomNavigation.currentRoom.PlayerLeftRoom(
-                    playerInstanceManager.playerInstancesOnScene[playerID], controller);
-
+                //Se agrega al jugador a la nueva habitación
                 controller.playerRoomNavigation.currentRoom.PlayerEnteredRoom(
-                    playerInstanceManager.playerInstancesOnScene[playerID],
+                    playerInstanceManager.playerInstancesOnScene[playerName],
                     controller
                     );
             }
