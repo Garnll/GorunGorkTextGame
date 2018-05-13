@@ -65,7 +65,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
-        Debug.Log(otherPlayer.UserId);
+        Debug.Log(otherPlayer);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -99,6 +99,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             RoomsChecker.RoomPositionFromText(playerData[5])
             );
         Int32.TryParse(playerData[6], out newPlayer.playerUserID);
+
+
 
         playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
 
