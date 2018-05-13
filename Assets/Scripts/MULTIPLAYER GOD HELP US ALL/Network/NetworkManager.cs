@@ -59,7 +59,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         connected = true;
 
         PhotonNetwork.player.NickName = controller.playerManager.playerName;
-        photonView.viewID = PhotonNetwork.player.ID;
 
         string[] newPlayer = StoreMyPlayerData();
 
