@@ -108,6 +108,8 @@ public class RoomObject : SerializedScriptableObject {
         {
             controller.LogStringWithoutReturn(newPlayer.playerName + " ha llegado.");
         }
+
+        Debug.Log(newPlayer + " llegó a " + roomName);
     }
 
     public void AddPlayerInRoom(PlayerInstance newPlayer)
@@ -128,11 +130,13 @@ public class RoomObject : SerializedScriptableObject {
         }
 
         playersInRoom.Remove(oldPlayer);
+
+        Debug.Log(oldPlayer + " salió de " + roomName);
     }
 
     public void RemovePlayerInRoom (PlayerInstance oldPlayer)
     {
-        playersInRoom.Add(oldPlayer);
+        playersInRoom.Remove(oldPlayer);
     }
 
 

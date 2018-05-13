@@ -181,8 +181,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void PlayerChangedRoom(string playerName, string newRoomPosition)
     {
-        Debug.Log(playerName + " Cambió habitaciones hacia " + newRoomPosition);
-
         if (RoomsChecker.roomsDictionary.ContainsKey(
             RoomsChecker.RoomPositionFromText(newRoomPosition)
             ))
@@ -229,9 +227,10 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         }
 
         PlayerInstance speakingPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
+
         if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
         {
-            string thingSomeoneSaid = string.Format("{0} les dice a todos: \n\"{1}\" ", playerName, thingSaid);
+            string thingSomeoneSaid = string.Format("{0}: \"{1}\" ", playerName, thingSaid);
             controller.LogStringWithoutReturn(thingSomeoneSaid);
         }
     }
