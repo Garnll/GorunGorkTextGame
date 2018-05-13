@@ -79,12 +79,26 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         return new string[]
         {
             controller.playerManager.playerName,
+            PhotonNetwork.player.ID.ToString(),
+
             controller.playerManager.gender,
             controller.playerManager.playerLevel.ToString(),
+
+            controller.playerManager.characteristics.playerJob.jobName,
+            controller.playerManager.characteristics.playerRace.raceName,
+            controller.playerManager.currentState.stateName,
+
+            controller.playerManager.characteristics.currentStrength.ToString(),
+            controller.playerManager.characteristics.currentIntelligence.ToString(),
+            controller.playerManager.characteristics.currentResistance.ToString(),
+            controller.playerManager.characteristics.currentDexterity.ToString(),
+
             controller.playerManager.currentHealth.ToString(),
+
             controller.playerManager.currentVisibility.ToString(),
-            controller.playerRoomNavigation.currentPosition.ToString(),
-            PhotonNetwork.player.ID.ToString()
+
+            controller.playerRoomNavigation.currentPosition.ToString()
+
         };
     }
 
@@ -99,16 +113,27 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         PlayerInstance newPlayer = Instantiate(playerInstancePrefab).GetComponent<PlayerInstance>();
 
         newPlayer.playerName = playerData[0];
-        newPlayer.playerGender = playerData[1];
-        Int32.TryParse(playerData[2], out newPlayer.playerLevel);
-        Int32.TryParse(playerData[3], out newPlayer.currentHealth);
-        Int32.TryParse(playerData[4], out newPlayer.currentVisibility);
+        Int32.TryParse(playerData[1], out newPlayer.playerUserID);
+
+        newPlayer.playerGender = playerData[2];
+        Int32.TryParse(playerData[3], out newPlayer.playerLevel);
+
+        newPlayer.playerJob = StringsIntoObjectsInator.Instance.JobFromString(playerData[4]);
+        newPlayer.playerRace = StringsIntoObjectsInator.Instance.RaceFromString(playerData[5]);
+        newPlayer.playerState = StringsIntoObjectsInator.Instance.StateFromString(playerData[6]);
+
+        float.TryParse(playerData[7], out newPlayer.strength);
+        float.TryParse(playerData[8], out newPlayer.intelligence);
+        float.TryParse(playerData[9], out newPlayer.resistance);
+        float.TryParse(playerData[10], out newPlayer.dexterity);
+
+        Int32.TryParse(playerData[11], out newPlayer.currentHealth);
+
+        Int32.TryParse(playerData[12], out newPlayer.currentVisibility);
+
         newPlayer.currentRoom = RoomsChecker.RoomObjectFromVector(
-            RoomsChecker.RoomPositionFromText(playerData[5])
+            RoomsChecker.RoomPositionFromText(playerData[13])
             );
-        Int32.TryParse(playerData[6], out newPlayer.playerUserID);
-
-
 
         playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
 

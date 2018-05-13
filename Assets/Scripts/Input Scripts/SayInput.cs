@@ -104,6 +104,10 @@ public class SayInput : InputActions {
                 playerPossiblePosition = 2;
             }
         }
+        if (lastString.Length == playerPossiblePosition + 1)
+        {
+            return lastString;
+        }
 
         if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(lastString[playerPossiblePosition]))
         {
