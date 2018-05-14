@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3de67e9cbb9ab4485f59de9937f7a9, type: 3}
   m_Name: Supersonic
   m_EditorClassIdentifier: 
-  stateName: "supers\xF3nico"
+  stateName: "Supers\xF3nico"
+  magnitude: 0
   stateDescription: "Te volviste muy r\xE1pido."
   durationTime: 12

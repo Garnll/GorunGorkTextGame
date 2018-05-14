@@ -254,6 +254,10 @@ public class CharacterCreationResponse : RoomResponse {
     {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         gameController.playerRoomNavigation.AttemptToChangeRooms(
-            gameController.playerRoomNavigation.currentRoom.exits[0].myKeyword);
-    }
+        gameController.playerRoomNavigation.currentRoom.exits[0].myKeyword);
+
+		if (!GlobalVariables.ContainsVariable("om")) {
+			GlobalVariables.AddNewAs("om", 1);
+		}
+	}
 }

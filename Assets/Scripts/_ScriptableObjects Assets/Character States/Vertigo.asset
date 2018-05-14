@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93c32ab175d331408cec6e8e0b6f966, type: 3}
   m_Name: Vertigo
   m_EditorClassIdentifier: 
-  stateName: "v\xE9rtigo"
+  stateName: "V\xE9rtigo"
+  magnitude: 0
   stateDescription: Sientes que te caes
   durationTime: 5

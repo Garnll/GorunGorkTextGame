@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab9d4cc66a64c54db0c77f1838ffbc7, type: 3}
   m_Name: Berserk
   m_EditorClassIdentifier: 
-  stateName: berserk
+  stateName: Berserk
+  magnitude: 0
   stateDescription: "Est\xE1s enojado."
   durationTime: 30

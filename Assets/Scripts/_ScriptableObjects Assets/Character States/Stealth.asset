@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e3e3b81a874c44381b41e93d22d343, type: 3}
   m_Name: Stealth
   m_EditorClassIdentifier: 
-  stateName: sigilo
+  stateName: "S\xEDgilo"
+  magnitude: 0
   stateDescription: Te volviste sigiloso
   durationTime: 60

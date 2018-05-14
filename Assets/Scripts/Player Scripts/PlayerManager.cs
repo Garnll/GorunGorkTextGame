@@ -198,7 +198,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (r <= characteristics.other.CriticalHitProbability(this))
         {
-            controller.combatController.UpdatePlayerLog("¡CRITICO!");
+            controller.combatController.UpdatePlayerLog("¡CRÍTICO!");
             damage *= 2;
         }
 
@@ -212,7 +212,7 @@ public class PlayerManager : MonoBehaviour {
     {
         WasteTurn(0.5f);
 
-        controller.combatController.UpdatePlayerLog("Te mueves hacia un lado");
+        controller.combatController.UpdatePlayerLog("Te mueves hacia un lado.");
 
         if (currentState.GetType() == typeof(TrailState) || currentState.GetType() == typeof(SupersonicState))
         {

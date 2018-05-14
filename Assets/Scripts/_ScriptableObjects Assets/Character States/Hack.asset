@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e127620c9fbb4faa3faa2ff98caba, type: 3}
   m_Name: Hack
   m_EditorClassIdentifier: 
-  stateName: hack
+  stateName: Hack
   magnitude: 0
   stateDescription: Fuiste hackeado.
   durationTime: 5

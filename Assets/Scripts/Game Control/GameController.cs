@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public PlayerRoomNavigation playerRoomNavigation;
     public CombatController combatController;
 	public DialogueController dialogueController;
+	public PlayerText playerText;
 
     [HideInInspector] public List<string> exitDescriptionsInRoom = new List<string>();
     [HideInInspector] public List<string> interactionDescriptionsInRoom = new List<string>();
@@ -75,6 +76,8 @@ public class GameController : MonoBehaviour {
         {
             stopWriting = true;
         }
+
+		playerText.updateText();
 
         StartCoroutine(AnimateText(logAsText));
     }

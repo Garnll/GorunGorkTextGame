@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d98236ce1b53b341a3e993de47df987, type: 3}
   m_Name: Lethargy
   m_EditorClassIdentifier: 
-  stateName: letargo
+  stateName: Letargo
+  magnitude: 0
   stateDescription: Te sientes cansado.
   durationTime: 8

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5bfa4769a42cd4a940b40ae45b421a, type: 3}
   m_Name: Inertia
   m_EditorClassIdentifier: 
-  stateName: inercia
+  stateName: Inercia
+  magnitude: 0
   stateDescription: "Eres m\xE1s r\xE1pido."
   durationTime: 0

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a6799382ab1e940994d340b1fadfad, type: 3}
   m_Name: Trail
   m_EditorClassIdentifier: 
-  stateName: rastro
+  stateName: Rastro
+  magnitude: 0
   stateDescription: Te sientes identificado.
   durationTime: 10

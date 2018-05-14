@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0667372e720504f9fc1b90b7633c95, type: 3}
   m_Name: Peace
   m_EditorClassIdentifier: 
-  stateName: paz
+  stateName: Paz
+  magnitude: 0
   stateDescription: "Te sientes pac\xEDfico.\n"
   durationTime: 10
