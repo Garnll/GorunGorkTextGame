@@ -17,6 +17,15 @@ public class PlayerRoomNavigation : MonoBehaviour {
     Dictionary<string, int> enemyCounter = new Dictionary<string, int>();
     Dictionary<string, int> enemyVisiblity = new Dictionary<string, int>();
 
+    [Sirenix.OdinInspector.ShowInInspector]
+    private Vector3 CurrentPosition
+    {
+        get
+        {
+            return currentPosition;
+        }
+    }
+
     /// <summary>
     /// Le envía al GameController las salidas de la habitación actual.
     /// </summary>
@@ -264,6 +273,14 @@ public class PlayerRoomNavigation : MonoBehaviour {
     public void AttemptToChangeRooms(string directionNoun)
     {
         controller.LogStringWithReturn("Pensaste en una dirección imposible...");
+    }
+
+    public void MovePlayerToRoom(RoomObject room)
+    {
+        currentRoom = room;
+        currentPosition = currentRoom.roomPosition;
+
+        miniMapper.MovePlayerInMap(currentPosition);
     }
 
     public void ClearExits()

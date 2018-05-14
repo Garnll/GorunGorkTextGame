@@ -13,7 +13,7 @@ public class GameStart : MonoBehaviour {
         Application.runInBackground = true;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        controller.playerRoomNavigation.currentRoom = originRoom;
+        controller.playerRoomNavigation.MovePlayerToRoom(originRoom);
         controller.playerManager.Initialize();
 	}
 
