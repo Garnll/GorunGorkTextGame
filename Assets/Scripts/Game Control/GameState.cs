@@ -27,6 +27,8 @@ public class GameState {
         combatPreparation,
         dead,
 		conversation,
+		crafting,
+		reading,
         none
     }
 

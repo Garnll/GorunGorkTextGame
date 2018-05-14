@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf4a3e0b187f34e840e2c1dfa20aac, type: 3}
+  m_Name: Recetabebe
+  m_EditorClassIdentifier: 
+  recipeName: 
+  product: {fileID: 0}
+  minTime: 0
+  maxTime: 0
+  fragments: []

@@ -38,7 +38,6 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     }
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && !NetworkManager.Instance.isConnecting)
@@ -167,6 +166,10 @@ public class TextUserInput : SerializedMonoBehaviour {
 				controller.dialogueController.takeInput(userInput);
 				DisplayInput();
 				break;
+
+			case GameState.GameStates.crafting:
+				break;
+
         }
 
     }
