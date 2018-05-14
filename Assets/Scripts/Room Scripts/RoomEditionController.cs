@@ -19,8 +19,7 @@ public class RoomEditionController : MonoBehaviour {
     [ShowInInspector]
     private Dictionary<Vector3, RoomObject> ShowSomeStaticVariableInTheInspector
     {
-        get { return RoomEditionController.existingRooms; }
-        //set { MyComponent.SomeStaticVariable = value; }
+        get { return existingRooms; }
     }
 
     List<RoomObject> roomsToLoad = new List<RoomObject>();
@@ -37,6 +36,7 @@ public class RoomEditionController : MonoBehaviour {
         {
             RoomObject.OnChangePosition += RoomPositionChanged;
             RoomObject.OnChangeStuff += SaveChanges;
+            RoomObject.OnDeleteRoom += DeleteThisRoom;
             isEventSuscribed = true;
         }
         existingRooms.Clear();
@@ -320,10 +320,25 @@ public class RoomEditionController : MonoBehaviour {
         }
     }
 
+    private void DeleteThisRoom(RoomObject roomToDelete)
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            return;
+
+        if (existingRooms.ContainsKey(roomToDelete.roomPosition))
+        {
+            existingRooms.Remove(roomToDelete.roomPosition);
+        }
+
+        RoomDataSaver.DeleteData(roomToDelete);
+        mapper.EliminateRoom(roomToDelete);
+    }
+
     private void OnDisable()
     {
         RoomObject.OnChangePosition -= RoomPositionChanged;
         RoomObject.OnChangeStuff -= SaveChanges;
+        RoomObject.OnDeleteRoom -= DeleteThisRoom;
         isEventSuscribed = false;
         existingRooms.Clear();
         roomsToLoad.Clear();
