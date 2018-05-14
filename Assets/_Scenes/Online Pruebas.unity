@@ -2897,7 +2897,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.99999964
   m_Size: 0.61518675
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2971,7 +2971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 133.99997}
+  m_AnchoredPosition: {x: 3, y: 134}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -3125,7 +3125,7 @@ MonoBehaviour:
   playerInstancePrefab: {fileID: 1879889777301474, guid: f91ab426aaa32c44e81362ce3c63c93e,
     type: 2}
   playerInstanceManager: {fileID: 342256951}
-  gameVersion: 0.2
+  gameVersion: 0.3
   maxPlayers: 10
   isConnecting: 0
   connected: 0
@@ -4246,6 +4246,11 @@ Prefab:
       propertyPath: controller
       value: 
       objectReference: {fileID: 405610293}
+    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: miniMapper
+      value: 
+      objectReference: {fileID: 578586442}
     - target: {fileID: 114821141371468156, guid: f8b29c4ad725ee74a8cd42559a0254f0,
         type: 2}
       propertyPath: text
@@ -4256,146 +4261,11 @@ Prefab:
       propertyPath: controller
       value: 
       objectReference: {fileID: 405610293}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+    - target: {fileID: 114131058260902130, guid: f8b29c4ad725ee74a8cd42559a0254f0,
         type: 2}
-      propertyPath: currentStrength
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentIntelligence
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentResistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentDexterity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: vision.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: vision.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentHealthRegenPerSecond
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentTurnRegenPerSecond
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: defaultTurnRegenPerSecond
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: maxHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: miniMapper
+      propertyPath: text
       value: 
-      objectReference: {fileID: 578586442}
-    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentRoom
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentHealth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentWill
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290290832410878, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: playerName
-      value: jugador
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876431431837244, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: characteristicsChanger
-      value: 
-      objectReference: {fileID: 1091861670}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentPods
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: defaultStrength
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentCooldownReduction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: currentCriticalHitProbability
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: defaultIntelligence
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: defaultResistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: defaultDexterity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114821141371468156, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1178118717}
+      objectReference: {fileID: 95063136}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8b29c4ad725ee74a8cd42559a0254f0, type: 2}
   m_IsPrefabParent: 0
@@ -5750,24 +5620,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 250cf8c86ebbc204c97d9f21c7afd5ec, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1091861669 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1167064984694596, guid: f8b29c4ad725ee74a8cd42559a0254f0,
-    type: 2}
-  m_PrefabInternal: {fileID: 849154490}
---- !u!114 &1091861670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1091861669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187d4ee26c9205a4e9675d9176d27445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textToDisplay: Elije entre FUERZA, DESTREZA, INTELIGENCIA o RESISTENCIA.
-  endText: "No tienes m\xE1s puntos para gastar."
 --- !u!1 &1092048369
 GameObject:
   m_ObjectHideFlags: 0
@@ -6493,42 +6345,18 @@ Transform:
   m_PrefabParentObject: {fileID: 4409290807584454, guid: 250cf8c86ebbc204c97d9f21c7afd5ec,
     type: 2}
   m_PrefabInternal: {fileID: 877135147}
---- !u!1 &1261326708 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1930476981935544, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+--- !u!114 &1261326709 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114122720392250220, guid: f8b29c4ad725ee74a8cd42559a0254f0,
     type: 2}
   m_PrefabInternal: {fileID: 849154490}
---- !u!114 &1261326709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1261326708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ed8903ec17667a44ae9c2b2cd30d4ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quests: []
---- !u!114 &1261326710
+--- !u!114 &1261326710 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1261326708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114131058260902130, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+    type: 2}
+  m_PrefabInternal: {fileID: 849154490}
   m_Script: {fileID: 11500000, guid: d1a7a5110fcc4034bb176cee9dbc207d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1178118717}
-  stats: {fileID: 1091861669}
-  inventoryManager: {fileID: 1178118716}
-  text: {fileID: 95063136}
-  tool: {fileID: 0}
-  outfit: {fileID: 0}
-  bag: {fileID: 0}
-  accesory: {fileID: 0}
 --- !u!1 &1280517652
 GameObject:
   m_ObjectHideFlags: 0
@@ -7741,11 +7569,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 036bdd242d48400488f8d06d0d416c30, type: 2}
   - {fileID: 11400000, guid: 1fbb07e952ffe9a4aaf96fe0caffae2d, type: 2}
   - {fileID: 11400000, guid: 4e13cf548e876fc44a48413dfbace7e9, type: 2}
+  - {fileID: 11400000, guid: 2d18b298355159143a602c21faa2d158, type: 2}
   races:
   - {fileID: 11400000, guid: dc86ceb7cbbcb5440b89609d0923cfdd, type: 2}
   - {fileID: 11400000, guid: 4b952421b052eff49a736eb70d52bba7, type: 2}
   - {fileID: 11400000, guid: 92cf5b76343aab441b0cc92a515b3cc2, type: 2}
   - {fileID: 11400000, guid: bb242b2270c512848bdebc9ee6952562, type: 2}
+  - {fileID: 11400000, guid: 1f9dfa7208ae93746bc589411711d16e, type: 2}
   states:
   - {fileID: 11400000, guid: d73591460accde34a891273d9f45aecc, type: 2}
   - {fileID: 11400000, guid: b75695df6f6fbaf4abc48dfd2211eac2, type: 2}

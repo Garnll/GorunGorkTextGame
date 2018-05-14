@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4526010517145062}
   - component: {fileID: 114726897938148400}
   - component: {fileID: 114254784124613484}
+  - component: {fileID: 114053385024625492}
   m_Layer: 0
   m_Name: 'Player Stats '
   m_TagString: Untagged
@@ -39,6 +40,8 @@ GameObject:
   - component: {fileID: 114290290832410878}
   - component: {fileID: 114821141371468156}
   - component: {fileID: 114876431431837244}
+  - component: {fileID: 114122720392250220}
+  - component: {fileID: 114131058260902130}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -73,6 +76,50 @@ Transform:
   m_Father: {fileID: 4273248874640560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114053385024625492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167064984694596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187d4ee26c9205a4e9675d9176d27445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToDisplay: Elije entre FUERZA, DESTREZA, INTELIGENCIA o RESISTENCIA.
+  endText: "No tienes m\xE1s puntos para gastar."
+--- !u!114 &114122720392250220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930476981935544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed8903ec17667a44ae9c2b2cd30d4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests: []
+--- !u!114 &114131058260902130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930476981935544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a7a5110fcc4034bb176cee9dbc207d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114876431431837244}
+  stats: {fileID: 1167064984694596}
+  inventoryManager: {fileID: 114821141371468156}
+  text: {fileID: 0}
+  tool: {fileID: 0}
+  outfit: {fileID: 0}
+  bag: {fileID: 0}
+  accesory: {fileID: 0}
 --- !u!114 &114254784124613484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,11 +132,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCriticalHitProbability: 0
+  currentCriticalHitProbability: 0
   defaultCooldownReduction: 0
   currentCooldownReduction: 0
   defaultHealthRegenPerSecond: 0.2
   currentHealthRegenPerSecond: 0
-  defaultTurnRegenPerSecond: 5
+  defaultTurnRegenPerSecond: 2
   currentTurnRegenPerSecond: 0
   defaultEvasion: 0
   currentEvasion: 0
@@ -106,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   currentRoom: {fileID: 0}
+  miniMapper: {fileID: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114726897938148400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,18 +167,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8f3c40678a2c04a94653fd34a71c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultStrength: 1
+  defaultStrength: 2
   currentStrength: 0
-  defaultIntelligence: 1
+  defaultIntelligence: 2
   currentIntelligence: 0
-  defaultResistance: 1
+  defaultResistance: 2
   currentResistance: 0
-  defaultDexterity: 1
+  defaultDexterity: 2
   currentDexterity: 0
+  defaultPods: 10
+  usedPods: 0
+  currentMaxPods: 0
   vision: {x: 0, y: 0}
   defaultVision: {x: -4, y: 4}
-  playerRace: {fileID: 11400000, guid: 4b952421b052eff49a736eb70d52bba7, type: 2}
-  playerJob: {fileID: 11400000, guid: 1fbb07e952ffe9a4aaf96fe0caffae2d, type: 2}
+  playerRace: {fileID: 11400000, guid: 1f9dfa7208ae93746bc589411711d16e, type: 2}
+  playerJob: {fileID: 11400000, guid: 2d18b298355159143a602c21faa2d158, type: 2}
   other: {fileID: 114254784124613484}
 --- !u!114 &114821141371468156
 MonoBehaviour:
@@ -141,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2009260d3f0785e4ab28275a27565306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 114876431431837244}
   nounsInInventory: []
   text: {fileID: 0}
 --- !u!114 &114876431431837244
@@ -157,14 +211,17 @@ MonoBehaviour:
   playerName: jugador
   gender: macho
   playerLevel: 0
+  characteristicsChanger: {fileID: 114053385024625492}
   defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
   currentState: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 20
   currentHealth: 0
   maxTurn: 100
   currentTurn: 0
   maxWill: 10
   currentWill: 0
+  defaultVisibility: 0
+  currentVisibility: 0
   pacifier: 1
   characteristics: {fileID: 114726897938148400}
   controller: {fileID: 0}

@@ -77,6 +77,7 @@ public class PlayerManager : MonoBehaviour {
         currentTurn = maxTurn;
         currentWill = maxWill;
         currentVisibility = defaultVisibility;
+        currentState = defaultState;
         defaultState.ApplyStateEffect(this);
 
         characteristics.InitializeCharacteristics();
@@ -176,7 +177,6 @@ public class PlayerManager : MonoBehaviour {
     public void StartCombat()
     {
         currentTurn = 0;
-        currentState = defaultState;
     }
 
     public void WasteTurn(float percentage)
