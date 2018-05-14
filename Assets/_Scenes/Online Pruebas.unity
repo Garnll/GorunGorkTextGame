@@ -2897,8 +2897,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.61518675
+  m_Value: 1
+  m_Size: 0.6151868
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4266,6 +4266,67 @@ Prefab:
       propertyPath: text
       value: 
       objectReference: {fileID: 95063136}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: defaultStrength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentStrength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: defaultIntelligence
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentIntelligence
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentResistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentDexterity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentMaxPods
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: vision.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: vision.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726897938148400, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: playerRace
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f9dfa7208ae93746bc589411711d16e,
+        type: 2}
+    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentHealthRegenPerSecond
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114254784124613484, guid: f8b29c4ad725ee74a8cd42559a0254f0,
+        type: 2}
+      propertyPath: currentTurnRegenPerSecond
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8b29c4ad725ee74a8cd42559a0254f0, type: 2}
   m_IsPrefabParent: 0
