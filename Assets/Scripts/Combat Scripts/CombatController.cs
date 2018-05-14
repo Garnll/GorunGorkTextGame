@@ -19,6 +19,8 @@ public class CombatController : MonoBehaviour {
     public PlayerUIDuringCombat playerUI;
     public EnemyUIDuringCombat enemyUI;
 
+	public PlayerText playerText;
+
     List<string> habilitiesText = new List<string>();
     private EnemyNPC enemy;
     private Queue<string> enemyLog = new Queue<string>();
@@ -290,6 +292,8 @@ public class CombatController : MonoBehaviour {
     {
         string state = "";
 
+		playerText.updateText();
+
         if (player.currentState != player.defaultState)
         {
             state = " <" + TextConverter.MakeFirstLetterUpper(player.currentState.stateName) + ">";
@@ -324,6 +328,8 @@ public class CombatController : MonoBehaviour {
 		playerUI.lifeText.text = ((player.currentHealth / player.MaxHealth) * 100).ToString("0") + "%";
 
 		playerUI.lifeText.color = Color.Lerp(playerColorGradient.Evaluate(t), oldColor, t); ;
+
+		playerText.updateText();
 
 	}
 

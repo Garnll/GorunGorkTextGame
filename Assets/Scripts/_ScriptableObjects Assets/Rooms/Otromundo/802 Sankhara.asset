@@ -43,7 +43,8 @@ MonoBehaviour:
   charactersInRoom:
   - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
   playersInRoom: []
-  npcTemplatesInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
@@ -66,5 +67,9 @@ MonoBehaviour:
     isExplicit: 0
     exitDescription: 
     exitActionDescription: 
-  enemiesInRoom: []
+  enemiesInRoom:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   changeExits: 0

@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour {
     private bool isAlive = true;
     public CharacteristicsChanger characteristicsChanger;
     public CharacterEffectiveState defaultState;
+	
     [HideInInspector] public CharacterEffectiveState currentState;
 
     [SerializeField] private float maxHealth = 100;
@@ -32,6 +33,8 @@ public class PlayerManager : MonoBehaviour {
     public int pacifier = 1;
 
     public PlayerCharacteristics characteristics;
+	public PlayerText playerText;
+	
 	
     public GameController controller;
 
@@ -272,6 +275,8 @@ public class PlayerManager : MonoBehaviour {
         {
             yield return new WaitForSecondsRealtime(1);
             currentHealth += characteristics.other.currentHealthRegenPerSecond;
+
+			playerText.updateText();
 
             if (currentHealth >= maxHealth)
             {
