@@ -40,6 +40,10 @@ MonoBehaviour:
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
-  exits: []
+  exits:
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
+    exitDescription: 
+    exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

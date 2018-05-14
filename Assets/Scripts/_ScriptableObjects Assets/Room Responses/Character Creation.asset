@@ -19,9 +19,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b952421b052eff49a736eb70d52bba7, type: 2}
   - {fileID: 11400000, guid: 92cf5b76343aab441b0cc92a515b3cc2, type: 2}
   - {fileID: 11400000, guid: bb242b2270c512848bdebc9ee6952562, type: 2}
-  selectRaceText: 'Por favor, elije una <b>raza</b>, de las siguentes: [Toro], [Buho],
-    [Oso] o [Conejo].'
-  selectGenderText: "Define tu <b>g\xE9nero</b> \xBFQuieres ser [M]acho o [H]embra?"
+  selectRaceText: "\"\xA1Si tan solo pudi\xE9ramos elegir nuestras circunstancias
+    antes de nacer!\" Eso es lo que dir\xEDamos todos, de no ser por el Sistema. Elige
+    una subraza, de ella depender\xE1n algunos de tus atributos f\xEDsicos: <b><color=#FBEBB5>[Toro,
+    Buho, Oso, Conejo]</color></b>. Si tienes dudas, puedes <b><color=#FBEBB5>preguntar</color></b>."
+  selectGenderText: "Seguro ya te estabas esperando esta: \xBFQuieres ser <b><color=#FBEBB5>[Macho]</color></b>
+    o <b><color=#FBEBB5>[Hembra]</color></b>?"
   selectNameText: "<i>Lo que llamamos rosa oler\xEDa tan dulcemente con cualquier
-    otro nombre.</i> Elige el <b>nombre</b> con el que te conocer\xE1n al nacer."
-  endCreationText: "Tu pr\xF3ximo pensamiento te llevar\xE1 al mundo."
+    otro nombre.</i> Elige el <b><color=#F9EEC1>nombre</color></b> con el que te conocer\xE1n
+    al nacer."
+  endCreationText: "En la lejan\xEDa, casi puedes escuchar una canci\xF3n bastante
+    familiar, y como si de un sue\xF1o se tratara, tu pr\xF3ximo pensamiento te llevar\xE1
+    al mundo."

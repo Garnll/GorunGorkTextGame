@@ -9,6 +9,7 @@ public class EquipManager : MonoBehaviour {
 	public GameObject stats;
 	public InventoryManager inventoryManager;
 	public TextMeshProUGUI text;
+	public PlayerRoomNavigation roomNav;
 
 	PlayerCharacteristics character;
 	PlayerOther other;
@@ -169,19 +170,28 @@ public class EquipManager : MonoBehaviour {
 	}
 
 	public void updateText() {
+		try {
+			if (roomNav.currentPosition.z == 8) {
+				text.text = " ";
+			}
+			else {
+				string toolName = nameOf(tool);
+				string outfitName = nameOf(outfit);
+				string bagName = nameOf(bag);
+				string accesoryName = nameOf(accesory);
 
-		string toolName = nameOf(tool);
-		string outfitName = nameOf(outfit);
-		string bagName = nameOf(bag);
-		string accesoryName = nameOf(accesory);
 
+				string info = "<b>Equipo</b>\n" +
+					"<b>H:</b> " + toolName + "\n" +
+					"<b>T:</b> " + outfitName + "\n" +
+					"<b>M:</b> " + bagName + "\n" +
+					"<b>A:</b> " + accesoryName;
 
-		string info = "<b>Equipo</b>\n" +
-			"<b>H:</b> " + toolName + "\n" +
-			"<b>T:</b> " + outfitName + "\n" +
-			"<b>M:</b> " + bagName + "\n" +
-			"<b>A:</b> " + accesoryName;
-		text.text = info;
+				text.text = info;
+			}
+		} catch {
+
+		}
 	}
 
 	private string nameOf(Equip equip) {

@@ -10,7 +10,8 @@ public class Exit {
     [Space(10)]
     public DirectionKeyword myKeyword;
     public RoomObject conectedRoom;
-    [TextArea] public string exitDescription;
+	public bool isExplicit;
+	[TextArea] public string exitDescription;
     [Space(5)]
     [TextArea] public string exitActionDescription;
 

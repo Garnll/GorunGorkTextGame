@@ -9,6 +9,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
     public GameController controller;
     public RoomObject currentRoom;
     public MiniMapper miniMapper;
+	public EquipManager equipManager;
+	public InventoryManager inventoryManager;
 
     KeywordToStringConverter converter;
     [HideInInspector]public Vector3 currentPosition;
@@ -34,10 +36,45 @@ public class PlayerRoomNavigation : MonoBehaviour {
         for (int i = 0; i < currentRoom.exits.Count; i++)
         {
             exitDictionary.Add(currentRoom.exits[i].myKeyword, currentRoom.exits[i]);
-
-            if (currentRoom.exits[i].exitDescription != "")
+			string temp = "";
+			if (currentRoom.exits[i].exitDescription != "")
             {
-                controller.exitDescriptionsInRoom.Add(currentRoom.exits[i].exitDescription);
+				if (currentRoom.exits[i].isExplicit) {
+					switch (currentRoom.exits[i].myKeyword) {
+						case DirectionKeyword.north:
+							temp = "<b><color=#FBEBB5>[N]:</color></b> ";
+							break;
+
+						case DirectionKeyword.south:
+							temp = "<b><color=#FBEBB5>[S]:</color></b> ";
+							break;
+
+						case DirectionKeyword.east:
+							temp = "<b><color=#FBEBB5>[E]:</color></b> ";
+							break;
+
+						case DirectionKeyword.west:
+							temp = "<b><color=#FBEBB5>[O]:</color></b> ";
+							break;
+
+						case DirectionKeyword.northEast:
+							temp = "<b><color=#FBEBB5>[NE]:</color></b> ";
+							break;
+
+						case DirectionKeyword.southEast:
+							temp = "<b><color=#FBEBB5>[SE]:</color></b> ";
+							break;
+
+						case DirectionKeyword.northWest:
+							temp = "<b><color=#FBEBB5>[NO]:</color></b> ";
+							break;
+
+						case DirectionKeyword.southWest:
+							temp = "<b><color=#FBEBB5>[SO]:</color></b> ";
+							break;
+					}
+				}
+                controller.exitDescriptionsInRoom.Add(temp + currentRoom.exits[i].exitDescription);
             }
         }
     }
@@ -250,6 +287,8 @@ public class PlayerRoomNavigation : MonoBehaviour {
             currentPosition = currentRoom.roomPosition;
 
             miniMapper.MovePlayerInMap(currentPosition);
+			equipManager.updateText();
+			inventoryManager.DisplayInventory();
 
             PlayerChangedRooms(); //Añadido para network
 
@@ -261,7 +300,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
         }
         else
         {
-            controller.LogStringWithReturn("Pensaste en una dirección dificil de alcanzar fisicamente...");
+            controller.LogStringWithReturn("Eso sería bastante difícil.");
         }
     }
 
@@ -272,7 +311,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
     /// <param name="directionNoun"></param>
     public void AttemptToChangeRooms(string directionNoun)
     {
-        controller.LogStringWithReturn("Pensaste en una dirección imposible...");
+        controller.LogStringWithReturn("Eso no es posible.");
     }
 
     public void MovePlayerToRoom(RoomObject room)
@@ -306,7 +345,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
                 currentRoom.playersInRoom[i].currentVisibility <= controller.playerManager.characteristics.vision.y)
             {
                 //Temporal, supongo
-                controller.playerDescriptionssInRoom.Add(currentRoom.playersInRoom[i].playerName + " está aqui.");
+                controller.playerDescriptionssInRoom.Add("<b><color=#F9EEC1>" + currentRoom.playersInRoom[i].playerName + "</color></b> está aqui.");
             }          
         }
     }

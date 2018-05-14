@@ -36,7 +36,7 @@ MonoBehaviour:
   roomPosition: {x: 0, y: 0, z: 8}
   roomName: Rupa
   roomDescription: "<i>He aqu\xED un agradable conjunto de sensaciones que agrupamos
-    bajo el nombre de la rosa.</i> La luz te envuelve y ahora lo \xFAnico que hace
+    con el nombre de una 'rosa'.</i> La luz te envuelve y ahora lo \xFAnico que hace
     falta para estar vivo es un cuerpo. "
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
   charactersInRoom: []
@@ -46,34 +46,6 @@ MonoBehaviour:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
     exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 7
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 6
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 4
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 2
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
-  - myKeyword: 1
-    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
-    exitDescription: 
-    exitActionDescription: 
+    exitActionDescription: "All\xE1 viene la realidad."
   enemiesInRoom: []
   changeExits: 0

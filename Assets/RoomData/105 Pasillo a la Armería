@@ -1,1 +1,1 @@
-﻿{"roomPositionData":{"x":-1.0,"y":0.0,"z":1.0},"roomDescriptionData":null,"roomNameData":"Pasillo a la Armer\u00eda","exitsData":[]}
+﻿{"roomPositionData":{"x":-1.0,"y":0.0,"z":1.0},"roomDescriptionData":null,"roomNameData":"Pasillo a la Armer\u00eda","exitsData":[{"myKeywordData":"oeste","connectedRoomPosition":{"x":-2.0,"y":0.0,"z":1.0},"exitDescriptionData":"","exitActionDescriptionData":""},{"myKeywordData":"este","connectedRoomPosition":{"x":0.0,"y":0.0,"z":1.0},"exitDescriptionData":"","exitActionDescriptionData":""}]}

@@ -155,11 +155,11 @@ public class GameController : MonoBehaviour {
 
     public IEnumerator StopTextWhileConnecting()
     {
-        LogStringWithoutReturn("Entrando....");
+        LogStringWithoutReturn("Entrando...");
 
         yield return new WaitUntil(() => NetworkManager.Instance.connected);
 
-        LogStringWithoutReturn("Conectado al mundo real");
+        LogStringWithoutReturn("Conectado al mundo real.");
     }
 
     public void CreateNewDisplay()
@@ -246,14 +246,27 @@ public class GameController : MonoBehaviour {
 
     private string RoomDescription()
     {
-        string joinedExitDescriptions = string.Join("\n", exitDescriptionsInRoom.ToArray());
+		string combinedText = "<color=#F9EEC1><b>" + playerRoomNavigation.currentRoom.roomName + ".</b></color>\n"
+			+ playerRoomNavigation.currentRoom.roomDescription + "\n";
+
+		string joinedExitDescriptions = string.Join("\n", exitDescriptionsInRoom.ToArray());
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptionsInRoom.ToArray());
         string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
         string joinedPlayers = string.Join("\n", playerDescriptionssInRoom.ToArray());
 
-        string combinedText = "<b>" + playerRoomNavigation.currentRoom.roomName + ".</b>\n"
-			+ playerRoomNavigation.currentRoom.roomDescription + "\n" + joinedExitDescriptions + "\n"
-            + "\n" + joinedInteractionDescriptions + "\n" + joinedNPCDescriptions + "\n" + joinedPlayers;
+		if (exitDescriptionsInRoom.ToArray() != null) {
+			combinedText += joinedExitDescriptions + "\n";
+		}
+
+		if (interactionDescriptionsInRoom.ToArray() != null) {
+			combinedText += joinedInteractionDescriptions + "\n";
+		}
+
+		if (npcDescriptionsInRoom.ToArray() != null) {
+			combinedText += joinedNPCDescriptions + "\n";
+		}
+
+		combinedText += joinedPlayers;
 
         return combinedText;
     }

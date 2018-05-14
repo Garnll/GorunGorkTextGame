@@ -41,9 +41,9 @@ MonoBehaviour:
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 5
-    conectedRoom: {fileID: 11400000, guid: 4b158f0e3d47ade4c8c7ffb9a225ac11, type: 2}
-    exitDescription: Hay una salida al noroeste.
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
+    exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

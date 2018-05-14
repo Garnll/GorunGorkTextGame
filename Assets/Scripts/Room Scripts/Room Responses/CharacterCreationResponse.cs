@@ -82,7 +82,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Indica nuevamente tu raza: [Toro], [Conejo], [Oso] o [Búho].");
+                    gameController.LogStringWithReturn("Indica nuevamente tu raza: <b><color=#FBEBB5>[Toro, Conejo, Oso, Búho]</color></b>.");
                 }
             }
         }
@@ -105,7 +105,7 @@ public class CharacterCreationResponse : RoomResponse {
                 }
                 else
                 {
-                    gameController.LogStringWithReturn("Indica nuevamente tu género: [M]acho o [H]embra.");
+                    gameController.LogStringWithReturn("Indica nuevamente tu género: <b><color=#FBEBB5>[Macho, Hembra]</color></b>");
                 }
             }
         }
@@ -120,7 +120,9 @@ public class CharacterCreationResponse : RoomResponse {
                 if (AskForConfirmation(input[0]))
                 {
                     gameController.playerManager.playerName = tempInput;
-                    gameController.LogStringWithReturn("Tu nombre es " + tempInput + ".");
+
+
+					gameController.LogStringWithReturn("Ahora te llamas <b><color=#F9EEC1>" + tempInput + "</color></b>.");
 
                     nameGiven = true;
 
@@ -151,15 +153,16 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     tempInput = raceName;
                     tempRaceCode = i;
-                    gameController.LogStringWithReturn("¿Estás seguro de querer ser " + possibleRaces[i].raceName + "? [Si/No]");
+                    gameController.LogStringWithReturn("¿Estás seguro de querer ser " + possibleRaces[i].raceName 
+						+ "? <b><color=#FBEBB5>[Sí, No]</color></b>");
                     isAskingForConfirmation = true;
                     return;
                 }
             }
         }
 
-        gameController.LogStringWithReturn("La raza \"" + raceName 
-            + "\" no está disponible en el sistema. Por favor, elige una de las razas disponibles: [Toro], [Conejo], [Oso] o [Búho].");
+        gameController.LogStringWithReturn("Ahora mismo es imposible nacer como \"" + raceName 
+            + "\". Intenta de nuevo: <b><color=#FBEBB5>[Toro, Conejo, Oso, Búho]</color></b>.");
     }
 
     private string AskForRaceDescription(string raceName)
@@ -188,29 +191,29 @@ public class CharacterCreationResponse : RoomResponse {
         {
             isAskingForConfirmation = true;
             tempInput = "macho";
-            gameController.LogStringWithReturn("Has elegido renacer como macho. ¿Estás seguro? (SI/NO)");
+            gameController.LogStringWithReturn("Has elegido renacer como macho. ¿Estás seguro? <b><color=#FBEBB5>[Sí, No]</color></b>");
             return;
         }
         if (playerGender == "hembra" || playerGender == "h")
         {
             isAskingForConfirmation = true;
             tempInput = "hembra";
-            gameController.LogStringWithReturn("Has elegido renacer como hembra. ¿Estás seguro? (SI/NO)");
+            gameController.LogStringWithReturn("Has elegido renacer como hembra. ¿Estás segura? <b><color=#FBEBB5>[Sí, No]</color></b>");
             return;
         }
 
         gameController.LogStringWithReturn("Es comprensivo que quieras ser \"" + playerGender + "\", pero eso solo existe en Tumblr. " +
-            "Elige un género entre [M]acho y [H]embra.");
+			"Elige un género entre <b><color=#FBEBB5>[Macho]</color></b> y <b><color=#FBEBB5>[Hembra]</color></b>.");
 
     }
 
     private void InputPlayerName(string playerName)
     {
         tempInput = playerName;
-        gameController.LogStringWithReturn("Tu nombre a partir de ahora será \"" 
-            + playerName
-            + "\". ¿Quieres vivir con este nombre el resto de tu existencia? [S/N]"
-            );
+        gameController.LogStringWithReturn("Tu nombre a partir de ahora será <b><color=#F9EEC1>\""
+			+ playerName
+            + "\"</color></b> ¿De acuerdo?. <b><color=#FBEBB5>[Sí, No]</b></color>"
+			);
         isAskingForConfirmation = true;
     }
 
@@ -221,13 +224,16 @@ public class CharacterCreationResponse : RoomResponse {
         if (playerResponse == "si" || playerResponse == "s" || 
 			playerResponse == "sí" || playerResponse == "Sí" || 
 			playerResponse == "Si" || playerResponse == "S" ||
-			playerResponse == "SI" || playerResponse == "SÍ")
+			playerResponse == "SI" || playerResponse == "SÍ" ||
+			playerResponse == "sip" || playerResponse == "bueno" || playerResponse == "ok"
+			|| playerResponse == "weno")
         {
             isAskingForConfirmation = false;
             return true;
         }
         else if (playerResponse == "no" || playerResponse == "n" ||
-			playerResponse == "NO" || playerResponse == "No" || playerResponse == "N")
+			playerResponse == "NO" || playerResponse == "No" || playerResponse == "N" || playerResponse == "nope"
+			|| playerResponse == "nop" || playerResponse == "neh" || playerResponse == "nah" || playerResponse == "ño") 
         {
             isAskingForConfirmation = false;
             return false;
@@ -235,7 +241,8 @@ public class CharacterCreationResponse : RoomResponse {
         else
         {
             isAskingForConfirmation = false;
-            gameController.LogStringWithReturn("No se ha detectado respuesta SI/NO. Reiniciando.");
+            gameController.LogStringWithReturn("Anda, que es una pregunta muy sencilla, solo tienes que decir <b><color=#FBEBB5>[Sí]</color></b>" +
+				" o <b><color=#FBEBB5>[No]</color></b>. Volvamos a intentarlo.");
             return false;
         }
     }

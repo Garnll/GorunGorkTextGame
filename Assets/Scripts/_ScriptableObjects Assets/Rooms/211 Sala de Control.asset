@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: 111 Sala de Control
+  m_Name: 211 Sala de Control
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -33,13 +33,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  roomPosition: {x: 0, y: 2, z: 1}
+  roomPosition: {x: 0, y: 2, z: 2}
   roomName: Sala de Control
   roomDescription: 
   roomResponse: {fileID: 0}
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
-  exits: []
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
+    exitDescription: 
+    exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

@@ -9,6 +9,7 @@ using System;
 public class InventoryManager : MonoBehaviour {
 
 	public PlayerManager player;
+	public PlayerRoomNavigation roomNav;
 
     [SerializeField] public List<InteractableObject> nounsInInventory = new List<InteractableObject>();
     private int lemons = 0;
@@ -41,29 +42,23 @@ public class InventoryManager : MonoBehaviour {
     /// </summary>
     public void DisplayInventory()
     {
-        string textToDisplay = "<b>Inventario</b>";
+		string textToDisplay = "";
+		if (roomNav.currentPosition.z != 8) {
+			textToDisplay = "<b>Inventario</b>";
+			textToDisplay += "\nCapacidad [" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
+			if (lemons > 0) { textToDisplay += "\n- " + lemons.ToString() + " Limones."; }
 
+			string newNounToDisplay;
+			for (int i = 0; i < nounsInInventory.Count; i++) {
+				newNounToDisplay = nounsInInventory[i].nouns[0];
+				if (nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
+					newNounToDisplay = "\n- Un " + nounsInInventory[i].nouns[0] + ".";
+				else
+					newNounToDisplay = "\n- Una " + nounsInInventory[i].nouns[0] + ".";
 
-		textToDisplay += "\nCapacidad [" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
-
-        if (lemons > 0)
-        {
-            textToDisplay += "\n- " + lemons.ToString() + " Limones.";
-        }
-
-        string newNounToDisplay;
-        for (int i = 0; i < nounsInInventory.Count; i++)
-        {
-            newNounToDisplay = nounsInInventory[i].nouns[0];
-
-            if (nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                newNounToDisplay = "\n- Un " + nounsInInventory[i].nouns[0] + ".";
-            else
-                newNounToDisplay = "\n- Una " + nounsInInventory[i].nouns[0] + ".";
-            
-
-            textToDisplay += newNounToDisplay;
-        }
+				textToDisplay += newNounToDisplay;
+			}
+		}
 
         text.text = textToDisplay;
     }
