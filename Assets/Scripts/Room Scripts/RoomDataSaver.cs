@@ -56,6 +56,15 @@ public class RoomDataSaver {
         SaveGame.Save<Room_Data>(roomToSave.name, roomData, SaveGamePath.RoomDataPath);
     }
 
+    public static void DeleteData(RoomObject roomToDelete)
+    {
+        if (SaveGame.Exists(roomToDelete.name, SaveGamePath.RoomDataPath))
+        {          
+            SaveGame.Delete(roomToDelete.name, SaveGamePath.RoomDataPath);
+        }
+
+    }
+
 
     public static void LoadData(RoomObject roomToLoad)
     {

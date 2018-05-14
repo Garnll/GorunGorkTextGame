@@ -6,6 +6,8 @@
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Say")]
 public class SayInput : InputActions {
 
+    PlayerInstance playerToSpeakTo;
+
     /// <summary>
     /// Responde exactamente lo que dijo el jugador menos el input.
     /// </summary>
@@ -13,8 +15,35 @@ public class SayInput : InputActions {
     /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords)
     {
-        NetworkManager.Instance.SayThingInRoom(SayJustTheString(separatedInputWords), controller.playerManager.playerName);
-        controller.LogStringWithReturn(SayExactString(separatedInputWords));
+        playerToSpeakTo = null;
+
+        if (separatedInputWords.Length <= 1)
+        {
+            controller.LogStringWithReturn("Ibas a decir algo pero te quedaste callado.");
+        }
+
+        separatedInputWords =  CheckDifferentPossibilities(separatedInputWords);
+
+        if (!playerToSpeakTo)
+        {
+            NetworkManager.Instance.SayThingInRoom(SayJustTheString(separatedInputWords), controller.playerManager.playerName);
+            controller.LogStringWithReturn(SayExactString(separatedInputWords));
+        }
+        else
+        {
+            if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(playerToSpeakTo))
+            {
+                NetworkManager.Instance.SayThingInRoomToPlayer(SayJustTheString(separatedInputWords),
+                    controller.playerManager.playerName,
+                    playerToSpeakTo.playerUserID);
+
+                controller.LogStringWithReturn(SayExactString(separatedInputWords, playerToSpeakTo.playerName));
+            }
+            else
+            {
+                controller.LogStringWithReturn(playerToSpeakTo.playerName + " no está en este lugar...");
+            }
+        }
     }
 
     /// <summary>
@@ -25,6 +54,17 @@ public class SayInput : InputActions {
     private string SayExactString(string[] stringToSay)
     {
         stringToSay[0] = "Dices a todos:";
+        stringToSay[1] = "\"" + stringToSay[1];
+        stringToSay[stringToSay.Length - 1] = stringToSay[stringToSay.Length - 1] + "\"";
+
+        string combinedStrings = string.Join(" ", stringToSay);
+
+        return combinedStrings;
+    }
+
+    private string SayExactString(string[] stringToSay, string otherPlayer)
+    {
+        stringToSay[0] = "Le dices a " +  otherPlayer + ":";
         stringToSay[1] = "\"" + stringToSay[1];
         stringToSay[stringToSay.Length - 1] = stringToSay[stringToSay.Length - 1] + "\"";
 
@@ -52,4 +92,46 @@ public class SayInput : InputActions {
         return combinedStrings;
     }
 
+
+    private string[] CheckDifferentPossibilities(string[] lastString)
+    {
+        int playerPossiblePosition = 1;
+
+        if (lastString.Length > 2)
+        {
+            if (lastString[1] == "a")
+            {
+                playerPossiblePosition = 2;
+            }
+        }
+        if (lastString.Length == playerPossiblePosition + 1)
+        {
+            return lastString;
+        }
+
+        if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(lastString[playerPossiblePosition]))
+        {
+            playerToSpeakTo = NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene[lastString[playerPossiblePosition]];
+
+            string[] newString = new string[lastString.Length - playerPossiblePosition];
+
+            newString[0] = "";
+
+            for (int i = 0; i <= playerPossiblePosition; i++)
+            {
+                newString[0] += lastString[i];
+            }
+
+            for (int i = 1; i < newString.Length; i++)
+            {
+                newString[i] = lastString[i + playerPossiblePosition];
+            }
+
+            return newString;
+        }
+        else
+        {
+            return lastString;
+        }
+    }
 }

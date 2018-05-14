@@ -69,6 +69,15 @@ public class RoomVisualMapper : MonoBehaviour {
         }
     }
 
+    public void EliminateRoom(RoomObject roomDeletd)
+    {
+        if (roomImagesDictionary.ContainsKey(roomDeletd))
+        {
+            DestroyImmediate(roomImagesDictionary[roomDeletd]);
+            roomImagesDictionary.Remove(roomDeletd);
+        }
+    }
+
     public void PutRoomInPlace(RoomObject roomToPut)
     {
         if (roomImagesDictionary.ContainsKey(roomToPut))

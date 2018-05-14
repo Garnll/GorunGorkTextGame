@@ -49,6 +49,7 @@ public class RoomObject : SerializedScriptableObject {
 
     public delegate void DescriptionChanges(RoomObject thisRoom);
     public static event DescriptionChanges OnChangeStuff;
+    public static event DescriptionChanges OnDeleteRoom;
 
     private void OnEnable()
     {
@@ -174,6 +175,18 @@ public class RoomObject : SerializedScriptableObject {
         else
         {
             Debug.LogWarning("Evento OnChangeStuff no está funcionando");
+        }
+    }
+
+    public void DeleteRoomAsset()
+    {
+        if (OnDeleteRoom != null)
+        {
+            OnDeleteRoom(this);
+        }
+        else
+        {
+            Debug.LogWarning("Evento OnDeleteRoom no está funcionando");
         }
     }
 

@@ -48,5 +48,19 @@ public class RoomCustomEditor : OdinEditor {
         {
             targetRoom.ChangeStuff();
         }
+
+
+        GUILayout.Space(50);
+
+        ///Saves descriptions, connected rooms, keywords, etc.
+        ///Does not change the room position.
+        if (GUILayout.Button("DELETE ROOM"))
+        {
+            if (EditorUtility.DisplayDialog("Deleting Room", "Are you sure you want to delete " + targetRoom.roomName + "?",
+                "Yes", "No"))
+            {
+                targetRoom.DeleteRoomAsset();
+            }
+        }
     }
 }
