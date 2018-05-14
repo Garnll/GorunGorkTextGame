@@ -59,7 +59,7 @@ public class RoomDataSaver {
     public static void DeleteData(RoomObject roomToDelete)
     {
         if (SaveGame.Exists(roomToDelete.name, SaveGamePath.RoomDataPath))
-        {
+        {          
             SaveGame.Delete(roomToDelete.name, SaveGamePath.RoomDataPath);
         }
 

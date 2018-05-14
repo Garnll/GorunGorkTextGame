@@ -333,6 +333,7 @@ public class RoomEditionController : MonoBehaviour {
         RoomDataSaver.DeleteData(roomToDelete);
         mapper.EliminateRoom(roomToDelete);
 
+        AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(roomToDelete));
         DestroyImmediate(roomToDelete, true);
     }
 
