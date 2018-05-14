@@ -332,6 +332,8 @@ public class RoomEditionController : MonoBehaviour {
 
         RoomDataSaver.DeleteData(roomToDelete);
         mapper.EliminateRoom(roomToDelete);
+
+        DestroyImmediate(roomToDelete, true);
     }
 
     private void OnDisable()
