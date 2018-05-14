@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 802 Sankhara
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: visibleObjectsInRoom
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 1|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|RoomObject+RoomVisibleObjects, Assembly-CSharp
+    - Name: interactableObject
+      Entry: 10
+      Data: 0
+    - Name: visionRange
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  roomPosition: {x: 0, y: -3, z: 8}
+  roomName: Sankhara
+  roomDescription: "Recuerdas c\xF3mo sol\xEDas utilizar ese tipo de palabras antes.
+    Tambi\xE9n al sol, que se desplazaba desde el este hacia el oeste. Es curioso
+    c\xF3mo tenemos palabras para todo. \n<i>Con la palabra creamos y con ella destru\xEDmos.</i>\nRecuerdas
+    la existencia de al menos cuatro nombres importantes para el movimiento.\n"
+  roomResponse: {fileID: 0}
+  charactersInRoom:
+  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
+    exitDescription: "Despl\xE1zate en una de las cuatro direcciones principales.
+      [N, S, E, O]"
+    exitActionDescription: 
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
+    exitDescription: 
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

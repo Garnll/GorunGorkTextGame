@@ -84,7 +84,7 @@ public class RoomEditionController : MonoBehaviour {
 
         if (existingRooms.ContainsKey(newRoomPosition))
         {
-            Debug.LogError("Ya hay una habitación en la posición: " + newRoomPosition.ToString());
+            Debug.LogError("Ya hay una habitación en la posición: " + newRoomPosition.ToString() + " : " + existingRooms[newRoomPosition].name);
             currentAnalizedRoom.roomPosition = oldRoomPosition;
         }
         else
