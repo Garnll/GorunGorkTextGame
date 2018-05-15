@@ -11,8 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bf4a3e0b187f34e840e2c1dfa20aac, type: 3}
   m_Name: Recetabebe
   m_EditorClassIdentifier: 
-  recipeName: 
-  product: {fileID: 0}
-  minTime: 0
-  maxTime: 0
+  recipeName: Receta Bebe
+  product: {fileID: 11400000, guid: 253352be4626c9a40af5c60635f199f2, type: 2}
+  minTime: 5
+  maxTime: 6
   fragments: []
+  beforeFragments: []
+  whileFragments: []
+  pauseFragments: []
+  afterFragments: []

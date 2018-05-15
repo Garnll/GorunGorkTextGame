@@ -6,6 +6,16 @@ using UnityEngine;
 public class Pocket : InteractableObject {
 
 	public int capacity;
-	public InteractableObject[] ingredients;
+	public List<InteractableObject> ingredients;
 
+	public int getVolumeOf(InteractableObject i) {
+		int count = 0;
+		foreach (InteractableObject n in ingredients) {
+			if (i == n) {
+				count++;
+			}
+		}
+
+		return count;
+	}
 }
