@@ -107,12 +107,22 @@ public class CraftingController : MonoBehaviour {
 	public void removeIngredient(InteractableObject ingredient, int times) {
 		int t = 0;
 		foreach (Pocket p in inventory.nounsInInventory) {
-			int volume = p.getVolumeOf(ingredient);
-			if (volume > 0) {
-				for (int i = 0; i < p.ingredients.Count; i++) {
-					if (p.ingredients[i] == ingredient && t < times) {
-						p.ingredients.RemoveAt(i);
-						t++;
+			if (p.have(ingredient)) {
+				int volume = p.getVolumeOf(ingredient);
+				if (times <= volume) {
+					for (int i = 0; i < p.ingredients.Count; i++) {
+						if (p.ingredients[i] == ingredient && t < times) {
+							p.ingredients.RemoveAt(i);
+							t++;
+
+							if (t == times && times == volume) {
+								p.usage--;
+							}
+
+							if (t == times) {
+								return;
+							}
+						}
 					}
 				}
 			}

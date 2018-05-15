@@ -30,12 +30,18 @@ public class ExamineInput : InputActions {
             return;
         }
 
-        InteractableObject objectToExamine = 
-            controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, true);
+		InteractableObject o = controller.playerManager.inventoryManager.tryOpen(separatedInputWords);
 
-        if (objectToExamine != null)
-        {
-            controller.itemHandler.ExamineObject(objectToExamine);
-        }
+		if (o != null) {
+			controller.LogStringWithReturn(o.Open());
+		}
+		else {
+			InteractableObject objectToExamine =
+				controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, true);
+
+			if (objectToExamine != null) {
+				controller.itemHandler.ExamineObject(objectToExamine);
+			}
+		}
     }
 }

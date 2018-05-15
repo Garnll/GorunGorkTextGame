@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 /// <summary>
 /// Maneja los objetos que están en el inventario y los muestra en una pantalla secundaria.
@@ -15,6 +16,8 @@ public class InventoryManager : MonoBehaviour {
     private int lemons = 0;
 
     public TextMeshProUGUI text;
+	public Image border;
+	public TextMeshProUGUI barra;
 
     private void Start()
     {
@@ -44,6 +47,8 @@ public class InventoryManager : MonoBehaviour {
     {
 		string textToDisplay = "";
 		if (roomNav.currentPosition.z != 8) {
+			barra.color = new Color(barra.color.r, barra.color.g, barra.color.b, 256);
+			border.color = new Color(border.color.r, border.color.g, border.color.b, 0);
 			textToDisplay = "<b>Inventario</b>";
 			textToDisplay += "\nCapacidad [" + player.characteristics.usedPods + "/" + player.characteristics.currentMaxPods + "]";
 			if (lemons > 0) { textToDisplay += "\n- " + lemons.ToString() + " Limones."; }
@@ -52,12 +57,23 @@ public class InventoryManager : MonoBehaviour {
 			for (int i = 0; i < nounsInInventory.Count; i++) {
 				newNounToDisplay = nounsInInventory[i].nouns[0];
 				if (nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-					newNounToDisplay = "\n- Un " + nounsInInventory[i].nouns[0] + ".";
+					newNounToDisplay = "\n- Un " + nounsInInventory[i].nouns[0];
 				else
-					newNounToDisplay = "\n- Una " + nounsInInventory[i].nouns[0] + ".";
+					newNounToDisplay = "\n- Una " + nounsInInventory[i].nouns[0];
+
+				if (nounsInInventory[i].GetType() == typeof(Pocket)) {
+					Pocket p = (Pocket) nounsInInventory[i];
+					Debug.Log(p.usage);
+					newNounToDisplay += " [" + p.usage + "/" + p.capacity + "]";
+				}
+
+				newNounToDisplay += ".";
 
 				textToDisplay += newNounToDisplay;
 			}
+		} else {
+			border.color = new Color(border.color.r, border.color.g, border.color.b, 0);
+			barra.color = new Color(barra.color.r, barra.color.g, barra.color.b, 0);
 		}
 
         text.text = textToDisplay;
@@ -121,4 +137,45 @@ public class InventoryManager : MonoBehaviour {
         return true;
     }
 
+	public bool hasPockets() {
+		for (int i=0; i<nounsInInventory.Count; i++) {
+			if (nounsInInventory[i].GetType() == typeof(Pocket)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<Pocket> getPockets() {
+		List<Pocket> pockets = new List<Pocket>();
+		foreach (InteractableObject i in nounsInInventory) {
+			if (i.GetType() == typeof(Pocket)) {
+				pockets.Add(i as Pocket);
+			}
+		}
+
+		return pockets;
+	}
+
+	public InteractableObject tryOpen(string[] words) {
+
+		if (words[0] == "" || words[0] == " ") {
+			return null;
+		}
+
+
+		InteractableObject temp = null;
+
+		for (int i=0; i<nounsInInventory.Count; i++) {
+			if (nounsInInventory[i].isOpenable) {
+				for (int j=0; j<nounsInInventory[i].nouns.Length; j++) {
+						if (nounsInInventory[i].nouns[j] == words[words.Length - 1]) {
+							temp = nounsInInventory[i];
+						}
+				}
+			}
+		}
+
+		return temp;
+	}
 }

@@ -19,20 +19,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: visibleObjectsInRoom
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   roomPosition: {x: 0, y: -3, z: 8}
   roomName: Sankhara
   roomDescription: "Recuerdas c\xF3mo sol\xEDas utilizar ese tipo de palabras antes.
@@ -40,11 +27,10 @@ MonoBehaviour:
     c\xF3mo tenemos palabras para todo. \n<i>Con la palabra creamos y con ella destru\xEDmos.</i>\nRecuerdas
     la existencia de al menos cuatro nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
   roomResponse: {fileID: 0}
-  charactersInRoom:
-  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
+  visibleObjectsInRoom: []
+  charactersInRoom: []
   playersInRoom: []
-  npcTemplatesInRoom:
-  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
@@ -67,9 +53,5 @@ MonoBehaviour:
     isExplicit: 0
     exitDescription: 
     exitActionDescription: 
-  enemiesInRoom:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemiesInRoom: []
   changeExits: 0

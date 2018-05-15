@@ -241,7 +241,7 @@ public class GameController : MonoBehaviour {
                 string descriptionNotInInventory = currentRoom.visibleObjectsInRoom[i].interactableObject.description;
                 if (descriptionNotInInventory != null)
                 {
-                    interactionDescriptionsInRoom.Add(descriptionNotInInventory + ".");
+                    interactionDescriptionsInRoom.Add(descriptionNotInInventory);
                 }
             }
         }

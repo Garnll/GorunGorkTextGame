@@ -81,7 +81,7 @@ public class DialogueController : MonoBehaviour {
 		string tempNarrationText = "";
 
 		if (currentDialogue.narrator == Dialogue.NarratorType.character) {
-			tempNarrationText = "<b>" + currentNpc.npcName + ":</b> ";
+			tempNarrationText = "<b><color=#F9EEC1>" + currentNpc.npcName + ":</color></b> ";
 		}
 		controller.LogStringWithReturn( tempNarrationText + currentDialogue.getText() + getChoicesText() + endText);
 	}
@@ -91,7 +91,7 @@ public class DialogueController : MonoBehaviour {
 		if (currentDialogue.choices != null) {
 			foreach (Choice c in currentDialogue.choices) {
 				if (c.isAble()) {
-					temp += "<b>[" + c.keywords[0].ToUpper() + "]</b> " + c.text + "\n";
+					temp += "<b><color=#FBEBB5>[" + c.keywords[0].ToUpper() + "]</color></b> " + c.text + "\n";
 				}
 			}
 		} else {

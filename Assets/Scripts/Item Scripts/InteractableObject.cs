@@ -18,11 +18,16 @@ public class InteractableObject : ScriptableObject {
     public float weight = 10;
 	public int pods = 1;
 	public bool isIngredient;
+	public bool isOpenable;
 
 	[Space(5)]
     [TextArea] public string description = "Descripción en la habitación";
     [TextArea] public string descriptionAtAnalized = "Descripción al ser analizado";
     [Space(10)]
     public Interaction[] interactions;
+
+	public virtual string Open() {
+		return "";
+	}
 
 }

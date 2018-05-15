@@ -16,7 +16,7 @@ public class RoomObject : SerializedScriptableObject {
 	[TextArea] public string roomDescription;
     public RoomResponse roomResponse;
     [Space(5)]
-    public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
+    [SerializeField] public List<RoomVisibleObjects> visibleObjectsInRoom = new List<RoomVisibleObjects>();
 	[Space(5)]
 	public List<DialogueNPC> charactersInRoom = new List<DialogueNPC>();
     [Space(5)]
@@ -37,6 +37,7 @@ public class RoomObject : SerializedScriptableObject {
     /// <summary>
     /// Clase que tienen las habitaciones que contiene un objeto interactuable y su rango de visión respectivo
     /// </summary>
+	[System.Serializable]
     public class RoomVisibleObjects
     {
         public InteractableObject interactableObject;

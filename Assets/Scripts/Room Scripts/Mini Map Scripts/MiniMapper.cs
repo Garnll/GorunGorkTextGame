@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniMapper : MonoBehaviour {
 
     public Camera mapCamera;
     public GameObject maps;
+	public Image border;
 
     private GameObject[] mapsZs;
 
@@ -24,13 +26,15 @@ public class MiniMapper : MonoBehaviour {
     {
         if (playerPosition.z == 8)
         {
-            mapCamera.gameObject.SetActive(false);
+			border.color = new Color(border.color.r, border.color.g, border.color.b, 0);
+			mapCamera.gameObject.SetActive(false);
             return;
         }
         else
         {
             mapCamera.gameObject.SetActive(true);
-        }
+			border.color = new Color(border.color.r, border.color.g, border.color.b, 0);
+		}
 
         for (int i = 0; i < mapsZs.Length; i++)
         {

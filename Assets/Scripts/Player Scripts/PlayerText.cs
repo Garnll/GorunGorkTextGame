@@ -10,12 +10,17 @@ public class PlayerText : MonoBehaviour {
 	public TextMeshProUGUI text;
 	public Gradient healthGradient;
 
+	public Color inactiveColor;
+	public Color activeColor;
+
 	
 	public void updateText() {
-		text.text = "---";
+		text.color = inactiveColor;
+		text.text = "<b>- + -</b>";
 		string t = "";
 
 		if (GlobalVariables.ContainsVariable("om") && GlobalVariables.GetValueOf("om") == 1) {
+			text.color = activeColor;
 			text.text = "";
 			if (player.playerName != "jugador")
 				t += player.playerName + " | ";
@@ -52,11 +57,13 @@ public class PlayerText : MonoBehaviour {
 			if (player.currentState.stateName != "estándar")
 				text.text += " [" + player.currentState.stateName + "]";
 
+			int health = Mathf.RoundToInt(player.currentHealth / player.MaxHealth * 100);
+			if (health > 100) {
+				health = 100;
+			}
 
 			string code = ColorUtility.ToHtmlStringRGB(healthGradient.Evaluate(player.currentHealth / player.MaxHealth));
-			text.text += "<color=#" + code + "> Salud " 
-				+ Mathf.RoundToInt(player.currentHealth / player.MaxHealth * 100) + "%</color>";
-
+			text.text += "<color=#" + code + "> Salud " + health + "%</color>";
 
 		}
 

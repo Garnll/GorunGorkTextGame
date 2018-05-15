@@ -54,7 +54,12 @@ public class CharacterCreationResponse : RoomResponse {
             {
                 if (input[0] == "preguntar")
                 {
-                    gameController.LogStringWithReturn(AskForRaceDescription(input[1]));
+					try { 
+						gameController.LogStringWithReturn(AskForRaceDescription(input[1]));
+					}
+					catch{
+						gameController.LogStringWithReturn("<color=#9C9C9CC0>¿Por cuál raza?</color>");
+					}
                 }
                 if (input.Length > 1)
                 {
@@ -161,8 +166,7 @@ public class CharacterCreationResponse : RoomResponse {
             }
         }
 
-        gameController.LogStringWithReturn("Ahora mismo es imposible nacer como \"" + raceName 
-            + "\". Intenta de nuevo: <b><color=#FBEBB5>[Toro, Conejo, Oso, Búho]</color></b>.");
+        gameController.LogStringWithReturn("Intenta de nuevo: <b><color=#FBEBB5>[Toro, Conejo, Oso, Búho]</color></b>.");
     }
 
     private string AskForRaceDescription(string raceName)

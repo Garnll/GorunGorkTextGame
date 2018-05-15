@@ -19,7 +19,7 @@ public class TalkToInput : InputActions {
 			string tempNarrationText = "";
 
 			if (controller.dialogueController.currentDialogue.narrator == Dialogue.NarratorType.character) {
-				tempNarrationText = "<b>" + controller.dialogueController.currentNpc.npcName + ":</b> ";
+				tempNarrationText = "<b><color=#F9EEC1>" + controller.dialogueController.currentNpc.npcName + ":</color></b> ";
 			}
 
 			controller.LogStringWithReturn(tempNarrationText + npc.dialogueTree.getText()

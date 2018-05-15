@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour {
 
     public PlayerCharacteristics characteristics;
 	public PlayerText playerText;
+	public InventoryManager inventoryManager;
 	
 	
     public GameController controller;

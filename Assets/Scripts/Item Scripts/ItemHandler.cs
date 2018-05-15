@@ -114,15 +114,25 @@ public class ItemHandler : MonoBehaviour {
     {
         InteractableObject objectToInteract = null;
 
+
+
         for (int i = 0; i < objectsFound.Length; i++)
         {
             for (int f = 0; f < inventoryManager.nounsInInventory.Count; f++)
             {
-                if (objectsFound[i].nouns == inventoryManager.nounsInInventory[f].nouns)
-                {
-                    objectToInteract = inventoryManager.nounsInInventory[f];
-                    break;
-                }
+				if (inventoryManager.nounsInInventory[f].GetType() == typeof(Pocket)) {
+					Pocket p = inventoryManager.nounsInInventory[f] as Pocket;
+					if (p.have(objectsFound[i])) {
+						objectToInteract = p.ingredients[p.getIndex(objectsFound[i])];
+						break;
+					}
+				}
+				else {
+					if (objectsFound[i].nouns == inventoryManager.nounsInInventory[f].nouns) {
+						objectToInteract = inventoryManager.nounsInInventory[f];
+						break;
+					}
+				}
             }
 
             if (objectToInteract != null)
@@ -151,7 +161,7 @@ public class ItemHandler : MonoBehaviour {
 
         if (inventoryManager.nounsInInventory.Count == 0)
         {
-            combinedText.Add("-Nada");
+            combinedText.Add("- Nada.");
         }
 
         for (int i = 0; i < inventoryManager.nounsInInventory.Count; i++)
@@ -159,9 +169,9 @@ public class ItemHandler : MonoBehaviour {
             objectToDisplay = inventoryManager.nounsInInventory[i].objectName;
 
             if (inventoryManager.nounsInInventory[i].nounGender == InteractableObject.WordGender.male)
-                objectToDisplay = "-Un " + inventoryManager.nounsInInventory[i].objectName;
+                objectToDisplay = "- Un " + inventoryManager.nounsInInventory[i].objectName + ".";
             else
-                objectToDisplay = "-Una " + inventoryManager.nounsInInventory[i].objectName;
+                objectToDisplay = "- Una " + inventoryManager.nounsInInventory[i].objectName + ".";
 
             combinedText.Add(objectToDisplay);
         }
@@ -225,49 +235,67 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
+		if (objectToTake.isIngredient) {
+			if (inventoryManager.hasPockets()) {
+				List<Pocket> pockets = inventoryManager.getPockets();
+				Pocket currentPocket = null;
+
+				for (int i = 0; i < pockets.Count; i++) {
+					if (!pockets[i].have(objectToTake) && pockets[i].usage >= pockets[i].capacity) {
+						Debug.Log("El pocket no tiene el ingrediente ni capacidad para guardarlo");
+					}
+					else {
+						if (pockets[i].have(objectToTake)) {
+							currentPocket = pockets[i];
+							break;
+						}
+						else {
+							currentPocket = pockets[i];						
+						}
+					}
+				}
+				Debug.Log(currentPocket.objectName);
+				currentPocket.saveIngredient(objectToTake);
+				removeFromRoom(objectToTake);
+				inventoryManager.DisplayInventory();
+				controller.LogStringWithReturn(takeInteraction.textResponse);
+				return;
+			} 
+		}
+
 		if (!controller.playerManager.characteristics.checkPodsWith(objectToTake.pods)) {
 			string objectToDisplay = objectToTake.objectName;
-
 			if (objectToTake.nounGender == InteractableObject.WordGender.male)
-				objectToDisplay = "El " + objectToTake.objectName;
+				objectToDisplay = "No hay espacio para recoger el " + objectToTake.objectName + ".";
 			else
-				objectToDisplay = "La " + objectToTake.objectName;
-
-			objectToDisplay += " pesa demasiado para levantarl";
-
-			if (objectToTake.nounGender == InteractableObject.WordGender.male)
-				objectToDisplay += "o.";
-			else
-				objectToDisplay += "a.";
+				objectToDisplay = "No hay espacio para recoger la " + objectToTake.objectName + ".";
 
 			controller.LogStringWithReturn(objectToDisplay);
-
 			return;
 		}
 
-        if (takeInteraction.isInverseInteraction)
-        {
+		if (takeInteraction.isInverseInteraction){
             controller.LogStringWithReturn(takeInteraction.textResponse);
             return;
         }
 
-        inventoryManager.nounsInInventory.Add(objectToTake);
+		inventoryManager.nounsInInventory.Add(objectToTake);
 		controller.playerManager.characteristics.addWeight(objectToTake.pods);
 
-        for (int i = 0; i < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; i++)
-        {
-            if (controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[i].interactableObject ==
-                objectToTake)
-            {
-                controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.RemoveAt(i);
-                break;
-            }
-        }
-
+		removeFromRoom(objectToTake);
         inventoryManager.DisplayInventory();
-
         controller.LogStringWithReturn(takeInteraction.textResponse);
     }
+
+	public void removeFromRoom(InteractableObject objectToRemove) {
+		for (int i = 0; i < controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Count; i++) {
+			if (controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom[i].interactableObject ==
+				objectToRemove) {
+				controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.RemoveAt(i);
+				break;
+			}
+		}
+	}
 
     public void ThrowObject(InteractableObject objectToThrow)
     {
@@ -301,16 +329,38 @@ public class ItemHandler : MonoBehaviour {
             return;
         }
 
+
+
         RoomObject.RoomVisibleObjects newObjectInRoom = new RoomObject.RoomVisibleObjects();
         newObjectInRoom.interactableObject = objectToThrow;
         newObjectInRoom.visionRange = (int)Random.Range(-4,4);
 
         controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Add(newObjectInRoom);
-        inventoryManager.nounsInInventory.Remove(objectToThrow);
 
-		controller.playerManager.characteristics.removeWeight(objectToThrow.pods);
+		if (objectToThrow.isIngredient && inventoryManager.hasPockets()) {
+			bool throwed = false;
+			try {
+				foreach (Pocket p in inventoryManager.nounsInInventory) {
+					if (p.have(objectToThrow)) {
+						p.remove(objectToThrow, 1);
+						throwed = true;
+					}
+				}
+			} catch {
+
+			}
+
+			if (throwed == false) {
+				inventoryManager.nounsInInventory.Remove(objectToThrow);
+				controller.playerManager.characteristics.removeWeight(objectToThrow.pods);
+			}
+		}
+		else {
+			inventoryManager.nounsInInventory.Remove(objectToThrow);
+			controller.playerManager.characteristics.removeWeight(objectToThrow.pods);
+		}
+
         inventoryManager.DisplayInventory();
-
         controller.LogStringWithReturn(throwInteraction.textResponse);
     }
 

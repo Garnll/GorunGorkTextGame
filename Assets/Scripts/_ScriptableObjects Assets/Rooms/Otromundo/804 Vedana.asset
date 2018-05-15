@@ -19,20 +19,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: visibleObjectsInRoom
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   roomPosition: {x: 0, y: -1, z: 8}
   roomName: Vedanna
   roomDescription: "<i>No es hasta que estamos perdidos que comenzamos a comprendernos
@@ -41,6 +28,7 @@ MonoBehaviour:
     en ella a trav\xE9s de todo el vac\xEDo. Recuerdas c\xF3mo los sentidos hac\xEDan
     del vivir una experiencia \xFAnica. \n"
   roomResponse: {fileID: 0}
+  visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []

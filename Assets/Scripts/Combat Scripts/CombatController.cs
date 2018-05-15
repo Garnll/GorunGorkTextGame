@@ -311,7 +311,6 @@ public class CombatController : MonoBehaviour {
 	/// Cambia la GUI del jugador para mostrar la vida actual.
 	/// </summary>
 	/// 
-	int colorIndex = 0;
 
     public void UpdatePlayerLife()
     {
