@@ -28,7 +28,7 @@ public class Pocket : InteractableObject {
 
 	public override string Open() {
 		string text = "<b><color=#F9EEC1>" + objectName + ".</color></b>\n";
-		text += "Contenido: " + usage + " de " + capacity + " tipos de ingrediente.\n";
+		text += "Contenido: " + usage + " de " + capacity + " ingredientes.\n";
 		text += "---\n";
 
 		List<InteractableObject> tempList = new List<InteractableObject>();
