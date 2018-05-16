@@ -19,38 +19,28 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: visibleObjectsInRoom
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   roomPosition: {x: 0, y: 1, z: 1}
   roomName: Incubadora
   roomDescription: "De entre las paredes salen gruesas extensiones de cables que se
     distribuyen entre varias cabinas, que ocupan la mayor\xEDa del espacio. Sobre
     cada una de ellas hay un peque\xF1o aparato susurrando una melod\xEDa diferente.
     El suelo luce fr\xEDo, pero extra\xF1amente no lo est\xE1. "
-  roomResponse: {fileID: 0}
+  roomResponse: {fileID: 11400000, guid: ef7198d7bbdd8ef4da2d9eb441a11502, type: 2}
+  visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 4b158f0e3d47ade4c8c7ffb9a225ac11, type: 2}
+    isExplicit: 0
     exitDescription: "Tras un vidrio oscuro puedes ver la silueta de alguien que parece
       estar escuchando m\xFAsica."
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
+    isExplicit: 0
     exitDescription: "<b><color=#FBEBB5>[S]</color></b> Al costado <b><color=#FBEBB5>sur</color></b>
       de la habitaci\xF3n hay una gran apertura circular. "
     exitActionDescription: Ingresas a la apertura y te deslizas hacia lo desconocido.
