@@ -18,6 +18,12 @@ public class ExamineInput : InputActions {
         {
             string noun = separatedInputWords[1];
 
+            if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(noun))
+            {
+                NetworkManager.Instance.AskForCurrentStats(noun);
+                return;
+            }
+
             if (noun == "habitacion" || noun == "" || noun == "lugar")
             {
                 controller.LogStringWithReturn(controller.RefreshCurrentRoomDescription());

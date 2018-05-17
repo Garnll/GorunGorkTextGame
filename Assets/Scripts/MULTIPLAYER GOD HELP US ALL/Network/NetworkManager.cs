@@ -112,6 +112,15 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
         PlayerInstance newPlayer = Instantiate(playerInstancePrefab).GetComponent<PlayerInstance>();
 
+        UpdatePlayerInstancesStats(newPlayer, playerData);
+
+        playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
+
+        return newPlayer;
+    }
+
+    public void UpdatePlayerInstancesStats(PlayerInstance newPlayer, string[] playerData)
+    {
         newPlayer.playerName = playerData[0];
         Int32.TryParse(playerData[1], out newPlayer.playerUserID);
 
@@ -134,10 +143,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         newPlayer.currentRoom = RoomsChecker.RoomObjectFromVector(
             RoomsChecker.RoomPositionFromText(playerData[13])
             );
-
-        playerInstanceManager.playerInstancesOnScene.Add(newPlayer.playerName, newPlayer);
-
-        return newPlayer;
     }
 
     [PunRPC]
@@ -281,6 +286,40 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             string thingSomeoneSaid = string.Format("{0} te dice: \"{1}\" ", playerName, thingSaid);
             controller.LogStringWithoutReturn(thingSomeoneSaid);
         }
+    }
+
+    #endregion
+
+    #region Player Examination
+
+    public void AskForCurrentStats(string playerName)
+    {
+        if (!playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            return;
+        }
+
+        PlayerInstance player = playerInstanceManager.playerInstancesOnScene[playerName];
+
+
+        photonView.RPC("UpdateInstance", PhotonPlayer.Find(player.playerUserID), PhotonNetwork.player.ID);
+    }
+
+    [PunRPC]
+    public void UpdateInstance(int playerID)
+    {
+        string[] myUpdate = StoreMyPlayerData();
+
+        photonView.RPC("ExamineTarget", PhotonPlayer.Find(playerID), controller.playerManager.playerName, myUpdate);
+    }
+
+    [PunRPC]
+    public void ExamineTarget(string playerName, string[] playerUpdated)
+    {
+        UpdatePlayerInstancesStats(playerInstanceManager.playerInstancesOnScene[playerName], playerUpdated);
+
+        controller.LogStringWithoutReturn(playerName);
+        controller.LogStringWithoutReturn(string.Join("\n", playerUpdated));
     }
 
     #endregion
