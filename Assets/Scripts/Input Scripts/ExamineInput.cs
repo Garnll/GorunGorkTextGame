@@ -12,15 +12,16 @@ public class ExamineInput : InputActions {
     /// </summary>
     /// <param name="controller"></param>
     /// <param name="separatedInputWords"></param>
-    public override void RespondToInput(GameController controller, string[] separatedInputWords)
+    public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords)
     {
         if (separatedInputWords.Length > 1)
         {
             string noun = separatedInputWords[1];
+            string nounWithCapitals = separatedCompleteInputWords[1];
 
-            if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(noun))
+            if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(nounWithCapitals))
             {
-                NetworkManager.Instance.AskForCurrentStats(noun);
+                NetworkManager.Instance.AskForCurrentStats(nounWithCapitals);
                 return;
             }
 

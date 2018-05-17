@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Open")]
 public class OpenInput : InputActions {
 
-	public override void RespondToInput(GameController controller, string[] separatedInputWords) {
+	public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords) {
 		
 		if (separatedInputWords.Length > 1) {
 

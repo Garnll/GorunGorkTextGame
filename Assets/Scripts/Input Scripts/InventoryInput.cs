@@ -11,7 +11,7 @@ public class InventoryInput : InputActions {
     /// </summary>
     /// <param name="controller"></param>
     /// <param name="separatedInputWords"></param>
-    public override void RespondToInput(GameController controller, string[] separatedInputWords)
+    public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords)
     {
         controller.itemHandler.DisplayInventoryByCommand();
     }

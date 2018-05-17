@@ -58,6 +58,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
         char[] delimeterCharacters = { ' ' };
         string[] separatedInputWords = userInput.Split(delimeterCharacters);
+        string[] separatedCompleteWords = originalInput.Split(delimeterCharacters);
 
         switch (GameState.Instance.CurrentState)
         {
@@ -74,13 +75,13 @@ public class TextUserInput : SerializedMonoBehaviour {
                         string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
                         controller.LogStringWithReturn(userInputChanged);
 
-                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords);
+                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords, separatedCompleteWords);
                     }
                     else
                     {
                         string[] separatedOriginalInput = originalInput.Split(delimeterCharacters);
 
-                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput);
+                        inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedOriginalInput, separatedCompleteWords);
                     }
                 }
                 else if (separatedInputWords[0] != "")

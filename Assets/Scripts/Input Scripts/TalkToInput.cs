@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/TalkTo")]
 public class TalkToInput : InputActions {
 
-	public override void RespondToInput(GameController controller, string[] separatedInputWords) {
+	public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords) {
 
 		if (separatedInputWords.Length > 1) {
 

@@ -13,7 +13,7 @@ public class TakeInput : InputActions {
     /// <param name="separatedInputWords"></param>
 	/// 
 
-    public override void RespondToInput(GameController controller, string[] separatedInputWords)
+    public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords)
     {
         InteractableObject objectToTake = 
             controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, false);

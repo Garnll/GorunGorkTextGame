@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gorun Gork/InputActions/Equip")]
 public class EquipInput : InputActions {
 
-	public override void RespondToInput(GameController controller, string[] separatedInputWords) {
+	public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords) {
 		InteractableObject target = controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, true);
 
 		if (target != null) {

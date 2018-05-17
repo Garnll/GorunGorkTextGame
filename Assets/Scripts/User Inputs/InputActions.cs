@@ -8,5 +8,5 @@ public abstract class InputActions : ScriptableObject {
     public string keyWord;
     protected KeywordToStringConverter converter;
 
-    public abstract void RespondToInput(GameController controller, string[] separatedInputWords);
+    public abstract void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords);
 }
