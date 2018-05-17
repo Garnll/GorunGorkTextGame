@@ -48,4 +48,6 @@ MonoBehaviour:
   - InstantiateAlreadyExistingPlayers
   - ThingBeingSaidToeveryone
   - ThingBeingSaidToSomeone
+  - ExamineTarget
+  - UpdateInstance
   DisableAutoOpenWizard: 1
