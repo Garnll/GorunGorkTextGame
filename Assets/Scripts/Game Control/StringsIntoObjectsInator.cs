@@ -35,7 +35,7 @@ public class StringsIntoObjectsInator : MonoBehaviour {
 
     public Race RaceFromString(string raceName)
     {
-        for (int i = 0; i < race.Length; i++)
+        for (int i = 0; i < races.Length; i++)
         {
             if (raceName == races[i].raceName)
             {
