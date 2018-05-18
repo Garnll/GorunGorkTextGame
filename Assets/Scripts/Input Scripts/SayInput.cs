@@ -20,6 +20,7 @@ public class SayInput : InputActions {
         if (separatedInputWords.Length <= 1)
         {
             controller.LogStringWithReturn("Ibas a decir algo pero te quedaste callado.");
+            return;
         }
 
         separatedInputWords =  CheckDifferentPossibilities(separatedInputWords);
