@@ -56,6 +56,7 @@ public class ExamineInput : InputActions {
 
     void ExaminePlayer(PlayerInstance otherPlayer, GameController controller)
     {
+        NetworkManager.OnExamine -= ExaminePlayer;
         AnalizePlayerInfo(otherPlayer);
         controller.LogStringWithoutReturn(AnalizePlayerInfo(otherPlayer));
     }

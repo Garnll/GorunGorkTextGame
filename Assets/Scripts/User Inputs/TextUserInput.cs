@@ -72,7 +72,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                 {
                     if (inputDictionary[separatedInputWords[0]].GetType() != typeof(SayInput))
                     {
-                        string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                        string userInputChanged = "<color=#9C9C9CC0>" + originalInput + "</color>";
                         controller.LogStringWithReturn(userInputChanged);
 
                         inputDictionary[separatedInputWords[0]].RespondToInput(controller, separatedInputWords, separatedCompleteWords);
@@ -86,7 +86,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                 }
                 else if (separatedInputWords[0] != "")
                 {
-                    string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+                    string userInputChanged = "<color=#9C9C9CC0>" + originalInput + "</color>";
                     string answer = "<color=#9C9C9CC0>" + AnswerToWrongInput() + "</color>";
                     controller.LogStringWithReturn(userInputChanged + "\n" + answer);
                 }
@@ -103,7 +103,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
                 AnythingWorksResponse anythingWorks = controller.playerRoomNavigation.currentRoom.roomResponse as AnythingWorksResponse;
 
-                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + originalInput + "</color>");
                 anythingWorks.AcceptInput(controller);
                 DisplayInput();
 
@@ -119,7 +119,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
                 CharacterCreationResponse characterCreation = controller.playerRoomNavigation.currentRoom.roomResponse as CharacterCreationResponse;
 
-                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + originalInput + "</color>");
                 characterCreation.AcceptInput(separatedInputWords, originalInput);
                 DisplayInput();
                 break;
@@ -133,7 +133,7 @@ public class TextUserInput : SerializedMonoBehaviour {
                     return;
                 }
 
-                controller.LogStringWithReturn("<color=#9C9C9CC0>" + userInput + "</color>");
+                controller.LogStringWithReturn("<color=#9C9C9CC0>" + originalInput + "</color>");
                 controller.playerManager.characteristicsChanger.AcceptInput(separatedInputWords, controller);
                 DisplayInput();
                 break;
@@ -158,7 +158,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 				}
 
 				if (!controller.dialogueController.checkInput(separatedInputWords[0]) && controller.dialogueController.isTalking) {
-					string userInputChanged = "<color=#9C9C9CC0>" + userInput + "</color>";
+					string userInputChanged = "<color=#9C9C9CC0>" + originalInput + "</color>";
 					string answer = "<color=#9C9C9CC0>" + getWrongDialogue() + "</color>";
 					controller.LogStringWithReturn(userInputChanged + "\n" + answer);
 					controller.dialogueController.displayText();
