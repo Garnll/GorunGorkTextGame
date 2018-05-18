@@ -19,6 +19,10 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [HideInInspector] public bool isConnecting;
     [HideInInspector] public bool connected;
 
+
+    public delegate void PlayerInstancesChanges(PlayerInstance playerInstance, GameController controller);
+    public static event PlayerInstancesChanges OnExamine;
+
     private void Awake()
     {
         isConnecting = false;
@@ -316,10 +320,14 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void ExamineTarget(string playerName, string[] playerUpdated)
     {
-        UpdatePlayerInstancesStats(playerInstanceManager.playerInstancesOnScene[playerName], playerUpdated);
+        PlayerInstance player = playerInstanceManager.playerInstancesOnScene[playerName];
 
-        controller.LogStringWithoutReturn(playerName);
-        controller.LogStringWithoutReturn(string.Join("\n", playerUpdated));
+        UpdatePlayerInstancesStats(player, playerUpdated);
+
+        if (OnExamine != null)
+        {
+            OnExamine(player, controller);
+        }
     }
 
     #endregion

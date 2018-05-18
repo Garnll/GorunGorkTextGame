@@ -48,7 +48,7 @@ public class StringsIntoObjectsInator : MonoBehaviour {
 
     public CharacterEffectiveState StateFromString(string stateName)
     {
-        for (int i = 0; i < jobs.Length; i++)
+        for (int i = 0; i < states.Length; i++)
         {
             if (stateName == states[i].stateName)
             {

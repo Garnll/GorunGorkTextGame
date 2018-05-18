@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text;
+using UnityEngine;
 
 /// <summary>
 /// Input que el usuario utiliza para examinar objetos y/o personajes.
@@ -21,6 +22,7 @@ public class ExamineInput : InputActions {
 
             if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(nounWithCapitals))
             {
+                NetworkManager.OnExamine += ExaminePlayer;
                 NetworkManager.Instance.AskForCurrentStats(nounWithCapitals);
                 return;
             }
@@ -50,5 +52,26 @@ public class ExamineInput : InputActions {
 				controller.itemHandler.ExamineObject(objectToExamine);
 			}
 		}
+    }
+
+    void ExaminePlayer(PlayerInstance otherPlayer, GameController controller)
+    {
+        AnalizePlayerInfo(otherPlayer);
+        controller.LogStringWithoutReturn(AnalizePlayerInfo(otherPlayer));
+    }
+
+    string AnalizePlayerInfo(PlayerInstance player)
+    {
+        StringBuilder info = new StringBuilder();
+
+        info.Append(player.playerName);
+        info.Append("\n");
+        info.Append(player.playerRace.raceName);
+        info.Append("\n");
+        info.Append(player.playerJob.jobName);
+        info.Append("\n");
+        info.Append(player.playerState.stateName);
+
+        return info.ToString();
     }
 }
