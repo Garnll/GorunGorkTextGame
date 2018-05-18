@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
         if (currentDisplayText == null)
         {
             StopCoroutine("AnimateText");
-            oldText = "";
+            oldText = "\n";
             currentCharPosition = 0;
             CreateNewDisplay();
             writing = false;
