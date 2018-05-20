@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: "011 Entrada de la F\xE1brica"
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: 0, y: 2, z: 0}
+  roomName: "Entrada de la F\xE1brica"
+  roomDescription: "Varios seres peque\xF1os entran y salen con  cierto af\xE1n de
+    un gran ventanal triangular en la torre de la f\xE1brica. Bajo el ventanal hay
+    un arco donde parece que alguna vez hubo una puerta enorme. "
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom:
+  - interactableObject: {fileID: 11400000, guid: 8b572eae571f5574bbe96ddeac9c2804,
+      type: 2}
+    visionRange: 0
+  - interactableObject: {fileID: 11400000, guid: f9d98af698d563b48947ac1abefdeab1,
+      type: 2}
+    visionRange: -5
+  - interactableObject: {fileID: 11400000, guid: 2cc7351325bdd394caa1e83237fbae45,
+      type: 2}
+    visionRange: 0
+  charactersInRoom:
+  - {fileID: 11400000, guid: 750e27738446c4c4294bd638f8d84174, type: 2}
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
+    isExplicit: 1
+    exitDescription: Hay un camino hacia el <b><color=#FBEBB5>sur</color></b>.
+    exitActionDescription: 
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 39281d4c6aaca074d84a1dfbb9c0249b, type: 2}
+    isExplicit: 1
+    exitDescription: "Al <b><color=#FBEBB5>norte</color></b> est\xE1 la entrada a
+      la f\xE1brica."
+    exitActionDescription: Atraviesas el arco enorme hacia el norte.
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 8d6242cbc19629542b4730621cce9f49, type: 2}
+    isExplicit: 0
+    exitDescription: 
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

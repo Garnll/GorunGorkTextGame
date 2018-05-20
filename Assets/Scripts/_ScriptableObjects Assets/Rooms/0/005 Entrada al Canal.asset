@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 005 Entrada al Canal
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: 0, y: -1, z: 0}
+  roomName: "Canalizaci\xF3n"
+  roomDescription: "El r\xEDo, cantando, se asoma desde una grieta subterr\xE1nea
+    que ha sido convertida en una especie de acueducto. La corriente sigue hacia al
+    sur, y hay un peque\xF1o puente decorado con piedras que lo atraviesa haciendo
+    f\xE1cil cruzarlo."
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom: []
+  charactersInRoom:
+  - {fileID: 11400000, guid: dc26fde84d5ef344bad859f426b716ed, type: 2}
+  - {fileID: 11400000, guid: 2ffb79af44f588244aa0146e7873fdba, type: 2}
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
+    isExplicit: 1
+    exitDescription: "Subiendo hacia el <b><color=#FBEBB5>norte</color></b> est\xE1
+      La Encrucijada."
+    exitActionDescription: Subes una pendiente hacia La Encrucijada.
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: d09e9d2c79b72b540a5305d1e9fcef23, type: 2}
+    isExplicit: 1
+    exitDescription: Al <b><color=#FBEBB5>este</color></b> se encuentra la biblioteca.
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

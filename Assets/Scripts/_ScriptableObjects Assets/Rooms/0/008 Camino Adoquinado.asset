@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 008 Camino Adoquinado
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: 0, y: 1, z: 0}
+  roomName: Camino Adoquinado
+  roomDescription: 'Una calle de piedras perfectamente pulidas se extiende hacia el
+    sur. Algunas bancas se distribuyen a un lado. '
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom:
+  - interactableObject: {fileID: 11400000, guid: 2499196753e5ee042a8151deed25fa3f,
+      type: 2}
+    visionRange: 0
+  charactersInRoom:
+  - {fileID: 11400000, guid: a8efdd6200717af4e8242d95cb87d06b, type: 2}
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: f86595ad8ad6c934698c2168569ab3c3, type: 2}
+    isExplicit: 1
+    exitDescription: "Al <b><color=#FBEBB5>norte</color></b> se levanta imponente
+      la f\xE1brica."
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
+    isExplicit: 1
+    exitDescription: El camino se convierte en una plaza al <b><color=#FBEBB5>sur</color></b>,
+      La Encrucijada.
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 9ad20d436d7d9954b80e9b53421a976e, type: 2}
+    isExplicit: 1
+    exitDescription: "Hacia el <b><color=#FBEBB5>oeste</color></b> el camino tiene
+      una peque\xF1a ramificaci\xF3n que lleva hacia el jard\xEDn frontal de un templo."
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 2042da4d5afca0f4dae41a44372f8858, type: 2}
+    isExplicit: 1
+    exitDescription: "En direcci\xF3n <b><color=#FBEBB5>este</color></b> no hay camino
+      adoquinado, pero s\xED un sendero de tierra."
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

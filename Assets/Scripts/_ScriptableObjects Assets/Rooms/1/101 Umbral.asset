@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 101 Umbral
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: 0, y: 0, z: 1}
+  roomName: Umbral
+  roomDescription: 
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom: []
+  charactersInRoom: []
+  playersInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
+  exits:
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
+    isExplicit: 0
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
+    isExplicit: 0
+    exitDescription: 
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
+    isExplicit: 0
+    exitDescription: 
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 004 Sendero al Mercado
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: -1, y: 0, z: 0}
+  roomName: Sendero al Mercado
+  roomDescription: "El sendero consiste en un camino amplio de tierra acompa\xF1ado
+    por un desfile de arbustos en su lado norte. Al otro lado hay un despe\xF1adero. "
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom: []
+  charactersInRoom: []
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
+    isExplicit: 1
+    exitDescription: 'Hacia el <b><color=#FBEBB5>este</color></b> se encuentra La
+      Encrucijada. '
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

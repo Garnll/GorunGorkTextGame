@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
+  m_Name: 001 Encrucijada
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  roomPosition: {x: 0, y: 0, z: 0}
+  roomName: Encrucijada
+  roomDescription: El centro de la ciudad. En la encrucijada convergen los caminos
+    entre un grupo de esculturas que rodean una gran fuente de piedra.
+  roomResponse: {fileID: 0}
+  visibleObjectsInRoom:
+  - interactableObject: {fileID: 11400000, guid: 8b572eae571f5574bbe96ddeac9c2804,
+      type: 2}
+    visionRange: 0
+  - interactableObject: {fileID: 11400000, guid: cd1e4d71ace65f746bcbdb22c9779c57,
+      type: 2}
+    visionRange: 0
+  - interactableObject: {fileID: 11400000, guid: 8e92fe5ad7533d148aeccc6751f3049b,
+      type: 2}
+    visionRange: 0
+  charactersInRoom:
+  - {fileID: 11400000, guid: 1876711342fd23c4fb66d0477920275b, type: 2}
+  - {fileID: 11400000, guid: f425b12fe4e3cb14bafde630b272e7dc, type: 2}
+  - {fileID: 11400000, guid: af13907692b0a8840b0e042391135906, type: 2}
+  playersInRoom: []
+  npcTemplatesInRoom: []
+  exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
+    isExplicit: 0
+    exitDescription: "Al <b><color=#FBEBB5>norte</color></b> un camino adoquinado
+      se dirige a la entrada de la f\xE1brica."
+    exitActionDescription: 
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 77222184504e26f48a046ae0f84f933a, type: 2}
+    isExplicit: 0
+    exitDescription: "Dos pendientes rodean la entrada de un acueducto por donde emerge
+      el r\xEDo, al <b><color=#FBEBB5>sur</color></b>."
+    exitActionDescription: 
+  - myKeyword: 3
+    conectedRoom: {fileID: 11400000, guid: 53b52695bb33473448dccb8465914f8b, type: 2}
+    isExplicit: 0
+    exitDescription: "El mercado est\xE1 m\xE1s al <b><color=#FBEBB5>oeste</color></b>,
+      pasando un peque\xF1o sendero."
+    exitActionDescription: 
+  - myKeyword: 2
+    conectedRoom: {fileID: 11400000, guid: df3cc228b89f1d54493a93325dc68e08, type: 2}
+    isExplicit: 0
+    exitDescription: "Hacia el <b><color=#FBEBB5>este</color></b>, est\xE1 el taller
+      de los sastres."
+    exitActionDescription: 
+  enemiesInRoom: []
+  changeExits: 0

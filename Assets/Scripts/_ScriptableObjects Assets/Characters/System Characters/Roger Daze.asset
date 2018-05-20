@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
+  m_Name: Roger Daze
+  m_EditorClassIdentifier: 
+  npcName: Roger Daze
+  keywords:
+  - roger daze
+  - roger
+  - daze
+  npcLevel: 1
+  npcGender: m
+  npcRace: {fileID: 0}
+  npcJob: {fileID: 0}
+  defaultVisibility: 0
+  currentVisibility: 0
+  npcInRoomDescription: 
+  npcDetailedDescription: 
+  dialogueTree:
+    text: []
+    narrator: 0
+    choices: []
