@@ -257,21 +257,21 @@ public class GameController : MonoBehaviour {
         string joinedNPCDescriptions = string.Join("\n", npcDescriptionsInRoom.ToArray());
         string joinedPlayers = string.Join("\n", playerDescriptionssInRoom.ToArray());
 
-		if (exitDescriptionsInRoom.ToArray() != null) {
-			combinedText += joinedExitDescriptions + "\n";
-		}
-
-		if (interactionDescriptionsInRoom.ToArray() != null) {
+		if (interactionDescriptionsInRoom.ToArray().Length != 0) {
 			combinedText += joinedInteractionDescriptions + "\n";
 		}
 
-		if (npcDescriptionsInRoom.ToArray() != null) {
+		if (npcDescriptionsInRoom.ToArray().Length != 0) {
 			combinedText += joinedNPCDescriptions + "\n";
 		}
 
 		combinedText += joinedPlayers;
 
-        return combinedText;
+		if (exitDescriptionsInRoom.ToArray().Length != 0) {
+			combinedText += joinedExitDescriptions + "\n";
+		}
+
+		return combinedText;
     }
 
     /// <summary>

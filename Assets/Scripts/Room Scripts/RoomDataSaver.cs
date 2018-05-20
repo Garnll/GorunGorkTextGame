@@ -15,7 +15,9 @@ public class RoomDataSaver {
         public Vector3 connectedRoomPosition;
         public string exitDescriptionData;
         public string exitActionDescriptionData;
-    }
+		public bool isExplicit;
+
+	}
 
     public class Room_Data
     {
@@ -51,6 +53,7 @@ public class RoomDataSaver {
                 roomData.exitsData[i].connectedRoomPosition = roomToSave.exits[i].conectedRoom.roomPosition;
                 roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
                 roomData.exitsData[i].exitActionDescriptionData = roomToSave.exits[i].exitActionDescription;
+				roomData.exitsData[i].isExplicit = roomToSave.exits[i].isExplicit;
             }
         }
         SaveGame.Save<Room_Data>(roomToSave.name, roomData, SaveGamePath.RoomDataPath);
@@ -105,6 +108,7 @@ public class RoomDataSaver {
                         }
                         loadExit.exitDescription = roomDataLoad.exitsData[i].exitDescriptionData;
                         loadExit.exitActionDescription = roomDataLoad.exitsData[i].exitActionDescriptionData;
+						loadExit.isExplicit = roomDataLoad.exitsData[i].isExplicit;
 
                         roomToLoad.exits.Add(loadExit);
                     }

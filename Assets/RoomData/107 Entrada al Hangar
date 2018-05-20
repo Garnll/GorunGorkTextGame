@@ -1,1 +1,1 @@
-﻿{"roomPositionData":{"x":2.0,"y":0.0,"z":1.0},"roomDescriptionData":null,"roomNameData":"Entrada al Hangar","exitsData":[{"myKeywordData":"oeste","connectedRoomPosition":{"x":1.0,"y":0.0,"z":1.0},"exitDescriptionData":"","exitActionDescriptionData":""}]}
+﻿{"roomPositionData":{"x":2.0,"y":0.0,"z":1.0},"roomDescriptionData":null,"roomNameData":"Entrada al Hangar","exitsData":[{"myKeywordData":"oeste","connectedRoomPosition":{"x":1.0,"y":0.0,"z":1.0},"exitDescriptionData":"","exitActionDescriptionData":"","isExplicit":true}]}
