@@ -14,12 +14,6 @@ public class AttackInput : InputActions {
             NPCTemplate npcToAttack = 
                 controller.combatController.TryToFight(separatedInputWords, controller.playerRoomNavigation.currentRoom);
 
-            if (npcToAttack == null)
-            {
-                controller.LogStringWithReturn("No puedes atacar a " + separatedInputWords[1] + ".");
-                return;
-            }
-
             EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
 
             PlayerInstance player = controller.combatController.TryToFightPlayer(separatedCompleteInputWords,
@@ -36,6 +30,12 @@ public class AttackInput : InputActions {
 
                 controller.combatController.PrepareFight(player, controller.playerManager);
                 controller.LogStringWithReturn(" ");
+                return;
+            }
+
+            if (npcToAttack == null)
+            {
+                controller.LogStringWithReturn("No puedes atacar a " + separatedCompleteInputWords[1] + ".");
                 return;
             }
 
