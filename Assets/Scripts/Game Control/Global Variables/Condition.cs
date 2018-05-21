@@ -23,7 +23,15 @@ public class Condition {
 	}
 
 	public bool isTrue() {
+		if (variable == null || variable == "" || variable == " ") {
+			return true;
+		} else {
+			createGlobalVariable();
+		}
+
 		bool t = false;
+
+		
 
 		switch (condition) {
 			case ConditionType.Equal:

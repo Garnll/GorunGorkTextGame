@@ -14,6 +14,7 @@ public class Choice {
 
 	public ChangeVarEffect[] vars;
 	public AddQuestEffect[] quests;
+	public EnableExitEffect[] exits;
 
 	public Dialogue dialogue;
 
@@ -59,6 +60,10 @@ public class Choice {
 
 		foreach (AddQuestEffect q in quests) {
 			q.apply();
+		}
+
+		foreach (EnableExitEffect e in exits) {
+			e.apply();
 		}
 	}
 }

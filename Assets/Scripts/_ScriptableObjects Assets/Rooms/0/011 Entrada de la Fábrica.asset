@@ -41,17 +41,17 @@ MonoBehaviour:
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
-  - myKeyword: 1
-    conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
-    isExplicit: 1
-    exitDescription: Hay un camino hacia el <b><color=#FBEBB5>sur</color></b>.
-    exitActionDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 39281d4c6aaca074d84a1dfbb9c0249b, type: 2}
     isExplicit: 1
     exitDescription: "Al <b><color=#FBEBB5>norte</color></b> est\xE1 la entrada a
       la f\xE1brica."
     exitActionDescription: Atraviesas el arco enorme hacia el norte.
+  - myKeyword: 1
+    conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
+    isExplicit: 1
+    exitDescription: Hay un camino hacia el <b><color=#FBEBB5>sur</color></b>.
+    exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 8d6242cbc19629542b4730621cce9f49, type: 2}
     isExplicit: 0

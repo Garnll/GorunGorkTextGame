@@ -39,7 +39,7 @@ MonoBehaviour:
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: "<b><color=#FBEBB5>[S]</color></b> Al costado <b><color=#FBEBB5>sur</color></b>
       de la habitaci\xF3n hay una gran apertura circular. "
     exitActionDescription: Ingresas a la apertura y te deslizas hacia lo desconocido.

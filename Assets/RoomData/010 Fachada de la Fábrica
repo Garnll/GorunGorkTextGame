@@ -1,1 +1,1 @@
-﻿{"roomPositionData":{"x":-1.0,"y":2.0,"z":0.0},"roomDescriptionData":null,"roomNameData":"Fachada de la F\u00e1brica","exitsData":[{"myKeywordData":"este","connectedRoomPosition":{"x":0.0,"y":2.0,"z":0.0},"exitDescriptionData":"","exitActionDescriptionData":"","isExplicit":true}]}
+﻿{"roomPositionData":{"x":-1.0,"y":2.0,"z":0.0},"roomDescriptionData":null,"roomNameData":"Fachada de la F\u00e1brica","exitsData":[{"myKeywordData":"este","connectedRoomPosition":{"x":0.0,"y":2.0,"z":0.0},"exitDescriptionData":"","exitActionDescriptionData":"","isExplicit":true,"isAble":true}]}

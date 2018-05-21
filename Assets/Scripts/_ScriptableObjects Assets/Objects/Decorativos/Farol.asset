@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: Farol
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: ' '
+  objectName: Farol
   nouns:
   - farol
   weight: 10
   pods: 1
   isIngredient: 0
   isOpenable: 0
-  description: "Descripci\xF3n en la habitaci\xF3n"
+  description: Hay un <b><color=#FBEBB5>farol</color></b>.
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions: []

@@ -47,7 +47,7 @@ MonoBehaviour:
       La Encrucijada.
     exitActionDescription: 
   - myKeyword: 3
-    conectedRoom: {fileID: 11400000, guid: 9ad20d436d7d9954b80e9b53421a976e, type: 2}
+    conectedRoom: {fileID: 11400000, guid: 2042da4d5afca0f4dae41a44372f8858, type: 2}
     isExplicit: 1
     exitDescription: "Hacia el <b><color=#FBEBB5>oeste</color></b> el camino tiene
       una peque\xF1a ramificaci\xF3n que lleva hacia el jard\xEDn frontal de un templo."

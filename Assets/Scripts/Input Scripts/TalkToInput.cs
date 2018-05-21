@@ -21,12 +21,12 @@ public class TalkToInput : InputActions {
 			if (controller.dialogueController.currentDialogue.narrator == Dialogue.NarratorType.character) {
 				tempNarrationText = "<b><color=#F9EEC1>" + controller.dialogueController.currentNpc.npcName + ":</color></b> ";
 			}
-
+			controller.dialogueController.StartCoroutine("talk");
 			controller.LogStringWithReturn(tempNarrationText + npc.dialogueTree.getText()
 				+ controller.dialogueController.getChoicesText() + controller.dialogueController.endText);
 
 			controller.dialogueController.input = separatedInputWords[0];
-			controller.dialogueController.StartCoroutine("talk");
+			
 		}
 
 	}

@@ -9,27 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
-  m_Name: Lord Cacorricus III
+  m_Name: Gladys
   m_EditorClassIdentifier: 
-  npcName: Lord Cacorricus III
-  keywords:
-  - lord
-  - cacorricus
-  - lord cacorricus
-  - cacorricus iii
-  - cacurricus 3
-  - cacorricus tercero
-  - lord cacorricus iii
-  - lord cacorricus 3
-  - lord cacorricus tercero
-  npcLevel: 1
-  npcGender: m
+  npcName: Lukashenko
+  keywords: []
+  npcLevel: 0
+  npcGender: macho
   npcRace: {fileID: 0}
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: "<b><color=#FFD790>Lord Cacorricus III</color></b> est\xE1
-    aqu\xED."
+  npcInRoomDescription: 
   npcDetailedDescription: 
   dialogueTree:
     text: []

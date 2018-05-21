@@ -32,17 +32,17 @@ MonoBehaviour:
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: 
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: 
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []

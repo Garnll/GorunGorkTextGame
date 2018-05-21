@@ -44,25 +44,25 @@ MonoBehaviour:
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: "Al <b><color=#FBEBB5>norte</color></b> un camino adoquinado
       se dirige a la entrada de la f\xE1brica."
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 77222184504e26f48a046ae0f84f933a, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: "Dos pendientes rodean la entrada de un acueducto por donde emerge
       el r\xEDo, al <b><color=#FBEBB5>sur</color></b>."
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 53b52695bb33473448dccb8465914f8b, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: "El mercado est\xE1 m\xE1s al <b><color=#FBEBB5>oeste</color></b>,
       pasando un peque\xF1o sendero."
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: df3cc228b89f1d54493a93325dc68e08, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     exitDescription: "Hacia el <b><color=#FBEBB5>este</color></b>, est\xE1 el taller
       de los sastres."
     exitActionDescription: 

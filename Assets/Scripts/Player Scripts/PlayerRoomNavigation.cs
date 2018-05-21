@@ -74,7 +74,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
 							break;
 					}
 				}
-                controller.exitDescriptionsInRoom.Add(temp + currentRoom.exits[i].exitDescription);
+
+				if (currentRoom.exits[i].isAble) {
+					controller.exitDescriptionsInRoom.Add(temp + currentRoom.exits[i].exitDescription);
+				}
             }
         }
     }
@@ -265,12 +268,20 @@ public class PlayerRoomNavigation : MonoBehaviour {
     /// <param name="directionNoun"></param>
     public void AttemptToChangeRooms(DirectionKeyword directionNoun)
     {
+
         if (converter == null)
             converter = KeywordToStringConverter.Instance;
 
         if (exitDictionary.ContainsKey(directionNoun))
         {
-            Exit exitToGo = exitDictionary[directionNoun];
+			foreach (Exit e in currentRoom.exits) {
+				if (e.myKeyword == directionNoun && !e.isAble) {
+					controller.LogStringWithReturn("No puedes ir en esa dirección.");
+					return;
+				}
+			}
+
+			Exit exitToGo = exitDictionary[directionNoun];
 
             if (exitToGo.exitActionDescription == "")
             {

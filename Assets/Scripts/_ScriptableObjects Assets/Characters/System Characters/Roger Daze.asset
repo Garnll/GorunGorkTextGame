@@ -22,7 +22,7 @@ MonoBehaviour:
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: 
+  npcInRoomDescription: "<b><color=#FFD790>Roger Daze</color></b> est\xE1 aqu\xED."
   npcDetailedDescription: 
   dialogueTree:
     text: []

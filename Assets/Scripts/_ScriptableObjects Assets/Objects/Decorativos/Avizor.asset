@@ -22,7 +22,7 @@ MonoBehaviour:
   pods: 1
   isIngredient: 0
   isOpenable: 0
-  description: Hay un avizor patrullando.
+  description: Hay un <b><color=#FBEBB5>avizor</color></b> patrullando.
   descriptionAtAnalized: Los avizores no saben combatir, sin embargo son muy resistentes
     a cualquier ambiente.
   interactions:
