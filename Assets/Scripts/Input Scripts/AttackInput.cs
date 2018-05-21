@@ -22,7 +22,7 @@ public class AttackInput : InputActions {
 
             EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
 
-            PlayerInstance player = controller.combatController.TryToFightPlayer(separatedInputWords,
+            PlayerInstance player = controller.combatController.TryToFightPlayer(separatedCompleteInputWords,
                 controller.playerRoomNavigation.currentRoom);
 
             if (player != null)
