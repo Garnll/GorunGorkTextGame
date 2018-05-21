@@ -37,24 +37,28 @@ MonoBehaviour:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: f86595ad8ad6c934698c2168569ab3c3, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: "Al <b><color=#FBEBB5>norte</color></b> se levanta imponente
       la f\xE1brica."
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: El camino se convierte en una plaza al <b><color=#FBEBB5>sur</color></b>,
       La Encrucijada.
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 2042da4d5afca0f4dae41a44372f8858, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: "Hacia el <b><color=#FBEBB5>oeste</color></b> el camino tiene
       una peque\xF1a ramificaci\xF3n que lleva hacia el jard\xEDn frontal de un templo."
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 2042da4d5afca0f4dae41a44372f8858, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: "En direcci\xF3n <b><color=#FBEBB5>este</color></b> no hay camino
       adoquinado, pero s\xED un sendero de tierra."
     exitActionDescription: 

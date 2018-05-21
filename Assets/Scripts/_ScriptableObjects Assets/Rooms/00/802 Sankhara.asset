@@ -35,22 +35,26 @@ MonoBehaviour:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
+    isAble: 1
     exitDescription: "Despl\xE1zate en una de las cuatro direcciones principales:
       <b><color=#FBEBB5>[Norte, Sur, Este, Oeste]</color></b>"
     exitActionDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []

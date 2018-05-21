@@ -33,6 +33,7 @@ MonoBehaviour:
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: 'Hacia el <b><color=#FBEBB5>este</color></b> se encuentra La
       Encrucijada. '
     exitActionDescription: 

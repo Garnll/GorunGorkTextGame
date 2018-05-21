@@ -32,12 +32,14 @@ MonoBehaviour:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: ef755a55fd51c5948836273f8060abab, type: 2}
     isExplicit: 1
-    exitDescription: 
+    isAble: 0
+    exitDescription: Hay una salida al oeste.
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
-    isExplicit: 1
-    exitDescription: 
+    isExplicit: 0
+    isAble: 1
+    exitDescription: Hay una salida al este.
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

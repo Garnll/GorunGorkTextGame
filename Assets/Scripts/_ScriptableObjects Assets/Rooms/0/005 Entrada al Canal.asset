@@ -37,12 +37,14 @@ MonoBehaviour:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: "Subiendo hacia el <b><color=#FBEBB5>norte</color></b> est\xE1
       La Encrucijada."
     exitActionDescription: Subes una pendiente hacia La Encrucijada.
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: d09e9d2c79b72b540a5305d1e9fcef23, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: Al <b><color=#FBEBB5>este</color></b> se encuentra la biblioteca.
     exitActionDescription: 
   enemiesInRoom: []

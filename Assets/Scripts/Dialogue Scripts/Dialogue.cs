@@ -8,7 +8,7 @@ public class Dialogue {
 	[Space(10)]
 	[TextArea] public string[] text;
 
-	public enum NarratorType { narrator, character}
+	public enum NarratorType { character, narrator }
 	public NarratorType narrator;
 
 	[System.NonSerialized]

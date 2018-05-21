@@ -33,6 +33,7 @@ MonoBehaviour:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: df3cc228b89f1d54493a93325dc68e08, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: Al <b><color=#FBEBB5>sur</color></b> entre los arbustos se puede
       ver el Atelier.
     exitActionDescription: Pasas entre los arbustos hacia el sur, con cuidado de no
@@ -40,6 +41,7 @@ MonoBehaviour:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 59d800cbdb95f664ea7f681b475d27fd, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: "El camino adoquinado de la f\xE1brica est\xE1 al <b><color=#FBEBB5>oeste</color></b>."
     exitActionDescription: 
   enemiesInRoom: []

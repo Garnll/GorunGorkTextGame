@@ -19,32 +19,22 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: visibleObjectsInRoom
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   roomPosition: {x: 0, y: 0, z: 8}
   roomName: Rupa
   roomDescription: "<i>He aqu\xED un agradable conjunto de sensaciones que agrupamos
     con el nombre de una 'rosa'.</i> La luz te envuelve y ahora lo \xFAnico que hace
     falta para estar vivo es un cuerpo. "
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
+  visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 297206020577c0f4cb7f01a5a91a849b, type: 2}
+    isExplicit: 0
+    isAble: 1
     exitDescription: 
     exitActionDescription: "All\xE1 viene la realidad."
   enemiesInRoom: []

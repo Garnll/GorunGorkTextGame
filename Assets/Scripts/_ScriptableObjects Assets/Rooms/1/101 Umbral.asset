@@ -22,28 +22,36 @@ MonoBehaviour:
     SerializationNodes: []
   roomPosition: {x: 0, y: 0, z: 1}
   roomName: Umbral
-  roomDescription: 
+  roomDescription: "Se trata de una habitaci\xF3n con tres puertas cerradas, un s\xEDmbolo
+    diferente en cada una de ellas. Hay un par de personas ensimismadas sentadas en
+    algunos banquillos. "
   roomResponse: {fileID: 0}
   visibleObjectsInRoom: []
-  charactersInRoom: []
+  charactersInRoom:
+  - {fileID: 11400000, guid: b2656707f00c0884db68fc01b30a2e9a, type: 2}
   playersInRoom: []
-  npcTemplatesInRoom:
-  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
     isExplicit: 1
-    exitDescription: 
+    isAble: 1
+    exitDescription: La puerta que da al <b><color=#FBEBB5>sur</color></b> tiene enmarcado
+      una especie de ojo.
     exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
     isExplicit: 1
-    exitDescription: 
+    isAble: 1
+    exitDescription: "La puerta que da al <b><color=#FBEBB5>oeste</color></b> tiene
+      una ventanilla en vitral con forma de tri\xE1ngulo invertido. "
     exitActionDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
     isExplicit: 1
-    exitDescription: 
+    isAble: 1
+    exitDescription: La puerta que da al <b><color=#FBEBB5>este</color></b> tiene
+      una especie de martillo en relieve.
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0

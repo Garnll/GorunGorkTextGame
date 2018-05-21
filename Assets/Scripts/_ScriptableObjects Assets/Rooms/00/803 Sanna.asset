@@ -19,20 +19,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: visibleObjectsInRoom
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[RoomObject+RoomVisibleObjects, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   roomPosition: {x: 0, y: -2, z: 8}
   roomName: Sanna
   roomDescription: "Corrientes de aire se desplazan entre la niebla como si fuesen
@@ -40,17 +27,22 @@ MonoBehaviour:
     susurros se dispersan. La luz se mueve y rodea el lugar haci\xE9ndose m\xE1s brillante,
     dej\xE1ndote reconocer algunas siluetas en la lejan\xEDa."
   roomResponse: {fileID: 0}
+  visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: 094dcd62334151546b98745aaeefafa9, type: 2}
+    isExplicit: 0
+    isAble: 1
     exitDescription: "<i>Lo bueno de estar perdido es que si sigues adelante o vuelves
       sobre tus pasos, no puedes perderte m\xE1s.</i> <b><color=#FBEBB5>[Norte, Sur]</color></b>"
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 094dcd62334151546b98745aaeefafa9, type: 2}
+    isExplicit: 0
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []

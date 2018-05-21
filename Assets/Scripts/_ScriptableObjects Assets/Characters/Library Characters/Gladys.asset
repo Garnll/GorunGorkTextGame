@@ -11,17 +11,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
   m_Name: Gladys
   m_EditorClassIdentifier: 
-  npcName: Lukashenko
-  keywords: []
+  npcName: Gladys
+  keywords:
+  - gladys
   npcLevel: 0
-  npcGender: macho
+  npcGender: h
   npcRace: {fileID: 0}
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: 
+  npcInRoomDescription: "<b><color=#FFD790>Gladys</color></b> est\xE1 aqu\xED. Parece
+    alguien agradable con quien <b><color=#FBEBB5>hablar</color></b>."
   npcDetailedDescription: 
   dialogueTree:
-    text: []
+    text:
+    - "\xA1Hola! Elige una profesi\xF3n. Obviamente no va a ser tan directo en la
+      versi\xF3n final pero estoy probando vueltas."
     narrator: 0
-    choices: []
+    choices:
+    - text: Delegado
+      keywords:
+      - d
+      - delegado
+      conditions: []
+      vars: []
+      quests: []
+      exits: []
+      dialogue:
+        text:
+        - Blablabla.
+        narrator: 0
+        choices: []
+      able: 0
+    - text: Operario
+      keywords:
+      - o
+      - operario
+      conditions: []
+      vars: []
+      quests: []
+      exits: []
+      dialogue:
+        text:
+        - Blablabla.
+        narrator: 0
+        choices: []
+      able: 0
+    - text: Pacificador
+      keywords:
+      - p
+      - pacificador
+      conditions: []
+      vars: []
+      quests: []
+      exits:
+      - type: 0
+        room: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
+        direction: 3
+      dialogue:
+        text:
+        - "\xA1Vale! Ya puedes pasar."
+        narrator: 0
+        choices: []
+      able: 0

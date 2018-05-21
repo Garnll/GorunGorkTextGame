@@ -33,6 +33,7 @@ MonoBehaviour:
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: f86595ad8ad6c934698c2168569ab3c3, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []

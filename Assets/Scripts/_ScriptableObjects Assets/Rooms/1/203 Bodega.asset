@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcf390cc5fa77042bbda26d67f1f6bc, type: 3}
-  m_Name: 103 Bodega
+  m_Name: 203 Bodega
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,7 +20,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  roomPosition: {x: 1, y: 1, z: 1}
+  roomPosition: {x: 1, y: 1, z: 2}
   roomName: Bodega
   roomDescription: 
   roomResponse: {fileID: 0}
@@ -32,6 +32,7 @@ MonoBehaviour:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
     isExplicit: 1
+    isAble: 1
     exitDescription: 
     exitActionDescription: 
   enemiesInRoom: []
