@@ -27,7 +27,8 @@ MonoBehaviour:
   visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
-  npcTemplatesInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
   exits:
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
