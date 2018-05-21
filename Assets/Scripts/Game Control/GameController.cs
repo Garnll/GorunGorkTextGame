@@ -265,7 +265,7 @@ public class GameController : MonoBehaviour {
 			combinedText += joinedNPCDescriptions + "\n";
 		}
 
-		combinedText += joinedPlayers;
+		combinedText += joinedPlayers + "\n";
 
 		if (exitDescriptionsInRoom.ToArray().Length != 0) {
 			combinedText += joinedExitDescriptions + "\n";
