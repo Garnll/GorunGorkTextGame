@@ -367,6 +367,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void PlayerAttackedMe(string challenger)
     {
+        Debug.Log("Have been attacked");
+
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(challenger))
         {
             PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[challenger];
@@ -390,6 +392,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void FightStarted(string challenger)
     {
+        Debug.Log("Fight Start");
         controller.combatController.StartCoroutine(controller.combatController.StartFight());
     }
 
@@ -424,6 +427,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void PlayerHasUpdatedData(string[] playerCommon, float[] playerCombat)
     {
+        Debug.Log("Updated others data");
+
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerCommon[0]))
         {
             PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerCommon[0]];

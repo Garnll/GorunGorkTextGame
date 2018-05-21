@@ -130,7 +130,10 @@ public class CombatController : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator StartFight()
     {
-        yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
+        if (player.controller.writing)
+        {
+            yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
+        }
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
 
@@ -577,6 +580,8 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     private void InitializeEnemy()
     {
+        Debug.Log("Enemigo normal");
+
         enemy.StartCombat(this);
 		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
 		enemyColorGradient.Evaluate(enemy.currentHealth / enemy.maxHealth);
