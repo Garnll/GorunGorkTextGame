@@ -23,13 +23,13 @@ public class CombatController : MonoBehaviour {
 
     List<string> habilitiesText = new List<string>();
     private EnemyNPC enemy;
-    private PlayerInstance enemyPlayer;
+    public PlayerInstance enemyPlayer;
     private Queue<string> enemyLog = new Queue<string>();
     private PlayerManager player;
     private Queue<string> playerLog = new Queue<string>();
 
     private bool inInventory = false;
-    private bool vsPlayer = false;
+    public bool vsPlayer = false;
     private int inventoryPage = 1;
 
 	public Gradient playerColorGradient;
@@ -115,6 +115,7 @@ public class CombatController : MonoBehaviour {
 
     public void PrepareFight(PlayerInstance otherPlayer, PlayerManager thisPlayer)
     {
+        vsPlayer = true;
         enemyPlayer = otherPlayer;
         player = thisPlayer;
         lemonsWon = 0;
@@ -135,17 +136,13 @@ public class CombatController : MonoBehaviour {
 
         ChangeLayout();
 
-        if (vsPlayer)
-        {
-            InitializeEnemyPlayer();
-        }
-        else
+        InitializePlayer();
+
+        if (!vsPlayer)
         {
             InitializeEnemy();
         }
 
-
-        InitializePlayer();
 
         CancelInvoke();
         ClearCollections();
@@ -259,7 +256,7 @@ public class CombatController : MonoBehaviour {
                     case "0":
                         if (vsPlayer)
                         {
-
+                            player.AttackInCombat(enemyPlayer);
                         }
                         else
                         {
@@ -278,7 +275,7 @@ public class CombatController : MonoBehaviour {
                     case "3":
                         if (vsPlayer)
                         {
-
+                            player.TryToEscape(enemyPlayer);
                         }
                         else
                         {
@@ -330,7 +327,12 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     private void InitializePlayer()
     {
+        if (vsPlayer)
+        {
+            player.StartCombat(enemyPlayer);
+        }
         player.StartCombat();
+
 		playerUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color = 
 			playerColorGradient.Evaluate(player.currentHealth / player.MaxHealth);
 
@@ -375,6 +377,11 @@ public class CombatController : MonoBehaviour {
             TextConverter.MakeFirstLetterUpper(player.characteristics.playerRace.raceName) + " " +
             TextConverter.MakeFirstLetterUpper(player.characteristics.playerJob.jobName) +
             state;
+
+        if (vsPlayer)
+        {
+            NetworkManager.Instance.UpdatePlayerData(enemyPlayer, player);
+        }
     }
 
 	/// <summary>
@@ -400,7 +407,11 @@ public class CombatController : MonoBehaviour {
 
 		playerText.updateText();
 
-	}
+        if (vsPlayer)
+        {
+            NetworkManager.Instance.UpdatePlayerLifeAndTurn(enemyPlayer, player);
+        }
+    }
 
     /// <summary>
     /// Cambia la GUI del jugador para mostrar su carga de turno actual.
@@ -414,6 +425,11 @@ public class CombatController : MonoBehaviour {
         playerUI.turnSlider.value = player.currentTurn;
 		playerUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
 			Color.Lerp(playerTurnColor.Evaluate(t), oldColor, t);
+
+        if (vsPlayer)
+        {
+            NetworkManager.Instance.UpdatePlayerLifeAndTurn(enemyPlayer, player);
+        }
 
     }
 
@@ -532,14 +548,8 @@ public class CombatController : MonoBehaviour {
 
         playerUI.logText.text = string.Join("\n", playerLog.ToArray());
 
-        if (vsPlayer)
-        {
+        UpdateEnemyLogOnly("-");
 
-        }
-        else
-        {
-            UpdateEnemyLogOnly("-");
-        }
     }
 
     /// <summary>
@@ -708,7 +718,7 @@ public class CombatController : MonoBehaviour {
     /// <summary>
     /// Inicializa GUI del enemigo.
     /// </summary>
-    private void InitializeEnemyPlayer()
+    public void InitializeEnemyPlayer()
     {
         enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
         enemyColorGradient.Evaluate(enemyPlayer.currentHealth / enemyPlayer.enemyStats.maxHealth);
@@ -850,6 +860,30 @@ public class CombatController : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         ReturnToRoom("¡El enemigo huyó!");
+        WinLemons(10);
+    }
+
+    /// <summary>
+    /// Termina el combate con el Npc Enemigo como perdedor.
+    /// </summary>
+    public IEnumerator EndCombat(PlayerInstance loser)
+    {
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡Ganaste!");
+        WinLemons(50);
+    }
+
+    /// <summary>
+    /// Termina el combate cuando el npc enemigo huye.
+    /// </summary>
+    public IEnumerator EndCombatByEscaping(PlayerInstance runner)
+    {
+        EndAllCombat();
+        yield return new WaitForSecondsRealtime(2);
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+        ReturnToRoom("¡ " + runner.playerName + " huyó!");
         WinLemons(10);
     }
 

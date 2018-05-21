@@ -10,6 +10,7 @@ public class AttackInput : InputActions {
     {
         if (separatedInputWords.Length > 1)
         {
+
             NPCTemplate npcToAttack = 
                 controller.combatController.TryToFight(separatedInputWords, controller.playerRoomNavigation.currentRoom);
 
@@ -20,7 +21,25 @@ public class AttackInput : InputActions {
             }
 
             EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
-            if (enemy == null)
+
+            PlayerInstance player = controller.combatController.TryToFightPlayer(separatedInputWords,
+                controller.playerRoomNavigation.currentRoom);
+
+            if (player != null)
+            {
+                controller.LogStringWithReturn("Atacas a " + player.playerName);
+                NetworkManager.Instance.TryToAttack(player.playerName);
+
+                controller.LogStringWithReturn("¡Inicia el combate!");
+
+                TextUserInput.OnFight += StartFight;
+
+                controller.combatController.PrepareFight(player, controller.playerManager);
+                controller.LogStringWithReturn(" ");
+                return;
+            }
+
+            if (enemy == null && player == null)
             {
                 controller.LogStringWithReturn("No hay un " + separatedInputWords[1] + " al que atacar.");
                 return;
@@ -41,6 +60,11 @@ public class AttackInput : InputActions {
 
     private void StartFight(GameController controller)
     {
+        if (controller.combatController.vsPlayer)
+        {
+            NetworkManager.Instance.StartFight(controller.combatController.enemyPlayer.playerName);
+        }
+
         controller.combatController.StartCoroutine(controller.combatController.StartFight());
         TextUserInput.OnFight -= StartFight;
     }

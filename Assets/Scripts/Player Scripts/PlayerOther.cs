@@ -81,10 +81,6 @@ public class PlayerOther : MonoBehaviour {
         currentTurnRegenPerSecond = defaultTurnRegenPerSecond;
     }
 
-    /// <summary>
-    /// Aun no implementada.
-    /// </summary>
-    /// <returns></returns>
     public float EscapeProbability(PlayerManager player, EnemyNPC enemy)
     {
         escapeProbability =
@@ -95,6 +91,18 @@ public class PlayerOther : MonoBehaviour {
 
 		//return escapeProbability;
 		return 50;
+    }
+
+    public float EscapeProbability(PlayerManager player, PlayerInstance enemy)
+    {
+        escapeProbability =
+            (((enemy.enemyStats.maxHealth - enemy.currentHealth) / enemy.enemyStats.maxHealth) * 100) +
+            (player.characteristics.currentDexterity / 10) +
+            (player.currentState.magnitude) -
+            (enemy.playerState.magnitude);
+
+        //return escapeProbability;
+        return 50;
     }
 
     public float CriticalHitProbability(PlayerManager player)

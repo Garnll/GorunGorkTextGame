@@ -10,7 +10,8 @@ public class PlayerEnemyInstance : MonoBehaviour
     public float currentTurn;
     public int maxTurn;
 
-    public void ChargeBySecond()
+    public void ReceiveDamage(float damage, PlayerInstance myself)
     {
+        NetworkManager.Instance.OtherPlayerReceivedDamage(myself, damage);
     }
 }
