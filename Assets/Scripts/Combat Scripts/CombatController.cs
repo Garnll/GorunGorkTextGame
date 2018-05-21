@@ -138,7 +138,41 @@ public class CombatController : MonoBehaviour {
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
 
-        Debug.Log("oh hey");
+        Debug.Log("oh hey there");
+
+        ChangeLayout();
+
+        InitializePlayer();
+
+        if (!vsPlayer)
+        {
+            InitializeEnemy();
+        }
+
+
+        CancelInvoke();
+        ClearCollections();
+        StopAllCoroutines();
+        StartCoroutine(UpdateTurns());
+
+        if (!vsPlayer)
+        {
+            if (enemy.myAI == null)
+            {
+                enemy.myAI = enemy.GetComponent<EnemyNPCAI>();
+            }
+            enemy.myAI.player = player;
+            enemy.myAI.myNPC = enemy;
+            enemy.myAI.StartAI();
+        }
+
+    }
+
+    public void StartFightNow()
+    {
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
+
+        Debug.Log("oh hey there");
 
         ChangeLayout();
 

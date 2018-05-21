@@ -393,7 +393,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     public void FightStarted(string challenger)
     {
         Debug.Log("Fight Start");
-        controller.combatController.StartCoroutine(controller.combatController.StartFight());
+        controller.combatController.StartFightNow();
     }
 
 
