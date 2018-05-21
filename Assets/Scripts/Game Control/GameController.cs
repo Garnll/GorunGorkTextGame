@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour {
 
     public IEnumerator StopTextWhileConnecting()
     {
-        LogStringWithoutReturn("<b><color=#ABCA3CFF>Conectando.</color></b>\n" + 
+        LogStringWithoutReturn("<b><color=#E5825E>Conectando.</color></b>\n" + 
 			"Despiertas dentro de una cabina cerrada. Espera a que se abra.");
 
         yield return new WaitUntil(() => NetworkManager.Instance.connected);
