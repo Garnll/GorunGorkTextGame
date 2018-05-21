@@ -158,11 +158,13 @@ public class GameController : MonoBehaviour {
 
     public IEnumerator StopTextWhileConnecting()
     {
-        LogStringWithoutReturn("Entrando...");
+        LogStringWithoutReturn("<b><color=#ABCA3CFF>Conectando.</color></b>\n" + 
+			"Despiertas dentro de una cabina cerrada. Espera a que se abra.");
 
         yield return new WaitUntil(() => NetworkManager.Instance.connected);
 
-        LogStringWithoutReturn("Conectado al mundo real.");
+        LogStringWithoutReturn("<b><color=#ABCA3CFF>En línea.</color></b>\n" +
+			"La cabina se abre,acompañada de vapor. Ya puedes salir.");
     }
 
     public void CreateNewDisplay()
@@ -261,13 +263,18 @@ public class GameController : MonoBehaviour {
 			combinedText += joinedInteractionDescriptions + "\n";
 		}
 
+
 		if (npcDescriptionsInRoom.ToArray().Length != 0) {
+			combinedText += "\n";
 			combinedText += joinedNPCDescriptions + "\n";
 		}
 
-		combinedText += joinedPlayers + "\n";
+		if (playerDescriptionssInRoom.ToArray().Length != 0) {
+			combinedText += joinedPlayers + "\n";
+		}
 
 		if (exitDescriptionsInRoom.ToArray().Length != 0) {
+			combinedText += "\n";
 			combinedText += joinedExitDescriptions + "\n";
 		}
 

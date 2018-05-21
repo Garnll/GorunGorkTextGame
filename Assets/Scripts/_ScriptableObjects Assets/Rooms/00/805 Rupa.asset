@@ -22,9 +22,9 @@ MonoBehaviour:
     SerializationNodes: []
   roomPosition: {x: 0, y: 0, z: 8}
   roomName: Rupa
-  roomDescription: "<i>He aqu\xED un agradable conjunto de sensaciones que agrupamos
-    con el nombre de una 'rosa'.</i> La luz te envuelve y ahora lo \xFAnico que hace
-    falta para estar vivo es un cuerpo. "
+  roomDescription: "<i><color=#63DAB7FF>He aqu\xED un agradable conjunto de sensaciones
+    que agrupamos con el nombre de una 'rosa'.</color></i> La luz te envuelve y ahora
+    lo \xFAnico que hace falta para estar vivo es un cuerpo. "
   roomResponse: {fileID: 11400000, guid: 08f81fb0a905d4a408bd0e7d1e02dc83, type: 2}
   visibleObjectsInRoom: []
   charactersInRoom: []

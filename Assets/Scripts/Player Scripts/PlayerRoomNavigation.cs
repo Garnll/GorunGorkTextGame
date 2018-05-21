@@ -356,7 +356,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
                 currentRoom.playersInRoom[i].currentVisibility <= controller.playerManager.characteristics.vision.y)
             {
                 //Temporal, supongo
-                controller.playerDescriptionssInRoom.Add("<b><color=#F9EEC1>" + currentRoom.playersInRoom[i].playerName + "</color></b> está aqui.");
+                controller.playerDescriptionssInRoom.Add("<b><color=#FFD790>" + currentRoom.playersInRoom[i].playerName + "</color></b> está aqui.");
             }          
         }
     }

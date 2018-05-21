@@ -287,7 +287,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
         if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
         {
-            string thingSomeoneSaid = string.Format("{0} te dice: \"{1}\" ", playerName, thingSaid);
+            string thingSomeoneSaid = string.Format("De {0} a ti: \"{1}\" ", playerName, thingSaid);
             controller.LogStringWithoutReturn(thingSomeoneSaid);
         }
     }

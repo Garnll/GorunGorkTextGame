@@ -81,7 +81,8 @@ public class DialogueController : MonoBehaviour {
 		string tempNarrationText = "";
 
 		if (currentDialogue.narrator == Dialogue.NarratorType.character) {
-			tempNarrationText = "<b><color=#F9EEC1>" + currentNpc.npcName + ":</color></b> ";
+			string code = ColorUtility.ToHtmlStringRGB(controller.dialogueController.currentNpc.color);
+			tempNarrationText = "<b><color=#" + code + ">" + currentNpc.npcName + ":</color></b> ";
 		}
 		controller.LogStringWithReturn( tempNarrationText + currentDialogue.getText() + getChoicesText() + endText);
 	}
@@ -131,7 +132,9 @@ public class DialogueController : MonoBehaviour {
 
 		foreach (string e in ends) {
 			if (input == e) {
+				StopCoroutine("talk");
 				isTalking = false;
+				controller.LogStringWithReturn("\n");
 				controller.DisplayRoomText();
 				GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
 			}
@@ -165,9 +168,9 @@ public class DialogueController : MonoBehaviour {
 
 
 	public IEnumerator talk() {
-		yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
 		GameState.Instance.ChangeCurrentState(GameState.GameStates.conversation);
 		isTalking = true;
+		yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
 		takeInput(input);
 	}
 

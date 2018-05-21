@@ -24,11 +24,13 @@ MonoBehaviour:
   roomName: Sankhara
   roomDescription: "Recuerdas c\xF3mo sol\xEDas utilizar ese tipo de palabras antes.
     Tambi\xE9n al sol, que se desplazaba desde el este hacia el oeste. Es curioso
-    c\xF3mo tenemos palabras para todo. \n<i>Con la palabra creamos y con ella destru\xEDmos.</i>\nRecuerdas
-    la existencia de al menos cuatro nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
+    c\xF3mo tenemos palabras para todo. \n<i><color=#63DAB7FF>Con la palabra creamos
+    y con ella destru\xEDmos.</color></i>\nRecuerdas la existencia de al menos cuatro
+    nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
   roomResponse: {fileID: 0}
   visibleObjectsInRoom: []
-  charactersInRoom: []
+  charactersInRoom:
+  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:

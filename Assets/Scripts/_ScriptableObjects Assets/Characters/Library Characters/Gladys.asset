@@ -20,9 +20,10 @@ MonoBehaviour:
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: "<b><color=#FFD790>Gladys</color></b> est\xE1 aqu\xED. Parece
+  npcInRoomDescription: "<b><color=#8FCAA8FF>Gladys</color></b> est\xE1 aqu\xED. Parece
     alguien agradable con quien <b><color=#FBEBB5>hablar</color></b>."
   npcDetailedDescription: 
+  color: {r: 0.56078434, g: 0.7921569, b: 0.65882355, a: 1}
   dialogueTree:
     text:
     - "\xA1Hola! Elige una profesi\xF3n. Obviamente no va a ser tan directo en la
@@ -68,6 +69,15 @@ MonoBehaviour:
       - type: 0
         room: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
         direction: 3
+        enable: 1
+      - type: 0
+        room: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
+        direction: 2
+        enable: 0
+      - type: 0
+        room: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
+        direction: 2
+        enable: 0
       dialogue:
         text:
         - "\xA1Vale! Ya puedes pasar."

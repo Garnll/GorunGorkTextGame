@@ -65,7 +65,7 @@ public class CharacterCreationResponse : RoomResponse {
                 {
                     if (input[1] == "preguntar" && input[0] != "preguntar")
                     {
-                        gameController.LogStringWithReturn(AskForRaceDescription(input[0]) + " Elige una raza: " +
+                        gameController.LogStringWithReturn(AskForRaceDescription(input[0]) + "\nElige una raza: " +
 							"< b >< color =#FBEBB5>[Toro, Conejo, Oso, Búho]</color></b>.");
                     }
                 }

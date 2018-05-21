@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f5b8979d0b0b643b3746d6b4bf875c, type: 3}
   m_Name: Bebe
   m_EditorClassIdentifier: 
-  npcName: Bebe
+  npcName: "Beb\xE9"
   keywords:
   - bebe
   - baby
@@ -26,13 +26,14 @@ MonoBehaviour:
   npcJob: {fileID: 0}
   defaultVisibility: 0
   currentVisibility: 0
-  npcInRoomDescription: "Hay un Beb\xE9 C\xF3smico tirado en el suelo. Podr\xEDa llegar
-    a ser un ingeniero."
+  npcInRoomDescription: "Hay un <color=#B67C9AFF>Beb\xE9 C\xF3smico</color> tirado
+    en el suelo. Podr\xEDa llegar a ser un ingeniero."
   npcDetailedDescription: 
+  color: {r: 0.71323526, g: 0.48772705, b: 0.6043692, a: 1}
   dialogueTree:
     text:
     - "\xBFQuieres la misi\xF3n beb\xE9?"
-    narrator: 1
+    narrator: 0
     choices:
     - text: "S\xED"
       keywords:
@@ -47,11 +48,12 @@ MonoBehaviour:
       quests:
       - type: 0
         quest: {fileID: 11400000, guid: 3479ed2018965af49aa979b03f361807, type: 2}
+      exits: []
       dialogue:
         text:
         - "\xA1Perfecto! Ya tienes la misi\xF3n, revisa en el inspector mientras los
           desarrolladores implementan el comando de Misiones."
-        narrator: 1
+        narrator: 0
         choices: []
       able: 0
     - text: No
@@ -61,10 +63,11 @@ MonoBehaviour:
       conditions: []
       vars: []
       quests: []
+      exits: []
       dialogue:
         text:
         - Vale, vale. :c
-        narrator: 1
+        narrator: 0
         choices: []
       able: 0
     - text: "\xA1Pero beb\xE9, ya me diste esa misi\xF3n!"
@@ -77,9 +80,10 @@ MonoBehaviour:
         value: 1
       vars: []
       quests: []
+      exits: []
       dialogue:
         text:
         - "Tienes raz\xF3n, murrapo."
-        narrator: 1
+        narrator: 0
         choices: []
       able: 0

@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92cf5b76343aab441b0cc92a515b3cc2, type: 2}
   - {fileID: 11400000, guid: bb242b2270c512848bdebc9ee6952562, type: 2}
   selectRaceText: "\"\xA1Si tan solo pudi\xE9ramos elegir nuestras circunstancias
-    antes de nacer!\" Eso es lo que dir\xEDamos todos, de no ser por el Sistema. Elige
+    antes de nacer!\" Eso es lo que dir\xEDamos todos, de no ser por el Sistema.\nElige
     una subraza, de ella depender\xE1n algunos de tus atributos f\xEDsicos: <b><color=#FBEBB5>[Toro,
     Buho, Oso, Conejo]</color></b>. Si tienes dudas, puedes <b><color=#FBEBB5>preguntar</color></b>."
   selectGenderText: "Seguro ya te estabas esperando esta: \xBFQuieres ser <b><color=#FBEBB5>[Macho]</color></b>

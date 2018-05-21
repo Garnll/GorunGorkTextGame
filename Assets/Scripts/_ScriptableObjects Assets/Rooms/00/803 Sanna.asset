@@ -36,8 +36,9 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 094dcd62334151546b98745aaeefafa9, type: 2}
     isExplicit: 0
     isAble: 1
-    exitDescription: "<i>Lo bueno de estar perdido es que si sigues adelante o vuelves
-      sobre tus pasos, no puedes perderte m\xE1s.</i> <b><color=#FBEBB5>[Norte, Sur]</color></b>"
+    exitDescription: "<i><color=#63DAB7FF>Lo bueno de estar perdido es que si sigues
+      adelante o vuelves sobre tus pasos, no puedes perderte m\xE1s.</color></i> <b><color=#FBEBB5>[Norte,
+      Sur]</color></b>"
     exitActionDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: 094dcd62334151546b98745aaeefafa9, type: 2}

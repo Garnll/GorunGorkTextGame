@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5bdf8650d456458eeb30f16e72da8, type: 3}
   m_Name: Text Color Coding
   m_EditorClassIdentifier: 
-  white: {r: 1, g: 0.84442186, b: 0.5661765, a: 1}
+  white: {r: 0.56078434, g: 0.7921569, b: 0.65812033, a: 1}
   grey: {r: 0.5588235, g: 0.5588235, b: 0.5588235, a: 1}
   green: {r: 0.97794116, g: 0.93489593, b: 0.7550281, a: 1}
-  blue: {r: 0.047307514, g: 0.9191176, b: 0.810893, a: 1}
+  blue: {r: 0.6704092, g: 0.7941176, b: 0.23356394, a: 1}

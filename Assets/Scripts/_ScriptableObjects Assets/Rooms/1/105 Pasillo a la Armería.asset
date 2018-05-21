@@ -22,7 +22,8 @@ MonoBehaviour:
     SerializationNodes: []
   roomPosition: {x: -1, y: 0, z: 1}
   roomName: "Pasillo a la Armer\xEDa"
-  roomDescription: 
+  roomDescription: "El pasillo est\xE1 decorado con vidrieras en donde predomina el
+    color p\xFArpura. Las luz entra casi con timidez y el silencio es sepulcral. "
   roomResponse: {fileID: 0}
   visibleObjectsInRoom: []
   charactersInRoom: []
@@ -33,13 +34,14 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: ef755a55fd51c5948836273f8060abab, type: 2}
     isExplicit: 1
     isAble: 0
-    exitDescription: Hay una salida al oeste.
-    exitActionDescription: 
+    exitDescription: Hay una puerta oculta en el lado <b><color=#FBEBB5>oeste</color></b>.
+    exitActionDescription: Presionas la puerta y se desplaza suavemente.
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
-    isExplicit: 0
+    isExplicit: 1
     isAble: 1
-    exitDescription: Hay una salida al este.
+    exitDescription: "El Umbral est\xE1 al <b><color=#FBEBB5>este</color></b> del
+      pasillo."
     exitActionDescription: 
   enemiesInRoom: []
   changeExits: 0
