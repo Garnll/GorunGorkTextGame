@@ -140,7 +140,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         float.TryParse(playerData[9], out newPlayer.resistance);
         float.TryParse(playerData[10], out newPlayer.dexterity);
 
-        Int32.TryParse(playerData[11], out newPlayer.currentHealth);
+        float.TryParse(playerData[11], out newPlayer.currentHealth);
 
         Int32.TryParse(playerData[12], out newPlayer.currentVisibility);
 
@@ -329,6 +329,12 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             OnExamine(player, controller);
         }
     }
+
+    #endregion
+
+    #region Player Fight
+
+
 
     #endregion
 }

@@ -23,11 +23,13 @@ public class CombatController : MonoBehaviour {
 
     List<string> habilitiesText = new List<string>();
     private EnemyNPC enemy;
+    private PlayerInstance enemyPlayer;
     private Queue<string> enemyLog = new Queue<string>();
     private PlayerManager player;
     private Queue<string> playerLog = new Queue<string>();
 
     private bool inInventory = false;
+    private bool vsPlayer = false;
     private int inventoryPage = 1;
 
 	public Gradient playerColorGradient;
@@ -38,6 +40,27 @@ public class CombatController : MonoBehaviour {
 	public Gradient enemyTurnColor;
 
     int lemonsWon;
+
+    public PlayerInstance TryToFightPlayer(string[] keywordGiven, RoomObject currentRoom)
+    {
+        string[] newString = new string[keywordGiven.Length - 1];
+
+        for (int i = 1; i < keywordGiven.Length; i++)
+        {
+            newString[i - 1] = keywordGiven[i];
+        }
+
+        foreach (string keyworkByPlayer in newString)
+        {
+            if (NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene.ContainsKey(keyworkByPlayer))
+            {
+                vsPlayer = true;
+                return NetworkManager.Instance.playerInstanceManager.playerInstancesOnScene[keyworkByPlayer];
+            }
+        }
+
+        return null;
+    }
 
     /// <summary>
     /// Revisa entre los templates de la habitación actual buscando el keyword dado por el jugador.
@@ -54,7 +77,9 @@ public class CombatController : MonoBehaviour {
 			newString[i - 1] = keywordGiven[i];
 		}
 
-		for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
+        vsPlayer = false;
+
+        for (int i = 0; i < currentRoom.npcTemplatesInRoom.Count; i++)
         {
             NPCTemplate npc = currentRoom.npcTemplatesInRoom[i];
 
@@ -88,6 +113,16 @@ public class CombatController : MonoBehaviour {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
 
+    public void PrepareFight(PlayerInstance otherPlayer, PlayerManager thisPlayer)
+    {
+        enemyPlayer = otherPlayer;
+        player = thisPlayer;
+        lemonsWon = 0;
+        currentBattleTime = battleTimeInMins * 60;
+
+        GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
+    }
+
     /// <summary>
     /// Inicia la batalla una vez la UI de exploración haya acabado de copiar.
     /// </summary>
@@ -100,7 +135,16 @@ public class CombatController : MonoBehaviour {
 
         ChangeLayout();
 
-		InitializeEnemy();
+        if (vsPlayer)
+        {
+            InitializeEnemyPlayer();
+        }
+        else
+        {
+            InitializeEnemy();
+        }
+
+
         InitializePlayer();
 
         CancelInvoke();
@@ -108,13 +152,16 @@ public class CombatController : MonoBehaviour {
         StopAllCoroutines();
         StartCoroutine(UpdateTurns());
 
-        if (enemy.myAI == null)
+        if (!vsPlayer)
         {
-            enemy.myAI = enemy.GetComponent<EnemyNPCAI>();
+            if (enemy.myAI == null)
+            {
+                enemy.myAI = enemy.GetComponent<EnemyNPCAI>();
+            }
+            enemy.myAI.player = player;
+            enemy.myAI.myNPC = enemy;
+            enemy.myAI.StartAI();
         }
-        enemy.myAI.player = player;
-        enemy.myAI.myNPC = enemy;
-        enemy.myAI.StartAI();
 
     }
 
@@ -155,7 +202,11 @@ public class CombatController : MonoBehaviour {
             }
 
             player.ChargeTurn();
-            enemy.ChargeBySecond();
+            if (!vsPlayer)
+            {
+                enemy.ChargeBySecond();
+            }
+            
         }
     }
 
@@ -206,7 +257,14 @@ public class CombatController : MonoBehaviour {
                 switch (input[0])
                 {
                     case "0":
-                        player.AttackInCombat(enemy);
+                        if (vsPlayer)
+                        {
+
+                        }
+                        else
+                        {
+                            player.AttackInCombat(enemy);
+                        }
                         break;
 
                     case "1":
@@ -218,7 +276,14 @@ public class CombatController : MonoBehaviour {
                         break;
 
                     case "3":
-                        player.TryToEscape(enemy);
+                        if (vsPlayer)
+                        {
+
+                        }
+                        else
+                        {
+                            player.TryToEscape(enemy);
+                        }
                         break;
 
                     default:
@@ -228,7 +293,10 @@ public class CombatController : MonoBehaviour {
             }
             else
             {
-                habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemy);
+                if (!vsPlayer)
+                {
+                    habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemy);
+                }
                 UpdatePlayerTurn();
             }
         }
@@ -254,6 +322,8 @@ public class CombatController : MonoBehaviour {
             }
         }
     }
+
+    #region Jugador en combate
 
     /// <summary>
     /// Inicializa GUI del jugador.
@@ -414,9 +484,17 @@ public class CombatController : MonoBehaviour {
 
         inventoryPage = 1;
 
-        playerUI.optionsText.text = "[1] Inventario \n" +
-            "[2] Reposicionamiento \n" +
-            "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("0") + "%)";
+        if (vsPlayer)
+        {
+
+        }
+        else
+        {
+
+            playerUI.optionsText.text = "[1] Inventario \n" +
+                "[2] Reposicionamiento \n" +
+                "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("0") + "%)";
+        }
     }
 
     public void EnterInInventory()
@@ -453,7 +531,15 @@ public class CombatController : MonoBehaviour {
         }
 
         playerUI.logText.text = string.Join("\n", playerLog.ToArray());
-        UpdateEnemyLogOnly("-");
+
+        if (vsPlayer)
+        {
+
+        }
+        else
+        {
+            UpdateEnemyLogOnly("-");
+        }
     }
 
     /// <summary>
@@ -471,6 +557,10 @@ public class CombatController : MonoBehaviour {
 
         playerUI.logText.text = string.Join("\n", playerLog.ToArray());
     }
+
+    #endregion
+
+    #region Enemy NPC
 
     /// <summary>
     /// Inicializa GUI del enemigo.
@@ -569,7 +659,7 @@ public class CombatController : MonoBehaviour {
     {
         enemyLog.Enqueue(newLog);
 
-        if (playerLog.Count > 3)
+        if (enemyLog.Count > 3)
         {
             enemyLog.Dequeue();
         }
@@ -586,7 +676,7 @@ public class CombatController : MonoBehaviour {
     {
         enemyLog.Enqueue(newLog);
 
-        if (playerLog.Count > 3)
+        if (enemyLog.Count > 3)
         {
             enemyLog.Dequeue();
         }
@@ -609,6 +699,135 @@ public class CombatController : MonoBehaviour {
             EndCombat(player);
         }
     }
+
+    #endregion
+
+
+    #region Enemy Jugador
+
+    /// <summary>
+    /// Inicializa GUI del enemigo.
+    /// </summary>
+    private void InitializeEnemyPlayer()
+    {
+        enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+        enemyColorGradient.Evaluate(enemyPlayer.currentHealth / enemyPlayer.enemyStats.maxHealth);
+
+        enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+        enemyTurnColor.Evaluate(enemyPlayer.enemyStats.currentTurn / enemyPlayer.enemyStats.maxTurn);
+
+        enemyUI.lifeText.color = enemyColorGradient.Evaluate(enemyPlayer.currentHealth / enemyPlayer.enemyStats.maxHealth);
+
+        ChangeEnemyPlayerState();
+
+        UpdateEnemyPlayerLife();
+
+        UpdateEnemyPlayerTurn();
+
+        SetEnemyPlayerDescription();
+
+        enemyUI.logText.text = ("");
+
+    }
+
+    /// <summary>
+    /// Cambia la GUI del npc enemigo para reflejar su CharacterEffectiveState actual.
+    /// </summary>
+    public void ChangeEnemyPlayerState()
+    {
+        string state = "";
+
+        if (enemyPlayer.playerState.GetType() != typeof(NormalState))
+        {
+            state = " <" + TextConverter.MakeFirstLetterUpper(enemyPlayer.playerState.stateName) + ">";
+            UpdatePlayerLog(enemyPlayer.playerName +
+               " ha entrado en " + TextConverter.MakeFirstLetterUpper(enemyPlayer.playerState.stateName)
+                + "!");
+        }
+
+        enemyUI.title.text = "<b>" + enemyPlayer.playerName + "</b>" + "\n" +
+              TextConverter.MakeFirstLetterUpper(enemyPlayer.playerRace.raceName) + " " +
+            TextConverter.MakeFirstLetterUpper(enemyPlayer.playerJob.jobName) +
+            state;
+    }
+
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su vida actual.
+    /// </summary>
+    public void UpdateEnemyPlayerLife()
+    {
+        float t = enemyPlayer.currentHealth / enemyPlayer.enemyStats.maxHealth;
+        Color oldColor = enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
+        enemyUI.lifeSlider.maxValue = enemyPlayer.enemyStats.maxHealth;
+        enemyUI.lifeSlider.value = enemyPlayer.currentHealth;
+        enemyUI.lifeText.text = ((enemyPlayer.currentHealth / enemyPlayer.enemyStats.maxHealth) * 100).ToString("0") + "%";
+
+        enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+            Color.Lerp(enemyColorGradient.Evaluate(t), oldColor, t);
+
+        enemyUI.lifeText.color = Color.Lerp(enemyColorGradient.Evaluate(t), oldColor, t);
+    }
+
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su carga de turno actual.
+    /// </summary>
+    public void UpdateEnemyPlayerTurn()
+    {
+        float t = enemyPlayer.enemyStats.currentTurn / enemyPlayer.enemyStats.maxTurn;
+        Color oldColor = enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color;
+
+        enemyUI.turnSlider.maxValue = enemyPlayer.enemyStats.maxTurn;
+        enemyUI.turnSlider.value = enemyPlayer.enemyStats.currentTurn;
+        enemyUI.turnSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
+            Color.Lerp(enemyTurnColor.Evaluate(t), oldColor, t);
+    }
+
+    /// <summary>
+    /// Cambia la GUI del npc enemigo mostrando su descipción detallada.
+    /// </summary>
+    public void SetEnemyPlayerDescription()
+    {
+        enemyUI.descriptionText.text = "Deshabilitado en: " + (currentBattleTime / 60).ToString("0.##") + "\n" +
+            "";
+    }
+
+    /// <summary>
+    /// Actualiza el Log del enemigo mostrando sus acciones y cosas que recibe. Envia un mensaje "-" al log del jugador.
+    /// </summary>
+    public void UpdateEnemyPlayerLog(string newLog)
+    {
+        enemyLog.Enqueue(newLog);
+
+        if (enemyLog.Count > 3)
+        {
+            enemyLog.Dequeue();
+        }
+
+        enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
+
+        UpdatePlayerLogOnly("-");
+    }
+
+    /// <summary>
+    /// Actualiza el Log del enemigo mostrando acciones y consecuencias de acciones. No envía mensajes al log del jugador.
+    /// </summary>
+    public void UpdateEnemyPlayerLogOnly(string newLog)
+    {
+        enemyLog.Enqueue(newLog);
+
+        if (enemyLog.Count > 3)
+        {
+            enemyLog.Dequeue();
+        }
+
+        enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
+    }
+
+
+    #endregion
+
+    #region finalizar combate
 
     /// <summary>
     /// Termina el combate con el Npc Enemigo como perdedor.
@@ -661,7 +880,10 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     private void EndAllCombat()
     {
-        enemy.myAI.StopAI();
+        if (!vsPlayer)
+        {
+            enemy.myAI.StopAI();
+        }
         CancelInvoke();
         GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
         player.controller.CreateNewDisplay();
@@ -691,4 +913,6 @@ public class CombatController : MonoBehaviour {
         player.controller.LogStringWithReturn(player.controller.RefreshCurrentRoomDescription());
         player.controller.LogStringWithoutReturn(endMessage);
     }
+
+    #endregion
 }

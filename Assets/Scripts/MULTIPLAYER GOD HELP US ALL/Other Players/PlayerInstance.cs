@@ -19,9 +19,16 @@ public class PlayerInstance : MonoBehaviour {
     public float resistance = 1;
     public float dexterity = 1;
 
-    public int currentHealth = 100;
+    public float currentHealth = 100;
 
     public int currentVisibility = 0;
 
     public RoomObject currentRoom;
+
+    public PlayerEnemyInstance enemyStats;
+
+    private void OnEnable()
+    {
+        enemyStats = gameObject.GetComponent<PlayerEnemyInstance>();
+    }
 }
