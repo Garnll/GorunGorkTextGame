@@ -500,9 +500,9 @@ public class CombatController : MonoBehaviour {
         habilitiesText.Clear();
 
         habilitiesText.Add("[0] Atacar");
-        for (int i = 0; i < player.characteristics.playerJob.jobHabilities.Count; i++)
+        for (int i = 0; i < player.characteristics.playerJob.unlockedHabilities.Count; i++)
         {
-            Hability currentHability = player.characteristics.playerJob.jobHabilities[i];
+            Hability currentHability = player.characteristics.playerJob.unlockedHabilities[i];
 
             if (currentHability.isAvailable)
             {
