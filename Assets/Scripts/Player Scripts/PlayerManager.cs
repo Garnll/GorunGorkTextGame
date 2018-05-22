@@ -183,6 +183,12 @@ public class PlayerManager : MonoBehaviour {
         currentTurn = 0;
     }
 
+    public void StartCombat(PlayerInstance enemy)
+    {
+        currentTurn = 0;
+        NetworkManager.Instance.UpdatePlayerData(enemy, this);
+    }
+
     public void WasteTurn(float percentage)
     {
         currentTurn -= (maxTurn * percentage);
@@ -212,11 +218,40 @@ public class PlayerManager : MonoBehaviour {
         enemy.ReceiveDamage(damage);
     }
 
+    public void AttackInCombat(PlayerInstance enemy)
+    {
+        WasteTurn(0.8f);
+
+        controller.combatController.UpdatePlayerLog("Has atacado.");
+        NetworkManager.Instance.UpdateOtherPlayersEnemyLog(enemy, "¡" + playerName + " ha atacado!");
+
+        float damage = characteristics.currentStrength + Random.Range(1, 5) + Random.Range(0, 3);
+
+        float r = Random.Range(0f, 1f);
+
+        if (r <= characteristics.other.CriticalHitProbability(this))
+        {
+            controller.combatController.UpdatePlayerLog("¡CRÍTICO!");
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(enemy, "!CRÍTICO!");
+            damage *= 2;
+        }
+
+        damage *= pacifier;
+
+
+        enemy.enemyStats.ReceiveDamage(damage, enemy);
+    }
+
     public void RepositionInCombat()
     {
         WasteTurn(0.5f);
 
         controller.combatController.UpdatePlayerLog("Te mueves hacia un lado.");
+        if (controller.combatController.vsPlayer)
+        {
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer, 
+                playerName + " se mueve hacia un lado.");
+        }
 
         if (currentState.GetType() == typeof(TrailState) || currentState.GetType() == typeof(SupersonicState))
         {
@@ -307,6 +342,11 @@ public class PlayerManager : MonoBehaviour {
         if (e <= characteristics.other.currentEvasion)
         {
             controller.combatController.UpdatePlayerLog("¡Has evadido el golpe!");
+            if (controller.combatController.vsPlayer)
+            {
+                NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
+                    "¡" + playerName + " ha evadido el golpe!");
+            }
             return;
         }
 
@@ -337,6 +377,11 @@ public class PlayerManager : MonoBehaviour {
         }
 
         controller.combatController.UpdatePlayerLog("Has recibido " + damage.ToString("0.#") + " puntos de daño.");
+        if (controller.combatController.vsPlayer)
+        {
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
+                playerName + " ha recibido " + damage.ToString("0.#") + " puntos de daño.");
+        }
     }
 
     public void TryToEscape(EnemyNPC enemy)
@@ -359,10 +404,43 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public void TryToEscape(PlayerInstance enemy)
+    {
+        WasteTurn(1);
+
+        float r = Random.Range(0f, 1f);
+
+        r *= 100;
+
+        if (r < characteristics.other.EscapeProbability(this, enemy))
+        {
+            controller.combatController.UpdatePlayerLog("Has huido.");
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
+                playerName + " ha huido.");
+            NetworkManager.Instance.PlayerEscapedBattle(enemy);
+
+            controller.combatController.StopCoroutine(controller.combatController.EndCombatByEscaping(this));
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(this));
+        }
+        else
+        {
+            controller.combatController.UpdatePlayerLog("No has podido huir.");
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
+                "¡" + playerName + " ha intentado huir!");
+        }
+    }
+
     private void Die()
     {
         isAlive = false;
         controller.combatController.UpdatePlayerLog("Has muerto.");
+        if (controller.combatController.vsPlayer)
+        {
+            NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
+                playerName + " ha muerto.");
+            NetworkManager.Instance.PlayerDies(controller.combatController.enemyPlayer);
+        }
+
         controller.combatController.StopCoroutine(controller.combatController.EndCombat(this));
         controller.combatController.StartCoroutine(controller.combatController.EndCombat(this));
     }

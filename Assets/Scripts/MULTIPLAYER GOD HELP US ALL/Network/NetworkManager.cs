@@ -58,7 +58,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Conectado a habitación. ");
         isConnecting = false;
         connected = true;
 
@@ -158,7 +157,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             return;
         }
 
-        Debug.Log("Player entered");
         PlayerInstance oldPlayer = CreatePlayerInstance(playerData);
 
         if (oldPlayer.currentRoom != null)
@@ -167,8 +165,10 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
             if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
             {
-                Debug.Log("Jugador en la habitación");
-                controller.playerRoomNavigation.ShowPlayersInRoom();
+                if (GameState.Instance.CurrentState != GameState.GameStates.combat)
+                {
+                    controller.playerRoomNavigation.ShowPlayersInRoom();
+                }
             }
         }
     }
@@ -176,7 +176,6 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     [PunRPC]
     public void NewPlayerJoined(string[] playerData, int playerID)
     {
-        Debug.Log("Player entered");
         PlayerInstance newPlayer = CreatePlayerInstance(playerData);
 
         if (newPlayer.currentRoom != null)
@@ -194,9 +193,20 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         {
             PlayerInstance oldPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
 
-            if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
+            if (GameState.Instance.CurrentState == GameState.GameStates.combat)
             {
-                controller.LogStringWithoutReturn(playerName + " se ha desvanecido frente a tus ojos.");
+                if (controller.combatController.enemyPlayer == oldPlayer)
+                {
+                    controller.combatController.UpdateEnemyPlayerLog(oldPlayer.playerName + " se desvaneció...");
+                    controller.combatController.EndCombatByEscaping(oldPlayer);
+                }
+            }
+            else
+            {
+                if (oldPlayer.currentRoom == controller.playerRoomNavigation.currentRoom)
+                {
+                    controller.LogStringWithoutReturn(playerName + " se ha desvanecido frente a tus ojos.");
+                }
             }
 
             oldPlayer.currentRoom.RemovePlayerInRoom(oldPlayer);
@@ -266,6 +276,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             return;
         }
 
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            return;
+        }
+
         PlayerInstance speakingPlayer = playerInstanceManager.playerInstancesOnScene[playerName];
 
         if (controller.playerRoomNavigation.currentRoom.playersInRoom.Contains(speakingPlayer))
@@ -279,6 +294,11 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     public void ThingBeingSaidToSomeone(string thingSaid, string playerName, int otherPlayerID)
     {
         if (!playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            return;
+        }
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
         {
             return;
         }
@@ -334,7 +354,173 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
 
     #region Player Fight
 
+    public void TryToAttack(string playerName)
+    {   
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
 
+            photonView.RPC("PlayerAttackedMe", PhotonPlayer.Find(enemy.playerUserID), controller.playerManager.playerName);
+        }
+    }
+
+    [PunRPC]
+    public void PlayerAttackedMe(string challenger)
+    {
+        Debug.Log("Have been attacked");
+
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(challenger))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[challenger];
+
+            controller.LogStringWithoutReturn(challenger + " te está atacando.");
+            controller.combatController.PrepareFight(enemy, controller.playerManager);
+            controller.LogStringWithReturn(" ");
+        }
+    }
+
+    public void StartFight(string playerName)
+    {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
+
+            photonView.RPC("FightStarted", PhotonPlayer.Find(enemy.playerUserID), controller.playerManager.playerName);
+        }
+    }
+
+    [PunRPC]
+    public void FightStarted(string challenger)
+    {
+        Debug.Log("Fight Start");
+        controller.combatController.StartFightNow();
+    }
+
+
+    private float[] StoreMyCombatData()
+    {
+        return new float[]
+        {
+            controller.playerManager.MaxHealth,
+
+            controller.playerManager.currentTurn,
+            controller.playerManager.MaxTurn
+        };
+    }
+
+    private void UpdatePlayerCombatStats(PlayerEnemyInstance playerStats, float[] stats)
+    {
+        playerStats.maxHealth = (int)stats[0];
+        playerStats.currentTurn = stats[1];
+        playerStats.maxTurn = (int)stats[2];
+    }
+
+
+    public void UpdatePlayerData(PlayerInstance enemy, PlayerManager me)
+    {
+        string[] commonPlayerData = StoreMyPlayerData();
+        float[] combatPlayerData = StoreMyCombatData();
+
+        photonView.RPC("PlayerHasUpdatedData", PhotonPlayer.Find(enemy.playerUserID), commonPlayerData, combatPlayerData);
+    }
+
+    [PunRPC]
+    public void PlayerHasUpdatedData(string[] playerCommon, float[] playerCombat)
+    {
+        Debug.Log("Updated others data");
+
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerCommon[0]))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerCommon[0]];
+
+            UpdatePlayerInstancesStats(enemy, playerCommon);
+            UpdatePlayerCombatStats(enemy.enemyStats, playerCombat);
+
+
+            controller.combatController.InitializeEnemyPlayer();
+        }
+    }
+
+
+    public void UpdatePlayerLifeAndTurn(PlayerInstance enemy, PlayerManager me)
+    {
+        float currentLife = me.currentHealth;
+        float currentTurn = me.currentTurn;
+
+        photonView.RPC("PlayerUpdatedLifeAndTurn", PhotonPlayer.Find(enemy.playerUserID), me.playerName,
+            currentLife, currentTurn);
+    }
+
+    [PunRPC]
+    public void PlayerUpdatedLifeAndTurn(string playerName, float life, float turn)
+    {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
+
+            enemy.currentHealth = life;
+            enemy.enemyStats.currentTurn = turn;
+
+            controller.combatController.UpdateEnemyPlayerLife();
+            controller.combatController.UpdateEnemyPlayerTurn();
+        }
+    }
+
+    public void OtherPlayerReceivedDamage(PlayerInstance player, float damage)
+    {
+        photonView.RPC("PlayerReceivedDamage", PhotonPlayer.Find(player.playerUserID), damage);
+    }
+
+    [PunRPC]
+    public void PlayerReceivedDamage(float damageDone)
+    {
+        controller.playerManager.ReceiveDamage(damageDone);
+    }
+
+
+    public void UpdateOtherPlayersEnemyLog(PlayerInstance player, string message)
+    {
+        photonView.RPC("UpdateEnemyLog", PhotonPlayer.Find(player.playerUserID), message);
+    }
+
+    [PunRPC]
+    public void UpdateEnemyLog(string newMessage)
+    {
+        controller.combatController.UpdateEnemyPlayerLog(newMessage);
+    }
+
+
+    public void PlayerEscapedBattle(PlayerInstance player)
+    {
+        photonView.RPC("OtherPlayerEscaped", PhotonPlayer.Find(player.playerUserID), controller.playerManager.playerName);
+    }
+
+    [PunRPC]
+    public void OtherPlayerEscaped(string playerName)
+    {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
+
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(enemy));
+        }
+    }
+
+    public void PlayerDies(PlayerInstance player)
+    {
+        photonView.RPC("OtherPlayerDied", PhotonPlayer.Find(player.playerUserID), controller.playerManager.playerName);
+    }
+
+    [PunRPC]
+    public void OtherPlayerDied(string playerName)
+    {
+        if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
+        {
+            PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
+
+            controller.combatController.StartCoroutine(controller.combatController.EndCombat(enemy));
+        }
+    }
 
     #endregion
 }

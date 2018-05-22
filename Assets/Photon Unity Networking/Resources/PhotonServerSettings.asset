@@ -50,4 +50,12 @@ MonoBehaviour:
   - ThingBeingSaidToSomeone
   - ExamineTarget
   - UpdateInstance
+  - PlayerHasUpdatedData
+  - PlayerReceivedDamage
+  - PlayerUpdatedLifeAndTurn
+  - UpdateEnemyLog
+  - FightStarted
+  - OtherPlayerDied
+  - OtherPlayerEscaped
+  - PlayerAttackedMe
   DisableAutoOpenWizard: 1

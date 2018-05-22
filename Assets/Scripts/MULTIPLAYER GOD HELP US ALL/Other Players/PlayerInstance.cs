@@ -27,7 +27,7 @@ public class PlayerInstance : MonoBehaviour {
 
     public PlayerEnemyInstance enemyStats;
 
-    private void OnEnable()
+    private void Start()
     {
         enemyStats = gameObject.GetComponent<PlayerEnemyInstance>();
     }
