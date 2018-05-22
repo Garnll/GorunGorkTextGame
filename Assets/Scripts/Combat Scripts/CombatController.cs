@@ -134,22 +134,19 @@ public class CombatController : MonoBehaviour {
     {
         if (player.controller.writing)
         {
-            Debug.Log("Writing right now");
             yield return new WaitUntil(() => player.controller.writing == false && player.controller.HasFinishedWriting());
         }
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combat);
 
-        Debug.Log("oh hey there");
-
         ChangeLayout();
-
-        InitializePlayer();
 
         if (!vsPlayer)
         {
             InitializeEnemy();
         }
+
+        InitializePlayer();
 
 
         CancelInvoke();

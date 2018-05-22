@@ -11,7 +11,7 @@ public abstract class Job : ScriptableObject {
     [TextArea]public string jobDescription;
 
     public List<Hability> jobHabilities = new List<Hability>();
-    [HideInInspector] public List<Hability> unlockedHabilities = new List<Hability>();
+    public List<Hability> unlockedHabilities = new List<Hability>();
 
     public abstract void CheckLevelPerks(int playerLevel, GameController controller);
 }
