@@ -935,7 +935,7 @@ public class CombatController : MonoBehaviour {
         EndAllCombat();
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        ReturnToRoom("¡ " + runner.playerName + " huyó!");
+        ReturnToRoom("¡" + runner.playerName + " huyó!");
         WinLemons(10);
     }
 
