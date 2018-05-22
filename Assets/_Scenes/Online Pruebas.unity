@@ -1922,6 +1922,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
     - {fileID: 11400000, guid: 1b373320c7d7b3a42b4027655ecc3d6e, type: 2}
     - {fileID: 11400000, guid: 73542bdd843c29c4f9d371b38c2db4ff, type: 2}
+    - {fileID: 11400000, guid: 8fab95efd95fce24ca1772c25f76ae25, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1933,7 +1934,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 23
+      Data: 24
     - Name: 
       Entry: 7
       Data: 
@@ -2207,6 +2208,18 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: h
+    - Name: 
+      Entry: 10
+      Data: 7
     - Name: 
       Entry: 8
       Data: 
@@ -3005,7 +3018,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.535639
+  m_Size: 0.53576994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
