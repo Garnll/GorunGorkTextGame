@@ -785,7 +785,10 @@ public class CombatController : MonoBehaviour {
 
         SetEnemyPlayerDescription();
 
-        enemyUI.logText.text = ("");
+        if (enemyUI.logText != null)
+        {
+            enemyUI.logText.text = ("");
+        }
 
     }
 

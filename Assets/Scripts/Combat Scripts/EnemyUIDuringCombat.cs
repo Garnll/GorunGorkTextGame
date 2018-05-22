@@ -43,7 +43,7 @@ public class EnemyUIDuringCombat : UIDuringCombat {
 
         temp = Instantiate(enemyLog, enemyContainer);
         logText = temp.GetComponentInChildren<TextMeshProUGUI>();
-
+        logText.text = "";
         Debug.Log(logText);
     }
 }
