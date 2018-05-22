@@ -88,7 +88,8 @@ public class CombatController : MonoBehaviour {
 				foreach (string keyword in npc.keywords) {
 					foreach (string keyworkByPlayer in newString) {
 						if (keyword == keyworkByPlayer) {
-							return npc;
+                            vsPlayer = false;
+                            return npc;
 						}
 					}
                 }
@@ -105,6 +106,7 @@ public class CombatController : MonoBehaviour {
     /// <param name="thisPlayer"></param>
     public void PrepareFight(EnemyNPC npc, PlayerManager thisPlayer)
     {
+        vsPlayer = false;
         enemy = npc;
         player = thisPlayer;
         lemonsWon = 0;
@@ -750,13 +752,16 @@ public class CombatController : MonoBehaviour {
     {
         UpdatePlayerLog("¡Se acabó el tiempo!");
 
-        if (player.currentHealth >= enemy.currentHealth)
+        if (!vsPlayer)
         {
-            EndCombat(enemy);
-        }
-        else
-        {
-            EndCombat(player);
+            if (player.currentHealth >= enemy.currentHealth)
+            {
+                EndCombat(enemy);
+            }
+            else
+            {
+                EndCombat(player);
+            }
         }
     }
 
