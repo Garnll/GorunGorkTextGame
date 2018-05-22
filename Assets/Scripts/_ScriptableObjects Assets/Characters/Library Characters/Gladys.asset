@@ -121,7 +121,7 @@ MonoBehaviour:
         condition: 0
         value: 1
       - variable: sam
-        condition: 5
+        condition: 1
         value: 1
       vars:
       - type: 0
@@ -183,6 +183,25 @@ MonoBehaviour:
       dialogue:
         text:
         - "Oh, seguro. Ya puedes salir de la f\xE1brica, por el pasillo hacia el sur."
+        narrator: 0
+        choices: []
+      able: 0
+    - text: "\xBFA d\xF3nde voy?"
+      keywords:
+      - a
+      - adonde
+      - donde
+      conditions:
+      - variable: sam
+        condition: 0
+        value: 2
+      vars: []
+      quests: []
+      exits: []
+      moves: []
+      dialogue:
+        text:
+        - Por el pasaje administrativo, al sur.
         narrator: 0
         choices: []
       able: 0
