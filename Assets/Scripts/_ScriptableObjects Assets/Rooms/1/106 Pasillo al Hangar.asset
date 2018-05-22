@@ -29,6 +29,12 @@ MonoBehaviour:
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
+  - myKeyword: 0
+    conectedRoom: {fileID: 11400000, guid: 9c974b59305f0ec46b5c65cd7066385f, type: 2}
+    isExplicit: 0
+    isAble: 1
+    exitDescription: 
+    exitActionDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
     isExplicit: 1
@@ -36,7 +42,7 @@ MonoBehaviour:
     exitDescription: 
     exitActionDescription: 
   - myKeyword: 2
-    conectedRoom: {fileID: 11400000, guid: 2c30aa37e70239e4dae30fdd90d5eb24, type: 2}
+    conectedRoom: {fileID: 11400000, guid: 2030ff547f1137245a98181c92b00cb3, type: 2}
     isExplicit: 1
     isAble: 1
     exitDescription: 

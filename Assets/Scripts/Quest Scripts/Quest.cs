@@ -22,6 +22,17 @@ public class Quest : ScriptableObject{
 	[Space(5)]
 	public ChangeVarEffect[] vars;
 
+	public int getNumberOfSteps() {
+		if (steps == null) {
+			return 0;
+		}
+		int count = 0;
+		for (int i = 0; i<steps.Length; i++) {
+			count++;
+		}
+		return count;
+	}
+
 	public void initialize() {
 
 		done = false;

@@ -15,6 +15,7 @@ public class GameStart : MonoBehaviour {
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
         controller.playerRoomNavigation.MovePlayerToRoom(originRoom);
         controller.playerManager.Initialize();
+		controller.questManager.init();
 	}
 
 

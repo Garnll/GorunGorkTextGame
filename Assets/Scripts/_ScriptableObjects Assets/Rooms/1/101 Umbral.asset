@@ -28,7 +28,6 @@ MonoBehaviour:
   roomResponse: {fileID: 0}
   visibleObjectsInRoom: []
   charactersInRoom:
-  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
   - {fileID: 11400000, guid: b2656707f00c0884db68fc01b30a2e9a, type: 2}
   playersInRoom: []
   npcTemplatesInRoom: []

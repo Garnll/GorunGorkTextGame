@@ -209,7 +209,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
         int exhaust = 0;
 
-        int maxEnemies = Random.Range(0, 5);
+        int maxEnemies = Random.Range(1, 2);
 
         int randomCheck = Random.Range(0, (currentRoom.npcTemplatesInRoom.Count - 1));
 
@@ -301,7 +301,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
 			equipManager.updateText();
 			inventoryManager.DisplayInventory();
 
-            PlayerChangedRooms(); //Añadido para network
+					controller.questManager.updateQuests();
+
+
+			PlayerChangedRooms(); //Añadido para network
 
             controller.DisplayRoomText();
         }

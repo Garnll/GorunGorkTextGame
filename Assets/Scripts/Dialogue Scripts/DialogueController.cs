@@ -33,6 +33,7 @@ public class DialogueController : MonoBehaviour {
 					if (keywords[1] == k) {
 						currentNpc = npc;
 						setDialogue();
+						controller.questManager.updateQuests();
 						return currentNpc;
 					}
 				}
@@ -49,6 +50,7 @@ public class DialogueController : MonoBehaviour {
 					if (keywords[keywords.Length - 1] == k) {
 						currentNpc = npc;
 						setDialogue();
+						controller.questManager.updateQuests();
 						return currentNpc;
 					}
 					else {
@@ -56,6 +58,7 @@ public class DialogueController : MonoBehaviour {
 						if (k == temp) {
 							currentNpc = npc;
 							setDialogue();
+							controller.questManager.updateQuests();
 							return currentNpc;
 						}
 					}
@@ -106,6 +109,7 @@ public class DialogueController : MonoBehaviour {
 			currentDialogue.getChoice(keyword).applyEffects();
 			currentDialogue = currentDialogue.getDialogueFromChoice(keyword);
 			currentDialogue.applyEffects();
+			controller.questManager.updateQuests();
 			displayText();
 		}
 	}

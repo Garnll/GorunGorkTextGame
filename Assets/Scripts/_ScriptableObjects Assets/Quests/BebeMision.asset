@@ -24,6 +24,10 @@ MonoBehaviour:
       operation: 0
       value: 1
     quests: []
+  - conditions: []
+    description: "Este es el segundo paso de la misi\xF3n del beb\xE9."
+    vars: []
+    quests: []
   currentStep:
     conditions: []
     description: "Este es el primer paso de la misi\xF3n del beb\xE9."

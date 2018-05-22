@@ -648,7 +648,8 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void SetEnemyDescription()
     {
-        enemyUI.descriptionText.text = "Deshabilitado en: " +  (currentBattleTime / 60).ToString("0.##") + "\n" +
+		//Was.
+		enemyUI.descriptionText.text = "Deshabilitado en: " +  (currentBattleTime / 60).ToString("0.##") + "\n" +
             enemy.myTemplate.npcDetailedDescription;
     }
 

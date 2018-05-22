@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public PlayerRoomNavigation playerRoomNavigation;
     public CombatController combatController;
 	public DialogueController dialogueController;
+	public QuestManager questManager;
 	public PlayerText playerText;
 
     [HideInInspector] public List<string> exitDescriptionsInRoom = new List<string>();
