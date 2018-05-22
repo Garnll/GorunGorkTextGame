@@ -461,8 +461,8 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             enemy.currentHealth = life;
             enemy.enemyStats.currentTurn = turn;
 
-            controller.combatController.UpdateEnemyLife();
-            controller.combatController.UpdateEnemyTurn();
+            controller.combatController.UpdateEnemyPlayerLife();
+            controller.combatController.UpdateEnemyPlayerTurn();
         }
     }
 
