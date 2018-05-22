@@ -207,6 +207,8 @@ public class ItemHandler : MonoBehaviour {
         }
 
         controller.LogStringWithReturn(examineInteraction.textResponse);
+		examineInteraction.applyEffects();
+		controller.questManager.updateQuests();
     }
 
     public void TakeObject(InteractableObject objectToTake)
@@ -260,6 +262,7 @@ public class ItemHandler : MonoBehaviour {
 				inventoryManager.DisplayInventory();
 				controller.LogStringWithReturn(takeInteraction.textResponse);
 				takeInteraction.applyEffects();
+				controller.questManager.updateQuests();
 				return;
 			} 
 		}
@@ -365,7 +368,8 @@ public class ItemHandler : MonoBehaviour {
         inventoryManager.DisplayInventory();
         controller.LogStringWithReturn(throwInteraction.textResponse);
 		throwInteraction.applyEffects();
-    }
+		controller.questManager.updateQuests();
+	}
 
     public void UseObject(InteractableObject objectToUse){
         Interaction useInteraction = null;
@@ -415,8 +419,10 @@ public class ItemHandler : MonoBehaviour {
         {
             consumable.UseObject();
             controller.LogStringWithReturn(useInteraction.actionResponse.responseDescription);
+			useInteraction.applyEffects();
+			controller.questManager.updateQuests();
 
-            if (!consumable.IsUseful)
+			if (!consumable.IsUseful)
             {
                 consumable.StopWorking(controller);
                 inventoryManager.nounsInInventory.Remove(consumable);
@@ -482,6 +488,8 @@ public class ItemHandler : MonoBehaviour {
 			}
 		}
 		inventoryManager.DisplayInventory();
+		equipInteraction.applyEffects();
+		controller.questManager.updateQuests();
 
 		if (equipInteraction.actionResponse == null) {
 			return;

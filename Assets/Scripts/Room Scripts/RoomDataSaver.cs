@@ -17,6 +17,7 @@ public class RoomDataSaver {
         public string exitActionDescriptionData;
 		public bool isExplicit;
 		public bool isAble;
+		public string disabledDescription;
 	}
 
     public class Room_Data
@@ -54,6 +55,7 @@ public class RoomDataSaver {
                 roomData.exitsData[i].exitDescriptionData = roomToSave.exits[i].exitDescription;
                 roomData.exitsData[i].exitActionDescriptionData = roomToSave.exits[i].exitActionDescription;
 				roomData.exitsData[i].isExplicit = roomToSave.exits[i].isExplicit;
+				roomData.exitsData[i].disabledDescription = roomToSave.exits[i].disabledDescription;
 
 				roomData.exitsData[i].isAble = roomToSave.exits[i].isAble;
             }
@@ -112,7 +114,7 @@ public class RoomDataSaver {
                         loadExit.exitActionDescription = roomDataLoad.exitsData[i].exitActionDescriptionData;
 						loadExit.isExplicit = roomDataLoad.exitsData[i].isExplicit;
 						loadExit.isAble = roomDataLoad.exitsData[i].isAble;
-
+						loadExit.disabledDescription = roomDataLoad.exitsData[i].disabledDescription;
 
 
 

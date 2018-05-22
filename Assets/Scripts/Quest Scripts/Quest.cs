@@ -20,7 +20,8 @@ public class Quest : ScriptableObject{
 	private bool done;
 
 	[Space(5)]
-	public ChangeVarEffect[] vars;
+	public ChangeVarEffect[] varEffects;
+	public EnableExitEffect[] exitEffects;
 
 	public int getNumberOfSteps() {
 		if (steps == null) {
@@ -62,16 +63,15 @@ public class Quest : ScriptableObject{
 	}
 
 	public bool isDone() {
-		if (done) {
-			return true;
-		}
-		return false;
+		return done;
 	}
 
 	public void pass() {
-		if (!isInFinalStep() && steps[getIndexOfCurrentStep() + 1].canBePassedTo() ) {
-			currentStep.applyEffects();
-			currentStep = steps[getIndexOfCurrentStep() + 1];
+		if (!isInFinalStep() && currentStepIsDone()) {
+			if (steps[getIndexOfCurrentStep() + 1].canBePassedTo()) {
+				currentStep.applyEffects();
+				currentStep = steps[getIndexOfCurrentStep() + 1];
+			}
 		} else {
 			currentStep.applyEffects();
 			applyEffects();
@@ -80,8 +80,12 @@ public class Quest : ScriptableObject{
 	}
 
 	public void applyEffects() {
-		foreach (ChangeVarEffect v in vars) {
+		foreach (ChangeVarEffect v in varEffects) {
 			v.apply();
+		}
+
+		foreach (EnableExitEffect e in exitEffects) {
+			e.apply();
 		}
 	}
 

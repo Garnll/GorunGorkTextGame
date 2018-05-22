@@ -59,6 +59,19 @@ public class QuestManager : MonoBehaviour {
 			}
 		}
 
+		if (majorQuest.isDone()) {
+
+			foreach (Quest q in quests) {
+				if (!q.isDone()) {
+					majorQuest = q;
+					break;
+				}
+			}
+			
+			if (majorQuest.isDone())
+				return "<i>No hay misiones.</i>";
+		}
+
 		return "---\n" + majorQuest.questName + ":\n"
 			+ "<i>" + majorQuest.description + "</i>\n"
 			+ "[" + (majorQuest.getIndexOfCurrentStep() + 1 ) + "/" + majorQuest.getNumberOfSteps() + "] \n"

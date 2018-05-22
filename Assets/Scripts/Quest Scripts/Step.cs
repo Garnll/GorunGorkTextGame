@@ -22,10 +22,13 @@ public class Step {
 	}
 
 	public bool isDone() {
-		if (done) {
-			return true;
+		foreach (Condition c in conditions) {
+			if (!c.isTrue()) {
+				return false;
+			}
 		}
-		return false;
+
+		return true;
 	}
 
 	public void applyEffects() {
@@ -40,15 +43,7 @@ public class Step {
 	}
 
 	public bool canBePassedTo() {
-		if (conditions == null) {
-			return true;
-		}
 
-		foreach (Condition c in conditions) {
-			if (!c.isTrue()) {
-				return false;
-			}
-		}
 		return true;
 	}
 

@@ -21,9 +21,13 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   roomPosition: {x: 1, y: -1, z: 1}
-  roomName: Entrada al Despacho
-  roomDescription: 
-  roomResponse: {fileID: 0}
+  roomName: Despacho
+  roomDescription: "Hay toda clase de dispositivos en la habitaci\xF3n. Algunos de
+    ellos se mueven por el suelo y las paredes de la oficina. Una cinta gruesa de
+    luz arcoiris se desplaza lentamente por el techo, desde una extra\xF1a caja al
+    otro lado del despacho, donde es recibida por una m\xE1quina que parece estar
+    cantando."
+  roomResponse: {fileID: 11400000, guid: 7a6796a1d69107345883c3899dcc27d1, type: 2}
   visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
@@ -33,7 +37,9 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
     isExplicit: 1
     isAble: 1
-    exitDescription: 
+    exitDescription: "Hacia el <b><color=#FBEBB5>oeste</color></b> el pasaje administrativo
+      conecta el Umbral con el vestibulo de la f\xE1brica."
     exitActionDescription: 
+    disabledDescription: 
   enemiesInRoom: []
   changeExits: 0

@@ -39,7 +39,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
 			string temp = "";
 			if (currentRoom.exits[i].exitDescription != "")
             {
-				if (currentRoom.exits[i].isExplicit) {
+				if (currentRoom.exits[i].isExplicit && currentRoom.exits[i].isAble) {
 					switch (currentRoom.exits[i].myKeyword) {
 						case DirectionKeyword.north:
 							temp = "<b><color=#FBEBB5>[N]:</color></b> ";
@@ -77,6 +77,10 @@ public class PlayerRoomNavigation : MonoBehaviour {
 
 				if (currentRoom.exits[i].isAble) {
 					controller.exitDescriptionsInRoom.Add(temp + currentRoom.exits[i].exitDescription);
+				} else {
+					if (currentRoom.exits[i].disabledDescription != null && currentRoom.exits[i].disabledDescription != "") {
+						controller.exitDescriptionsInRoom.Add(temp + currentRoom.exits[i].disabledDescription);
+					}
 				}
             }
         }
@@ -260,6 +264,7 @@ public class PlayerRoomNavigation : MonoBehaviour {
             return;
 
         currentRoom.roomResponse.TriggerResponse(controller);
+		controller.questManager.updateQuests();
     }
 
     /// <summary>

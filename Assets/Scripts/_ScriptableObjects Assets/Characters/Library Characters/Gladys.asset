@@ -26,45 +26,111 @@ MonoBehaviour:
   color: {r: 0.56078434, g: 0.7921569, b: 0.65882355, a: 1}
   dialogueTree:
     text:
-    - "\xA1Hola! Elige una profesi\xF3n. Obviamente no va a ser tan directo en la
-      versi\xF3n final pero estoy probando vueltas."
+    - "\xA1Hola, hola!"
+    - Salut!
+    - "\xBFQu\xE9 tal?"
     narrator: 0
     choices:
-    - text: Delegado
+    - text: Saludar.
       keywords:
-      - d
-      - delegado
-      conditions: []
+      - s
+      - saludar
+      - saludar.
+      conditions:
+      - variable: diario
+        condition: 0
+        value: 0
+      vars:
+      - type: 0
+        variableName: diario
+        operation: 0
+        value: 1
+      quests: []
+      exits: []
+      moves: []
+      dialogue:
+        text:
+        - "\xA1Oh! Ya dec\xEDa yo que eras una cara nueva por aqu\xED. Mira, toma
+          este <b>diario</b>. Con \xE9l podr\xE1s tomar nota de tus tareas."
+        narrator: 0
+        choices:
+        - text: Vale.
+          keywords:
+          - v
+          - vale
+          - vale.
+          conditions: []
+          vars:
+          - type: 0
+            variableName: sam
+            operation: 0
+            value: 1
+          quests:
+          - type: 0
+            quest: {fileID: 11400000, guid: 9509f8a3526c64c43864f7de07a42fcb, type: 2}
+          exits:
+          - type: 0
+            room: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
+            direction: 3
+            enable: 1
+          - type: 0
+            room: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
+            direction: 2
+            enable: 1
+          - type: 0
+            room: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
+            direction: 2
+            enable: 1
+          moves: []
+          dialogue:
+            text:
+            - Ahora anda, anda, no es momento de ser sexy, a trabajar.
+            narrator: 0
+            choices: []
+          able: 0
+      able: 0
+    - text: "\xBFQu\xE9 debo hacer?"
+      keywords:
+      - q
+      - preguntar
+      - que
+      conditions:
+      - variable: sam
+        condition: 0
+        value: 1
+      - variable: hasjob
+        condition: 0
+        value: 0
       vars: []
       quests: []
       exits: []
+      moves: []
       dialogue:
         text:
-        - Blablabla.
+        - "Aqu\xED en la f\xE1brica hay varios lugares especiales en donde se te asignar\xE1
+          un oficio. Una vez entres en alguno de esos lugares ven a verme."
         narrator: 0
         choices: []
       able: 0
-    - text: Operario
-      keywords:
-      - o
-      - operario
-      conditions: []
-      vars: []
-      quests: []
-      exits: []
-      dialogue:
-        text:
-        - Blablabla.
-        narrator: 0
-        choices: []
-      able: 0
-    - text: Pacificador
+    - text: "Pedir una misi\xF3n."
       keywords:
       - p
-      - pacificador
-      conditions: []
-      vars: []
-      quests: []
+      - pedir
+      conditions:
+      - variable: diario
+        condition: 0
+        value: 1
+      - variable: sam
+        condition: 5
+        value: 1
+      vars:
+      - type: 0
+        variableName: sam
+        operation: 0
+        value: 1
+      quests:
+      - type: 0
+        quest: {fileID: 11400000, guid: 9509f8a3526c64c43864f7de07a42fcb, type: 2}
       exits:
       - type: 0
         room: {fileID: 11400000, guid: 3eb7b40f65ecb504093962767548694f, type: 2}
@@ -73,14 +139,50 @@ MonoBehaviour:
       - type: 0
         room: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
         direction: 2
-        enable: 0
+        enable: 1
       - type: 0
         room: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
         direction: 2
-        enable: 0
+        enable: 1
+      moves: []
       dialogue:
         text:
-        - "\xA1Vale! Ya puedes pasar."
+        - "\xA1Seguro, seguro! No hay tiempo que perder."
+        narrator: 0
+        choices: []
+      able: 0
+    - text: "He venido por la misi\xF3n."
+      keywords:
+      - h
+      - he
+      conditions:
+      - variable: hasjob
+        condition: 0
+        value: 1
+      - variable: sam
+        condition: 0
+        value: 1
+      vars:
+      - type: 0
+        variableName: sam
+        operation: 0
+        value: 2
+      - type: 0
+        variableName: vale
+        operation: 0
+        value: 1
+      quests: []
+      exits:
+      - type: 0
+        room: {fileID: 11400000, guid: 4ef0238d3abb35b4db8d81ef397efb25, type: 2}
+        direction: 1
+        enable: 1
+      moves:
+      - type: 0
+        quest: {fileID: 11400000, guid: 9509f8a3526c64c43864f7de07a42fcb, type: 2}
+      dialogue:
+        text:
+        - "Oh, seguro. Ya puedes salir de la f\xE1brica, por el pasillo hacia el sur."
         narrator: 0
         choices: []
       able: 0

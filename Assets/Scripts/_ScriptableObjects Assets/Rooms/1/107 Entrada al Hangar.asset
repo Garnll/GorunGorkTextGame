@@ -21,9 +21,10 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   roomPosition: {x: 2, y: 0, z: 1}
-  roomName: Entrada al Hangar
-  roomDescription: 
-  roomResponse: {fileID: 0}
+  roomName: Hangar
+  roomDescription: "Se trata de un peque\xF1o patio interior y unas viejas escaleras
+    colgando de una torre. Hay varios jarrones decorativos con suculentas en ellos."
+  roomResponse: {fileID: 11400000, guid: c7f21526cca969e4aa9ae6937823fb71, type: 2}
   visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
@@ -34,7 +35,8 @@ MonoBehaviour:
     conectedRoom: {fileID: 11400000, guid: 6205a4f0eecf2e040adc79aaa0ebb3b6, type: 2}
     isExplicit: 1
     isAble: 1
-    exitDescription: 
+    exitDescription: "El pasillo est\xE1 volviendo por el <b><color=#FBEBB5>oeste</color></b>."
     exitActionDescription: 
+    disabledDescription: 
   enemiesInRoom: []
   changeExits: 0

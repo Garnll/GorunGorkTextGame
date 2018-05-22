@@ -21,9 +21,11 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   roomPosition: {x: -2, y: 0, z: 1}
-  roomName: "Entrada a la Armer\xEDa"
-  roomDescription: 
-  roomResponse: {fileID: 0}
+  roomName: "Armer\xEDa"
+  roomDescription: "Filas de incontables armas se distribuyen en una grader\xEDa al
+    fondo de la habitaci\xF3n, as\xED como en las paredes. El suelo est\xE1 tapizado
+    con un patr\xF3n de tri\xE1ngulos de diferentes tonos p\xFArpura y amarillo."
+  roomResponse: {fileID: 11400000, guid: 9ab33f72e8e276f419b12a8e2c69938e, type: 2}
   visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
@@ -34,6 +36,7 @@ MonoBehaviour:
     isExplicit: 1
     isAble: 1
     exitDescription: El pasillo se encuentra al <b><color=#FBEBB5>este</color></b>.
-    exitActionDescription: 
+    exitActionDescription: Haces una reverencia y sales hacia el pasillo.
+    disabledDescription: 
   enemiesInRoom: []
   changeExits: 0

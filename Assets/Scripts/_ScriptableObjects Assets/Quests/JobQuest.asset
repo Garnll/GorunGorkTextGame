@@ -9,42 +9,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da39c48b67bd484abb8dabee79a7396, type: 3}
-  m_Name: BebeMision
+  m_Name: JobQuest
   m_EditorClassIdentifier: 
-  questName: Bebemision
-  priority: 1
-  loopeable: 1
-  description: "Esta es la misi\xF3n del beb\xE9."
+  questName: "T\xEDo Sam"
+  priority: 2
+  loopeable: 0
+  description: "\xA1Debes conseguir un oficio!"
   steps:
   - conditions:
-    - variable: bebe
+    - variable: hasjob
       condition: 0
       value: 1
-    description: "Este es el primer paso de la misi\xF3n del beb\xE9."
-    vars:
-    - type: 0
-      variableName: a
-      operation: 0
-      value: 1
+    description: "Busca en la f\xE1brica una de las salas de oficio."
+    vars: []
     quests: []
   - conditions:
-    - variable: bebe
+    - variable: vale
       condition: 0
-      value: 2
-    description: "Este es el segundo paso de la misi\xF3n del beb\xE9."
+      value: 1
+    description: Ve a hablar con Gladys.
     vars: []
     quests: []
   currentStep:
     conditions:
-    - variable: bebe
+    - variable: vale
       condition: 0
       value: 1
-    description: "Este es el primer paso de la misi\xF3n del beb\xE9."
-    vars:
-    - type: 0
-      variableName: a
-      operation: 0
-      value: 1
+    description: Ve a hablar con Gladys.
+    vars: []
     quests: []
   varEffects: []
   exitEffects: []

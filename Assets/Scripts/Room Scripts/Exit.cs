@@ -15,6 +15,7 @@ public class Exit {
 	[TextArea] public string exitDescription;
     [Space(5)]
     [TextArea] public string exitActionDescription;
+	[TextArea] public string disabledDescription;
 
 
 }

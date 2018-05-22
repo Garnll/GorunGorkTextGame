@@ -13,6 +13,23 @@ public class JobSelectionResponse : RoomResponse {
         base.TriggerResponse(controller);
 
         controller.playerManager.characteristics.playerJob = jobToGive;
-    }
+		if (!GlobalVariables.ContainsVariable(jobToGive.jobName)) {
+			GlobalVariables.AddNewAs(jobToGive.jobName, 1);
+		}
+		else {
+			GlobalVariables.SetValue(jobToGive.jobName, 1);
+		}
+
+		if (!GlobalVariables.ContainsVariable("hasjob")) {
+			GlobalVariables.AddNewAs("hasjob", 1);
+		}
+		else {
+			GlobalVariables.SetValue("hasjob", 1);
+		}
+
+		Debug.Log("hasjob: " + GlobalVariables.GetValueOf("hasjob"));
+		controller.questManager.updateQuests();
+
+	}
 
 }

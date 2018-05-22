@@ -29,8 +29,7 @@ MonoBehaviour:
     nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
   roomResponse: {fileID: 0}
   visibleObjectsInRoom: []
-  charactersInRoom:
-  - {fileID: 11400000, guid: aef5a146df43c0f4592c6283c7aa0c21, type: 2}
+  charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
   exits:
@@ -41,23 +40,27 @@ MonoBehaviour:
     exitDescription: "Despl\xE1zate en una de las cuatro direcciones principales:
       <b><color=#FBEBB5>[Norte, Sur, Este, Oeste]</color></b>"
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 0
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
     isAble: 1
     exitDescription: 
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
     isAble: 1
     exitDescription: 
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
     isExplicit: 0
     isAble: 1
     exitDescription: 
     exitActionDescription: 
+    disabledDescription: 
   enemiesInRoom: []
   changeExits: 0
