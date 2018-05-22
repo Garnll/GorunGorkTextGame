@@ -16,6 +16,7 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public void init() {
+		GlobalVariables.AddNewAs("diario", 0);
 		bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
 		text.text = "";
 	}
@@ -30,8 +31,20 @@ public class QuestManager : MonoBehaviour {
 		foreach (Quest q in quests) {
 			q.update();
 		}
-		bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 256);
-		text.text = "<b>Diario</b>\n" +  getQuestLog();
+
+		if (GlobalVariables.ContainsVariable("diario")) {
+			if (GlobalVariables.GetValueOf("diario") == 1) {
+				bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 256);
+				text.text = "<b>Diario</b>\n" + getQuestLog();
+			} else {
+				bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
+				text.text = "";
+			}
+		} else {
+			bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
+			text.text = "";
+		}
+
 	}
 
 	public string getQuestLog() {

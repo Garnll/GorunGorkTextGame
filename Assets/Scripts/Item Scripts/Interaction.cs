@@ -11,5 +11,12 @@ public class Interaction  {
     public bool isInverseInteraction; //Cuando se quiere que ocurra una acción especial si no se puede interactuar
     [TextArea] public string textResponse;
     public ActionResponse actionResponse;
+	public ChangeVarEffect[] vars;
+
+	public void applyEffects() {
+		foreach (ChangeVarEffect v in vars) {
+			v.apply();
+		}
+	}
 
 }

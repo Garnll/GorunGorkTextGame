@@ -259,6 +259,7 @@ public class ItemHandler : MonoBehaviour {
 				removeFromRoom(objectToTake);
 				inventoryManager.DisplayInventory();
 				controller.LogStringWithReturn(takeInteraction.textResponse);
+				takeInteraction.applyEffects();
 				return;
 			} 
 		}
@@ -337,6 +338,7 @@ public class ItemHandler : MonoBehaviour {
 
         controller.playerRoomNavigation.currentRoom.visibleObjectsInRoom.Add(newObjectInRoom);
 
+
 		if (objectToThrow.isIngredient && inventoryManager.hasPockets()) {
 			bool throwed = false;
 			try {
@@ -362,6 +364,7 @@ public class ItemHandler : MonoBehaviour {
 
         inventoryManager.DisplayInventory();
         controller.LogStringWithReturn(throwInteraction.textResponse);
+		throwInteraction.applyEffects();
     }
 
     public void UseObject(InteractableObject objectToUse){
@@ -419,6 +422,8 @@ public class ItemHandler : MonoBehaviour {
                 inventoryManager.nounsInInventory.Remove(consumable);
                 inventoryManager.DisplayInventory();
             }
+
+
         }
         else
         {

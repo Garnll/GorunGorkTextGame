@@ -301,8 +301,11 @@ public class PlayerRoomNavigation : MonoBehaviour {
 			equipManager.updateText();
 			inventoryManager.DisplayInventory();
 
+			if (GlobalVariables.ContainsVariable("diario")) {
+				if (GlobalVariables.GetValueOf("diario") == 1) {
 					controller.questManager.updateQuests();
-
+				}
+			}
 
 			PlayerChangedRooms(); //Añadido para network
 
