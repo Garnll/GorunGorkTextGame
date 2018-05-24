@@ -58,4 +58,8 @@ MonoBehaviour:
   - OtherPlayerDied
   - OtherPlayerEscaped
   - PlayerAttackedMe
+  - OtherPlayerLoses
+  - ChangeMyEvasion
+  - ChangeMyState
+  - ChangeMyCharacteristics
   DisableAutoOpenWizard: 1
