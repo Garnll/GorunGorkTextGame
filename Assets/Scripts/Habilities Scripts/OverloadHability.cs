@@ -35,4 +35,36 @@ public class OverloadHability : Hability {
 
         WaitForCooldown();
     }
+
+    public override void ImplementHability(PlayerManager player, PlayerInstance enemy)
+    {
+        if (!isAvailable)
+        {
+            if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                player.controller.combatController.UpdatePlayerLog("Sobrecargar no disponible.");
+                return;
+            }
+        }
+
+        base.ImplementHability(player, enemy);
+
+        isAvailable = false;
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            player.currentTurn -= turnConsuption;
+            player.controller.combatController.UpdatePlayerLog("¡Has usado Sobrecargar!");
+            NetworkManager.Instance.UpdateEnemyLog(player.playerName + " se ha sobrecargado.");
+
+            int r = Random.Range(25, 50);
+
+            enemy.enemyStats.ReceiveDamage(r, enemy);
+
+            NetworkManager.Instance.ChangeNewState(stateToChange.stateName, enemy);
+
+        }
+
+        WaitForCooldown();
+    }
 }

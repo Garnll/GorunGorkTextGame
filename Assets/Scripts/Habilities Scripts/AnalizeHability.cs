@@ -48,6 +48,47 @@ public class AnalizeHability : Hability {
         WaitForCooldown();
     }
 
+    public override void ImplementHability(PlayerManager player, PlayerInstance enemy)
+    {
+        if (!isAvailable)
+        {
+            if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                player.controller.combatController.UpdatePlayerLog("Analizar no disponible.");
+                return;
+            }
+        }
+
+        base.ImplementHability(player, enemy);
+
+        isAvailable = false;
+
+        string characteristicsEnemy;
+
+
+        characteristicsEnemy = "Fuerza: " + enemy.strength + "\n" +
+            "Destreza: " + enemy.dexterity + "\n" +
+            "Inteligencia: " + enemy.intelligence + "\n" +
+            "Resistencia: " + enemy.resistance;
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            player.currentTurn -= turnConsuption;
+            player.controller.combatController.UpdatePlayerLog("¡Has usado Analizar!");
+            NetworkManager.Instance.UpdateEnemyLog(player.playerName + " está analizando.");
+
+            player.controller.combatController.enemyUI.descriptionText.text = characteristicsEnemy;
+            WaitForCooldown(player);
+        }
+        else if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        {
+            player.controller.LogStringWithReturn(TextConverter.MakeFirstLetterUpper(enemy.playerName) + ":\n"
+                + characteristicsEnemy);
+        }
+
+        WaitForCooldown();
+    }
+
     public override void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
         base.ImplementHability(player, interactable);

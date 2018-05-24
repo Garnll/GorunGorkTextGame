@@ -438,7 +438,7 @@ public class PlayerManager : MonoBehaviour {
         {
             NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
                 playerName + " ha muerto.");
-            NetworkManager.Instance.PlayerDies(controller.combatController.enemyPlayer);
+            NetworkManager.Instance.MyPlayerLoses(controller.combatController.enemyPlayer);
         }
 
         controller.combatController.StopCoroutine(controller.combatController.EndCombat(this));

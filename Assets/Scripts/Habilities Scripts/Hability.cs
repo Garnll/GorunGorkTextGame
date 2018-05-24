@@ -39,6 +39,16 @@ public abstract class Hability : ScriptableObject {
 
     /// <summary>
     /// Activar la habilidad, que puede ser en combate o fuera de él. 
+    /// Requiere que se le envíe el manager del jugador.
+    /// </summary>
+    /// <param name="player"></param>
+    public virtual void ImplementHability(PlayerManager player, PlayerInstance npc)
+    {
+        AddExperience();
+    }
+
+    /// <summary>
+    /// Activar la habilidad, que puede ser en combate o fuera de él. 
     /// Requiere que se le envíe un objeto
     /// </summary>
     /// <param name="interactable"></param>

@@ -241,7 +241,14 @@ public class CombatController : MonoBehaviour {
             if (currentBattleTime <= 0)
             {
                 currentBattleTime = 0;
-                EndCombatByTime();
+                if (!vsPlayer)
+                {
+                    EndCombatByTime();
+                }
+                else
+                {
+                    EndCombatByTimePlayer();
+                }
             }
 
             player.ChargeTurn();
@@ -339,6 +346,10 @@ public class CombatController : MonoBehaviour {
                 if (!vsPlayer)
                 {
                     habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemy);
+                }
+                else
+                {
+                    habilitiesInput.CheckHabilitiesInputDuringCombat(input, player.controller, enemyPlayer);
                 }
                 UpdatePlayerTurn();
             }
@@ -889,6 +900,20 @@ public class CombatController : MonoBehaviour {
         enemyUI.logText.text = string.Join("\n", enemyLog.ToArray());
     }
 
+    private void EndCombatByTimePlayer()
+    {
+        UpdatePlayerLog("¡Se acabó el tiempo!");
+
+        if (player.currentHealth >= enemyPlayer.currentHealth)
+        {
+            EndCombat(enemyPlayer);
+        }
+        else
+        {
+            EndCombat(player);
+            NetworkManager.Instance.MyPlayerLoses(enemyPlayer);
+        }
+    }
 
     #endregion
 
@@ -975,6 +1000,7 @@ public class CombatController : MonoBehaviour {
         }
         CancelInvoke();
         GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+        player.characteristics.InitializeCharacteristics();
         player.controller.CreateNewDisplay();
     }
 
