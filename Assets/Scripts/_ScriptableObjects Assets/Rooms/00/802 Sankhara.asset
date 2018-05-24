@@ -31,7 +31,8 @@ MonoBehaviour:
   visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
-  npcTemplatesInRoom: []
+  npcTemplatesInRoom:
+  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
@@ -62,5 +63,6 @@ MonoBehaviour:
     exitDescription: 
     exitActionDescription: 
     disabledDescription: 
-  enemiesInRoom: []
+  enemiesInRoom:
+  - {fileID: 0}
   changeExits: 0
