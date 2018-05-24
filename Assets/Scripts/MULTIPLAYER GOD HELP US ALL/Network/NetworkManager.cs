@@ -506,13 +506,13 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         }
     }
 
-    public void PlayerDies(PlayerInstance player)
+    public void MyPlayerLoses(PlayerInstance player)
     {
-        photonView.RPC("OtherPlayerDied", PhotonPlayer.Find(player.playerUserID), controller.playerManager.playerName);
+        photonView.RPC("OtherPlayerLoses", PhotonPlayer.Find(player.playerUserID), controller.playerManager.playerName);
     }
 
     [PunRPC]
-    public void OtherPlayerDied(string playerName)
+    public void OtherPlayerLoses(string playerName)
     {
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
         {
@@ -521,6 +521,83 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
             controller.combatController.StartCoroutine(controller.combatController.EndCombat(enemy));
         }
     }
+
+    #region Habilities for combat
+
+    public void ChangeEvasion(int newEvasion, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyEvasion", PhotonPlayer.Find(enemy.playerUserID), newEvasion);
+    }
+
+    [PunRPC]
+    public void ChangeMyEvasion(int newEvasion)
+    {
+        controller.playerManager.characteristics.other.currentEvasion = newEvasion;
+    }
+
+    public void ChangeNewState(string stateName, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyState", PhotonPlayer.Find(enemy.playerUserID), stateName);
+    }
+
+    [PunRPC]
+    public void ChangeMyState(string state)
+    {
+        controller.playerManager.ChangeState(
+            StringsIntoObjectsInator.Instance.StateFromString(state));
+
+        UpdatePlayerData(controller.combatController.enemyPlayer, controller.playerManager);
+
+
+    }
+
+    public void ChangeStrength(float change, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyCharacteristics", PhotonPlayer.Find(enemy.playerUserID), "s", change);
+    }
+
+
+    public void ChangeDexterity(float change, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyCharacteristics", PhotonPlayer.Find(enemy.playerUserID), "d", change);
+    }
+
+    public void ChangeIntelligence(float change, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyCharacteristics", PhotonPlayer.Find(enemy.playerUserID), "i", change);
+    }
+
+    public void ChangeResistance(float change, PlayerInstance enemy)
+    {
+        photonView.RPC("ChangeMyCharacteristics", PhotonPlayer.Find(enemy.playerUserID), "r", change);
+    }
+
+    [PunRPC]
+    public void ChangeMyCharacteristics(string characteristic, float change)
+    {
+        switch (characteristic)
+        {
+            case "s":
+                controller.playerManager.characteristics.currentStrength = change;
+                break;
+
+            case "d":
+                controller.playerManager.characteristics.currentDexterity = change;
+                break;
+
+            case "i":
+                controller.playerManager.characteristics.currentIntelligence = change;
+                break;
+
+            case "r":
+                controller.playerManager.characteristics.currentResistance = change;
+                break;
+        }
+
+        UpdatePlayerData(controller.combatController.enemyPlayer, controller.playerManager);
+    }
+
+    #endregion
 
     #endregion
 }

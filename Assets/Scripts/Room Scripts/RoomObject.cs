@@ -106,12 +106,11 @@ public class RoomObject : SerializedScriptableObject {
 
         playersInRoom.Add(newPlayer);
 
-        if (controller.playerRoomNavigation.currentRoom == newPlayer.currentRoom)
+        if (controller.playerRoomNavigation.currentRoom == newPlayer.currentRoom &&
+            GameState.Instance.CurrentState == GameState.GameStates.exploration)
         {
             controller.LogStringWithoutReturn(newPlayer.playerName + " ha llegado.");
         }
-
-        Debug.Log(newPlayer + " llegó a " + roomName);
     }
 
     public void AddPlayerInRoom(PlayerInstance newPlayer)
@@ -126,14 +125,13 @@ public class RoomObject : SerializedScriptableObject {
             return;
         }
 
-        if (controller.playerRoomNavigation.currentRoom == oldPlayer.currentRoom)
+        if (controller.playerRoomNavigation.currentRoom == oldPlayer.currentRoom &&
+            GameState.Instance.CurrentState == GameState.GameStates.exploration)
         {
             controller.LogStringWithoutReturn(oldPlayer.playerName + " se fue hacia otro lugar.");
         }
 
         playersInRoom.Remove(oldPlayer);
-
-        Debug.Log(oldPlayer + " salió de " + roomName);
     }
 
     public void RemovePlayerInRoom (PlayerInstance oldPlayer)

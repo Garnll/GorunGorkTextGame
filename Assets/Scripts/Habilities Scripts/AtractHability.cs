@@ -40,6 +40,42 @@ public class AtractHability : Hability {
         WaitForCooldown();
     }
 
+    public override void ImplementHability(PlayerManager player, PlayerInstance enemy)
+    {
+        if (!isAvailable)
+        {
+            if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                player.controller.combatController.UpdatePlayerLog("Atraer no disponible.");
+                return;
+            }
+        }
+
+        base.ImplementHability(player, enemy);
+
+        isAvailable = false;
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            player.currentTurn -= turnConsuption;
+            player.controller.combatController.UpdatePlayerLog("¡Has usado Atraer!");
+            NetworkManager.Instance.UpdateEnemyLog(player.playerName + " te está atrayendo.");
+
+            float damage = player.characteristics.currentStrength + Random.Range(1, 5) + 10;
+
+            enemy.enemyStats.ReceiveDamage(damage, enemy);
+            NetworkManager.Instance.ChangeEvasion(0, enemy);
+
+            float r = Random.Range(0f, 1f);
+            if (r <= 0.3f)
+            {
+                player.ChangeState(stateToChange);
+            }
+        }
+
+        WaitForCooldown();
+    }
+
     public override void ImplementHability(PlayerManager player, InteractableObject interactable)
     {
         base.ImplementHability(player, interactable);

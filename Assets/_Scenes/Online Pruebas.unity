@@ -3018,7 +3018,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.53576994
+  m_Size: 0.5357699
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3277,7 +3277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 165.06}
+  m_AnchoredPosition: {x: 3, y: 165.05997}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -3429,7 +3429,7 @@ MonoBehaviour:
   playerInstancePrefab: {fileID: 1879889777301474, guid: f91ab426aaa32c44e81362ce3c63c93e,
     type: 2}
   playerInstanceManager: {fileID: 342256951}
-  gameVersion: 0.2
+  gameVersion: 0.4
   maxPlayers: 10
   isConnecting: 0
   connected: 0
