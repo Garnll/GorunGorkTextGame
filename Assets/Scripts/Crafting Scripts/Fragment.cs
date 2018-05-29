@@ -7,6 +7,6 @@ public class Fragment{
 
 	public InteractableObject ingredient;
 	public int volume;
-	public CraftingController.Instant addingInstant;
+	public CraftingController.AddingInstant addingInstant;
 
 }

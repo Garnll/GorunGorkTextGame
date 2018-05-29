@@ -9,20 +9,21 @@ public class CraftingController : MonoBehaviour {
 	public List<InteractableObject> playerIngredients;
 
 	public enum Instant { Before, While, Pause, After }
+	public enum AddingInstant { Before, While, Pause }
 
 	public List<Recipe> recipes;                        //Todas las recetas del juego.
 	[HideInInspector] public List<Recipe> recipesKnown; //Recetas conocidas por el jugador.
 
 	public float craftingTime;                          //El tiempo que lleva crafteando.
 	public bool isCrafting;                             //Si está crafteando o no.
-	public Instant craftingInstant;
+	public Instant currentInstant;
 	public bool alreadyStarted;
 
 	public List<InteractableObject> ingredientsIn;
 
 	public void initialize() {
 		alreadyStarted = false;
-		craftingInstant = Instant.Before;
+		currentInstant = Instant.Before;
 		isCrafting = false;
 		craftingTime = 0;
 	}
@@ -145,16 +146,16 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public void play() {
-		craftingInstant = Instant.While;
+		currentInstant = Instant.While;
 		alreadyStarted = true;
 	}
 
 	public void pause() {
-		craftingInstant = Instant.Pause;
+		currentInstant = Instant.Pause;
 	}
 
 	public void stop() {
-		craftingInstant = Instant.After;
+		currentInstant = Instant.After;
 	}
 
 }

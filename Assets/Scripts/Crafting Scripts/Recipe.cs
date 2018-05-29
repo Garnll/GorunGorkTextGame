@@ -16,22 +16,23 @@ public class Recipe : ScriptableObject {
 	[HideInInspector] public List<Fragment> beforeFragments;
 	[HideInInspector] public List<Fragment> whileFragments;
 	[HideInInspector] public List<Fragment> pauseFragments;
-	[HideInInspector] public List<Fragment> afterFragments;
+
+
+	public void OnEnable() {
+		fillLists();
+	}
 
 	public void fillLists() {
 		foreach (Fragment f in fragments) {
 			switch (f.addingInstant) {
-				case CraftingController.Instant.Before:
+				case CraftingController.AddingInstant.Before:
 					beforeFragments.Add(f);
 					break;
-				case CraftingController.Instant.While:
+				case CraftingController.AddingInstant.While:
 					whileFragments.Add(f);
 					break;
-				case CraftingController.Instant.Pause:
+				case CraftingController.AddingInstant.Pause:
 					pauseFragments.Add(f);
-					break;
-				case CraftingController.Instant.After:
-					afterFragments.Add(f);
 					break;
 			}
 		}
