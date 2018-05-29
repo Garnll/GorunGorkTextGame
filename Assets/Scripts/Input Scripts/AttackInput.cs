@@ -11,11 +11,6 @@ public class AttackInput : InputActions {
         if (separatedInputWords.Length > 1)
         {
 
-            NPCTemplate npcToAttack = 
-                controller.combatController.TryToFight(separatedInputWords, controller.playerRoomNavigation.currentRoom);
-
-            EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
-
             PlayerInstance player = controller.combatController.TryToFightPlayer(separatedCompleteInputWords,
                 controller.playerRoomNavigation.currentRoom);
 
@@ -32,6 +27,11 @@ public class AttackInput : InputActions {
                 controller.LogStringWithReturn(" ");
                 return;
             }
+
+            NPCTemplate npcToAttack =
+                controller.combatController.TryToFight(separatedInputWords, controller.playerRoomNavigation.currentRoom);
+
+            EnemyNPC enemy = controller.playerRoomNavigation.PickAnEnemy((EnemyNPCTemplate)npcToAttack);
 
             if (npcToAttack == null)
             {
