@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 222896082478185150}
   - component: {fileID: 114157133271510994}
   - component: {fileID: 114779584521892606}
+  - component: {fileID: 114682475053293802}
   m_Layer: 5
   m_Name: craftLayout
   m_TagString: Untagged
@@ -2152,6 +2153,30 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114682475053293802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840121968352872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a366326ccca7414e907726d1ccc9347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 114813849316381208}
+  ingredientsList: {fileID: 114802411162318436}
+  pages: {fileID: 114277098648450964}
+  ingredientCommands: {fileID: 114922983836604866}
+  ingredientsUsed: {fileID: 114896885355533468}
+  time: {fileID: 114520301970207302}
+  picture: {fileID: 114781842394885656}
+  processDescription: {fileID: 114642086488386158}
+  processCommands: {fileID: 114721345160924730}
+  recipes: {fileID: 114838962988253202}
+  recipeAnotation: {fileID: 114441736792791428}
+  recipeCommands: {fileID: 114222309275242102}
+  exit: {fileID: 114783041119917036}
 --- !u!114 &114687014577876352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3959,7 +3984,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840121968352872}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3972,7 +3997,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 392.92517}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224707442080004316
 RectTransform:
@@ -3992,8 +4017,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 283, y: 0}
-  m_SizeDelta: {x: 566, y: 341.1}
+  m_AnchoredPosition: {x: 273.745, y: 0}
+  m_SizeDelta: {x: 547.49, y: 341.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224713690697282956
 RectTransform:

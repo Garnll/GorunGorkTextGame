@@ -20,6 +20,8 @@ public class InteractableObject : ScriptableObject {
 	public bool isIngredient;
 	public bool isOpenable;
 
+	[HideInInspector] public bool consumed;
+
 	[Space(5)]
     [TextArea] public string description = "Descripción en la habitación";
     [TextArea] public string descriptionAtAnalized = "Descripción al ser analizado";
