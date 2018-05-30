@@ -9,6 +9,8 @@ public class PlayerUIDuringCombat : UIDuringCombat {
     [HideInInspector] public TextMeshProUGUI habilitiesText;
     [HideInInspector] public TextMeshProUGUI optionsText;
 
+    public TextMeshProUGUI timerText;
+
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject playerTitle;

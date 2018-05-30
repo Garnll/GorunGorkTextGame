@@ -217,6 +217,7 @@ public class CombatController : MonoBehaviour {
     {
         player.controller.NullCurrentDisplay();
 
+        Instantiate(playerUI.timerText.gameObject, contentContainer);
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
@@ -237,6 +238,8 @@ public class CombatController : MonoBehaviour {
             {
                 SetEnemyDescription();
             }
+
+            playerUI.timerText.text = "Combate termina en: <b>" + (currentBattleTime / 60).ToString("0.##") + "</b>";
 
             if (currentBattleTime <= 0)
             {
@@ -718,7 +721,7 @@ public class CombatController : MonoBehaviour {
     public void SetEnemyDescription()
     {
 		//Was.
-		enemyUI.descriptionText.text = "Deshabilitado en: " +  (currentBattleTime / 60).ToString("0.##") + "\n" +
+		enemyUI.descriptionText.text = 
             enemy.myTemplate.npcDetailedDescription;
     }
 
@@ -864,7 +867,7 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void SetEnemyPlayerDescription()
     {
-        enemyUI.descriptionText.text = "Deshabilitado en: " + (currentBattleTime / 60).ToString("0.##") + "\n" +
+        enemyUI.descriptionText.text = 
             "";
     }
 
