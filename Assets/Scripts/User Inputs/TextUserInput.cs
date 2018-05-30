@@ -51,7 +51,7 @@ public class TextUserInput : SerializedMonoBehaviour {
     /// Accepta el input del jugador una vez este presiona "Enter"
     /// </summary>
     /// <param name="userInput"></param>
-    void AcceptStringInput(string userInput)
+    public void AcceptStringInput(string userInput)
     {
         string originalInput = userInput;
         userInput = userInput.ToLower();
@@ -169,6 +169,9 @@ public class TextUserInput : SerializedMonoBehaviour {
 				break;
 
 			case GameState.GameStates.crafting:
+				controller.craftController.receiveInput(separatedInputWords);
+				inputField.ActivateInputField();
+				inputField.text = null;
 				break;
 
         }

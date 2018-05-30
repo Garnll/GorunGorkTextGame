@@ -216,7 +216,6 @@ public class CombatController : MonoBehaviour {
     private void ChangeLayout()
     {
         player.controller.NullCurrentDisplay();
-
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());

@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public PlayerRoomNavigation playerRoomNavigation;
     public CombatController combatController;
 	public DialogueController dialogueController;
+	public CraftingController craftController;
 	public QuestManager questManager;
 	public PlayerText playerText;
 

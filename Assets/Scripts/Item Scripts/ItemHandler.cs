@@ -409,6 +409,11 @@ public class ItemHandler : MonoBehaviour {
 
         controller.LogStringWithReturn(useInteraction.textResponse);
 
+		if (objectToUse.GetType() == typeof(Recipient)) {
+			controller.craftController.initialize(objectToUse as Recipient);
+		}
+
+
         if (useInteraction.actionResponse == null)
         {
             return;

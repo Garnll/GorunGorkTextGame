@@ -13,7 +13,15 @@ public class UseInput : InputActions {
     /// <param name="separatedInputWords"></param>
     public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords)
     {
-        InteractableObject objectToExamine = 
+
+		InteractableObject o = controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, true, false);
+
+		if (o != null && o.GetType() == typeof(Recipient)) {
+			controller.itemHandler.UseObject(o);
+			return;
+		}
+
+		InteractableObject objectToExamine = 
             controller.itemHandler.SearchObjectInRoomOrInventory(separatedInputWords, false, true);
 
         if (objectToExamine != null)

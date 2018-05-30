@@ -19,6 +19,7 @@ public class CraftingLayout : MonoBehaviour {
 	[SerializeField] public TextMeshProUGUI	processCommands;
 
 
+	[SerializeField] public TextMeshProUGUI recipeTitle;
 	[SerializeField] public TextMeshProUGUI	recipes;
 	[SerializeField] public TextMeshProUGUI	recipeAnotation;
 	[SerializeField] public TextMeshProUGUI	recipeCommands;

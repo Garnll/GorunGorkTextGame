@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114726897938148400}
   - component: {fileID: 114254784124613484}
   - component: {fileID: 114053385024625492}
+  - component: {fileID: 114299324054676450}
   m_Layer: 0
   m_Name: 'Player Stats '
   m_TagString: Untagged
@@ -42,7 +43,7 @@ GameObject:
   - component: {fileID: 114876431431837244}
   - component: {fileID: 114122720392250220}
   - component: {fileID: 114131058260902130}
-  - component: {fileID: 114475976702410044}
+  - component: {fileID: 114098538083528006}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -91,6 +92,51 @@ MonoBehaviour:
   textToDisplay: Elige entre <b><color=#FBEBB5>[Fuerza, Inteligencia, Resistencia,
     Destreza]</color></b>.
   endText: "No tienes m\xE1s puntos para gastar."
+--- !u!114 &114098538083528006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930476981935544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac3855c81a9524593b1865ab77575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114876431431837244}
+  characteristics: {fileID: 114726897938148400}
+  text: {fileID: 0}
+  healthGradient:
+    serializedVersion: 2
+    key0: {r: 0.9642268, g: 0.41001573, b: 0.09877263, a: 1}
+    key1: {r: 0.9558824, g: 0.8635903, b: 0.1194853, a: 1}
+    key2: {r: 0.37640572, g: 0.86764705, b: 0.8269926, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 6554
+    ctime1: 34310
+    ctime2: 65150
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  inactiveColor: {r: 0.88235295, g: 0.7218112, b: 0.43468854, a: 1}
+  activeColor: {r: 0.38884082, g: 0.85294116, b: 0.71851206, a: 1}
 --- !u!114 &114122720392250220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests: []
+  bar: {fileID: 0}
+  text: {fileID: 0}
 --- !u!114 &114131058260902130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,51 +209,19 @@ MonoBehaviour:
   equipManager: {fileID: 114131058260902130}
   inventoryManager: {fileID: 114821141371468156}
   currentPosition: {x: 0, y: 0, z: 0}
---- !u!114 &114475976702410044
+--- !u!114 &114299324054676450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1930476981935544}
+  m_GameObject: {fileID: 1167064984694596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbac3855c81a9524593b1865ab77575a, type: 3}
+  m_Script: {fileID: 11500000, guid: 187d4ee26c9205a4e9675d9176d27445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114876431431837244}
-  characteristics: {fileID: 114726897938148400}
-  text: {fileID: 0}
-  healthGradient:
-    serializedVersion: 2
-    key0: {r: 0.9642268, g: 0.41001573, b: 0.09877263, a: 1}
-    key1: {r: 0.9558824, g: 0.8635903, b: 0.1194853, a: 1}
-    key2: {r: 0.37640572, g: 0.86764705, b: 0.8269926, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 6554
-    ctime1: 34310
-    ctime2: 65150
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  inactiveColor: {r: 0.88235295, g: 0.7218112, b: 0.43468854, a: 1}
-  activeColor: {r: 0.38884082, g: 0.85294116, b: 0.71851206, a: 1}
+  textToDisplay: Elije entre FUERZA, DESTREZA, INTELIGENCIA o RESISTENCIA.
+  endText: "No tienes m\xE1s puntos para gastar."
 --- !u!114 &114726897938148400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,7 +262,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 114876431431837244}
   roomNav: {fileID: 114290290832410878}
-  nounsInInventory: []
+  nounsInInventory:
+  - {fileID: 11400000, guid: 47ccdcfe4f7ffc54884976e23246130a, type: 2}
+  - {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+  - {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+  - {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+  - {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+  - {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+  - {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+  - {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+  - {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+  - {fileID: 11400000, guid: ee017443229a5d340aaff3b370bf0999, type: 2}
   text: {fileID: 0}
   border: {fileID: 0}
   barra: {fileID: 0}
@@ -264,7 +290,7 @@ MonoBehaviour:
   playerName: jugador
   gender: macho
   playerLevel: 0
-  characteristicsChanger: {fileID: 114053385024625492}
+  characteristicsChanger: {fileID: 114299324054676450}
   defaultState: {fileID: 11400000, guid: 6a14138e1c38e514ca6512a426b7499d, type: 2}
   currentState: {fileID: 0}
   maxHealth: 20
@@ -277,6 +303,6 @@ MonoBehaviour:
   currentVisibility: 0
   pacifier: 1
   characteristics: {fileID: 114726897938148400}
-  playerText: {fileID: 114475976702410044}
+  playerText: {fileID: 114098538083528006}
   inventoryManager: {fileID: 114821141371468156}
   controller: {fileID: 0}
