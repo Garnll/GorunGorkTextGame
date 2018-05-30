@@ -83,25 +83,24 @@ public class PlayerOther : MonoBehaviour {
 
     public float EscapeProbability(PlayerManager player, EnemyNPC enemy)
     {
-        escapeProbability =
-            (((enemy.myTemplate.MaxHealth - enemy.currentHealth) / enemy.myTemplate.MaxHealth) * 100) +
-            (player.characteristics.currentDexterity / 10) +
-            (player.currentState.magnitude) -
-            (enemy.currentState.magnitude);
+        //escapeProbability =
+        //    (((enemy.myTemplate.MaxHealth - enemy.currentHealth) / enemy.myTemplate.MaxHealth) * 100) +
+        //    (player.characteristics.currentDexterity / 10) +
+        //    (player.currentState.magnitude) -
+        //    (enemy.currentState.magnitude);
 
-		//return escapeProbability;
-		return 50;
+		return 100;
     }
 
     public float EscapeProbability(PlayerManager player, PlayerInstance enemy)
     {
-        escapeProbability =
-            (((enemy.enemyStats.maxHealth - enemy.currentHealth) / enemy.enemyStats.maxHealth) * 100) +
-            (player.characteristics.currentDexterity / 10) +
-            (player.currentState.magnitude) -
-            (enemy.playerState.magnitude);
+        //escapeProbability =
+        //    (((enemy.enemyStats.maxHealth - enemy.currentHealth) / enemy.enemyStats.maxHealth) * 100) +
+        //    (player.characteristics.currentDexterity / 10) +
+        //    (player.currentState.magnitude) -
+        //    (enemy.playerState.magnitude);
 
-        return escapeProbability;
+        return 100;
      
     }
 

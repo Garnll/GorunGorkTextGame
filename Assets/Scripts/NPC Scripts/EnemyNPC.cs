@@ -271,14 +271,14 @@ public class EnemyNPC : MonoBehaviour {
 
         if (r <= myTemplate.EscapeProbability(this, player))
         {
-            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha huido.");
+            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " se ha rendido.");
 
-            combatController.StopCoroutine(combatController.EndCombatByEscaping(this));
-            combatController.StartCoroutine(combatController.EndCombatByEscaping(this));
+            combatController.StopCoroutine(combatController.EndCombatByGivingUp(this));
+            combatController.StartCoroutine(combatController.EndCombatByGivingUp(this));
         }
         else
         {
-            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha intentado huir.");
+            combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha intentado rendirse.");
         }
     }
 

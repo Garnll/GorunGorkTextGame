@@ -384,7 +384,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public void TryToEscape(EnemyNPC enemy)
+    public void GiveUp(EnemyNPC enemy)
     {
         WasteTurn(1);
 
@@ -394,17 +394,17 @@ public class PlayerManager : MonoBehaviour {
 
         if (r < characteristics.other.EscapeProbability(this, enemy))
         {
-            controller.combatController.UpdatePlayerLog("Has huido.");
-            controller.combatController.StopCoroutine(controller.combatController.EndCombatByEscaping(this));
-            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(this));
+            controller.combatController.UpdatePlayerLog("Te has rendido.");
+            controller.combatController.StopCoroutine(controller.combatController.EndCombatByGivingUp(this));
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByGivingUp(this));
         }
         else
         {
-            controller.combatController.UpdatePlayerLog("No has podido huir.");
+            controller.combatController.UpdatePlayerLog("No has podido rendirte.");
         }
     }
 
-    public void TryToEscape(PlayerInstance enemy)
+    public void GiveUp(PlayerInstance enemy)
     {
         WasteTurn(1);
 
@@ -414,19 +414,19 @@ public class PlayerManager : MonoBehaviour {
 
         if (r < characteristics.other.EscapeProbability(this, enemy))
         {
-            controller.combatController.UpdatePlayerLog("Has huido.");
+            controller.combatController.UpdatePlayerLog("Te has rendido.");
             NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
-                playerName + " ha huido.");
+                playerName + " se ha rendido.");
             NetworkManager.Instance.PlayerEscapedBattle(enemy);
 
-            controller.combatController.StopCoroutine(controller.combatController.EndCombatByEscaping(this));
-            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(this));
+            controller.combatController.StopCoroutine(controller.combatController.EndCombatByGivingUp(this));
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByGivingUp(this));
         }
         else
         {
-            controller.combatController.UpdatePlayerLog("No has podido huir.");
+            controller.combatController.UpdatePlayerLog("No has podido rendirte.");
             NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
-                "¡" + playerName + " ha intentado huir!");
+                "¡" + playerName + " ha intentado rendirse!");
         }
     }
 

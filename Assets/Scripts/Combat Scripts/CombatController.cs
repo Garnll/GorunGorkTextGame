@@ -327,11 +327,11 @@ public class CombatController : MonoBehaviour {
                     case "3":
                         if (vsPlayer)
                         {
-                            player.TryToEscape(enemyPlayer);
+                            player.GiveUp(enemyPlayer);
                         }
                         else
                         {
-                            player.TryToEscape(enemy);
+                            player.GiveUp(enemy);
                         }
                         break;
 
@@ -565,7 +565,7 @@ public class CombatController : MonoBehaviour {
 
             playerUI.optionsText.text = "[1] Inventario \n" +
                 "[2] Reposicionamiento \n" +
-                "[3] Escapar (" + player.characteristics.other.EscapeProbability(player, enemy).ToString("0") + "%)";
+                "[3] Rendirse";
         }
     }
 
@@ -717,7 +717,7 @@ public class CombatController : MonoBehaviour {
     public void SetEnemyDescription()
     {
 		//Was.
-		enemyUI.descriptionText.text = "Deshabilitado en: " +  (currentBattleTime / 60).ToString("0.##") + "\n" +
+		enemyUI.descriptionText.text =
             enemy.myTemplate.npcDetailedDescription;
     }
 
@@ -863,7 +863,7 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     public void SetEnemyPlayerDescription()
     {
-        enemyUI.descriptionText.text = "Deshabilitado en: " + (currentBattleTime / 60).ToString("0.##") + "\n" +
+        enemyUI.descriptionText.text = 
             "";
     }
 
@@ -933,12 +933,12 @@ public class CombatController : MonoBehaviour {
     /// <summary>
     /// Termina el combate cuando el npc enemigo huye.
     /// </summary>
-    public IEnumerator EndCombatByEscaping(EnemyNPC runner)
+    public IEnumerator EndCombatByGivingUp(EnemyNPC runner)
     {
         EndAllCombat();
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        ReturnToRoom("¡El enemigo huyó!");
+        ReturnToRoom("¡El enemigo se rindió!");
         WinLemons(10);
     }
 
@@ -957,12 +957,12 @@ public class CombatController : MonoBehaviour {
     /// <summary>
     /// Termina el combate cuando el npc enemigo huye.
     /// </summary>
-    public IEnumerator EndCombatByEscaping(PlayerInstance runner)
+    public IEnumerator EndCombatByGivingUp(PlayerInstance runner)
     {
         EndAllCombat();
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        ReturnToRoom("¡" + runner.playerName + " huyó!");
+        ReturnToRoom("¡" + runner.playerName + " se rindió!");
         WinLemons(10);
     }
 
@@ -980,12 +980,12 @@ public class CombatController : MonoBehaviour {
     /// <summary>
     /// Termina el combate cuando el jugador huye.
     /// </summary>
-    public IEnumerator EndCombatByEscaping(PlayerManager runner)
+    public IEnumerator EndCombatByGivingUp(PlayerManager runner)
     {
         EndAllCombat();
         yield return new WaitForSecondsRealtime(2);
         GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-        ReturnToRoom("¡Huiste!");
+        ReturnToRoom("¡Te rendiste!");
     }
 
     /// <summary>

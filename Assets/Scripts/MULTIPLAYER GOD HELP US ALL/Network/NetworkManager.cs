@@ -198,7 +198,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
                 if (controller.combatController.enemyPlayer == oldPlayer)
                 {
                     controller.combatController.UpdateEnemyPlayerLog(oldPlayer.playerName + " se desvaneció...");
-                    controller.combatController.EndCombatByEscaping(oldPlayer);
+                    controller.combatController.EndCombatByGivingUp(oldPlayer);
                 }
             }
             else
@@ -502,7 +502,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         {
             PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
 
-            controller.combatController.StartCoroutine(controller.combatController.EndCombatByEscaping(enemy));
+            controller.combatController.StartCoroutine(controller.combatController.EndCombatByGivingUp(enemy));
         }
     }
 
