@@ -121,7 +121,6 @@ public class CraftingController : MonoBehaviour {
 
 		resultState = 0; //0-> Recetas, 1->Descripción, 2->Resultado.
 
-		controller.NullCurrentDisplay();
 		GameObject newCraft = Instantiate(craftLayout, contentContainer);
 		layout = newCraft.GetComponent<CraftingLayout>();
 		initLayout();
@@ -643,20 +642,22 @@ public class CraftingController : MonoBehaviour {
 	public void end() {
 		CancelInvoke();
 		GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-		playerIngredients.Clear();
+        controller.NullCurrentDisplay();
+        playerIngredients.Clear();
 		recipesKnown.Clear();
 		isCrafting = false;
 		currentTime = 0;
 		currentInstant = Instant.Before;
 
-	}
+        controller.LogStringWithoutReturn(" ");
+    }
 
 	public IEnumerator exit() {
 		yield return new WaitForSecondsRealtime(0.5f);
-		GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-		controller.NullCurrentDisplay();
-		controller.DisplayRoomText();
 
+		GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+		controller.DisplayRoomText();
+        controller.DisplayLoggedText();
 	}
 
 	public void receiveInput(string[] input) {

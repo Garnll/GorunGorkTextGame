@@ -195,6 +195,11 @@ public class GameController : MonoBehaviour {
 
     public void NullCurrentDisplay()
     {
+        if (writing)
+        {
+            stopWriting = true;
+        }
+
         currentDisplayText = null;
         actionLog.Clear();
     }
