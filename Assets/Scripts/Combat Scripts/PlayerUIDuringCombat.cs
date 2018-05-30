@@ -9,6 +9,9 @@ public class PlayerUIDuringCombat : UIDuringCombat {
     [HideInInspector] public TextMeshProUGUI habilitiesText;
     [HideInInspector] public TextMeshProUGUI optionsText;
 
+    public GameObject timerTextObject;
+    [HideInInspector] public TextMeshProUGUI timerText;
+
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject playerTitle;
@@ -49,5 +52,10 @@ public class PlayerUIDuringCombat : UIDuringCombat {
 
         temp = Instantiate(playerLog, enemyContainer);
         logText = temp.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void SetTimerText(GameObject instance)
+    {
+        timerText = instance.GetComponent<TextMeshProUGUI>();
     }
 }
