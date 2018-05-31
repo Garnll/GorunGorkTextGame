@@ -9,7 +9,7 @@ using UnityEngine;
 public class FontEqualizer : MonoBehaviour {
 
     public TMP_FontAsset font;
-    public int pluser = 0;
+    [SerializeField] private int pluser = 0;
 
     //Enviado a FontReceiver
     public delegate void ChangeFont(TMP_FontAsset newFont);
@@ -18,21 +18,32 @@ public class FontEqualizer : MonoBehaviour {
     public delegate void ChangeFontSize(int sizeSume);
     public static event ChangeFontSize OnFontSizeChange;
 
-
-#if UNITY_EDITOR
-    private void LateUpdate()
+    private void Awake()
     {
+        pluser = 0;
+        StartCoroutine(UpdateFont());
+    }
 
-        if (OnFontChange != null)
-        {
-            OnFontChange(font);
-        }
-        
+    public void ChangeSize(int sizeUpOrDown)
+    {
+        pluser = pluser + sizeUpOrDown;
 
         if (OnFontSizeChange != null)
         {
-           OnFontSizeChange(pluser);
+            OnFontSizeChange(pluser);
+            Debug.Log("yeah");
         }
     }
-#endif
+
+    private IEnumerator UpdateFont()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (OnFontChange != null)
+            {
+                OnFontChange(font);
+            }
+        }
+    }
 }

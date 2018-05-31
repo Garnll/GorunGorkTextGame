@@ -45,6 +45,7 @@ public class FontReceiver : MonoBehaviour {
 
     void ChangeFontSize(int sumer)
     {
+        Debug.Log(sumer);
         if (myTextMesh != null)
         {
             myTextMesh.fontSize = originalSize + sumer;
