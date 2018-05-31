@@ -24,7 +24,7 @@ MonoBehaviour:
   description: galleta
   descriptionAtAnalized: Una deliciosa galleta.
   interactions:
-  - inputAction: {fileID: 0}
+  - inputAction: {fileID: 11400000, guid: 65a066c133f075c419235e0e949220ad, type: 2}
     isInverseInteraction: 0
     textResponse: Te cmes la gaieta
     actionResponse: {fileID: 11400000, guid: 1b381e014bb902742a8609b716b0a55c, type: 2}
