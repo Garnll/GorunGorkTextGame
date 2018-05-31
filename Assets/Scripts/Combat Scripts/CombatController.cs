@@ -358,15 +358,15 @@ public class CombatController : MonoBehaviour {
             switch (input[0])
             {
                 case "0":
-                    
+                    UseObjectInInventory(0);
                     break;
 
                 case "1":
-                    
+                    UseObjectInInventory(1);
                     break;
 
                 case "2":
-                    
+                    UseObjectInInventory(2);
                     break;
 
                 default:
@@ -556,25 +556,24 @@ public class CombatController : MonoBehaviour {
 
         inventoryPage = 1;
 
-        if (vsPlayer)
-        {
+        playerUI.optionsText.text = "[1] Inventario \n" +
+            "[2] Reposicionamiento \n" +
+            "[3] Rendirse";
 
-        }
-        else
-        {
-
-            playerUI.optionsText.text = "[1] Inventario \n" +
-                "[2] Reposicionamiento \n" +
-                "[3] Rendirse";
-        }
     }
 
     public void EnterInInventory()
     {
         inInventory = true;
         UpdatePlayerLog("Abres el inventario");
-        player.currentTurn -= player.MaxTurn * 0.5f;
         inventoryManager.DisplayInventory(this, inventoryPage);
+    }
+
+    public void UseObjectInInventory(int index)
+    {
+        player.currentTurn -= player.MaxTurn * 0.5f;
+        inventoryManager.UseObjectDuringBattle(this, inventoryPage, index);
+        ExitInventory();
     }
 
     public void ExitInventory()

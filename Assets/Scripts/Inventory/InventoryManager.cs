@@ -137,6 +137,13 @@ public class InventoryManager : MonoBehaviour {
         return true;
     }
 
+    public void UseObjectDuringBattle(CombatController combatController, int page, int objectToUse)
+    {
+        int objectIndex = objectToUse + (3 * (page - 1));
+        combatController.UpdatePlayerLog(nounsInInventory[objectIndex].objectName);
+
+    }
+
 	public bool hasPockets() {
 		for (int i=0; i<nounsInInventory.Count; i++) {
 			if (nounsInInventory[i].GetType() == typeof(Pocket)) {
