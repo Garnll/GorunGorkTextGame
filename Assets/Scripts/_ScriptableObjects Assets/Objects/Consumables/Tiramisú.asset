@@ -17,6 +17,10 @@ MonoBehaviour:
   - postre
   - "tiramis\xFA"
   - "postre de tiramis\xFA"
+  - tiramisu
+  - postre de tiramisu
+  - "postre tiramis\xFA"
+  - postre tiramisu
   weight: 10
   pods: 1
   isIngredient: 0

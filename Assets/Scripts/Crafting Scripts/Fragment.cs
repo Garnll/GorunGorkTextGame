@@ -9,4 +9,8 @@ public class Fragment{
 	public int volume;
 	public CraftingController.AddingInstant addingInstant;
 
+	public Fragment(int v) {
+		volume = v;
+	}
+
 }

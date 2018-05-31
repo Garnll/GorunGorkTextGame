@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CraftingController : MonoBehaviour {
 
 	public GameObject craftLayout;
 	public RectTransform contentContainer;
-
+	public TextMeshProUGUI display;
 	private CraftingLayout layout;
 
 	[Space(20)]
@@ -18,16 +19,29 @@ public class CraftingController : MonoBehaviour {
 	public Recipe currentRecipe;
 	public Recipient currentRecipient;
 
+	public List<Process> process;
+	private List<Process> beforeProcess;
+	private List<Process> whileProcess;
+	private List<Process> pauseProcess;
+
+	public InteractableObject result;
+
 	public enum Instant { Before, While, Pause, After }
 	public enum AddingInstant { Before, While, Pause }
 
 	public List<Recipe> recipes;                        //Todas las recetas del juego.
 	[HideInInspector] public List<Recipe> recipesKnown; //Recetas conocidas por el jugador.
 
+	public List<frag> ingredientsIn;
+
 	public float craftingTime;                          //El tiempo que lleva crafteando.
+	float lastTime;
 	public bool isCrafting;                             //Si está crafteando o no.
 	public Instant currentInstant;
+	public AddingInstant currentAddingInstant;
 	public bool alreadyStarted;
+
+	public string inputStrings;
 
 	public int totalPages;
 	public int currentPage;
@@ -36,11 +50,15 @@ public class CraftingController : MonoBehaviour {
 
 	public int resultState;
 
+	#region 'can' bools
 	public bool canPlay;
 	public bool canPause;
 	public bool canStop;
 	public bool canExit;
+	public bool canReclaim;
+	#endregion
 
+	#region colors
 	private string color_forTitle = "F9A08BFF";
 	private string color_forRecipeTitle = "F9AA98FF";
 
@@ -53,6 +71,10 @@ public class CraftingController : MonoBehaviour {
 	private string ableColor_forCommand = "F9CC88AA";
 	private string disableColor_forCommand = "F9BE884F";
 
+	private string disableColor_forLog = "FFEBC632";
+	#endregion
+
+	#region commands
 	string[] addCommands = { "añadir", "agregar", "+", "echar", "poner", "a" };
 	string[] removeCommands = { "quitar", "remover", "-", "retirar" };
 	string[] backCommands = { "anterior", "<" };
@@ -73,14 +95,14 @@ public class CraftingController : MonoBehaviour {
 	string[] three = { "3", "tres", "x3" };
 	string[] four = { "4", "cuatro", "x4" };
 	string[] five = { "5", "cinco", "x5" };
+	#endregion
 
-	public enum InputType {
-		addCommand, removeCommand, backCommand, nextCommand,
-		playCommand, pauseCommand, stopCommand, returnCommand, reclaimCommand, exitCommand,
-		readCommand, unrecognized, schrodinger
-	}
-
-	public enum SubType { mono, bi, natural, standard, unrecognized }
+	public enum InputType {	addCommand, removeCommand, backCommand, nextCommand, playCommand,
+							pauseCommand, stopCommand, returnCommand, reclaimCommand, exitCommand,
+							readCommand, unrecognized }
+	public enum SubType	  {	mono, bi, natural,
+							standard, unrecognized }
+	//sintax
 	//mono		-> p 
 	//bi		-> + p 
 	//natural	-> + # p 
@@ -95,22 +117,27 @@ public class CraftingController : MonoBehaviour {
 		}
 	}
 
-	public List<frag> ingredientsIn;
-
 	public void initialize(Recipient r) {
 		GameState.Instance.ChangeCurrentState(GameState.GameStates.crafting);
 		fillPlayerIngredients();
 		fillRecipes();
-
 		alreadyStarted = false;
 		currentInstant = Instant.Before;
+		currentAddingInstant = AddingInstant.Before;
 		isCrafting = false;
 		craftingTime = 0;
 		slotsUsed = 0;
 		totalPages = getIngredientsPages();
 		currentPage = 1;
 		currentRecipient = r;
+		slots = currentRecipient.slots;
+		process = new List<Process>();
+		beforeProcess = new List<Process>();
+		pauseProcess = new List<Process>();
+		whileProcess = new List<Process>();
+
 		currentTime = 0;
+		result = null;
 
 		canPlay = true;
 		canPause = false;
@@ -119,13 +146,14 @@ public class CraftingController : MonoBehaviour {
 
 		ingredientsIn = new List<frag>();
 
-		resultState = 0; //0-> Recetas, 1->Descripción, 2->Resultado.
+		resultState = 0; //0-> Recetas, 1->Descripción, 2->Resultado, 3->Resultado Fallido.
 
 		GameObject newCraft = Instantiate(craftLayout, contentContainer);
 		layout = newCraft.GetComponent<CraftingLayout>();
 		initLayout();
 	}
 
+	#region listFilling
 	//Llena playerIngredients con todos los objetos que han sido guardados en los Pockets. 
 	public void fillPlayerIngredients() {
 		foreach (InteractableObject p in inventory.nounsInInventory) {
@@ -146,6 +174,7 @@ public class CraftingController : MonoBehaviour {
 
 	//Llena recipesKnown con todas las recetas entre los diferentes libros en el inventario.
 	public void fillRecipes() {
+		recipesKnown.Clear();
 		foreach (InteractableObject b in inventory.nounsInInventory) {
 			if (b.GetType() == typeof(RecipeBook)) {
 				RecipeBook book = b as RecipeBook;
@@ -155,7 +184,324 @@ public class CraftingController : MonoBehaviour {
 			}
 		}
 	}
+	#endregion
 
+	#region layoutJunk
+
+	public void initLayout() {
+		layout.title.text = getTitle();
+		layout.ingredientsList.text = getTextIn(playerIngredients);
+		layout.ingredientsUsed.text = getTextInProcess();
+		setResultDescriptionAsRecipesList();
+		layout.pages.text = getPageText();
+		layout.processCommands.text = getCommandsText();
+		layout.recipeAnotation.text = getRecipeRealization();
+		layout.processDescription.text = getProcessState();
+		layout.recipeCommands.text = getRecipeCommandsText();
+		layout.ingredientCommands.text = getIngredientsCommandsText();
+
+		StartCoroutine(adoptDisplay());
+	}
+
+	public void refresh() {
+		if (inputStrings != null && display != null) {
+			display.text = inputStrings.ToString();
+		}
+		layout.ingredientsList.text = getTextIn(playerIngredients);
+		layout.ingredientsUsed.text = getTextInProcess();
+
+		if (currentTime == 0.1f && canPlay) {
+			layout.time.text = "0";
+		}
+
+		if (result != null) {
+			setResultDescriptionAsResult();
+		} else {
+			if (result == null && resultState == 3) {
+				setResultDescriptionAsResult();
+			} else {
+				if (currentRecipe == null) {
+					setResultDescriptionAsRecipesList();
+				}
+				else {
+					setResultDescriptionAsRecipe(currentRecipe);
+				}
+			}
+		}
+
+	
+		layout.pages.text = getPageText();
+		layout.processCommands.text = getCommandsText();
+
+		layout.processDescription.text = getProcessState();
+		layout.recipeAnotation.text = getRecipeRealization();
+
+		layout.recipeCommands.text = getRecipeCommandsText();
+
+		Color t;
+		switch (currentInstant) {
+			case Instant.Before:
+				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
+					layout.picture.color = t;
+					layout.time.color = t;
+				}
+				break;
+
+			case Instant.While:
+				if (ColorUtility.TryParseHtmlString("#" + ableColor_forPicture, out t)) {
+					layout.picture.color = t;
+					layout.time.color = t;
+				}
+				break;
+
+			case Instant.Pause:
+				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
+					layout.picture.color = t;
+				}
+				break;
+
+			case Instant.After:
+				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
+					layout.time.color = t;
+					layout.picture.color = t;
+				}
+				break;
+		}
+
+		layout.ingredientCommands.text = getIngredientsCommandsText();
+		StartCoroutine(clearLog());
+	}
+
+	public void sendDisplayMessage(string s) {
+		StopCoroutine(clearLog());
+		if (display != null) {
+			display.text = s;
+		}
+		StartCoroutine(clearLog());
+	}
+
+	public int getIngredientsPages() {
+		int c = 1;
+		List<InteractableObject> tempList = new List<InteractableObject>();
+		foreach (InteractableObject i in playerIngredients) {
+			if (!checkFor(i, tempList)) {
+				tempList.Add(i);
+				if (tempList.Count > 10) {
+					c++;
+					tempList.Clear();
+				}
+			}
+		}
+
+		return c;
+	}
+
+	public string getRecipesList() {
+
+		if (recipesKnown.Count == 0) {
+			return "<color=#" + disableColor_forText + "><i>No hay recetas aprendidas.</i></color>";
+		}
+
+
+		string s = "<color=#" + ableColor_forText + ">";
+		foreach (Recipe r in recipesKnown) {
+			s += "+ " + r.recipeName + ".\n";
+		}
+
+		s += "</color>";
+
+		if (s == "") {
+			s = "<i>No hay recetas aprendidas.</i>";
+		}
+		return s;
+	}
+
+	public string getTitle() {
+		return currentRecipient.objectName + " <b>[" + currentRecipient.slots + "]</b>";
+		
+	}
+
+	public string getPageText() {
+		return "<color=#" + disableColor_forText + "><i>Página " + currentPage + " de " + totalPages + ".</i></color>";
+	}
+
+	public string getTextOfCommand(bool b, string s) {
+		string p = "";
+		if (b) {
+			p += "<color=#" + ableColor_forCommand + ">";
+		}
+		else {
+			p += "<color=#" + disableColor_forCommand + ">";
+		}
+
+		p += "<b>[" + s[0] + "]</b> " + s + "</color>";
+
+		return p;
+	}
+
+	public string getCommandsText() {
+		string c = "";
+		c += getTextOfCommand(canPlay, "Encender") + "\n";
+		c += getTextOfCommand(canPause, "Pausar") + "  ";
+		c += getTextOfCommand(canStop, "Detener");
+		return c;
+	}
+
+	public string getRecipeTitle(Recipe r) {
+		return "<color=#" + color_forRecipeTitle + ">" + r.recipeName + "</color>";
+	}
+
+	public string getRecipeDescription(Recipe r) {
+		return "Blablabla.";
+		//Pending.
+	}
+
+	public string getProcessState() {
+		switch (currentInstant) {
+			case Instant.After:
+				return "Detenido.";
+
+			case Instant.Before:
+				return "";
+
+			case Instant.Pause:
+				return "Pausado.";
+
+			case Instant.While:
+				return "Procesando..";
+		}
+
+		return "";
+	}
+
+	public string getRecipeRealization() {
+		if (currentRecipe == null) {
+			return "";
+		}
+
+		if (checkRealization(currentRecipe)) {
+			return "Realizable.";
+		}
+		else {
+			return "No realizable.";
+		}
+	}
+
+	public string getRecipeCommandsText() {
+		if (result != null) {
+			return "<color=#" + ableColor_forCommand + "><b>[R]</b> Reclamar</color>";
+		}
+
+		if (result == null && resultState == 3) {
+			return "<b>[V]</b> Volver";
+		}
+
+		if (currentRecipe == null) {
+			return "";
+		}
+		else {
+			return "<b>[V]</b> Volver";
+		}
+	}
+
+	public string getIngredientsCommandsText() {
+		string t = "";
+		if (currentPage == 1) {
+			t += "<color=#" + disableColor_forText + "><b>[A]</b> Anterior</color> \n";
+		}
+		else {
+			t += "<color=#" + ableColor_forText + "><b>[A]</b> Anterior</color> \n";
+		}
+
+		if (currentPage == totalPages) {
+			t += "<color=#" + disableColor_forText + "><b>[S]</b> Siguiente</color> \n";
+		}
+		else {
+			t += "<color=#" + ableColor_forText + "><b>[S]</b> Siguiente</color> \n";
+		}
+
+		return t;
+
+	}
+
+	public void setResultDescriptionAsRecipesList() {
+		layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">Recetario</color>";
+		layout.recipes.text = getRecipesList();
+		currentRecipe = null;
+		resultState = 0;
+	}
+
+	public void setResultDescriptionAsRecipe(Recipe r) {
+		layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">" + r.recipeName + "</color>";
+		layout.recipes.text = getRecipeDescription(r);
+		currentRecipe = r;
+		resultState = 1;
+	}
+
+	public void setResultDescriptionAsResult() {
+
+		if (result != null) {
+			layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">" + result.objectName + "</color>";
+			layout.recipes.text = getResultDescription();
+		} else {
+			resultState = 3;
+			layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">Oops!</color>";
+			layout.recipes.text = "No lograste producir nada.";
+		}
+	}
+
+	public string getInputString(InputType t) {
+		string s = "";
+		s += "<color=#" + disableColor_forLog + ">";
+		switch (t) {
+			case InputType.addCommand:
+				s += "Añadir ingrediente.";
+				break;
+			case InputType.backCommand:
+				s += "Página anterior.";
+				break;
+			case InputType.exitCommand:
+				s += "Salir.";
+				break;
+			case InputType.nextCommand:
+				s += "Página siguiente.";
+				break;
+			case InputType.pauseCommand:
+				s += "Pausar.";
+				break;
+			case InputType.playCommand:
+				s += "Encender.";
+				break;
+			case InputType.readCommand:
+				s += "Leer receta.";
+				break;
+			case InputType.reclaimCommand:
+				s += "Reclamar.";
+				break;
+			case InputType.removeCommand:
+				s += "Quitar ingrediente.";
+				break;
+			case InputType.returnCommand:
+				s += "Volver al recetario.";
+				break;
+			case InputType.stopCommand:
+				s += "Detener.";
+				break;
+		}
+
+		s += "</color>";
+		return s;
+	}
+
+	public string getResultDescription() {
+		string s = "";
+		s += result.descriptionAtAnalized;
+		return s;
+	}
+
+	#endregion
+
+	#region getVolumes
 	//Devuelve la cantidad de un ingrediente en una lista.
 	public int getVolumeOf(InteractableObject ingredient, List<InteractableObject> list) {
 		int count = 0;
@@ -181,6 +527,19 @@ public class CraftingController : MonoBehaviour {
 		return count;
 	}
 
+	public int getVolumeInProcess(InteractableObject ingredient, AddingInstant instant) {
+		int count = 0;
+		foreach (Process p in process) {
+			if (p.frag.ingredient == ingredient && p.instantAdded == instant) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	#endregion
+
+	#region checkFor
 	//Revisa que un ingrediente se encuentre en la lista.
 	public bool checkFor(InteractableObject ingredient, List<InteractableObject> list) {
 		for (int i = 0; i < list.Count; i++) {
@@ -228,6 +587,11 @@ public class CraftingController : MonoBehaviour {
 			if (list[i].recipeName == s) {
 				return true;
 			}
+			foreach (string n in list[i].product.nouns) {
+				if (s == n) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}
@@ -246,27 +610,22 @@ public class CraftingController : MonoBehaviour {
 		return false;
 	}
 
-	public Recipe getRecipeWith(string s) {
-		foreach (Recipe r in recipesKnown) {
-			if (r.recipeName == s) {
-				return r;
+	public bool checkFor(Process p, List<Process> list) {
+		foreach (Process _p in list) {
+			if (p == _p) {
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
-	public InteractableObject getIngredient(string s) {
-		for (int i = 0; i < playerIngredients.Count; i++) {
-			if (playerIngredients[i].objectName == s) {
-				return playerIngredients[i];
-			}
-			for (int j= 0; j < playerIngredients[i].nouns.Length; j++) {
-				if (s == playerIngredients[i].nouns[j]) {
-					return playerIngredients[i];
-				}
+	public bool checkOneFor(Process p, List<Process> list) {
+		foreach (Process _p in list) {
+			if (p.frag == _p.frag && p.instantAdded == _p.instantAdded) {
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
 	//Revisa que haya al menos 'volume' ingredientes en la lista.
@@ -284,62 +643,73 @@ public class CraftingController : MonoBehaviour {
 		return false;
 	}
 
-	//Pasa un ingrediente de la lista de todos los ingredientes al proceso.
-	public void addIngredient(InteractableObject ingredient) {
-		if (checkFor(ingredient, playerIngredients) && slotsUsed < slots) {
-			ingredientsIn.Add(new frag(ingredient));
-			playerIngredients.Remove(ingredient);
-			slotsUsed++;
-		}
-	}
-
-	//Pasa un ingrediente en cierta cantidad de la lista de todos los ingredientes al proceso.
-	public void addIngredient(InteractableObject ingredient, int volume) {
-		if (checkFor(ingredient, volume, playerIngredients) && slotsUsed < slots) {
-			for (int i = 0; i < volume; i++) {
-				ingredientsIn.Add(new frag(ingredient));
-				playerIngredients.Remove(ingredient);
-			}
-			slotsUsed++;
-		}
-	}
-
-	public void removeIngredient(string s) {
-		foreach (frag f in ingredientsIn) {
-			if (s == f.ingredient.objectName && f.consumed == false) {
-				playerIngredients.Add(f.ingredient);
-				ingredientsIn.Remove(f);
+	public bool checkFor(string s, string[] l) {
+		foreach (string _s in l) {
+			if (s == _s) {
+				return true;
 			}
 		}
+		return false;
 	}
 
-	//Remueve un ingrediente en cierta cantidad del inventario del jugador.
-	public void destroyIngredient(InteractableObject ingredient, int times) {
-		int t = 0;
-		foreach (Pocket p in inventory.nounsInInventory) {
-			if (p.have(ingredient)) {
-				int volume = p.getVolumeOf(ingredient);
-				if (times <= volume) {
-					for (int i = 0; i < p.ingredients.Count; i++) {
-						if (p.ingredients[i] == ingredient && t < times) {
-							p.ingredients.RemoveAt(i);
-							t++;
+	public bool checkRealization(Recipe r) {
+		foreach (Fragment f in r.fragments) {
+			int count = 0;
+			foreach (InteractableObject i in playerIngredients) {
+				if (i == f.ingredient) {
+					count++;
+				}
+				if (count >= f.volume) {
+					break;
+				}
+			}
+			if (count < f.volume) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-							if (t == times && times == volume) {
-								p.usage--;
-							}
+	public bool checkFor(Recipe r, List<Recipe> l) {
+		foreach (Recipe _r in l) {
+			if (r == _r) {
+				return true;
+			}
+		}
+		return false;
+	}
+	#endregion
 
-							if (t == times) {
-								return;
-							}
-						}
-					}
+	#region gets
+
+	public Recipe getRecipeWith(string s) {
+		foreach (Recipe r in recipesKnown) {
+			if (r.recipeName == s) {
+				return r;
+			}
+			foreach (string n in r.product.nouns) {
+				if (s == n) {
+					return r;
 				}
 			}
 		}
+		return null;
 	}
 
-	//Devuelve un bloque de texto con los ingredientes y su cantidad en una lista.
+	public InteractableObject getIngredientFromPlayerWith(string s) {
+		for (int i = 0; i < playerIngredients.Count; i++) {
+			if (playerIngredients[i].objectName == s) {
+				return playerIngredients[i];
+			}
+			for (int j= 0; j < playerIngredients[i].nouns.Length; j++) {
+				if (s == playerIngredients[i].nouns[j]) {
+					return playerIngredients[i];
+				}
+			}
+		}
+		return null;
+	}
+
 	public string getTextIn(List<InteractableObject> list) {
 		string text = "";
 
@@ -354,126 +724,116 @@ public class CraftingController : MonoBehaviour {
 		return text;
 	}
 
-	public void play() {
-		currentInstant = Instant.While;
-		alreadyStarted = true;
-		consumeIngredients();
+	public string getTextInProcess() {
 
-		canPlay = false;
-		canPause = true;
-		canStop = true;
+		string textConsumed = "</color><color=#" + ableColor_forText + ">";
+		string textUnconsumed = "</color><color=#" + disableColor_forText + ">";
 
-		canExit = false;
+		List<frag> fragsConsumed = new List<frag>();
+		List<frag> fragsUnconsumed = new List<frag>();
 
-		StartCoroutine("cook");
-		refresh();
+		foreach (frag f in ingredientsIn) {
+			if (f.consumed) {
+				fragsConsumed.Add(f);
+			}
+
+			if (!f.consumed) { 
+				fragsUnconsumed.Add(f);
+			}
+		}
+
+		List<frag> f_c = new List<frag>();
+		List<frag> f_u = new List<frag>();
+
+		foreach (frag f in fragsConsumed) {
+			if (!checkFor(f.ingredient, f_c)) {
+				f_c.Add(f);
+				int volume = getVolumeOf(f.ingredient, fragsConsumed);
+				textUnconsumed += "> " + f.ingredient.objectName + " x" + volume + "\n";
+			}
+		}
+
+		foreach (frag f in fragsUnconsumed) {
+			if (!checkFor(f.ingredient, f_u)) {
+				f_u.Add(f);
+				int volume = getVolumeOf(f.ingredient, fragsUnconsumed);
+				textConsumed += "> " + f.ingredient.objectName + " x" + volume + "\n";
+			}
+		}
+
+		if (f_c.Count + f_u.Count < slots) {
+			for (int i = f_c.Count + f_u.Count; i < slots; i++) {
+				textConsumed += "> \n";
+			}
+		}
+
+
+		textUnconsumed += "</color>";
+		textConsumed += "</color>";
+		return textUnconsumed + textConsumed;
 	}
 
-	public void pause() {
-		StopCoroutine("cook");
-		currentInstant = Instant.Pause;
-		canPause = false;
-		canPlay = true;
-		canStop = true;
-
-		canExit = false;
-		refresh();
+	public RecipeBook getRecipebook() {
+		foreach (InteractableObject i in inventory.nounsInInventory) {
+			if (i.GetType() == typeof(RecipeBook)) {
+				RecipeBook r = i as RecipeBook;
+			}
+		}
+		return null;
 	}
 
-	public void stop() {
-		StopCoroutine("cook");
-		currentTime = 0;
-		layout.time.text = currentTime.ToString();
-		currentInstant = Instant.After;
-		alreadyStarted = false;
-		canStop = false;
-		canPlay = true;
-		canPause = false;
+	#endregion
 
-		canExit = true;
-
-		refresh();
-	}
-
-
-	public void initLayout() {
-		layout.title.text = getTitle();
-		layout.ingredientsList.text = getTextIn(playerIngredients);
-		layout.ingredientsUsed.text = getSlotsText();
-		setResultDescriptionAsRecipesList();
-		layout.pages.text = getPageText();
-		layout.processCommands.text = getCommandsText();
-		layout.recipeAnotation.text = getRecipeRealization();
-		layout.processDescription.text = getProcessState();
-		layout.recipeCommands.text = getRecipeCommandsText();
-		layout.ingredientCommands.text = getIngredientsCommandsText();
-
-		refresh();
-	}
-
-	public int getIngredientsPages() {
-		int c = 1;
-		List<InteractableObject> tempList = new List<InteractableObject>();
-		foreach (InteractableObject i in playerIngredients) {
-			if (!checkFor(i, tempList)) {
-				tempList.Add(i);
-				if (tempList.Count > 10) {
-					c++;
-					tempList.Clear();
+	#region ingredientsManagement
+	public void addIngredient(InteractableObject ingredient) {
+		if (checkFor(ingredient, playerIngredients)) {
+			if (checkFor(ingredient, ingredientsIn)) {
+				add(ingredient);
+			} else {
+				if (slotsUsed < slots) {
+					slotsUsed++;
+					add(ingredient);
 				}
 			}
 		}
-
-		return c;
+		refresh();
 	}
 
-	public void setSlots() {
-		slots = currentRecipient.slots;
+	public void add(InteractableObject ingredient) {
+		sendDisplayMessage("+ " + ingredient.objectName + ".");
+		ingredientsIn.Add(new frag(ingredient));
+		if (currentInstant == Instant.While) {
+			ingredientsIn[ingredientsIn.Count - 1].consumed = true;
+			destroyIngredient(ingredientsIn[ingredientsIn.Count - 1].ingredient, 1);
+		}
+		playerIngredients.Remove(ingredient);
+		Debug.Log("+: " + ingredientsIn[ingredientsIn.Count - 1].ingredient.objectName + " in " + currentAddingInstant
+			+ " at " + currentTime + " seconds.");
+		process.Add(new Process(currentAddingInstant, ingredientsIn[ingredientsIn.Count - 1], currentTime));
 	}
 
-	public string getSlotsText() {
-		string s = "";
-
-		List<frag> f = new List<frag>();
-		for (int i= 0; i < ingredientsIn.Count; i++) {
-			if (!checkFor(ingredientsIn[i], f)) {
-				f.Add(ingredientsIn[i]);
+	public void addIngredient(InteractableObject ingredient, int volume) {
+		if (checkFor(ingredient, volume, playerIngredients) && slotsUsed < slots) {
+			for (int i = 0; i < volume; i++) {
+				if (!checkFor(ingredient, ingredientsIn)) {
+					slotsUsed++;
+				}
+				ingredientsIn.Add(new frag(ingredient));
+				playerIngredients.Remove(ingredient);
 			}
+			slotsUsed++;
 		}
-
-		for (int i = 0; i < slots; i++) {
-			s += "- ";
-			if (f[i] != null) {
-
-
-				s += f[i].ingredient.objectName + " x" + getVolumeOf(f[i].ingredient, ingredientsIn) + ".\n";
-
-			}
-			else {
-				s += "\n";
-			}
-		}
-		return s;
+		refresh();
 	}
 
-	public string getRecipesList() {
-
-		if (recipesKnown.Count == 0) {
-			return "<color=#" + disableColor_forText + "><i>No hay recetas aprendidas.</i></color>";
+	public void removeIngredient(string s) {
+		foreach (frag f in ingredientsIn) {
+			if (s == f.ingredient.objectName && f.consumed == false) {
+				playerIngredients.Add(f.ingredient);
+				ingredientsIn.Remove(f);
+			}
 		}
-
-
-		string s = "<color=#" + ableColor_forText + ">";
-		foreach (Recipe r in recipesKnown) {
-			s += "> " + r.recipeName + ".\n";
-		}
-
-		s += "</color>";
-
-		if (s == "") {
-			s = "<i>No hay recetas aprendidas.</i>";
-		}
-		return s;
+		refresh();
 	}
 
 	public void consumeIngredients() {
@@ -481,133 +841,116 @@ public class CraftingController : MonoBehaviour {
 			i.consumed = true;
 			destroyIngredient(i.ingredient, 1);
 		}
+		refresh();
 	}
 
-	public string getTitle() {
-		return currentRecipient.objectName + " <b>[" + currentRecipient.slots + "]</b>";
-	}
+	public void destroyIngredient(InteractableObject ingredient, int times) {
+		int t = 0;
+		foreach (InteractableObject pocket in inventory.nounsInInventory) {
+			if (pocket.GetType() == typeof(Pocket)) {
+				Pocket p = pocket as Pocket;
+				if (p.have(ingredient)) {
+					int volume = p.getVolumeOf(ingredient);
+					if (times <= volume) {
+						for (int i = 0; i < p.ingredients.Count; i++) {
+							if (p.ingredients[i] == ingredient && t < times) {
+								p.ingredients.RemoveAt(i);
+								t++;
 
-	public string getPageText() {
-		return "<color=#" + disableColor_forText + "><i>Página " + currentPage + " de " + totalPages + ".</i></color>";
-	}
+								if (t == times && times == volume) {
+									p.usage--;
+								}
 
-	public string getTextOfCommand(bool b, string s) {
-		string p = "";
-		if (b) {
-			p += "<color=#" + ableColor_forCommand + ">";
-		}
-		else {
-			p += "<color=#" + disableColor_forCommand + ">";
-		}
-
-		p += "<b>[" + s[0] + "]</b> " + s + "</color>";
-
-		return p;
-	}
-
-	public string getCommandsText() {
-		string c = "";
-		c += getTextOfCommand(canPlay, "Encender") + "\n";
-		c += getTextOfCommand(canPause, "Pausar") + "  ";
-		c += getTextOfCommand(canStop, "Detener");
-		return c;
-	}
-
-	public string getRecipeTitle(Recipe r) {
-		return "<color=#" + color_forRecipeTitle + ">" + r.recipeName + "</color>";
-	}
-
-	public string getRecipeDescription(Recipe r) {
-		return "Blablabla.";
-	}
-
-	public string getProcessState() {
-		switch (currentInstant) {
-			case Instant.After:
-				return "Detenido.";
-
-			case Instant.Before:
-				return "";	
-
-			case Instant.Pause:
-				return "Pausado.";
-
-			case Instant.While:
-				return "Procesando..";
-		}
-
-		return "";
-	}
-
-	public string getRecipeRealization() {
-		if (currentRecipe == null) {
-			return "";
-		}
-
-		if (checkRealization(currentRecipe)) {
-			return "Realizable.";
-		} else {
-			return "No realizable.";
-		}
-	}
-
-	public string getRecipeCommandsText() {
-		if (currentRecipe == null) {
-			return "";
-		} else {
-			return "<b>[V]</b> Volver";
-		}
-	}
-
-	public string getIngredientsCommandsText() {
-		string t = "";
-		if (currentPage == 1) {
-			t += "<color=#" + disableColor_forText + "><b>[A]</b> Anterior</color> \n";
-		}
-		else {
-			t += "<color=#" + ableColor_forText + "><b>[A]</b> Anterior</color> \n";
-		}
-
-		if (currentPage == totalPages) {
-			t += "<color=#" + disableColor_forText + "><b>[S]</b> Siguiente</color> \n";
-		} else {
-			t += "<color=#" + ableColor_forText + "><b>[S]</b> Siguiente</color> \n";
-		}
-
-		return t;
-		
-	}
-
-	public void setResultDescriptionAsRecipesList() {
-		layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">Recetario</color>";
-		layout.recipes.text = getRecipesList();
-		currentRecipe = null;
-	}
-
-	public void setResultDescriptionAsRecipe(Recipe r) {
-		layout.recipeTitle.text = "<color=#" + color_forRecipeTitle + ">" + r.recipeName + "</color>";
-		layout.recipes.text = getRecipeDescription(r);
-		currentRecipe = r;
-	}
-
-	public bool checkFor(string s, string[] l) {
-		foreach (string _s in l) {
-			if (s == _s) {
-				return true;
+								if (t == times) {
+									inventory.DisplayInventory();
+									return;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
-		return false;
+
+		if (t < times) {
+			foreach (InteractableObject i in inventory.nounsInInventory) {
+				if (i == ingredient) {
+					inventory.nounsInInventory.Remove(i);
+					t++;
+				}
+				if (t == times) {
+					inventory.DisplayInventory();
+					return;
+				}
+			}
+		}
+
+		inventory.DisplayInventory();
+	}
+	
+	public void addResultToInventory() {
+		inventory.nounsInInventory.Add(result);
+		result = null;
+		refresh();
+		inventory.DisplayInventory();
+	}
+	#endregion
+
+	public void play() {
+		process = new List<Process>();
+		currentInstant = Instant.While;
+		currentAddingInstant = AddingInstant.While;
+		alreadyStarted = true;
+		consumeIngredients();
+		canPlay = false;
+		canPause = true;
+		canStop = true;
+		canExit = false;
+		StartCoroutine(cook());
+		refresh();
 	}
 
-	public void apply(InputType t) {
-		switch (t) {
-			case InputType.backCommand:
-				break;
+	public void pause() {
+		currentTime = lastTime;
+		currentInstant = Instant.Pause;
+		currentAddingInstant = AddingInstant.Pause;
+		canPause = false;
+		canPlay = true;
+		canStop = true;
+		canExit = false;
+		StopCoroutine(cook());
+		refresh();
+	}
 
-			case InputType.nextCommand:
+	public void stop() {
+		result = getResult();
+		currentTime = lastTime;
+		currentTime = 0;
+		slotsUsed = 0;
+		layout.time.text = Mathf.Round(currentTime).ToString("F0");
+		currentInstant = Instant.After;
+		currentAddingInstant = AddingInstant.Before;
+		alreadyStarted = false;
+		canStop = false;
+		canPlay = true;
+		canPause = false;
+		canExit = true;
+		StopCoroutine(cook());
+		ingredientsIn.Clear();
+		refresh();
+	}
+
+	public void applyMono(InputType t, string i) {
+		switch (t) {
+			case InputType.addCommand:
+				addIngredient(getIngredientFromPlayerWith(i));
 				break;
 
 			case InputType.playCommand:
+				if (result != null) {
+					addResultToInventory();
+					sendDisplayMessage("Producto añadido al inventario.");
+				}
 				if (canPlay) {
 					play();
 				}
@@ -625,54 +968,57 @@ public class CraftingController : MonoBehaviour {
 				}
 				break;
 
+			case InputType.readCommand:
+				setResultDescriptionAsRecipe(getRecipeWith(i));
+				break;
+
 			case InputType.returnCommand:
-				setResultDescriptionAsRecipesList();
+				if (result == null) {
+					setResultDescriptionAsRecipesList();
+				} else {
+					addResultToInventory();
+					sendDisplayMessage("Producto añadido al inventario.");
+					setResultDescriptionAsRecipesList();
+				}
 				break;
 
 			case InputType.reclaimCommand:
+				if (result != null) {
+					addResultToInventory();
+					sendDisplayMessage("Producto añadido al inventario.");
+					setResultDescriptionAsRecipesList();
+				}
 				break;
 
 			case InputType.exitCommand:
-				end();		
-				StartCoroutine(exit());
+				if (canExit) {
+					end();
+					if (result != null) {
+						addResultToInventory();
+						sendDisplayMessage("Producto añadido al inventario.");
+					}
+					StartCoroutine(exit());
+				}
 				break;
 		}
-	}
 
-	public void end() {
-		CancelInvoke();
-		GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
-        controller.NullCurrentDisplay();
-        playerIngredients.Clear();
-		recipesKnown.Clear();
-		isCrafting = false;
-		currentTime = 0;
-		currentInstant = Instant.Before;
-
-        controller.LogStringWithoutReturn(" ");
-    }
-
-	public IEnumerator exit() {
-		yield return new WaitForSecondsRealtime(0.5f);
-
-		GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
-		controller.DisplayRoomText();
-        controller.DisplayLoggedText();
+		refresh();
 	}
 
 	public void receiveInput(string[] input) {
-		Debug.Log("Recibido '" + input[0] + "'.");
 		InputType type;
 		SubType subtype;
 		
 		type = getInputType(input[0], input.Length);
 
+		inputStrings = getInputString(type);
+
 		if (type == InputType.unrecognized) {
 			return;
 		}
 		
-		if (input.Length == 1 && type != InputType.addCommand) {
-			apply(type);
+		if (input.Length == 1) {
+			applyMono(type, input[0]);
 			return;
 		}
 
@@ -685,7 +1031,7 @@ public class CraftingController : MonoBehaviour {
 		switch (subtype) {
 			case SubType.mono:
 				if (checkFor(input[0], playerIngredients)) {
-					addIngredient(getIngredient(input[0]));
+					addIngredient(getIngredientFromPlayerWith(input[0]));
 				}
 				break;
 
@@ -693,7 +1039,7 @@ public class CraftingController : MonoBehaviour {
 				switch (type) {
 					case InputType.addCommand:
 						if (checkFor(getBiPredicate(input).ToString(), playerIngredients)) {
-							addIngredient(getIngredient(getBiPredicate(input).ToString()));
+							addIngredient(getIngredientFromPlayerWith(getBiPredicate(input).ToString()));
 						}
 						break;
 
@@ -719,6 +1065,117 @@ public class CraftingController : MonoBehaviour {
 		}
 
 		refresh();
+	}
+
+	Recipe potentialRecipe;
+
+	//Obtener el resultado.
+	public InteractableObject getResult() {
+		realignProcess();
+		potentialRecipe = getRecipe();
+		if (potentialRecipe != null) {
+			if (!checkFor(potentialRecipe, recipesKnown)) {
+				RecipeBook r = getRecipebook();
+				if (r != null) {
+					r.recipes.Add(potentialRecipe);
+					recipesKnown.Add(potentialRecipe);
+
+				}
+				else {
+					recipesKnown.Add(potentialRecipe);
+				}
+				
+			}
+			resultState = 2;
+			return potentialRecipe.product;
+		}
+
+		resultState = 3;
+		return null;
+	}
+
+	public Recipe getRecipe() {
+		Debug.Log("The happening:" + recipes.Count);
+
+		foreach (Recipe r in recipes) {
+			Debug.Log(r.product + ":");
+
+			int checkList = 3;
+			if (r.beforeFragments.Count >= 1) {
+				foreach (Fragment f in r.beforeFragments) {
+					foreach (Process p in beforeProcess) {
+						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " before");
+						Debug.Log("Had " + p.volume);
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							Debug.Log("Before bad.");
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (r.whileFragments.Count >= 1) {
+				foreach (Fragment f in r.whileFragments) {
+					foreach (Process p in whileProcess) {
+						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " while");
+						Debug.Log("Had " + p.volume);
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							Debug.Log("While bad.");
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (r.pauseFragments.Count >= 1) {
+				foreach (Fragment f in r.pauseFragments) {
+					foreach (Process p in pauseProcess) {
+						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " in pause");
+						Debug.Log("Had " + p.volume);
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							Debug.Log("Pause bad.");
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (checkList == 3 && r.minTime <= currentTime && currentTime <= r.maxTime) {
+				return r;
+			}
+		}
+		return null;
+	}
+
+	public void realignProcess() {
+		List<Process> temp = new List<Process>();
+
+		foreach (Process p in process) {
+			if (!checkOneFor(p, temp)) {
+				temp.Add(new Process(p.instantAdded, p.frag, p.timeAdded, getVolumeInProcess(p.frag.ingredient, p.instantAdded)));
+				Debug.Log(temp[temp.Count-1].frag.ingredient.objectName + " x" +
+					temp[temp.Count-1].volume + " at" + temp[temp.Count-1].instantAdded + ".");
+			}
+		}
+
+		process = temp;
+		setSubProcess();
+	}
+
+	public void setSubProcess() {
+		foreach (Process p in process) {
+			switch (p.instantAdded) {
+				case AddingInstant.Before:
+					beforeProcess.Add(p);
+					break;
+				case AddingInstant.Pause:
+					pauseProcess.Add(p);
+					break;
+				case AddingInstant.While:
+					whileProcess.Add(p);
+					break;
+			}
+		}
 	}
 
 	public string[] getBiPredicate(string[] s) {
@@ -752,10 +1209,8 @@ public class CraftingController : MonoBehaviour {
 			if (checkFor(input, removeCommands))
 				return InputType.removeCommand;
 
-			if (checkFor(input, readCommands)) {
+			if (checkFor(input, readCommands)) 
 				return InputType.readCommand;
-
-			}
 		}
 
 		if (n == 1) {
@@ -793,84 +1248,49 @@ public class CraftingController : MonoBehaviour {
 		return InputType.unrecognized;
 	}
 
-	public void refresh() {
-		layout.ingredientsList.text = getTextIn(playerIngredients);
-		layout.ingredientsUsed.text = getSlotsText();
-
-		if (currentRecipe == null) {
-			setResultDescriptionAsRecipesList();
-		}
-		else {
-			setResultDescriptionAsRecipe(currentRecipe);
-		}
-		
-		layout.pages.text = getPageText();
-		layout.processCommands.text = getCommandsText();
-
-		layout.processDescription.text = getProcessState();
-		layout.recipeAnotation.text = getRecipeRealization();
-
-		layout.recipeCommands.text = getRecipeCommandsText();
-
-		Color t;
-		switch (currentInstant) {
-			case Instant.Before:
-				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
-					layout.picture.color = t;
-					layout.time.color = t;
-				}
-				break;
-
-			case Instant.While:
-				if (ColorUtility.TryParseHtmlString("#" + ableColor_forPicture, out t)) {
-					layout.picture.color = t;
-					layout.time.color = t;
-				}
-				break;
-
-			case Instant.Pause:
-				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
-					layout.picture.color = t;
-				}
-				break;
-
-			case Instant.After:
-				if (ColorUtility.TryParseHtmlString("#" + disableColor_forPicture, out t)) {
-					layout.time.color = t;
-					layout.picture.color = t;
-				}
-				break;
-		}
-
-		layout.ingredientCommands.text = getIngredientsCommandsText();
-	}
-
 	public IEnumerator cook() {
-
+		currentInstant = Instant.While;
 		while (currentInstant == Instant.While) {
-			yield return new WaitForSecondsRealtime(1);
-			currentTime++;
-			layout.time.text = currentTime.ToString();
+			lastTime = currentTime;
+			yield return new WaitForSecondsRealtime(0.1f);
+			currentTime += 0.1f;
+			layout.time.text = currentTime.ToString("F1");
 		}
-
 	}
 
-	public bool checkRealization(Recipe r) {
-		foreach (Fragment f in r.fragments) {
-			int count = 0;
-			foreach (InteractableObject i in playerIngredients) {
-				if (i == f.ingredient) {
-					count++;
-				}
-				if (count >= f.volume) {
-					break;	
-				}
-			}
-			if (count < f.volume) {
-				return false;
-			}
-		}
-		return true;
+	public IEnumerator adoptDisplay() {
+		yield return new WaitForSecondsRealtime(0.5f);
+		display = contentContainer.GetChild(contentContainer.childCount - 1).gameObject.GetComponent<TextMeshProUGUI>();
+		refresh();
 	}
 
+	public IEnumerator clearLog() {
+		yield return new WaitForSeconds(2f);
+		if (display != null) {
+			display.text = " ";
+		}
+	}
+
+	#region exit
+	public void end() {
+		CancelInvoke();
+		GameState.Instance.ChangeCurrentState(GameState.GameStates.none);
+		controller.NullCurrentDisplay();
+		playerIngredients.Clear();
+		recipesKnown.Clear();
+		isCrafting = false;
+		currentTime = 0;
+		currentInstant = Instant.Before;
+
+		controller.LogStringWithoutReturn(" ");
+	}
+
+	public IEnumerator exit() {
+		yield return new WaitForSecondsRealtime(0.5f);
+
+		GameState.Instance.ChangeCurrentState(GameState.GameStates.exploration);
+		controller.DisplayRoomText();
+		controller.DisplayLoggedText();
+	}
+	#endregion
 }
