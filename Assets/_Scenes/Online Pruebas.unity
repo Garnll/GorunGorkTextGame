@@ -2964,7 +2964,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383727582}
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.99999976
   m_Size: 0.5357699
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3224,7 +3224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 165.05997}
+  m_AnchoredPosition: {x: 3, y: 165.06}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -11656,7 +11656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pace: 0.1
-  battleTimeInMins: 2
+  battleTimeInSeconds: 60
   inventoryManager: {fileID: 1178118716}
   combatLayout: {fileID: 1228525000710756, guid: 80946d64efc8b644ca05c3c15b2f7729,
     type: 2}
@@ -11818,6 +11818,7 @@ MonoBehaviour:
   turnParticles: {fileID: 1281641287}
   descriptionText: {fileID: 114975056170945138, guid: 80db58feb6241b4469760b8beed33fb6,
     type: 2}
+  enemyContainer: {fileID: 0}
   enemyPrefab: {fileID: 1605664793645406, guid: 2b5783ebbdf6c8545be4765a28dd54ca,
     type: 2}
   enemyTitle: {fileID: 1967955301890496, guid: 7a53c1780ba4b484f98d9dd7f2a27b8c, type: 2}
@@ -11852,6 +11853,7 @@ MonoBehaviour:
     type: 2}
   optionsText: {fileID: 114291927050144888, guid: 088dbffd274d11d4e9ab744a6aa1ec07,
     type: 2}
+  playerContainer: {fileID: 0}
   timerTextObject: {fileID: 1042117602287022, guid: 4e3b71216ab35bf4b80838a8c4c34707,
     type: 2}
   timerText: {fileID: 0}

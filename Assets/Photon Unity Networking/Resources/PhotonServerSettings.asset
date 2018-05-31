@@ -62,4 +62,5 @@ MonoBehaviour:
   - ChangeMyEvasion
   - ChangeMyState
   - ChangeMyCharacteristics
+  - StartEnemiesAnimation
   DisableAutoOpenWizard: 1
