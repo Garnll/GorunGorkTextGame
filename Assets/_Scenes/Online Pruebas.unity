@@ -2232,6 +2232,7 @@ MonoBehaviour:
       Data: 
   inputField: {fileID: 1385103510}
   habilitiesTextInput: {fileID: 213067491}
+  principalScroll: {fileID: 403073802}
   wrongDialogueInputs:
   - Yo no lo entiendos.
   - Eso no tiene sentido.

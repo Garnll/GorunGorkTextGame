@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 /// <summary>
 /// Recibe y envía los inputs del jugador según el estado del juego.
@@ -10,6 +11,7 @@ public class TextUserInput : SerializedMonoBehaviour {
 
     public TMP_InputField inputField;
     public HabilitiesTextInput habilitiesTextInput;
+    public Scrollbar principalScroll;
     [SerializeField] Dictionary<string, InputActions> inputDictionary = new Dictionary<string, InputActions>();
 
 	[Space(15)]
@@ -59,6 +61,8 @@ public class TextUserInput : SerializedMonoBehaviour {
         char[] delimeterCharacters = { ' ' };
         string[] separatedInputWords = userInput.Split(delimeterCharacters);
         string[] separatedCompleteWords = originalInput.Split(delimeterCharacters);
+
+        principalScroll.value = 0;
 
         switch (GameState.Instance.CurrentState)
         {
