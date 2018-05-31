@@ -11,24 +11,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23870847f7fb6f428254525ca59dfd8, type: 3}
   m_Name: Galleta
   m_EditorClassIdentifier: 
-  nounGender: 0
+  nounGender: 1
+  objectName: Galleta
   nouns:
   - galleta
   - gaieta
   - gaiieta
+  weight: 10
+  pods: 1
+  isIngredient: 0
+  isOpenable: 0
   description: galleta
+  descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions:
-  - inputAction: {fileID: 11400000, guid: 5e171db4b28a9394db8a65d9ce69913d, type: 2}
+  - inputAction: {fileID: 0}
     isInverseInteraction: 0
     textResponse: Te cmes la gaieta
     actionResponse: {fileID: 11400000, guid: 1b381e014bb902742a8609b716b0a55c, type: 2}
+    vars: []
   - inputAction: {fileID: 11400000, guid: 7e94accddd22b8747a2cc9f22f971eb1, type: 2}
     isInverseInteraction: 0
     textResponse: tomas la galleta sin mayuscula
     actionResponse: {fileID: 0}
+    vars: []
   - inputAction: {fileID: 11400000, guid: 8facd2afede35c24e9203791ef0d5a8c, type: 2}
     isInverseInteraction: 0
     textResponse: Tiras la gaiieta
     actionResponse: {fileID: 0}
+    vars: []
   stopWorkingDescription: 'No queda nada '
   maxUses: 1

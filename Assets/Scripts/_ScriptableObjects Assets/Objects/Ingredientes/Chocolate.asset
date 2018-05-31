@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Name: Chocolate
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: ' '
+  objectName: Chocolate
   nouns:
-  - nombre
+  - choco
+  - chocolate
+  - chocolat
   weight: 10
   pods: 1
-  isIngredient: 0
+  isIngredient: 1
   isOpenable: 0
   description: "Descripci\xF3n en la habitaci\xF3n"
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"

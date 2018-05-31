@@ -11,11 +11,353 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bf4a3e0b187f34e840e2c1dfa20aac, type: 3}
   m_Name: Galleta
   m_EditorClassIdentifier: 
-  recipeName: 
-  product: {fileID: 0}
-  minTime: 0
-  maxTime: 0
-  fragments: []
-  beforeFragments: []
-  whileFragments: []
+  recipeName: Galleta
+  product: {fileID: 11400000, guid: ff814f82751669e4cb22e275c4c83b9d, type: 2}
+  minTime: 4
+  maxTime: 8
+  fragments:
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  beforeFragments:
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 3849f9a08f1d3db4eaf4ceae8c9476a6, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: d2b641123bf42d7459081d3cd569b1ae, type: 2}
+    volume: 1
+    addingInstant: 0
+  whileFragments:
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 1
   pauseFragments: []

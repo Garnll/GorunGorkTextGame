@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Recetario
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: ' '
+  objectName: Recetario
   nouns:
-  - nombre
+  - recetario
   weight: 10
   pods: 1
   isIngredient: 0
@@ -22,4 +22,6 @@ MonoBehaviour:
   description: "Descripci\xF3n en la habitaci\xF3n"
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions: []
-  recipes: []
+  recipes:
+  - {fileID: 11400000, guid: 38d2805d466be904aa2bb131e66ad0c5, type: 2}
+  - {fileID: 11400000, guid: ccc753e6e41607743b7d624c821cbe2c, type: 2}
