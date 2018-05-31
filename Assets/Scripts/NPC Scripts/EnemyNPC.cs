@@ -36,6 +36,7 @@ public class EnemyNPC : MonoBehaviour {
     private float escapeProbability = 0;
 
     [HideInInspector] public bool isAlive = true;
+    private bool isTurn = false;
 
     [HideInInspector] public CombatController combatController;
 
@@ -58,6 +59,7 @@ public class EnemyNPC : MonoBehaviour {
     public void StartCombat(CombatController controller)
     {
         combatController = controller;
+        isTurn = false;
 
 		maxHealth = myTemplate.MaxHealth;
 		maxTurn = myTemplate.MaxTurn;
@@ -93,6 +95,7 @@ public class EnemyNPC : MonoBehaviour {
     /// <param name="toWaste"></param>
     public void WasteTurn (float toWaste)
     {
+        isTurn = false;
         currentTurn -= (myTemplate.MaxTurn * toWaste);
         combatController.UpdateEnemyTurn();
     }
@@ -159,9 +162,11 @@ public class EnemyNPC : MonoBehaviour {
         currentTurn += (currentTurnRegenPerSecond + (0.03f * currentDexterity));
         currentHealth += currentHealthRegenPerSecond;
 
-        if (currentTurn >= myTemplate.MaxTurn)
+        if (currentTurn >= myTemplate.MaxTurn && !isTurn)
         {
             currentTurn = myTemplate.MaxTurn;
+            combatController.enemyUI.turnParticles.Play();
+            isTurn = true;
 
             if (currentState.GetType() == typeof(InertiaState))
             {

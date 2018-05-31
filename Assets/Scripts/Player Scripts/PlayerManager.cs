@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour {
     public int playerLevel = 0;
 
     private bool isAlive = true;
+    private bool isTurn = false;
     public CharacteristicsChanger characteristicsChanger;
     public CharacterEffectiveState defaultState;
 	
@@ -76,6 +77,7 @@ public class PlayerManager : MonoBehaviour {
     /// </summary>
     public void Initialize()
     {
+        isTurn = false;
         experiencePoints = 0;
         currentHealth = maxHealth;
         currentTurn = maxTurn;
@@ -191,6 +193,7 @@ public class PlayerManager : MonoBehaviour {
 
     public void WasteTurn(float percentage)
     {
+        isTurn = false;
         currentTurn -= (maxTurn * percentage);
         controller.combatController.UpdatePlayerTurn();
     }
@@ -277,9 +280,11 @@ public class PlayerManager : MonoBehaviour {
     {
         currentTurn += (characteristics.other.currentTurnRegenPerSecond + (0.03f * characteristics.currentDexterity));
 
-        if (currentTurn >= maxTurn)
+        if (currentTurn >= maxTurn & !isTurn)
         {
             currentTurn = maxTurn;
+            controller.combatController.playerUI.turnParticles.Play();
+            isTurn = true;
 
             if (currentState.GetType() == typeof(InertiaState))
             {

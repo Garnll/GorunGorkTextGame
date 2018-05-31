@@ -36,8 +36,9 @@ public class EnemyUIDuringCombat : UIDuringCombat {
         turnSlider = temp.GetComponentInChildren<Slider>();
         willText = temp.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-        turnParticles.transform.SetParent(temp.transform);
-        turnParticles.transform.SetPositionAndRotation(new Vector3(50, 0, -10), Quaternion.Euler(-90, 0, 0));
+        turnParticles.transform.SetParent(turnSlider.transform);
+        turnParticles.transform.localPosition = new Vector3(50, 0, -10);
+        turnParticles.transform.localScale = Vector3.one;
 
         temp = Instantiate(enemyDescription, enemyContainer);
         descriptionText = temp.GetComponent<TextMeshProUGUI>();
