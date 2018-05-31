@@ -629,24 +629,11 @@ public class CraftingController : MonoBehaviour {
 		return false;
 	}
 
+	//Revisa que haya al menos 'volume' ingredientes en la lista.
 	public bool checkFor(InteractableObject ingredient, int volume, List<InteractableObject> list) {
 		int count = 0;
 		for (int i = 0; i < list.Count; i++) {
 			if (list[i] == ingredient) {
-				count++;
-			}
-		}
-		if (count >= volume) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public bool checkFor(InteractableObject ingredient, int volume, List<frag> list) {
-		int count = 0;
-		for (int i = 0; i < list.Count; i++) {
-			if (list[i].ingredient == ingredient) {
 				count++;
 			}
 		}
@@ -799,22 +786,18 @@ public class CraftingController : MonoBehaviour {
 	#endregion
 
 	#region ingredientsManagement
-	public bool addIngredient(InteractableObject ingredient) {
+	public void addIngredient(InteractableObject ingredient) {
 		if (checkFor(ingredient, playerIngredients)) {
 			if (checkFor(ingredient, ingredientsIn)) {
 				add(ingredient);
-				refresh();
-				return true;
 			} else {
 				if (slotsUsed < slots) {
 					slotsUsed++;
 					add(ingredient);
-					refresh();
-					return true;
 				}
 			}
 		}
-		return false;
+		refresh();
 	}
 
 	public void add(InteractableObject ingredient) {
@@ -831,18 +814,15 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public void addIngredient(InteractableObject ingredient, int volume) {
-		for (int i=0; i<volume; i++) {
-			if (checkFor(ingredient, playerIngredients)) {
-				if (checkFor(ingredient, ingredientsIn)) {
-					add(ingredient);
+		if (checkFor(ingredient, volume, playerIngredients) && slotsUsed < slots) {
+			for (int i = 0; i < volume; i++) {
+				if (!checkFor(ingredient, ingredientsIn)) {
+					slotsUsed++;
 				}
-				else {
-					if (slotsUsed < slots) {
-						slotsUsed++;
-						add(ingredient);
-					}
-				}
+				ingredientsIn.Add(new frag(ingredient));
+				playerIngredients.Remove(ingredient);
 			}
+			slotsUsed++;
 		}
 		refresh();
 	}
@@ -852,50 +832,9 @@ public class CraftingController : MonoBehaviour {
 			if (s == f.ingredient.objectName && f.consumed == false) {
 				playerIngredients.Add(f.ingredient);
 				ingredientsIn.Remove(f);
-				if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
-					slotsUsed--;
-				}
-				return;
-			}
-
-			foreach (string _s in f.ingredient.nouns) {
-				if (s == _s) {
-					playerIngredients.Add(f.ingredient);
-					ingredientsIn.Remove(f);
-					if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
-						slotsUsed--;
-					}
-					return;
-				}
 			}
 		}
-	}
-
-	public void removeIngredient(string s, int volume) {
-		for (int i=0; i<volume; i++) {
-			Debug.Log("Tratando de remover " + s);
-			foreach (frag f in ingredientsIn) {
-				if (s == f.ingredient.objectName && f.consumed == false) {
-					playerIngredients.Add(f.ingredient);
-					ingredientsIn.Remove(f);
-					if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
-						slotsUsed--;
-					}
-					return;
-				}
-
-				foreach (string _s in f.ingredient.nouns) {
-					if (s == _s) {
-						playerIngredients.Add(f.ingredient);
-						ingredientsIn.Remove(f);
-						if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
-							slotsUsed--;
-						}
-						return;
-					}
-				}
-			}
-		}
+		refresh();
 	}
 
 	public void consumeIngredients() {
@@ -1104,30 +1043,6 @@ public class CraftingController : MonoBehaviour {
 
 	#endregion
 
-	public int getNaturalVolume(string[] i) {
-		if (checkFor(i[0], one)) {
-			return 1;
-		}
-
-		if (checkFor(i[0], two)) {
-			return 2;
-		}
-
-		if (checkFor(i[0], three)) {
-			return 3;
-		}
-
-		if (checkFor(i[0], four)) {
-			return 4;
-		}
-
-		if (checkFor(i[0], five)) {
-			return 5;
-		}
-		return 0;
-	}
-
-
 	public void applyMono(InputType t, string i) {
 		switch (t) {
 			case InputType.addCommand:
@@ -1194,47 +1109,7 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public void applyBi(InputType t, string i) {
-		switch (t) {
-			case InputType.addCommand:
-				addIngredient(getIngredientFromPlayerWith(i));
-				break;
 
-			case InputType.removeCommand:
-				removeIngredient(i);
-				break;
-
-			case InputType.readCommand:
-				setResultDescriptionAsRecipe(getRecipeWith(i));
-				break;
-		}
-	}
-
-	public void applyNatural(InputType t, string[] i) {
-		int volume = getNaturalVolume(i);
-		string[] s = getPredicate(i);
-		string ss = getStringPredicate(s);
-
-		Debug.Log(t + " " + volume + " " + ss);
-
-		switch (t) {
-			case InputType.addCommand:
-				addIngredient(getIngredientFromPlayerWith(s[0]), volume);
-				break;
-
-			case InputType.removeCommand:
-				removeIngredient(s[0]);
-				break;
-		}
-	}
-
-	public string[] getPredicate(string[] i) {
-		string[] s = new string[i.Length-1];
-		for (int j=0; j<i.Length; j++) {
-			if (j>0) {
-				s[j - 1] = i[j];
-			}
-		}
-		return s;
 	}
 
 	public void receiveInput(string[] input) {
@@ -1256,14 +1131,33 @@ public class CraftingController : MonoBehaviour {
 
 		subtype = getSubType(input);
 
+		Debug.Log(type + " " + subtype);
+		Debug.Log(getStringPredicate( getBiPredicate(input)) );
+
 		switch (subtype) {
 			case SubType.bi:
-				applyBi(type, input[1]);
+				switch (type) {
+					case InputType.addCommand:
+						if (checkFor(getBiPredicate(input).ToString(), playerIngredients)) {
+							addIngredient(getIngredientFromPlayerWith(getBiPredicate(input).ToString()));
+						}
+						break;
+
+					case InputType.removeCommand:
+						if (checkFor(getBiPredicate(input).ToString(), ingredientsIn)) {
+							removeIngredient(getBiPredicate(input).ToString());
+						}
+						break;
+
+					case InputType.readCommand:
+						if (checkFor(getBiPredicate(input).ToString(), recipesKnown)) {
+							setResultDescriptionAsRecipe(getRecipeWith(getBiPredicate(input).ToString()));
+						}
+						break;
+				}
 				break;
 
 			case SubType.natural:
-				applyNatural(type, getBiPredicate(input));
-				break;
 
 
 			case SubType.standard:
@@ -1272,6 +1166,7 @@ public class CraftingController : MonoBehaviour {
 
 		refresh();
 	}
+
 
 	public string[] getBiPredicate(string[] s) {
 		string[] _s = new string[s.Length -1];
@@ -1285,10 +1180,6 @@ public class CraftingController : MonoBehaviour {
 		string _s = "";
 		foreach (string c in s) {
 			_s += c + " ";
-		}
-
-		if (s.Length > 0) {
-			_s.Remove(_s.Length - 1);
 		}
 		return _s;
 	}
