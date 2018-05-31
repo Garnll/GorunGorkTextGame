@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: "Tiramis\xFA"
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: ' '
+  objectName: "Postre de Tiramis\xFA"
   nouns:
-  - nombre
+  - postre
+  - "tiramis\xFA"
+  - "postre de tiramis\xFA"
   weight: 10
   pods: 1
   isIngredient: 0

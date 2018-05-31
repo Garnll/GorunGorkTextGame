@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Name: Cafe
   m_EditorClassIdentifier: 
   nounGender: 0
-  objectName: ' '
+  objectName: "Caf\xE9"
   nouns:
-  - nombre
+  - cafe
+  - "caf\xE9"
+  - coffee
   weight: 10
   pods: 1
-  isIngredient: 0
+  isIngredient: 1
   isOpenable: 0
-  description: "Descripci\xF3n en la habitaci\xF3n"
+  description: 
   descriptionAtAnalized: "Descripci\xF3n al ser analizado"
   interactions: []
