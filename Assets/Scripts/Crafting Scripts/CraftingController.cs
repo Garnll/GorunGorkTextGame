@@ -29,14 +29,15 @@ public class CraftingController : MonoBehaviour {
 	public enum Instant { Before, While, Pause, After }
 	public enum AddingInstant { Before, While, Pause }
 
-	public List<Recipe> recipes;                        //Todas las recetas del juego.
-	[HideInInspector] public List<Recipe> recipesKnown; //Recetas conocidas por el jugador.
+	public List<Recipe> recipes;                        
+	[HideInInspector] public List<Recipe> recipesKnown; 
+	Recipe potentialRecipe;
 
 	public List<frag> ingredientsIn;
 
-	public float craftingTime;                          //El tiempo que lleva crafteando.
+	public float craftingTime;                          
 	float lastTime;
-	public bool isCrafting;                             //Si está crafteando o no.
+	public bool isCrafting;                             
 	public Instant currentInstant;
 	public AddingInstant currentAddingInstant;
 	public bool alreadyStarted;
@@ -896,6 +897,106 @@ public class CraftingController : MonoBehaviour {
 	}
 	#endregion
 
+	#region result
+	public InteractableObject getResult() {
+		realignProcess();
+		potentialRecipe = getRecipe();
+		if (potentialRecipe != null) {
+			if (!checkFor(potentialRecipe, recipesKnown)) {
+				RecipeBook r = getRecipebook();
+				if (r != null) {
+					r.recipes.Add(potentialRecipe);
+					recipesKnown.Add(potentialRecipe);
+
+				}
+				else {
+					recipesKnown.Add(potentialRecipe);
+				}
+
+			}
+			resultState = 2;
+			return potentialRecipe.product;
+		}
+
+		resultState = 3;
+		return null;
+	}
+
+	public Recipe getRecipe() {
+		foreach (Recipe r in recipes) {
+			int checkList = 3;
+
+			if (r.beforeFragments.Count >= 1) {
+				foreach (Fragment f in r.beforeFragments) {
+					foreach (Process p in beforeProcess) {
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (r.whileFragments.Count >= 1) {
+				foreach (Fragment f in r.whileFragments) {
+					foreach (Process p in whileProcess) {
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (r.pauseFragments.Count >= 1) {
+				foreach (Fragment f in r.pauseFragments) {
+					foreach (Process p in pauseProcess) {
+						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
+							checkList--;
+						}
+					}
+				}
+			}
+
+			if (checkList == 3 && r.minTime <= currentTime && currentTime <= r.maxTime) {
+				return r;
+			}
+		}
+		return null;
+	}
+
+	public void realignProcess() {
+		List<Process> temp = new List<Process>();
+
+		foreach (Process p in process) {
+			if (!checkOneFor(p, temp)) {
+				temp.Add(new Process(p.instantAdded, p.frag, p.timeAdded, getVolumeInProcess(p.frag.ingredient, p.instantAdded)));
+				Debug.Log(temp[temp.Count - 1].frag.ingredient.objectName + " x" +
+					temp[temp.Count - 1].volume + " at" + temp[temp.Count - 1].instantAdded + ".");
+			}
+		}
+
+		process = temp;
+		setSubProcess();
+	}
+
+	public void setSubProcess() {
+		foreach (Process p in process) {
+			switch (p.instantAdded) {
+				case AddingInstant.Before:
+					beforeProcess.Add(p);
+					break;
+				case AddingInstant.Pause:
+					pauseProcess.Add(p);
+					break;
+				case AddingInstant.While:
+					whileProcess.Add(p);
+					break;
+			}
+		}
+	}
+	#endregion
+
+	#region machine
+
 	public void play() {
 		process = new List<Process>();
 		currentInstant = Instant.While;
@@ -939,6 +1040,8 @@ public class CraftingController : MonoBehaviour {
 		ingredientsIn.Clear();
 		refresh();
 	}
+
+	#endregion
 
 	public void applyMono(InputType t, string i) {
 		switch (t) {
@@ -1005,12 +1108,15 @@ public class CraftingController : MonoBehaviour {
 		refresh();
 	}
 
+	public void applyBi(InputType t, string i) {
+
+	}
+
 	public void receiveInput(string[] input) {
 		InputType type;
 		SubType subtype;
 		
 		type = getInputType(input[0], input.Length);
-
 		inputStrings = getInputString(type);
 
 		if (type == InputType.unrecognized) {
@@ -1018,23 +1124,17 @@ public class CraftingController : MonoBehaviour {
 		}
 		
 		if (input.Length == 1) {
+			subtype = SubType.mono;
 			applyMono(type, input[0]);
 			return;
 		}
 
-		if (input.Length > 1) {
-			subtype = getSubType(input);
-		} else {
-			subtype = SubType.mono;
-		}
+		subtype = getSubType(input);
+
+		Debug.Log(type + " " + subtype);
+		Debug.Log(getStringPredicate( getBiPredicate(input)) );
 
 		switch (subtype) {
-			case SubType.mono:
-				if (checkFor(input[0], playerIngredients)) {
-					addIngredient(getIngredientFromPlayerWith(input[0]));
-				}
-				break;
-
 			case SubType.bi:
 				switch (type) {
 					case InputType.addCommand:
@@ -1067,121 +1167,19 @@ public class CraftingController : MonoBehaviour {
 		refresh();
 	}
 
-	Recipe potentialRecipe;
-
-	//Obtener el resultado.
-	public InteractableObject getResult() {
-		realignProcess();
-		potentialRecipe = getRecipe();
-		if (potentialRecipe != null) {
-			if (!checkFor(potentialRecipe, recipesKnown)) {
-				RecipeBook r = getRecipebook();
-				if (r != null) {
-					r.recipes.Add(potentialRecipe);
-					recipesKnown.Add(potentialRecipe);
-
-				}
-				else {
-					recipesKnown.Add(potentialRecipe);
-				}
-				
-			}
-			resultState = 2;
-			return potentialRecipe.product;
-		}
-
-		resultState = 3;
-		return null;
-	}
-
-	public Recipe getRecipe() {
-		Debug.Log("The happening:" + recipes.Count);
-
-		foreach (Recipe r in recipes) {
-			Debug.Log(r.product + ":");
-
-			int checkList = 3;
-			if (r.beforeFragments.Count >= 1) {
-				foreach (Fragment f in r.beforeFragments) {
-					foreach (Process p in beforeProcess) {
-						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " before");
-						Debug.Log("Had " + p.volume);
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							Debug.Log("Before bad.");
-							checkList--;
-						}
-					}
-				}
-			}
-
-			if (r.whileFragments.Count >= 1) {
-				foreach (Fragment f in r.whileFragments) {
-					foreach (Process p in whileProcess) {
-						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " while");
-						Debug.Log("Had " + p.volume);
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							Debug.Log("While bad.");
-							checkList--;
-						}
-					}
-				}
-			}
-
-			if (r.pauseFragments.Count >= 1) {
-				foreach (Fragment f in r.pauseFragments) {
-					foreach (Process p in pauseProcess) {
-						Debug.Log("Needed " + f.volume + f.ingredient.objectName + " in pause");
-						Debug.Log("Had " + p.volume);
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							Debug.Log("Pause bad.");
-							checkList--;
-						}
-					}
-				}
-			}
-
-			if (checkList == 3 && r.minTime <= currentTime && currentTime <= r.maxTime) {
-				return r;
-			}
-		}
-		return null;
-	}
-
-	public void realignProcess() {
-		List<Process> temp = new List<Process>();
-
-		foreach (Process p in process) {
-			if (!checkOneFor(p, temp)) {
-				temp.Add(new Process(p.instantAdded, p.frag, p.timeAdded, getVolumeInProcess(p.frag.ingredient, p.instantAdded)));
-				Debug.Log(temp[temp.Count-1].frag.ingredient.objectName + " x" +
-					temp[temp.Count-1].volume + " at" + temp[temp.Count-1].instantAdded + ".");
-			}
-		}
-
-		process = temp;
-		setSubProcess();
-	}
-
-	public void setSubProcess() {
-		foreach (Process p in process) {
-			switch (p.instantAdded) {
-				case AddingInstant.Before:
-					beforeProcess.Add(p);
-					break;
-				case AddingInstant.Pause:
-					pauseProcess.Add(p);
-					break;
-				case AddingInstant.While:
-					whileProcess.Add(p);
-					break;
-			}
-		}
-	}
 
 	public string[] getBiPredicate(string[] s) {
 		string[] _s = new string[s.Length -1];
 		for (int i = 1; i < s.Length; i++) {
 			_s[i - 1] = s[i];
+		}
+		return _s;
+	}
+
+	public string getStringPredicate(string[] s) {
+		string _s = "";
+		foreach (string c in s) {
+			_s += c + " ";
 		}
 		return _s;
 	}

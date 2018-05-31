@@ -2232,6 +2232,7 @@ MonoBehaviour:
       Data: 
   inputField: {fileID: 1385103510}
   habilitiesTextInput: {fileID: 213067491}
+  principalScroll: {fileID: 403073802}
   wrongDialogueInputs:
   - Yo no lo entiendos.
   - Eso no tiene sentido.
@@ -2965,7 +2966,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1383727581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5354601
+  m_Size: 0.535452
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3224,7 +3225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3, y: 165.05978}
+  m_AnchoredPosition: {x: 3, y: 165.0027}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &619418491
@@ -9626,6 +9627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   font: {fileID: 11400000, guid: 322e96d9d37671c4c81c00fa40607691, type: 2}
+  pluser: 0
 --- !u!4 &1864269308
 Transform:
   m_ObjectHideFlags: 0
@@ -10605,7 +10607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pace: 0.1
-  battleTimeInMins: 2
+  battleTimeInSeconds: 60
   inventoryManager: {fileID: 1178118716}
   combatLayout: {fileID: 1228525000710756, guid: 80946d64efc8b644ca05c3c15b2f7729,
     type: 2}
@@ -10764,8 +10766,10 @@ MonoBehaviour:
     type: 2}
   willText: {fileID: 114459231531192232, guid: d54b4c38d87e6474c856a86cd7752718, type: 2}
   logText: {fileID: 0}
+  turnParticles: {fileID: 0}
   descriptionText: {fileID: 114975056170945138, guid: 80db58feb6241b4469760b8beed33fb6,
     type: 2}
+  enemyContainer: {fileID: 0}
   enemyPrefab: {fileID: 1605664793645406, guid: 2b5783ebbdf6c8545be4765a28dd54ca,
     type: 2}
   enemyTitle: {fileID: 1967955301890496, guid: 7a53c1780ba4b484f98d9dd7f2a27b8c, type: 2}
@@ -10795,10 +10799,12 @@ MonoBehaviour:
     type: 2}
   willText: {fileID: 114849937868151590, guid: 8f7cdee69ef21f849b054d1231061f52, type: 2}
   logText: {fileID: 0}
+  turnParticles: {fileID: 0}
   habilitiesText: {fileID: 114756375092231574, guid: 3684e4a15bdccc348a5e2e0d5a67da15,
     type: 2}
   optionsText: {fileID: 114291927050144888, guid: 088dbffd274d11d4e9ab744a6aa1ec07,
     type: 2}
+  playerContainer: {fileID: 0}
   timerTextObject: {fileID: 0}
   timerText: {fileID: 0}
   playerPrefab: {fileID: 1504460691746678, guid: ac9c41404b5d0534f8dbee18afbd3847,
