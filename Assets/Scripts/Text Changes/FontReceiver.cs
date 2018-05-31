@@ -35,24 +35,35 @@ public class FontReceiver : MonoBehaviour {
     {
         if (myTextMesh != null)
         {
-            myTextMesh.font = newFont;
+            if (myTextMesh.font != newFont)
+            {
+                myTextMesh.font = newFont;
+            }
         }
         if (myInput != null)
         {
-            myInput.fontAsset = newFont;
+            if (myInput.fontAsset != newFont)
+            {
+                myInput.fontAsset = newFont;
+            }
         }
     }
 
     void ChangeFontSize(int sumer)
     {
-        Debug.Log(sumer);
         if (myTextMesh != null)
         {
-            myTextMesh.fontSize = originalSize + sumer;
+            if (myTextMesh.fontSize != originalSize + sumer)
+            {
+                myTextMesh.fontSize = originalSize + sumer;
+            }
         }
         if (myInput != null)
         {
-            myInput.pointSize = originalSize + sumer;
+            if (myInput.pointSize != originalSize + sumer)
+            {
+                myInput.pointSize = originalSize + sumer;
+            }
         }
     }
 
