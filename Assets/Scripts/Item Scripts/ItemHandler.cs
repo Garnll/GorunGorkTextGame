@@ -397,19 +397,33 @@ public class ItemHandler : MonoBehaviour {
             else
                 objectToDisplay = "la " + objectToUse.objectName;
 
-            controller.LogStringWithReturn("No puedes usar " + objectToDisplay + ".");
+            if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+            {
+                controller.LogStringWithReturn("No puedes usar " + objectToDisplay + ".");
+            }
+            else if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                controller.combatController.UpdatePlayerLog("No puedes usar " + objectToDisplay + ".");
+            }
             return;
+        }
+
+        if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        {
+            controller.LogStringWithReturn(useInteraction.textResponse);
+        }
+        else if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            controller.combatController.UpdatePlayerLog(useInteraction.textResponse);
         }
 
         if (useInteraction.isInverseInteraction)
 		{
-            controller.LogStringWithReturn(useInteraction.textResponse);
             return;
         }
 
-        controller.LogStringWithReturn(useInteraction.textResponse);
 
-		if (objectToUse.GetType() == typeof(Recipient)) {
+        if (objectToUse.GetType() == typeof(Recipient)) {
 			controller.craftController.initialize(objectToUse as Recipient);
 		}
 
@@ -423,8 +437,16 @@ public class ItemHandler : MonoBehaviour {
         if (action)
         {
             consumable.UseObject();
-            controller.LogStringWithReturn(useInteraction.actionResponse.responseDescription);
-			useInteraction.applyEffects();
+            if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+            {
+                controller.LogStringWithReturn(useInteraction.actionResponse.responseDescription);
+            }
+            else if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                controller.combatController.UpdatePlayerLog(useInteraction.actionResponse.responseDescription);
+            }
+
+            useInteraction.applyEffects();
 			controller.questManager.updateQuests();
 
 			if (!consumable.IsUseful)
@@ -438,7 +460,14 @@ public class ItemHandler : MonoBehaviour {
         }
         else
         {
-            controller.LogStringWithReturn(useInteraction.actionResponse.negationDescription);
+            if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+            {
+                controller.LogStringWithReturn(useInteraction.actionResponse.negationDescription);
+            }
+            else if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+            {
+                controller.combatController.UpdatePlayerLog(useInteraction.actionResponse.negationDescription);
+            }
         }
     }
 

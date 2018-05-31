@@ -572,7 +572,12 @@ public class CombatController : MonoBehaviour {
     public void UseObjectInInventory(int index)
     {
         player.currentTurn -= player.MaxTurn * 0.5f;
-        inventoryManager.UseObjectDuringBattle(this, inventoryPage, index);
+        InteractableObject objectToUse = inventoryManager.UseObjectDuringBattle(this, inventoryPage, index);
+        if (objectToUse != null)
+        {
+            player.controller.itemHandler.UseObject(objectToUse);
+        }
+
         ExitInventory();
     }
 
