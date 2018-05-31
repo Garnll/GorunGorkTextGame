@@ -47,7 +47,7 @@ public class InventoryManager : MonoBehaviour {
     {
 		string textToDisplay = "";
 
-		if (roomNav.currentPosition.z != 9) { //Cambiar esto por un 8!!!
+		if (roomNav.currentPosition.z != 8) { 
 			barra.color = new Color(barra.color.r, barra.color.g, barra.color.b, 256);
 			border.color = new Color(border.color.r, border.color.g, border.color.b, 0);
 			textToDisplay = "<b>Inventario</b>";
