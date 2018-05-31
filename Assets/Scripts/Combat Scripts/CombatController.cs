@@ -8,7 +8,7 @@ using UnityEngine;
 public class CombatController : MonoBehaviour {
 
 	public float pace = 0.1f;
-    public float battleTimeInMins = 2;
+    public float battleTimeInSeconds = 60;
     private float currentBattleTime = 0;
 
     public InventoryManager inventoryManager;
@@ -110,7 +110,7 @@ public class CombatController : MonoBehaviour {
         enemy = npc;
         player = thisPlayer;
         lemonsWon = 0;
-        currentBattleTime = battleTimeInMins*60;
+        currentBattleTime = battleTimeInSeconds;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -121,7 +121,7 @@ public class CombatController : MonoBehaviour {
         enemyPlayer = otherPlayer;
         player = thisPlayer;
         lemonsWon = 0;
-        currentBattleTime = battleTimeInMins * 60;
+        currentBattleTime = battleTimeInSeconds;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -216,6 +216,8 @@ public class CombatController : MonoBehaviour {
     private void ChangeLayout()
     {
         player.controller.NullCurrentDisplay();
+        playerUI.SetTimerText(Instantiate(playerUI.timerTextObject, contentContainer));
+
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
@@ -236,6 +238,8 @@ public class CombatController : MonoBehaviour {
             {
                 SetEnemyDescription();
             }
+
+            playerUI.timerText.text = "Combate termina en: <b>" + (currentBattleTime).ToString("0.0") + "</b>";
 
             if (currentBattleTime <= 0)
             {
