@@ -693,7 +693,6 @@ public class CombatController : MonoBehaviour {
     /// </summary>
     private void InitializeEnemy()
     {
-        Debug.Log("Enemigo normal");
 
         enemy.StartCombat(this);
 		enemyUI.lifeSlider.fillRect.GetComponent<UnityEngine.UI.Image>().color =
