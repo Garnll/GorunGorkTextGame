@@ -353,7 +353,7 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public string getRecipeDescription(Recipe r) {
-		return "Blablabla.";
+		return r.description;
 		//Pending.
 	}
 

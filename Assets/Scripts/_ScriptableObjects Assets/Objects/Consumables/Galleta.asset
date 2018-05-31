@@ -22,7 +22,7 @@ MonoBehaviour:
   isIngredient: 0
   isOpenable: 0
   description: galleta
-  descriptionAtAnalized: "Descripci\xF3n al ser analizado"
+  descriptionAtAnalized: Una deliciosa galleta.
   interactions:
   - inputAction: {fileID: 0}
     isInverseInteraction: 0

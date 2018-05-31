@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: "Tiramis\xFA"
   product: {fileID: 11400000, guid: 035a3fcd11cbda94f828a80de55d02b3, type: 2}
+  description: "Agregar una porci\xF3n de caf\xE9 y una porci\xF3n de chocolate. Encender
+    la m\xE1quina y dejar calentar entre 5 y 10 segundos."
   minTime: 5
   maxTime: 10
   fragments:
@@ -23,6 +25,138 @@ MonoBehaviour:
     volume: 1
     addingInstant: 0
   beforeFragments:
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
+    volume: 1
+    addingInstant: 0
+  - ingredient: {fileID: 11400000, guid: feb84b3d0e162674493bed296ca14a76, type: 2}
+    volume: 1
+    addingInstant: 0
   - ingredient: {fileID: 11400000, guid: 4b372fa6351adb04cba93341c932e9da, type: 2}
     volume: 1
     addingInstant: 0

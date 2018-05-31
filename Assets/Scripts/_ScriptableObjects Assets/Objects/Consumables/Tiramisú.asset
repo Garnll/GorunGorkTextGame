@@ -26,5 +26,5 @@ MonoBehaviour:
   isIngredient: 0
   isOpenable: 0
   description: "Descripci\xF3n en la habitaci\xF3n"
-  descriptionAtAnalized: "Descripci\xF3n al ser analizado"
+  descriptionAtAnalized: "Un postre de Tiramis\xFA. Tiene chocolate y caf\xE9. Yummy."
   interactions: []

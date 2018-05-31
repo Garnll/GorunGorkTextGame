@@ -8,6 +8,10 @@ public class Recipe : ScriptableObject {
 	public string recipeName;
 	public InteractableObject product;
 
+	[Space(10)]
+	[TextArea]
+	public string description;
+
 	public float minTime;
 	public float maxTime;
 
