@@ -32,6 +32,9 @@ MonoBehaviour:
   - interactableObject: {fileID: 11400000, guid: e71ba0b938bfcde478e323431564608d,
       type: 2}
     visionRange: 0
+  - interactableObject: {fileID: 11400000, guid: 5226b96c7b04dd6469b17ee5254de127,
+      type: 2}
+    visionRange: 0
   charactersInRoom:
   - {fileID: 11400000, guid: 33bcd76230e0e4d4a8475cb7f87c7eaa, type: 2}
   - {fileID: 11400000, guid: 7890684f81cc98b48b6b1a50ce76b87c, type: 2}
@@ -45,18 +48,21 @@ MonoBehaviour:
     isAble: 1
     exitDescription: 'Hacia el <b><color=#FBEBB5>norte</color></b> hay un sendero. '
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d09e9d2c79b72b540a5305d1e9fcef23, type: 2}
     isExplicit: 1
     isAble: 1
     exitDescription: "Al <b><color=#FBEBB5>sur</color></b> est\xE1 la biblioteca. "
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 3
     conectedRoom: {fileID: 11400000, guid: 838226b65fd6a724cb21ac5004b1e56f, type: 2}
     isExplicit: 1
     isAble: 1
     exitDescription: "La Encrucijada est\xE1 al <b><color=#FBEBB5>oeste</color></b>."
     exitActionDescription: 
+    disabledDescription: 
   - myKeyword: 2
     conectedRoom: {fileID: 11400000, guid: bc51470142c14084b86cd67b2bb38f83, type: 2}
     isExplicit: 1
@@ -64,5 +70,6 @@ MonoBehaviour:
     exitDescription: Hay un edificio al <b><color=#FBEBB5>oeste</color></b>. Es la
       imprenta.
     exitActionDescription: 
+    disabledDescription: 
   enemiesInRoom: []
   changeExits: 0

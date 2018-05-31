@@ -28,14 +28,10 @@ MonoBehaviour:
     y con ella destru\xEDmos.</color></i>\nRecuerdas la existencia de al menos cuatro
     nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
   roomResponse: {fileID: 0}
-  visibleObjectsInRoom:
-  - interactableObject: {fileID: 11400000, guid: 5226b96c7b04dd6469b17ee5254de127,
-      type: 2}
-    visionRange: 0
+  visibleObjectsInRoom: []
   charactersInRoom: []
   playersInRoom: []
-  npcTemplatesInRoom:
-  - {fileID: 11400000, guid: a640b9f850f1be344a5f53c35183a2fd, type: 2}
+  npcTemplatesInRoom: []
   exits:
   - myKeyword: 1
     conectedRoom: {fileID: 11400000, guid: d3de435a59517af4fbbcd9d0b3bacb1b, type: 2}
@@ -66,6 +62,5 @@ MonoBehaviour:
     exitDescription: 
     exitActionDescription: 
     disabledDescription: 
-  enemiesInRoom:
-  - {fileID: 0}
+  enemiesInRoom: []
   changeExits: 0
