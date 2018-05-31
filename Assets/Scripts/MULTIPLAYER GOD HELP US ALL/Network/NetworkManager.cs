@@ -355,7 +355,7 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
     #region Player Fight
 
     public void TryToAttack(string playerName)
-    {   
+    {
         if (playerInstanceManager.playerInstancesOnScene.ContainsKey(playerName))
         {
             PlayerInstance enemy = playerInstanceManager.playerInstancesOnScene[playerName];
@@ -489,6 +489,18 @@ public class NetworkManager : Photon.PunBehaviour, IPunObservable {
         controller.combatController.UpdateEnemyPlayerLog(newMessage);
     }
 
+
+    public void PlayerStartDamagedAnimation(PlayerInstance player)
+    {
+        photonView.RPC("StartEnemiesAnimation", PhotonPlayer.Find(player.playerUserID));
+    }
+
+    [PunRPC]
+    public void StartEnemiesAnimation()
+    {
+        controller.combatController.StopCoroutine(controller.combatController.AnimateHitEnemy());
+        controller.combatController.StartCoroutine(controller.combatController.AnimateHitEnemy());
+    }
 
     public void PlayerEscapedBattle(PlayerInstance player)
     {

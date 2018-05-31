@@ -8,7 +8,7 @@ using UnityEngine;
 public class CombatController : MonoBehaviour {
 
 	public float pace = 0.1f;
-    public float battleTimeInMins = 2;
+    public float battleTimeInSeconds = 60;
     private float currentBattleTime = 0;
 
     public InventoryManager inventoryManager;
@@ -17,7 +17,9 @@ public class CombatController : MonoBehaviour {
     public RectTransform contentContainer;
     [Space(10)]
     public PlayerUIDuringCombat playerUI;
+    private bool playerAnimated;
     public EnemyUIDuringCombat enemyUI;
+    private bool enemyAnimated;
 
 	public PlayerText playerText;
 
@@ -110,7 +112,7 @@ public class CombatController : MonoBehaviour {
         enemy = npc;
         player = thisPlayer;
         lemonsWon = 0;
-        currentBattleTime = battleTimeInMins*60;
+        currentBattleTime = battleTimeInSeconds;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -121,7 +123,7 @@ public class CombatController : MonoBehaviour {
         enemyPlayer = otherPlayer;
         player = thisPlayer;
         lemonsWon = 0;
-        currentBattleTime = battleTimeInMins * 60;
+        currentBattleTime = battleTimeInSeconds;
 
         GameState.Instance.ChangeCurrentState(GameState.GameStates.combatPreparation);
     }
@@ -216,6 +218,8 @@ public class CombatController : MonoBehaviour {
     private void ChangeLayout()
     {
         player.controller.NullCurrentDisplay();
+        playerUI.SetTimerText(Instantiate(playerUI.timerTextObject, contentContainer));
+
         GameObject newCombat = Instantiate(combatLayout, contentContainer);
 
         playerUI.InstantiateMyStuff(newCombat.GetComponent<RectTransform>());
@@ -237,6 +241,8 @@ public class CombatController : MonoBehaviour {
                 SetEnemyDescription();
             }
 
+            playerUI.timerText.text = "Combate termina en: <b>" + (currentBattleTime).ToString("0.0") + "</b>";
+
             if (currentBattleTime <= 0)
             {
                 currentBattleTime = 0;
@@ -256,6 +262,51 @@ public class CombatController : MonoBehaviour {
                 enemy.ChargeBySecond();
             }
             
+        }
+    }
+
+    public IEnumerator AnimateHitPlayer()
+    {
+        float time = 0;
+
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+
+            float r = Random.Range(0.01f, 0.05f);
+            playerUI.playerContainer.transform.localScale = new Vector3(Mathf.Sin(Time.time * 30) * r + 1, 1, 1);
+
+            time += Time.deltaTime;
+
+            if (time > 1)
+            {
+                playerUI.playerContainer.localScale = new Vector3(1, 1, 1);
+                StopCoroutine(AnimateHitPlayer());
+                break;
+            }
+        }
+    }
+
+    public IEnumerator AnimateHitEnemy()
+    {
+        float time = 0;
+
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+
+            float r = Random.Range(0.01f, 0.05f);
+            enemyUI.enemyContainer.transform.localScale = new Vector3(Mathf.Sin(Time.time * 30) * r + 1, 1, 1);
+
+            time += Time.deltaTime;
+
+            if (time > 1)
+            {
+
+                enemyUI.enemyContainer.localScale = new Vector3(1, 1, 1);
+                StopCoroutine(AnimateHitEnemy());
+                break;
+            }
         }
     }
 
@@ -358,15 +409,15 @@ public class CombatController : MonoBehaviour {
             switch (input[0])
             {
                 case "0":
-                    
+                    UseObjectInInventory(0);
                     break;
 
                 case "1":
-                    
+                    UseObjectInInventory(1);
                     break;
 
                 case "2":
-                    
+                    UseObjectInInventory(2);
                     break;
 
                 default:
@@ -556,25 +607,34 @@ public class CombatController : MonoBehaviour {
 
         inventoryPage = 1;
 
-        if (vsPlayer)
-        {
+        playerUI.optionsText.text = "[1] Inventario \n" +
+            "[2] Reposicionamiento \n" +
+            "[3] Rendirse";
 
-        }
-        else
-        {
-
-            playerUI.optionsText.text = "[1] Inventario \n" +
-                "[2] Reposicionamiento \n" +
-                "[3] Rendirse";
-        }
     }
 
     public void EnterInInventory()
     {
         inInventory = true;
         UpdatePlayerLog("Abres el inventario");
-        player.currentTurn -= player.MaxTurn * 0.5f;
         inventoryManager.DisplayInventory(this, inventoryPage);
+    }
+
+    public void UseObjectInInventory(int index)
+    {
+        InteractableObject objectToUse = inventoryManager.UseObjectDuringBattle(this, inventoryPage, index);
+        if (objectToUse != null)
+        {
+            player.currentTurn -= player.MaxTurn * 0.5f;
+            player.controller.itemHandler.UseObject(objectToUse);
+            UpdatePlayerTurn();
+        }
+        else
+        {
+            UpdatePlayerLog("No se pudo usar el objeto");
+        }
+
+        ExitInventory();
     }
 
     public void ExitInventory()

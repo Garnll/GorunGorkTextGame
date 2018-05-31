@@ -8,6 +8,7 @@ using TMPro;
 public class EnemyUIDuringCombat : UIDuringCombat {
 
     [HideInInspector] public TextMeshProUGUI descriptionText;
+    [HideInInspector] public RectTransform enemyContainer;
 
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyTitle;
@@ -23,7 +24,7 @@ public class EnemyUIDuringCombat : UIDuringCombat {
     /// <param name="combatParent"></param>
     public override void InstantiateMyStuff(RectTransform combatParent)
     {
-        RectTransform enemyContainer = Instantiate(enemyPrefab, combatParent).GetComponent<RectTransform>();
+        enemyContainer = Instantiate(enemyPrefab, combatParent).GetComponent<RectTransform>();
 
         GameObject temp = Instantiate(enemyTitle, enemyContainer.transform);
         title = temp.GetComponent<TextMeshProUGUI>();
@@ -35,6 +36,10 @@ public class EnemyUIDuringCombat : UIDuringCombat {
         temp = Instantiate(enemyTurnAndWill, enemyContainer);
         turnSlider = temp.GetComponentInChildren<Slider>();
         willText = temp.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+        turnParticles.transform.SetParent(turnSlider.transform);
+        turnParticles.transform.localPosition = new Vector3(50, 0, -10);
+        turnParticles.transform.localScale = Vector3.one;
 
         temp = Instantiate(enemyDescription, enemyContainer);
         descriptionText = temp.GetComponent<TextMeshProUGUI>();

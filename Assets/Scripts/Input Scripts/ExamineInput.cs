@@ -57,21 +57,72 @@ public class ExamineInput : InputActions {
     void ExaminePlayer(PlayerInstance otherPlayer, GameController controller)
     {
         NetworkManager.OnExamine -= ExaminePlayer;
-        AnalizePlayerInfo(otherPlayer);
-        controller.LogStringWithoutReturn(AnalizePlayerInfo(otherPlayer));
+
+        controller.LogStringWithoutReturn(AnalizePlayerInfo(otherPlayer, controller));
     }
 
-    string AnalizePlayerInfo(PlayerInstance player)
+    string AnalizePlayerInfo(PlayerInstance player, GameController controller)
     {
         StringBuilder info = new StringBuilder();
 
-        info.Append(player.playerName);
+        info.Append(player.playerName + " es ");
+
+        if (player.playerGender == "hembra")
+        {
+            info.Append("una " + player.playerRace.raceName + " ");
+            if (player.playerJob.GetType() != typeof(NoJob))
+            {
+                info.Append("que se nota es una " + player.playerJob.jobName + ".");
+            }
+            else
+            {
+                info.Append("que se nota recién llegó a este lugar.");
+            }
+        }
+        else
+        {
+            info.Append("un " + player.playerRace.raceName + " ");
+            if (player.playerJob.GetType() != typeof(NoJob))
+            {
+                info.Append("que se nota es un " + player.playerJob.jobName + ".");
+            }
+            else
+            {
+                info.Append("que se nota recién llegó a este lugar.");
+            }
+        }
+
         info.Append("\n");
-        info.Append(player.playerRace.raceName);
-        info.Append("\n");
-        info.Append(player.playerJob.jobName);
-        info.Append("\n");
-        info.Append(player.playerState.stateName);
+
+        if (player.playerState.GetType() != typeof(NormalState))
+        {
+            info.Append("Puedes ver que está en estado de " + player.playerState.stateName + " en este momento.");
+        }
+        else
+        {
+            info.Append("Puedes ver que se encuentra relajado ahora mismo.");
+        }
+
+        if (player.strength > controller.playerManager.characteristics.currentStrength)
+        {
+            info.Append("\n");
+            info.Append("Notas que es bastante fuerte.");
+        }
+        if (player.dexterity > controller.playerManager.characteristics.currentDexterity)
+        {
+            info.Append("\n");
+            info.Append("Parece ser muy ágil.");
+        }
+        if (player.resistance > controller.playerManager.characteristics.currentResistance)
+        {
+            info.Append("\n");
+            info.Append("Ves que podría resistir cualquier golpe.");
+        }
+        if (player.intelligence > controller.playerManager.characteristics.currentIntelligence)
+        {
+            info.Append("\n");
+            info.Append("Es aparente su gran intelecto.");
+        }
 
         return info.ToString();
     }

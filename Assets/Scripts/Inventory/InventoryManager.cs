@@ -89,7 +89,7 @@ public class InventoryManager : MonoBehaviour {
             totalPages = 1;
         }
 
-        if (page > totalPages || page < totalPages)
+        if (page > totalPages || page < 1)
         {
             return false;
         }
@@ -101,13 +101,16 @@ public class InventoryManager : MonoBehaviour {
 
 
         string newNounToDisplay;
-        for (int i = totalPages*(page-1); i < nounsInInventory.Count; i++)
+        for (int i = totalPages*(page-1); i < 3*page; i++)
         {
+            if (i >= nounsInInventory.Count)
+            {
+                break;
+            }
+
             int display = i - (totalPages * (page - 1));
 
-            newNounToDisplay = nounsInInventory[i].nouns[0];
-
-            newNounToDisplay = "\n[" + display + "] " + TextConverter.MakeFirstLetterUpper(nounsInInventory[i].nouns[0]);
+            newNounToDisplay = "\n[" + display + "] " + TextConverter.MakeFirstLetterUpper(nounsInInventory[i].objectName);
 
 
             textToDisplay += newNounToDisplay;
@@ -136,6 +139,18 @@ public class InventoryManager : MonoBehaviour {
         combatController.SetPlayerHabilities(textToDisplay);
         combatController.SetPlayerInventoryOptions(string.Join("\n", optionsText.ToArray()));
         return true;
+    }
+
+    public InteractableObject UseObjectDuringBattle(CombatController combatController, int page, int objectToUse)
+    {
+        int objectIndex = objectToUse + (3 * (page - 1));
+
+        if (nounsInInventory[objectIndex].GetType() == typeof(InteractableConsumableObject))
+        {
+            return(nounsInInventory[objectIndex]);
+        }
+
+        return null;
     }
 
 	public bool hasPockets() {

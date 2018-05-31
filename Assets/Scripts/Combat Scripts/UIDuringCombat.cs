@@ -14,5 +14,7 @@ public abstract class UIDuringCombat : MonoBehaviour
     [HideInInspector] public TextMeshProUGUI willText;
     [HideInInspector] public TextMeshProUGUI logText;
 
+    public ParticleSystem turnParticles;
+
     public abstract void InstantiateMyStuff(RectTransform combatParent);
 }

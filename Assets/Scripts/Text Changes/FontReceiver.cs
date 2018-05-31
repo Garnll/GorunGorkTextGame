@@ -28,6 +28,7 @@ public class FontReceiver : MonoBehaviour {
         }
 
         FontEqualizer.OnFontChange += ChangeMyFont;
+        FontEqualizer.OnFontSizeChange += ChangeFontSize;
 	}
 
     void ChangeMyFont(TMP_FontAsset newFont)
@@ -42,6 +43,19 @@ public class FontReceiver : MonoBehaviour {
         }
     }
 
+    void ChangeFontSize(int sumer)
+    {
+        Debug.Log(sumer);
+        if (myTextMesh != null)
+        {
+            myTextMesh.fontSize = originalSize + sumer;
+        }
+        if (myInput != null)
+        {
+            myInput.pointSize = originalSize + sumer;
+        }
+    }
+
     private void OnDisable()
     {
         if (myTextMesh != null)
@@ -50,7 +64,7 @@ public class FontReceiver : MonoBehaviour {
         }
         if (myInput != null)
         {
-            myInput.pointSize = myInput.pointSize;
+            myInput.pointSize = originalSize;
         }
 
         FontEqualizer.OnFontChange -= ChangeMyFont;

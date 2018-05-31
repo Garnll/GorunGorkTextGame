@@ -62,7 +62,14 @@ public class InteractableConsumableObject : InteractableObject {
 
     public void StopWorking(GameController controller)
     {
-        controller.LogStringWithReturn(stopWorkingDescription);
+        if (GameState.Instance.CurrentState == GameState.GameStates.exploration)
+        {
+            controller.LogStringWithReturn(stopWorkingDescription);
+        }
+        else if (GameState.Instance.CurrentState == GameState.GameStates.combat)
+        {
+            controller.combatController.UpdatePlayerLog(stopWorkingDescription);
+        }
     }
 
 
