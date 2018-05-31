@@ -17,7 +17,9 @@ public class CombatController : MonoBehaviour {
     public RectTransform contentContainer;
     [Space(10)]
     public PlayerUIDuringCombat playerUI;
+    private bool playerAnimated;
     public EnemyUIDuringCombat enemyUI;
+    private bool enemyAnimated;
 
 	public PlayerText playerText;
 
@@ -260,6 +262,51 @@ public class CombatController : MonoBehaviour {
                 enemy.ChargeBySecond();
             }
             
+        }
+    }
+
+    public IEnumerator AnimateHitPlayer()
+    {
+        float time = 0;
+
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+
+            float r = Random.Range(0.01f, 0.05f);
+            playerUI.playerContainer.transform.localScale = new Vector3(Mathf.Sin(Time.time * 30) * r + 1, 1, 1);
+
+            time += Time.deltaTime;
+
+            if (time > 1)
+            {
+                playerUI.playerContainer.localScale = new Vector3(1, 1, 1);
+                StopCoroutine(AnimateHitPlayer());
+                break;
+            }
+        }
+    }
+
+    public IEnumerator AnimateHitEnemy()
+    {
+        float time = 0;
+
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+
+            float r = Random.Range(0.01f, 0.05f);
+            enemyUI.enemyContainer.transform.localScale = new Vector3(Mathf.Sin(Time.time * 30) * r + 1, 1, 1);
+
+            time += Time.deltaTime;
+
+            if (time > 1)
+            {
+
+                enemyUI.enemyContainer.localScale = new Vector3(1, 1, 1);
+                StopCoroutine(AnimateHitEnemy());
+                break;
+            }
         }
     }
 

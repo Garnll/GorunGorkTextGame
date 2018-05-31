@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerUIDuringCombat : UIDuringCombat {
     [HideInInspector] public TextMeshProUGUI habilitiesText;
     [HideInInspector] public TextMeshProUGUI optionsText;
+    [HideInInspector] public RectTransform playerContainer;
 
     public GameObject timerTextObject;
     [HideInInspector] public TextMeshProUGUI timerText;
@@ -28,17 +29,17 @@ public class PlayerUIDuringCombat : UIDuringCombat {
     /// <param name="combatParent"></param>
     public override void InstantiateMyStuff(RectTransform combatParent)
     {
-        RectTransform enemyContainer = Instantiate(playerPrefab, combatParent).GetComponent<RectTransform>();
+        playerContainer = Instantiate(playerPrefab, combatParent).GetComponent<RectTransform>();
 
-        GameObject temp = Instantiate(playerTitle, enemyContainer.transform);
+        GameObject temp = Instantiate(playerTitle, playerContainer.transform);
         title = temp.GetComponent<TextMeshProUGUI>();
 
-        temp = Instantiate(playerLife, enemyContainer);
+        temp = Instantiate(playerLife, playerContainer);
 		//lifeLabel = temp.GetComponentInChildren<>
         lifeSlider = temp.GetComponentInChildren<Slider>();
         lifeText = temp.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-        temp = Instantiate(playerTurnAndWill, enemyContainer);
+        temp = Instantiate(playerTurnAndWill, playerContainer);
         turnSlider = temp.GetComponentInChildren<Slider>();
         willText = temp.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
@@ -46,15 +47,15 @@ public class PlayerUIDuringCombat : UIDuringCombat {
         turnParticles.transform.localPosition = new Vector3(50, 0, -10);
         turnParticles.transform.localScale = Vector3.one;
 
-        temp = Instantiate(playerHabilities, enemyContainer);
+        temp = Instantiate(playerHabilities, playerContainer);
         habilitiesText = temp.GetComponent<TextMeshProUGUI>();
 
-        temp = Instantiate(playerOptions, enemyContainer);
+        temp = Instantiate(playerOptions, playerContainer);
         optionsText = temp.GetComponent<TextMeshProUGUI>();
 
-        Instantiate(separator, enemyContainer.transform);
+        Instantiate(separator, playerContainer.transform);
 
-        temp = Instantiate(playerLog, enemyContainer);
+        temp = Instantiate(playerLog, playerContainer);
         logText = temp.GetComponentInChildren<TextMeshProUGUI>();
     }
 

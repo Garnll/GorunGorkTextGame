@@ -264,6 +264,8 @@ public class EnemyNPC : MonoBehaviour {
             return;
         }
         combatController.UpdateEnemyLog("El " + myTemplate.npcName + " ha recibido " + damage + " puntos de daño.");
+        combatController.StopCoroutine(combatController.AnimateHitEnemy());
+        combatController.StartCoroutine(combatController.AnimateHitEnemy());
     }
 
     public void TryToEscape(PlayerManager player)

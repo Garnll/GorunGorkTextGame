@@ -387,6 +387,8 @@ public class PlayerManager : MonoBehaviour {
             NetworkManager.Instance.UpdateOtherPlayersEnemyLog(controller.combatController.enemyPlayer,
                 playerName + " ha recibido " + damage.ToString("0.#") + " puntos de daño.");
         }
+        controller.combatController.StopCoroutine(controller.combatController.AnimateHitPlayer());
+        controller.combatController.StartCoroutine(controller.combatController.AnimateHitPlayer());
     }
 
     public void GiveUp(EnemyNPC enemy)
