@@ -9,6 +9,11 @@ public class FontChangeInput : InputActions
 
     public override void RespondToInput(GameController controller, string[] separatedInputWords, string[] separatedCompleteInputWords)
     {
+        if (fontEqualizer == null)
+        {
+            fontEqualizer = FindObjectOfType<FontEqualizer>();
+        }
+
         if (separatedInputWords.Length > 1)
         {
             if (separatedInputWords[1] == "+")
