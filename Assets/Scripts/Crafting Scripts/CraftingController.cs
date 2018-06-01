@@ -77,7 +77,7 @@ public class CraftingController : MonoBehaviour {
 
 	#region commands
 	string[] addCommands = { "añadir", "agregar", "+", "echar", "poner", "a" };
-	string[] removeCommands = { "quitar", "remover", "-", "retirar" };
+	string[] removeCommands = { "quitar", "remover", "-", "retirar", "q" };
 	string[] backCommands = { "anterior", "<" };
 	string[] nextCommands = { "siguiente", ">" };
 
@@ -101,13 +101,14 @@ public class CraftingController : MonoBehaviour {
 	public enum InputType {	addCommand, removeCommand, backCommand, nextCommand, playCommand,
 							pauseCommand, stopCommand, returnCommand, reclaimCommand, exitCommand,
 							readCommand, unrecognized }
-	public enum SubType	  {	mono, bi, natural,
+	public enum SubType	  {	mono, bi, unnbi, natural,
 							standard, unrecognized }
 	//sintax
 	//mono		-> p 
 	//bi		-> + p 
 	//natural	-> + # p 
 	//standard	-> + p . p . p x # 
+	//unnbi		-> # p
 
 	public class frag {
 		public InteractableObject ingredient;
@@ -398,7 +399,7 @@ public class CraftingController : MonoBehaviour {
 		}
 
 		if (currentRecipe == null) {
-			return "";
+			return "<b>[L]</b> Leer";
 		}
 		else {
 			return "<b>[V]</b> Volver";
@@ -408,17 +409,17 @@ public class CraftingController : MonoBehaviour {
 	public string getIngredientsCommandsText() {
 		string t = "";
 		if (currentPage == 1) {
-			t += "<color=#" + disableColor_forText + "><b>[A]</b> Anterior</color> \n";
+			t += "<color=#" + ableColor_forText + "><b>(+)</b> Agregar</color> \n";
 		}
 		else {
-			t += "<color=#" + ableColor_forText + "><b>[A]</b> Anterior</color> \n";
+			t += "<color=#" + ableColor_forText + "><b>(+)</b> Agregar</color> \n";
 		}
 
 		if (currentPage == totalPages) {
-			t += "<color=#" + disableColor_forText + "><b>[S]</b> Siguiente</color> \n";
+			t += "<color=#" + ableColor_forText + "><b>(-)</b> Quitar</color> \n";
 		}
 		else {
-			t += "<color=#" + ableColor_forText + "><b>[S]</b> Siguiente</color> \n";
+			t += "<color=#" + ableColor_forText + "><b>(-)</b> Quitar</color> \n";
 		}
 
 		return t;
@@ -622,7 +623,7 @@ public class CraftingController : MonoBehaviour {
 
 	public bool checkOneFor(Process p, List<Process> list) {
 		foreach (Process _p in list) {
-			if (p.frag == _p.frag && p.instantAdded == _p.instantAdded) {
+			if (p.frag.ingredient.objectName == _p.frag.ingredient.objectName && p.instantAdded == _p.instantAdded) {
 				return true;
 			}
 		}
@@ -872,27 +873,35 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public void removeIngredient(string s, int volume) {
-		for (int i=0; i<volume; i++) {
-			Debug.Log("Tratando de remover " + s);
-			foreach (frag f in ingredientsIn) {
-				if (s == f.ingredient.objectName && f.consumed == false) {
+		Debug.Log(volume);
+		int c = volume;
+
+		foreach (frag f in ingredientsIn) {
+			if (s == f.ingredient.objectName && f.consumed == false) {
+				playerIngredients.Add(f.ingredient);
+				c--;
+				ingredientsIn.Remove(f);
+				if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
+					slotsUsed--;
+				}
+				if (c>0) {
+					removeIngredient(s, c);
+				}
+				return;
+			}
+
+			foreach (string _s in f.ingredient.nouns) {
+				if (s == _s) {
 					playerIngredients.Add(f.ingredient);
 					ingredientsIn.Remove(f);
+					c--;
 					if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
 						slotsUsed--;
 					}
-					return;
-				}
-
-				foreach (string _s in f.ingredient.nouns) {
-					if (s == _s) {
-						playerIngredients.Add(f.ingredient);
-						ingredientsIn.Remove(f);
-						if (getVolumeOf(f.ingredient, ingredientsIn) == 0) {
-							slotsUsed--;
-						}
-						return;
+					if (c>0) {
+						removeIngredient(s, c);
 					}
+					return; 
 				}
 			}
 		}
@@ -951,7 +960,7 @@ public class CraftingController : MonoBehaviour {
 	}
 	
 	public void addResultToInventory() {
-		inventory.nounsInInventory.Add(result);
+		inventory.nounsInInventory.Insert(0, result);
 		result = null;
 		refresh();
 		inventory.DisplayInventory();
@@ -983,41 +992,79 @@ public class CraftingController : MonoBehaviour {
 		return null;
 	}
 
+	//Revisar nojoda coño sipote mondá.
+	//Saludar.
+
+	public bool checkBeforeFragmentsOf(Recipe r) {
+		if (r.beforeFragments.Count >= 1) {
+			foreach (Fragment b in r.beforeFragments) {
+				Debug.Log(r.recipeName + " needs " + b.ingredient.objectName + " x" + b.volume + " in Before.");
+			}
+			if (beforeProcess.Count < r.beforeFragments.Count) {
+				return false;
+			}
+			foreach (Fragment f in r.beforeFragments) {
+				foreach (Process p in beforeProcess) {
+					if (f.ingredient.objectName == p.frag.ingredient.objectName && f.volume != p.volume) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	public bool checkWhileFragmentsOf(Recipe r) {
+		if (r.whileFragments.Count >= 1) {
+			foreach (Fragment b in r.whileFragments) {
+				Debug.Log(r.recipeName + " needs " + b.ingredient.objectName + " x" + b.volume + " in While.");
+			}
+
+			if (whileProcess.Count < r.whileFragments.Count) {
+				return false;
+			}
+			foreach (Fragment f in r.whileFragments) {
+				foreach (Process p in whileProcess) {
+					if (f.ingredient.objectName == p.frag.ingredient.objectName && f.volume != p.volume) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	public bool checkPauseFragmentsOf(Recipe r) {
+		if (r.pauseFragments.Count >= 1) {
+			foreach (Fragment b in r.pauseFragments) {
+				Debug.Log(r.recipeName + " needs " + b.ingredient.objectName + " x" + b.volume + " in Pause.");
+			}
+
+			if (pauseProcess.Count < r.pauseFragments.Count) {
+				return false;
+			}
+			foreach (Fragment f in r.pauseFragments) {
+				foreach (Process p in pauseProcess) {
+					if (f.ingredient.objectName == p.frag.ingredient.objectName && f.volume != p.volume) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+
 	public Recipe getRecipe() {
+
 		foreach (Recipe r in recipes) {
-			int checkList = 3;
 
-			if (r.beforeFragments.Count >= 1) {
-				foreach (Fragment f in r.beforeFragments) {
-					foreach (Process p in beforeProcess) {
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							checkList--;
-						}
-					}
-				}
-			}
+			bool b = checkBeforeFragmentsOf(r);
+			bool w = checkWhileFragmentsOf(r);
+			bool p = checkPauseFragmentsOf(r);
 
-			if (r.whileFragments.Count >= 1) {
-				foreach (Fragment f in r.whileFragments) {
-					foreach (Process p in whileProcess) {
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							checkList--;
-						}
-					}
-				}
-			}
+			bool s = b && w && p;
 
-			if (r.pauseFragments.Count >= 1) {
-				foreach (Fragment f in r.pauseFragments) {
-					foreach (Process p in pauseProcess) {
-						if (f.ingredient == p.frag.ingredient && f.volume != p.volume) {
-							checkList--;
-						}
-					}
-				}
-			}
-
-			if (checkList == 3 && r.minTime <= currentTime && currentTime <= r.maxTime) {
+			if (s && r.minTime <= currentTime && currentTime <= r.maxTime) {
 				return r;
 			}
 		}
@@ -1059,7 +1106,6 @@ public class CraftingController : MonoBehaviour {
 	#region machine
 
 	public void play() {
-		process = new List<Process>();
 		currentInstant = Instant.While;
 		currentAddingInstant = AddingInstant.While;
 		alreadyStarted = true;
@@ -1068,6 +1114,9 @@ public class CraftingController : MonoBehaviour {
 		canPause = true;
 		canStop = true;
 		canExit = false;
+		if (resultState == 3) {
+			setResultDescriptionAsRecipesList();
+		}
 		StartCoroutine(cook());
 		refresh();
 	}
@@ -1099,34 +1148,16 @@ public class CraftingController : MonoBehaviour {
 		canExit = true;
 		StopCoroutine(cook());
 		ingredientsIn.Clear();
+		process.Clear();
+		beforeProcess.Clear();
+		whileProcess.Clear();
+		pauseProcess.Clear();
 		refresh();
 	}
 
 	#endregion
 
-	public int getNaturalVolume(string[] i) {
-		if (checkFor(i[0], one)) {
-			return 1;
-		}
-
-		if (checkFor(i[0], two)) {
-			return 2;
-		}
-
-		if (checkFor(i[0], three)) {
-			return 3;
-		}
-
-		if (checkFor(i[0], four)) {
-			return 4;
-		}
-
-		if (checkFor(i[0], five)) {
-			return 5;
-		}
-		return 0;
-	}
-
+	#region sintax
 
 	public void applyMono(InputType t, string i) {
 		switch (t) {
@@ -1214,27 +1245,25 @@ public class CraftingController : MonoBehaviour {
 		string[] s = getPredicate(i);
 		string ss = getStringPredicate(s);
 
-		Debug.Log(t + " " + volume + " " + ss);
-
 		switch (t) {
 			case InputType.addCommand:
 				addIngredient(getIngredientFromPlayerWith(s[0]), volume);
 				break;
 
 			case InputType.removeCommand:
-				removeIngredient(s[0]);
+				removeIngredient(s[0], volume);
 				break;
 		}
 	}
 
-	public string[] getPredicate(string[] i) {
-		string[] s = new string[i.Length-1];
-		for (int j=0; j<i.Length; j++) {
-			if (j>0) {
-				s[j - 1] = i[j];
-			}
+	public void applyUnnbi(InputType T, string[] i) {
+		int volume = getNaturalVolume(i[0]);
+		if (volume == 0) {
+			volume = getNaturalVolume(i[1]);
+			addIngredient(getIngredientFromPlayerWith(i[0]), volume);
+		} else {
+			addIngredient(getIngredientFromPlayerWith(i[1]), volume);
 		}
-		return s;
 	}
 
 	public void receiveInput(string[] input) {
@@ -1268,34 +1297,26 @@ public class CraftingController : MonoBehaviour {
 
 			case SubType.standard:
 				break;
+
+			case SubType.unnbi:
+				type = InputType.addCommand;
+				applyUnnbi(type, input);
+				break;
 		}
 
 		refresh();
 	}
 
-	public string[] getBiPredicate(string[] s) {
-		string[] _s = new string[s.Length -1];
-		for (int i = 1; i < s.Length; i++) {
-			_s[i - 1] = s[i];
-		}
-		return _s;
-	}
-
-	public string getStringPredicate(string[] s) {
-		string _s = "";
-		foreach (string c in s) {
-			_s += c + " ";
-		}
-
-		if (s.Length > 0) {
-			_s.Remove(_s.Length - 1);
-		}
-		return _s;
-	}
-
 	public SubType getSubType(string[] input) {
-		if (checkFor(input[1], one) || checkFor(input[1], two) || checkFor(input[1], three)
-			|| checkFor(input[1], four) || checkFor(input[1], five)) {
+		if (input.Length == 2 && isNumber(input[0])) {
+			return SubType.unnbi;
+		}
+
+		if (input.Length == 2 && isNumber(input[1])) {
+			return SubType.unnbi;
+		}
+
+		if (isNumber(input[1])) {
 			return SubType.natural;
 		}
 
@@ -1309,6 +1330,14 @@ public class CraftingController : MonoBehaviour {
 	}
 
 	public InputType getInputType(string input, int n) {
+		if (isNumber(input) && n == 2) {
+			return InputType.addCommand;
+		}
+
+		if (checkFor(input, playerIngredients) && n == 2) {
+			return InputType.addCommand;
+		}
+
 		if (n > 1) {
 			if (checkFor(input, addCommands))
 				return InputType.addCommand;
@@ -1355,6 +1384,93 @@ public class CraftingController : MonoBehaviour {
 		return InputType.unrecognized;
 	}
 
+	public string[] getPredicate(string[] i) {
+		string[] s = new string[i.Length - 1];
+		for (int j = 0; j < i.Length; j++) {
+			if (j > 0) {
+				s[j - 1] = i[j];
+			}
+		}
+		return s;
+	}
+
+	public string[] getBiPredicate(string[] s) {
+		string[] _s = new string[s.Length - 1];
+		for (int i = 1; i < s.Length; i++) {
+			_s[i - 1] = s[i];
+		}
+		return _s;
+	}
+
+	public string getStringPredicate(string[] s) {
+		string _s = "";
+		foreach (string c in s) {
+			_s += c + " ";
+		}
+
+		if (s.Length > 0) {
+			_s.Remove(_s.Length - 1);
+		}
+		return _s;
+	}
+
+	public bool isNumber(string s) {
+		if (checkFor(s, one) || checkFor(s, two) || checkFor(s, three)
+			|| checkFor(s, four) || checkFor(s, five)) {
+			return true;
+		}
+		return false;
+	}
+
+	public int getNaturalVolume(string[] i) {
+		if (checkFor(i[0], one)) {
+			return 1;
+		}
+
+		if (checkFor(i[0], two)) {
+			return 2;
+		}
+
+		if (checkFor(i[0], three)) {
+			return 3;
+		}
+
+		if (checkFor(i[0], four)) {
+			return 4;
+		}
+
+		if (checkFor(i[0], five)) {
+			return 5;
+		}
+		return 0;
+	}
+
+	public int getNaturalVolume(string i) {
+		if (checkFor(i, one)) {
+			return 1;
+		}
+
+		if (checkFor(i, two)) {
+			return 2;
+		}
+
+		if (checkFor(i, three)) {
+			return 3;
+		}
+
+		if (checkFor(i, four)) {
+			return 4;
+		}
+
+		if (checkFor(i, five)) {
+			return 5;
+		}
+		return 0;
+	}
+
+	#endregion
+
+	#region coroutines
 	public IEnumerator cook() {
 		currentInstant = Instant.While;
 		while (currentInstant == Instant.While) {
@@ -1377,6 +1493,7 @@ public class CraftingController : MonoBehaviour {
 			display.text = " ";
 		}
 	}
+	#endregion
 
 	#region exit
 	public void end() {

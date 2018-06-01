@@ -17,14 +17,18 @@ public class Recipe : ScriptableObject {
 
 	public List<Fragment> fragments;
 
-	[HideInInspector] public List<Fragment> beforeFragments;
-	[HideInInspector] public List<Fragment> whileFragments;
-	[HideInInspector] public List<Fragment> pauseFragments;
+	public List<Fragment> beforeFragments;
+	public List<Fragment> whileFragments;
+	public List<Fragment> pauseFragments;
 
 
 	public void OnEnable() {
+		beforeFragments.Clear();
+		whileFragments.Clear();
+		pauseFragments.Clear();
 		fillLists();
 	}
+
 
 	public void fillLists() {
 		foreach (Fragment f in fragments) {

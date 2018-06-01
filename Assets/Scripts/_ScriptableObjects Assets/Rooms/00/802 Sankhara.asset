@@ -28,7 +28,10 @@ MonoBehaviour:
     y con ella destru\xEDmos.</color></i>\nRecuerdas la existencia de al menos cuatro
     nombres importantes para indicar a d\xF3nde <b><color=#FBEBB5>ir</color></b>."
   roomResponse: {fileID: 0}
-  visibleObjectsInRoom: []
+  visibleObjectsInRoom:
+  - interactableObject: {fileID: 11400000, guid: 5226b96c7b04dd6469b17ee5254de127,
+      type: 2}
+    visionRange: 0
   charactersInRoom: []
   playersInRoom: []
   npcTemplatesInRoom: []
